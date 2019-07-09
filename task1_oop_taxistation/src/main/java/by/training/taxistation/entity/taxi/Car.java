@@ -20,6 +20,10 @@ public class Car {
      */
     private int mileage;
 
+    public Car(){
+
+    }
+
     /**
      * Constructor.
      *

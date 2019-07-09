@@ -12,6 +12,13 @@ public class CargoTaxi extends Car {
      */
     private int loadCapacity;
 
+    public CargoTaxi(){
+
+    }
+    public CargoTaxi(int load){
+this.loadCapacity = load;
+    }
+
     /**
      * constructor.
      * @param brand brand
