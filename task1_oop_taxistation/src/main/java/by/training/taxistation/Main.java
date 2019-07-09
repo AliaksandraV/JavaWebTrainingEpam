@@ -30,7 +30,7 @@ public final class Main {
         SearchService searchService = new SearchService();
         SortService sortService = new SortService();
 
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars;
         cars = sortService.sortByCarBrandAndCost(taxiStation);
         print(cars);
 
