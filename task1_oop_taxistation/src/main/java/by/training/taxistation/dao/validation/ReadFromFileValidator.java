@@ -1,6 +1,6 @@
 package by.training.taxistation.dao.validation;
 
-import by.training.taxistation.entity.taxi.CarBrand;
+import by.training.taxistation.entity.car.CarBrand;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;

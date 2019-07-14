@@ -3,12 +3,10 @@ package by.training.taxistation;
 import by.training.taxistation.dao.ITaxiStationDao;
 import by.training.taxistation.dao.TaxiStationDao;
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.entity.taxi.Car;
-import by.training.taxistation.entity.taxi.cargotaxi.CargoTaxi;
+import by.training.taxistation.entity.car.Car;
 import by.training.taxistation.service.SearchService;
 import by.training.taxistation.service.SortService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Main {

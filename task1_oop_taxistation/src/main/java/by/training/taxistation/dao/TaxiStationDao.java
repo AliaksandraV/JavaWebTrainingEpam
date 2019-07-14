@@ -4,9 +4,9 @@ import by.training.taxistation.dao.factory.CarFactory;
 import by.training.taxistation.dao.factory.ICarFactory;
 import by.training.taxistation.dao.validation.ReadFromFileValidator;
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.entity.taxi.cargotaxi.CargoTaxi;
-import by.training.taxistation.entity.taxi.passengertaxi.Minibus;
-import by.training.taxistation.entity.taxi.passengertaxi.Taxi;
+import by.training.taxistation.entity.car.CargoTaxi;
+import by.training.taxistation.entity.car.Minibus;
+import by.training.taxistation.entity.car.Taxi;
 import by.training.taxistation.util.PropertiesUtil;
 import org.apache.log4j.Logger;
 
@@ -125,7 +125,7 @@ public class TaxiStationDao implements ITaxiStationDao {
                 car.getModel(),
                 car.getCost(),
                 car.getMileage(),
-                car.getLoadCapacity()};
+                car.getCargoCapacity()};
 
         String valueForStorage = convertToStorageFormat(carParameters);
         writeCarToFile(valueForStorage);

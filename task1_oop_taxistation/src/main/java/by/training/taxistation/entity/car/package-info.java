@@ -3,4 +3,4 @@
  * Contains car objects for taxi station.
  * And Enum of car brands.
  */
-package by.training.taxistation.entity.taxi;
+package by.training.taxistation.entity.car;

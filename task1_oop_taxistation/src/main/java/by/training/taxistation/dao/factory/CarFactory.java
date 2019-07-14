@@ -1,9 +1,9 @@
 package by.training.taxistation.dao.factory;
 
-import by.training.taxistation.entity.taxi.CarBrand;
-import by.training.taxistation.entity.taxi.cargotaxi.CargoTaxi;
-import by.training.taxistation.entity.taxi.passengertaxi.Minibus;
-import by.training.taxistation.entity.taxi.passengertaxi.Taxi;
+import by.training.taxistation.entity.car.CarBrand;
+import by.training.taxistation.entity.car.CargoTaxi;
+import by.training.taxistation.entity.car.Minibus;
+import by.training.taxistation.entity.car.Taxi;
 
 public class CarFactory implements ICarFactory {
 

@@ -1,7 +1,7 @@
 package by.training.taxistation.service;
 
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.entity.taxi.Car;
+import by.training.taxistation.entity.car.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ public class SearchService {
         return station.getCargoTaxis()
                 .stream()
                 .filter(cargoTaxi -> {
-                    int capacity = cargoTaxi.getLoadCapacity();
+                    int capacity = cargoTaxi.getCargoCapacity();
                     return capacity >= from && capacity <= to;
                 })
                 .collect(Collectors.toList());

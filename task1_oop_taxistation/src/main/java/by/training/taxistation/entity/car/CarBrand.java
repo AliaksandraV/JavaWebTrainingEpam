@@ -1,4 +1,4 @@
-package by.training.taxistation.entity.taxi;
+package by.training.taxistation.entity.car;
 
 import java.util.Optional;
 
@@ -30,7 +30,9 @@ public enum CarBrand {
     /**
      * .
      */
-    MERCEDES_BENZ("MERCEDES_BENZ");
+    MERCEDES_BENZ("MERCEDES"),
+
+    MAN("MAN");
 
     /**
      * .

@@ -1,45 +1,58 @@
-package by.training.taxistation.entity.taxi;
+package by.training.taxistation.entity.car;
 
 import java.util.Objects;
 
 public class Car {
+
     /**
      * brand.
      */
+    //TODO add search by id
     private CarBrand brand;
     /**
      * model.
      */
     private String model;
     /**
-     * cost.
+     *
      */
-    private int cost;
+    private int cargoCapacity;
+    /**
+     *
+     */
+    private int passengerCapacity;
+
+    /**
+     * Plate number is also ID for car, must be unique.
+     */
+    private String plateNumber;
     /**
      * mileage.
      */
     private int mileage;
+    /**
+     * cost.
+     */
+    private int cost;
 
-    public Car(){
+    protected Car() {
 
     }
 
-    /**
-     * Constructor.
-     *
-     * @param brand1   brand1
-     * @param model1   model1
-     * @param cost1    cost1
-     * @param mileage1 mileage1
-     */
-    public Car(final CarBrand brand1,
-               final String model1,
-               final int cost1,
-               final int mileage1) {
-        brand = brand1;
-        model = model1;
-        cost = cost1;
-        mileage = mileage1;
+    public Car(final CarBrand newBrand,
+               final String newModel,
+               final int newCargoCapacity,
+               final int newPassengerCapacity,
+               final String newPlateNumber,
+               final int newMileage,
+               final int newCost) {
+        brand = newBrand;
+        model = newModel;
+        cargoCapacity = newCargoCapacity;
+        passengerCapacity = newPassengerCapacity;
+        plateNumber = newPlateNumber;
+        mileage = newMileage;
+        cost = newCost;
     }
 
     /**
@@ -78,22 +91,28 @@ public class Car {
         this.model = model1;
     }
 
-    /**
-     * get cost.
-     *
-     * @return cost
-     */
-    public int getCost() {
-        return cost;
+    public int getCargoCapacity() {
+        return cargoCapacity;
     }
 
-    /**
-     * set cost1.
-     *
-     * @param cost1 cost1
-     */
-    public void setCost(final int cost1) {
-        this.cost = cost1;
+    public void setCargoCapacity(final int newCargoCapacity) {
+        cargoCapacity = newCargoCapacity;
+    }
+
+    public int getPassengerCapacity() {
+        return passengerCapacity;
+    }
+
+    public void setPassengerCapacity(final int newPassengerCapacity) {
+        passengerCapacity = newPassengerCapacity;
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(final String newPlateNumber) {
+        plateNumber = newPlateNumber;
     }
 
     /**
@@ -112,6 +131,24 @@ public class Car {
      */
     public void setMileage(final int mileage1) {
         this.mileage = mileage1;
+    }
+
+    /**
+     * get cost.
+     *
+     * @return cost
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * set cost1.
+     *
+     * @param cost1 cost1
+     */
+    public void setCost(final int cost1) {
+        this.cost = cost1;
     }
 
     /**

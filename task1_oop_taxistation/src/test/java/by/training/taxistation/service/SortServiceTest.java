@@ -1,10 +1,10 @@
 package by.training.taxistation.service;
 
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.entity.taxi.Car;
-import by.training.taxistation.entity.taxi.CarBrand;
-import by.training.taxistation.entity.taxi.passengertaxi.Minibus;
-import by.training.taxistation.entity.taxi.passengertaxi.Taxi;
+import by.training.taxistation.entity.car.Car;
+import by.training.taxistation.entity.car.CarBrand;
+import by.training.taxistation.entity.car.Minibus;
+import by.training.taxistation.entity.car.Taxi;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

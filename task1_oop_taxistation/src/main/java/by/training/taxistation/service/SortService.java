@@ -1,7 +1,7 @@
 package by.training.taxistation.service;
 
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.entity.taxi.Car;
+import by.training.taxistation.entity.car.Car;
 
 import java.util.Comparator;
 import java.util.List;
