@@ -1,13 +1,9 @@
 package by.training.taxistation.entity.car;
 
-public class PassengerTaxi extends Car {
+public abstract class PassengerTaxi extends Car {
 
     private boolean accessibleForChildren;
     private boolean accessibleForDisabled;
-
-    protected PassengerTaxi(){
-        super();
-    }
 
     public PassengerTaxi(final CarBrand newBrand,
                          final String newModel,

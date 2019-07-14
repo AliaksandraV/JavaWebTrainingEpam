@@ -2,7 +2,7 @@ package by.training.taxistation.entity.car;
 
 import java.util.Objects;
 
-public class Car {
+public abstract class Car {
 
     /**
      * brand.
@@ -34,10 +34,6 @@ public class Car {
      * cost.
      */
     private int cost;
-
-    protected Car() {
-
-    }
 
     public Car(final CarBrand newBrand,
                final String newModel,

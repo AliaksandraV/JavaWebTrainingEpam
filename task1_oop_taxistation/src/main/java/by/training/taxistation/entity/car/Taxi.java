@@ -203,7 +203,7 @@ public class Taxi extends PassengerTaxi {
          * @param newMinivan true if car is minivan
          * @return builder object with set minivan value
          */
-        public Builder setMinivan(final boolean newMinivan) {
+        public Builder setIsMinivan(final boolean newMinivan) {
             isMinivan = newMinivan;
             return this;
         }

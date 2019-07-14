@@ -1,19 +1,19 @@
-package by.training.taxistation.util;
+package by.training.taxistation.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 //TODO или это сделать сервисом или сделать универсальным и принимать имя конфиг файла, rename in service
-public class PropertiesUtil {
+public class PropertiesService {
 
-    private PropertiesUtil() {
+    private PropertiesService() {
 
     }
 //TODO имя get нельзя
     public static String getProperty(String key) {
         String name = "config.properties";
-        ClassLoader classLoader = PropertiesUtil.class.getClassLoader();
+        ClassLoader classLoader = PropertiesService.class.getClassLoader();
         try (InputStream input = classLoader.getResourceAsStream(name)) {
             Properties prop = new Properties();
 

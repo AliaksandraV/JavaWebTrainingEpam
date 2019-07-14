@@ -30,7 +30,7 @@ public enum CarBrand {
     /**
      * .
      */
-    MERCEDES_BENZ("MERCEDES"),
+    MERCEDES("MERCEDES"),
 
     MAN("MAN");
 
