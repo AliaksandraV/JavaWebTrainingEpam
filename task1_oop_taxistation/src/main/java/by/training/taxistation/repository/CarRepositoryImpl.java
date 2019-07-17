@@ -1,11 +1,10 @@
 package by.training.taxistation.repository;
 
 import by.training.taxistation.entity.car.Car;
-import by.training.taxistation.repository.factory.CarFactoryImpl;
 import by.training.taxistation.repository.factory.CarFactory;
+import by.training.taxistation.repository.factory.CarFactoryImpl;
 import by.training.taxistation.service.specification.CarSpecification;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
