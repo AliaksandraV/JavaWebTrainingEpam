@@ -26,12 +26,12 @@ public class ReadFileService {
         filePath = newFilePath;
     }
 
-    public List<String> loadValidLinesFromFile() {
-        List<String> linesFromFile = readLinesFromFile();
-        return ReadFromFileValidator.validateCarParametersFromFile(linesFromFile);
-    }
+//    public List<String> loadValidLinesFromFile() {
+//        List<String> linesFromFile = readLinesFromFile();
+//        return CarFactoryValidator.validateCarParametersFromFile(linesFromFile);
+//    }
 
-    private List<String> readLinesFromFile() {
+    public List<String> readLinesFromFile() {
         List<String> linesFromFile = new ArrayList<>();
         if (isFileEmpty()) {
             log.info("Файл пустой. Нет данных.");

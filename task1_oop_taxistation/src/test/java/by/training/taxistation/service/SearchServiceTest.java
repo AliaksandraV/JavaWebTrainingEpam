@@ -17,12 +17,12 @@ import static org.testng.Assert.*;
 public class SearchServiceTest {
 
     private TaxiStation station;
-    private SearchService search;
+//    private SearchService search;
 
-    @BeforeTest
-    public void generateTaxiStation(){
-        search = new SearchService();
-    }
+//    @BeforeTest
+//    public void generateTaxiStation(){
+//        search = new SearchService();
+//    }
 
     @Test
     public void testFindByLoadCapacity() {

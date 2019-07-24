@@ -1,21 +1,30 @@
 package by.training.taxistation.service.specification.search;
 
 import by.training.taxistation.entity.car.Car;
-import by.training.taxistation.entity.station.TaxiStation;
+import by.training.taxistation.service.specification.CarSpecification;
 import by.training.taxistation.service.specification.SearchCarSpecification;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchByLoadCapacityCarSpecificationImpl implements SearchCarSpecification {
+public class SearchByLoadCapacityCarSpecificationImpl implements CarSpecification{//SearchCarSpecification {
 
-//    public List<Car> find(TaxiStation station, int from, int to) {
-//        return station.getCargoTaxis()
-//                .stream()
-//                .filter(cargoTaxi -> {
-//                    int capacity = cargoTaxi.getCargoCapacity();
-//                    return capacity >= from && capacity <= to;
-//                })
-//                .collect(Collectors.toList());
-//    }
+    private int from;
+    private int to;
+
+    public SearchByLoadCapacityCarSpecificationImpl(int newFrom, int newTo) {
+        from = newFrom;
+        to = newTo;
+    }
+
+    @Override
+    public List<Car> query(List<Car> cars) {
+        return cars
+                .stream()
+                .filter(cargoTaxi -> {
+                    int capacity = cargoTaxi.getCargoCapacity();
+                    return capacity >= from && capacity <= to;
+                })
+                .collect(Collectors.toList());
+    }
 }

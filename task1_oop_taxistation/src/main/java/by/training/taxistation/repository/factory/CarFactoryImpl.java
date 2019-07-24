@@ -6,22 +6,22 @@ import org.apache.log4j.Logger;
 public class CarFactoryImpl implements CarFactory {
     private static final Logger log = Logger.getLogger(CarFactoryImpl.class);
 
-
     @Override
-    public Car create(String[] arr) {
+    public Car create(String[] carParameters) throws InvalidCarDataException {
         Car car;
-        switch (arr[0]) {
+        CarFactoryValidator.validateCarParametersFromFile(carParameters);
+        switch (carParameters[0]) {
             case "taxi":
-                car = new TaxiFactory().create(arr);
+                car = new TaxiFactory().create(carParameters);
                 break;
             case "minibus":
-                car = new MinibusFactory().create(arr);
+                car = new MinibusFactory().create(carParameters);
                 break;
             case "cargotaxi":
-                car = new CargoTaxiFactory().create(arr);
+                car = new CargoTaxiFactory().create(carParameters);
                 break;
             default:
-                log.error("Передан несуществующий тип такси.");
+                log.error("Несуществующий тип такси.");
                 return null;
         }
         return car;

@@ -4,5 +4,5 @@ import by.training.taxistation.entity.car.Car;
 
 public interface CarFactory {
 
-    Car create(String[] arr);
+    Car create(String[] carParameters) throws InvalidCarDataException;
 }

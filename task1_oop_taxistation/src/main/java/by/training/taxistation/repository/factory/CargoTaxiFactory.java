@@ -3,23 +3,22 @@ package by.training.taxistation.repository.factory;
 import by.training.taxistation.entity.car.CarBrand;
 import by.training.taxistation.entity.car.CargoTaxi;
 
-//TODO Сомневаюсь что тут надо имплиментить интерфейс
-public class CargoTaxiFactory implements CarFactory {
+class CargoTaxiFactory implements CarFactory {
 
     @Override
-    public CargoTaxi create(String[] arr) {
+    public CargoTaxi create(String[] carParameters) {
         return new CargoTaxi.Builder()
-                .setBrand(CarBrand.valueOf(arr[1]))
-                .setModel(arr[2])
-                .setCargoCapacity(Integer.valueOf(arr[3]))
-                .setPassengerCapacity(Integer.valueOf(arr[4]))
-                .setPlateNumber(arr[5])
-                .setMileage(Integer.valueOf(arr[6]))
-                .setCost(Integer.valueOf(arr[7]))
-                .setLength(Double.valueOf(arr[8]))
-                .setWidth(Double.valueOf(arr[9]))
-                .setHeight(Double.valueOf(arr[10]))
-                .setVolume(Double.valueOf(arr[11]))
+                .setBrand(CarBrand.valueOf(carParameters[1]))
+                .setModel(carParameters[2])
+                .setCargoCapacity(Integer.valueOf(carParameters[3]))
+                .setPassengerCapacity(Integer.valueOf(carParameters[4]))
+                .setPlateNumber(carParameters[5])
+                .setMileage(Integer.valueOf(carParameters[6]))
+                .setCost(Integer.valueOf(carParameters[7]))
+                .setLength(Double.valueOf(carParameters[8]))
+                .setWidth(Double.valueOf(carParameters[9]))
+                .setHeight(Double.valueOf(carParameters[10]))
+                .setVolume(Double.valueOf(carParameters[11]))
                 .build();
     }
 }

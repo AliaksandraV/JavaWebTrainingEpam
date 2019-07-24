@@ -198,10 +198,18 @@ public abstract class Car {
                 + brand
                 + ", model='"
                 + model + '\''
-                + ", cost="
-                + cost
+                + ", cargoCapacity="
+                + cargoCapacity
+                + ", passengerCapacity="
+                + passengerCapacity
+                + ", plateNumber='"
+                + plateNumber + '\''
                 + ", mileage="
-                + mileage;
+                + mileage
+                + ", cost="
+                + cost + '}';
     }
+
+
 }
 
