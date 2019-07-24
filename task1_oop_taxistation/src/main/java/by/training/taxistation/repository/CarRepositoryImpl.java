@@ -7,26 +7,50 @@ import by.training.taxistation.service.specification.CarSpecification;
 import java.util.List;
 
 public class CarRepositoryImpl implements CarRepository {
+    /**
+     * .
+     */
+    private final TaxiStation taxiStation
+            = TaxiStation.getTaxiStationInstance();
 
-    private final TaxiStation taxiStation = TaxiStation.getTaxiStationInstance();
-
+    /**
+     * .
+     *
+     * @param car .
+     */
     @Override
-    public void create(Car car) {
+    public void create(final Car car) {
 
     }
 
+    /**
+     * .
+     *
+     * @return .
+     */
     @Override
     public List<Car> read() {
         return taxiStation.getCars();
     }
 
+    /**
+     * .
+     *
+     * @param car .
+     */
     @Override
-    public void delete(Car car) {
+    public void delete(final Car car) {
 
     }
 
+    /**
+     * .
+     *
+     * @param specification .
+     * @return .
+     */
     @Override
-    public List<Car> query(CarSpecification specification) {
+    public List<Car> query(final CarSpecification specification) {
         return specification.query(read());
     }
 

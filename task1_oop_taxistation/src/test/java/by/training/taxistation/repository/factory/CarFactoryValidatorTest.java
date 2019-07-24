@@ -13,7 +13,7 @@ public class CarFactoryValidatorTest {
 
         boolean expected = true;
 
-        boolean actual = CarFactoryValidator.validateCarParametersFromFile(carParameters);
+        boolean actual = CarFactoryValidator.validateCarParameters(carParameters);
         assertEquals(actual, expected);
     }
 }

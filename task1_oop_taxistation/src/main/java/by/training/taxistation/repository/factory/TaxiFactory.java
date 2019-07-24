@@ -4,20 +4,33 @@ import by.training.taxistation.entity.car.CarBrand;
 import by.training.taxistation.entity.car.Taxi;
 
 class TaxiFactory implements CarFactory {
-
+    /**
+     *
+     * @param carParameters car Parameters
+     * @return
+     */
     @Override
-    public Taxi create(String[] carParameters) {
+    public Taxi create(final String[] carParameters) {
         return new Taxi.Builder()
                 .setBrand(CarBrand.valueOf(carParameters[1]))
                 .setModel(carParameters[2])
-                .setCargoCapacity(Integer.valueOf(carParameters[3]))
-                .setPassengerCapacity(Integer.valueOf(carParameters[4]))
-                .setPlateNumber(carParameters[5])
-                .setMileage(Integer.valueOf(carParameters[6]))
-                .setCost(Integer.valueOf(carParameters[7]))
-                .setAccessibleForChildren(Boolean.valueOf(carParameters[8]))
-                .setAccessibleForDisabled(Boolean.valueOf(carParameters[9]))
-                .setIsMinivan(Boolean.valueOf(carParameters[10]))
+                .setCargoCapacity(Integer.valueOf(
+                        carParameters[CarConstants.CARGO_CAPACITY_INDEX]))
+                .setPassengerCapacity(Integer.valueOf(
+                        carParameters[CarConstants.PAS_CAPACITY_INDEX]))
+                .setPlateNumber(carParameters[CarConstants.PLATE_NUMBER_INDEX])
+                .setMileage(Integer.valueOf(
+                        carParameters[CarConstants.MILEAGE_INDEX]))
+                .setCost(Integer.valueOf(
+                        carParameters[CarConstants.COST_INDEX]))
+                .setAccessibleForChildren(Boolean.valueOf(
+                        carParameters[
+                                CarConstants.ACCESSIBLE_FOR_CHILDREN_INDEX]))
+                .setAccessibleForDisabled(Boolean.valueOf(
+                        carParameters[
+                                CarConstants.ACCESSIBLE_FOR_DISABLED_INDEX]))
+                .setIsMinivan(Boolean.valueOf(
+                        carParameters[CarConstants.IS_MINIVAN_INDEX]))
                 .build();
     }
 }

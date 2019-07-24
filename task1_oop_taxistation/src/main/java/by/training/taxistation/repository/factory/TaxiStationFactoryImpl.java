@@ -9,15 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaxiStationFactoryImpl implements TaxiStationFactory {
-    private static final Logger log = Logger.getLogger(TaxiStationFactoryImpl.class);
+    /**
+     * .
+     */
+    private static final Logger LOGGER
+            = Logger.getLogger(TaxiStationFactoryImpl.class);
 
-
+    /**
+     * .
+     */
     @Override
     public void fill() {
         TaxiStation taxiStation = TaxiStation.getTaxiStationInstance();
         taxiStation.getCars().addAll(createListOfCars());
     }
 
+    /**
+     * .
+     * @return .
+     */
     private List<Car> createListOfCars() {
         List<Car> cars = new ArrayList<>();
         CarFactory carFactory = new CarFactoryImpl();
@@ -28,7 +38,8 @@ public class TaxiStationFactoryImpl implements TaxiStationFactory {
             try {
                 cars.add(carFactory.create(carParameters));
             } catch (InvalidCarDataException e) {
-                log.error("У файла в строке " + (i + 1) + " " + e.getMessage());
+                LOGGER.error(
+                        "У файла в строке " + (i + 1) + " " + e.getMessage());
             }
         }
         return cars;

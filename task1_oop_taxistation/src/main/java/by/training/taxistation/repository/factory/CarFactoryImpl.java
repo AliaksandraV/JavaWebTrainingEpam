@@ -19,7 +19,7 @@ public class CarFactoryImpl implements CarFactory {
     public Car create(final String[] carParameters)
             throws InvalidCarDataException {
         Car car;
-        CarFactoryValidator.validateCarParametersFromFile(carParameters);
+        CarFactoryValidator.validateCarParameters(carParameters);
         switch (carParameters[0]) {
             case "taxi":
                 car = new TaxiFactory().create(carParameters);

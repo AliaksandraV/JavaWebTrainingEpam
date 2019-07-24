@@ -5,20 +5,35 @@ import by.training.taxistation.entity.car.CargoTaxi;
 
 class CargoTaxiFactory implements CarFactory {
 
+    /**
+     * create car instance.
+     *
+     * @param carParameters car Parameters
+     * @return car instance
+     * @throws InvalidCarDataException if car Parameters invalid
+     */
     @Override
-    public CargoTaxi create(String[] carParameters) {
+    public CargoTaxi create(final String[] carParameters) {
         return new CargoTaxi.Builder()
                 .setBrand(CarBrand.valueOf(carParameters[1]))
                 .setModel(carParameters[2])
-                .setCargoCapacity(Integer.valueOf(carParameters[3]))
-                .setPassengerCapacity(Integer.valueOf(carParameters[4]))
-                .setPlateNumber(carParameters[5])
-                .setMileage(Integer.valueOf(carParameters[6]))
-                .setCost(Integer.valueOf(carParameters[7]))
-                .setLength(Double.valueOf(carParameters[8]))
-                .setWidth(Double.valueOf(carParameters[9]))
-                .setHeight(Double.valueOf(carParameters[10]))
-                .setVolume(Double.valueOf(carParameters[11]))
+                .setCargoCapacity(Integer.valueOf(
+                        carParameters[CarConstants.CARGO_CAPACITY_INDEX]))
+                .setPassengerCapacity(Integer.valueOf(
+                        carParameters[CarConstants.PAS_CAPACITY_INDEX]))
+                .setPlateNumber(carParameters[CarConstants.PLATE_NUMBER_INDEX])
+                .setMileage(Integer.valueOf(
+                        carParameters[CarConstants.MILEAGE_INDEX]))
+                .setCost(Integer.valueOf(
+                        carParameters[CarConstants.COST_INDEX]))
+                .setLength(Double.valueOf(
+                        carParameters[CarConstants.LENGTH_INDEX]))
+                .setWidth(Double.valueOf(
+                        carParameters[CarConstants.WIDTH_INDEX]))
+                .setHeight(Double.valueOf(
+                        carParameters[CarConstants.HEIGHT_INDEX]))
+                .setVolume(Double.valueOf(
+                        carParameters[CarConstants.VOLUME_INDEX]))
                 .build();
     }
 }
