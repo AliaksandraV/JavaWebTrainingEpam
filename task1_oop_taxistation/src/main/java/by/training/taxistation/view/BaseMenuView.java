@@ -5,9 +5,9 @@ import by.training.taxistation.entity.car.Car;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class BaseMenu {
+public abstract class BaseMenuView {
 
-    protected String readInput() {
+    public String readInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }

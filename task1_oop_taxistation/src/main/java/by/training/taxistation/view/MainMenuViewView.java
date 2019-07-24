@@ -1,6 +1,6 @@
 package by.training.taxistation.view;
 
-public class MainMenuView extends BaseMenu{
+public class MainMenuViewView extends BaseMenuView {
 
     private String menu = "_____________________________________________________\n" +
             "Список доступных действий:\n" +

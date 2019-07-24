@@ -1,37 +1,44 @@
 package by.training.taxistation.repository.factory;
 
 import by.training.taxistation.entity.car.CarBrand;
-import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CarFactoryValidator {
+public final class CarFactoryValidator {
 
-    private static final int expectedNumberOfParametersForCargoTaxi = 12;
-    private static final int expectedNumberOfParametersForPassangerTaxi = 11;
-    private static final List<String> taxiTypes = Arrays.asList("taxi", "minibus", "cargotaxi");
+    /**
+     * expected Number Of Parameters For CargoTaxi.
+     */
+    private static final int EXPECTED_NUMBER_OF_PARAMETERS_FOR_CARGO_TAXI = 12;
+    /**
+     * expected Number Of Parameters For Passanger Taxi.
+     */
+    private static final int EXPECTED_NUMBER_OF_PARAMETERS_FOR_PASSANGER_TAXI = 11;
+    /**
+     * list of existing taxi types.
+     */
+    private static final List<String> TAXI_TYPES = Arrays.asList("taxi", "minibus", "cargotaxi");
 
     private CarFactoryValidator() {
 
     }
 
     /**
-     * lineNumber указывает номер строки в файле в которой указаны невалидные данные
      *
-     * @param
+     * @param carParameters
      * @return
+     * @throws InvalidCarDataException
      */
     public static boolean validateCarParametersFromFile(String[] carParameters) throws InvalidCarDataException {
-//            lineNumber += 1;
-        if (validateTaxiType(carParameters[0])//, lineNumber)
-                && validateNumberOfParameters(carParameters.length, carParameters[0])//, lineNumber)
-                && validateCarBrand(carParameters[1])//, lineNumber)
-                && validateCapacity(carParameters[3])//, lineNumber)
-                && validateCapacity(carParameters[4])//, lineNumber)
-                && validateMileage(carParameters[6])//, lineNumber)
-                && validateCost(carParameters[7])//, lineNumber)
-                && validateIndividualCharacteristics(carParameters)) {//, lineNumber)) {
+        if (validateTaxiType(carParameters[0])
+                && validateNumberOfParameters(carParameters.length, carParameters[0])
+                && validateCarBrand(carParameters[1])
+                && validateCapacity(carParameters[3])
+                && validateCapacity(carParameters[4])
+                && validateMileage(carParameters[6])
+                && validateCost(carParameters[7])
+                && validateIndividualCharacteristics(carParameters)) {
             return true;
         }
         return false;
@@ -39,14 +46,14 @@ public class CarFactoryValidator {
 
 
     private static boolean validateNumberOfParameters(int actualNumberOfParameters, String carType) throws InvalidCarDataException {//, int lineNumber) {
-        if (carType.equals(taxiTypes.get(0)) || carType.equals(taxiTypes.get(1))) {
-            if (actualNumberOfParameters == expectedNumberOfParametersForPassangerTaxi) {
+        if (carType.equals(TAXI_TYPES.get(0)) || carType.equals(TAXI_TYPES.get(1))) {
+            if (actualNumberOfParameters == EXPECTED_NUMBER_OF_PARAMETERS_FOR_PASSANGER_TAXI) {
                 return true;
             } else {
                 throw new InvalidCarDataException("неверное число параметров.");
             }
-        } else if (carType.equals(taxiTypes.get(2))) {
-            if (actualNumberOfParameters == expectedNumberOfParametersForCargoTaxi) {
+        } else if (carType.equals(TAXI_TYPES.get(2))) {
+            if (actualNumberOfParameters == EXPECTED_NUMBER_OF_PARAMETERS_FOR_CARGO_TAXI) {
                 return true;
             } else {
                 throw new InvalidCarDataException("неверное число параметров.");
@@ -57,7 +64,7 @@ public class CarFactoryValidator {
     }
 
     private static boolean validateTaxiType(String taxiType) throws InvalidCarDataException {//, int lineNumber) {
-        if (taxiTypes.contains(taxiType)) {
+        if (TAXI_TYPES.contains(taxiType)) {
             return true;
         } else {
             throw new InvalidCarDataException("указан несуществующий тип такси.");
@@ -98,7 +105,7 @@ public class CarFactoryValidator {
     }
 
     private static boolean validateIndividualCharacteristics(String[] carParameters) throws InvalidCarDataException {
-        if (carParameters[0].equals(taxiTypes.get(2))) {
+        if (carParameters[0].equals(TAXI_TYPES.get(2))) {
             if (isDouble(carParameters[8])
                     && isDouble(carParameters[9])
                     && isDouble(carParameters[10])

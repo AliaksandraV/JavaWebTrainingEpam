@@ -1,0 +1,32 @@
+package by.training.taxistation.repository.factory;
+
+import by.training.taxistation.entity.car.CarBrand;
+import by.training.taxistation.entity.car.Taxi;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.*;
+
+public class TaxiFactoryTest {
+    private TaxiFactory factory = new TaxiFactory();
+
+    @Test
+    public void testCreate() {
+        String[] carParameters = {"taxi", "MAN", "TGM", "10000", "1", "1525 MP-7",
+                "460000", "36000", "false", "false", "false"};
+
+        Taxi expected = new Taxi(CarBrand.MAN,
+                "TGM",
+                10000,
+                1,
+                "1525 MP-7",
+                460000,
+                36000,
+                false,
+                false,
+                false
+        );
+
+        Taxi actual = factory.create(carParameters);
+        assertEquals(actual, expected);
+    }
+}

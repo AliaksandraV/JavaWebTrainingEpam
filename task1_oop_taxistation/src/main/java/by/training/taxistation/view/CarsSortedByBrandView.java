@@ -4,9 +4,9 @@ import by.training.taxistation.entity.car.Car;
 
 import java.util.List;
 
-public class CarsSortedByBrandView extends BaseMenu {
+public class CarsSortedByBrandView extends BaseMenuView {
 
     public void print(final List<Car> cars) {
-       printCars(cars);
+        printCars(cars);
     }
 }

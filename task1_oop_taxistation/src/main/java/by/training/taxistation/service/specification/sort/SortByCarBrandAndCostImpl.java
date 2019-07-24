@@ -6,7 +6,7 @@ import by.training.taxistation.service.specification.CarSpecification;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortByCarBrandAndCostImpl implements CarSpecification {//SortCarSpecification {
+public class SortByCarBrandAndCostImpl implements CarSpecification {
 
     @Override
     public List<Car> query(List<Car> cars) {

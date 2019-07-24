@@ -2,12 +2,11 @@ package by.training.taxistation.service.specification.search;
 
 import by.training.taxistation.entity.car.Car;
 import by.training.taxistation.service.specification.CarSpecification;
-import by.training.taxistation.service.specification.SearchCarSpecification;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchByLoadCapacityCarSpecificationImpl implements CarSpecification{//SearchCarSpecification {
+public class SearchByLoadCapacityCarSpecificationImpl implements CarSpecification {
 
     private int from;
     private int to;

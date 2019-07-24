@@ -1,34 +1,42 @@
 package by.training.taxistation.entity.station;
 
 import by.training.taxistation.entity.car.Car;
-import by.training.taxistation.entity.car.CargoTaxi;
-import by.training.taxistation.entity.car.Minibus;
-import by.training.taxistation.entity.car.PassengerTaxi;
-import by.training.taxistation.entity.car.Taxi;
-import by.training.taxistation.repository.factory.TaxiStationFactory;
-import by.training.taxistation.repository.factory.TaxiStationFactoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class TaxiStation {
-    //TODO это хранилище
+public final class TaxiStation {
+    /**
+     * list of cars on taxistation.
+     */
     private List<Car> cars;
-
+    /**
+     * Taxi station is singleton.
+     */
     private static TaxiStation taxiStationInstance;
 
-    private TaxiStation(){
+    /**
+     * constructor.
+     */
+    private TaxiStation() {
         cars = new ArrayList<>();
     }
 
-    public static TaxiStation getTaxiStationInstance(){
-        if(taxiStationInstance == null){
+    /**
+     * get Taxi Station Instance.
+     * @return list of cars
+     */
+    public static TaxiStation getTaxiStationInstance() {
+        if (taxiStationInstance == null) {
             return taxiStationInstance = new TaxiStation();
         }
         return taxiStationInstance;
     }
 
+    /**
+     * get Cars.
+     * @return list of cars
+     */
     public List<Car> getCars() {
         return cars;
     }

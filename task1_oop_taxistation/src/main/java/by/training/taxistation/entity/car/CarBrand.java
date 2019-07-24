@@ -4,38 +4,39 @@ import java.util.Optional;
 
 public enum CarBrand {
     /**
-     * reno.
+     * car brand name.
      */
     RENO("RENO"),
     /**
-     * ford.
+     * car brand name.
      */
     FORD("FORD"),
     /**
-     * .
+     * car brand name.
      */
     AUDI("AUDI"),
     /**
-     * .
+     * car brand name.
      */
     BMW("BMW"),
     /**
-     * .
+     * car brand name.
      */
     VOLKSWAGEN("VOLKSWAGEN"),
     /**
-     * .
+     * car brand name.
      */
     MAZDA("MAZDA"),
     /**
-     * .
+     * car brand name.
      */
     MERCEDES("MERCEDES"),
-
-    MAN("MAN");
-
     /**
-     * .
+     * car brand name.
+     */
+    MAN("MAN");
+    /**
+     * car brand name string view.
      */
     private String title;
 

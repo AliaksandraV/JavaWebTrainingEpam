@@ -1,20 +1,20 @@
 package by.training.taxistation.сontroller;
 
-import by.training.taxistation.view.MainMenuView;
+import by.training.taxistation.view.MainMenuViewView;
 import by.training.taxistation.сontroller.actions.*;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuController extends BaseController  {
+public class MainMenuController extends BaseController {
 
-    private MainMenuView view;
+    private MainMenuViewView view;
     private Map<Integer, BaseController> controllerMap = new HashMap<>();
     private static final org.apache.log4j.Logger log = Logger.getLogger(MainMenuController.class);
 
     public MainMenuController() {
-        this.view = new MainMenuView();
+        this.view = new MainMenuViewView();
         initControllerMap();
     }
 
@@ -26,7 +26,7 @@ public class MainMenuController extends BaseController  {
         controllerMap.put(5, new SearchCarsByPassengerCapacityController(this));
         controllerMap.put(6, new SearchCarsByLoadCapacityController(this));
 //        controllerMap.put(7, new AddCarController(this));
-//        controllerMap.put(8, new ExitController());
+        controllerMap.put(8, new ExitController());
     }
 
     @Override

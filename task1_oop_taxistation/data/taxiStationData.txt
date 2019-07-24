@@ -1,0 +1,21 @@
+0        |1  |2  |3    |4|5        |6     |7    |8  |9  |10 |11
+cargotaxi|MAN|TGM|10000|1|1525 MP-7|460000|36000|7.3|2.5|2.9|53
+
+cargotaxi|MAN|TGM|10000|1|1525 MP-7|460000|36000|d|2.5|2.9
+cargotaxi|MAN|TGM|10000|1|1525 MP-7|460000|36000|7.3|2.as5|2.9|53
+cargotaxi|MAN|TGM|10000|1|1525 MP-7|460000|36000|7.3|2.5|ff2.9|a   53
+0   |1   |2      |3  |4|5        |6     |7   |8    |9    |10
+taxi|FORD|Focus 2|650|4|3847 HP-7|182000|6300|false|false|false
+minibus|FORD|Transit|1150|8|6755 IT-7|340000|12000|true|true|true
+taxi|FORD|Focus 2|650|4|5577 HP-7|182000|5700|false|false|false
+taxi|VOLKSWAGEN|Polo Sedan|510|4|4133 MN-7|135000|7000|true|true|false
+taxi|AUDI|A6 Sedan C6|580|4|7899 HP-7|150000|19500|false|false|false
+taxi|
+s
+0      |1       |2       |3   |4 |5        |6     |7    |8   |9  |10
+minibus|MERCEDES|Sprinter|2850|19|3256 MH-7|720000|8800|false|false|true
+minibus|VOLKSWAGEN|Crafter|2150|15|1223 PI-7|559000|21500|false|false|true
+
+minibus|VOLKSWAGEN|Crafter|2150|15|1223 PI-7|559000|21500|j|false
+minibus|VOLKSWAGEN|Crafter|2150|15|1223 PI-7|559000|21500|false|f3alse|true
+minibus|VOLKSWAGEN|Crafter|2150|15|1223 PI-7|559000|21500|false|false|5true

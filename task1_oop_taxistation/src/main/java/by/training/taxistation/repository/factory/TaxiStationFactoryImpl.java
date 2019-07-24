@@ -18,9 +18,7 @@ public class TaxiStationFactoryImpl implements TaxiStationFactory {
         taxiStation.getCars().addAll(createListOfCars());
     }
 
-    //TODO тут может вернуться нул может обернуть в оптионал?
-    // Учитывая новое месторасположение наверное тут оптионал возвращать не стоит
-    public List<Car> createListOfCars() {
+    private List<Car> createListOfCars() {
         List<Car> cars = new ArrayList<>();
         CarFactory carFactory = new CarFactoryImpl();
         ReadFileService readFileService = new ReadFileService();

@@ -4,7 +4,7 @@ import by.training.taxistation.entity.car.Car;
 
 import java.util.List;
 
-public class SearchCarsByLoadCapacityView extends BaseMenu {
+public class SearchCarsByLoadCapacityView extends BaseMenuView {
     public void print(final List<Car> cars) {
         System.out.println("По указанным параметрам обнаружены следующие автомобили: ");
         printCars(cars);

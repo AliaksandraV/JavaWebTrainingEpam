@@ -27,14 +27,24 @@ public abstract class Car {
      */
     private String plateNumber;
     /**
-     * mileage.
+     * mileage in kilometers.
      */
     private int mileage;
     /**
-     * cost.
+     * cost in US dollars.
      */
     private int cost;
 
+    /**
+     * defaul constructor.
+     * @param newBrand brand
+     * @param newModel model
+     * @param newCargoCapacity cargo capacity
+     * @param newPassengerCapacity passenger capacity
+     * @param newPlateNumber plate number
+     * @param newMileage mileage
+     * @param newCost cost
+     */
     public Car(final CarBrand newBrand,
                final String newModel,
                final int newCargoCapacity,
@@ -87,26 +97,50 @@ public abstract class Car {
         this.model = model1;
     }
 
+    /**
+     * get cargo capacity.
+     * @return cargo capacity
+     */
     public int getCargoCapacity() {
         return cargoCapacity;
     }
 
+    /**
+     * set cargo capacity.
+     * @param newCargoCapacity cargo capacity
+     */
     public void setCargoCapacity(final int newCargoCapacity) {
         cargoCapacity = newCargoCapacity;
     }
 
+    /**
+     * get Passenger Capacity.
+     * @return Passenger Capacity
+     */
     public int getPassengerCapacity() {
         return passengerCapacity;
     }
 
+    /**
+     * set PassengerCapacity.
+     * @param newPassengerCapacity new Passenger Capacity
+     */
     public void setPassengerCapacity(final int newPassengerCapacity) {
         passengerCapacity = newPassengerCapacity;
     }
 
+    /**
+     * get Plate Number.
+     * @return Plate Number
+     */
     public String getPlateNumber() {
         return plateNumber;
     }
 
+    /**
+     * set Plate Number.
+     * @param newPlateNumber new Plate Number
+     */
     public void setPlateNumber(final String newPlateNumber) {
         plateNumber = newPlateNumber;
     }
@@ -150,22 +184,25 @@ public abstract class Car {
     /**
      * equals.
      *
-     * @param object car
+     * @param o car
      * @return true if objects equals
      */
     @Override
-    public boolean equals(final Object object) {
-        if (this == object) {
+    public boolean equals(final Object o) {
+        if (this == o) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Car car = (Car) object;
-        return cost == car.cost
+        Car car = (Car) o;
+        return cargoCapacity == car.cargoCapacity
+                && passengerCapacity == car.passengerCapacity
                 && mileage == car.mileage
+                && cost == car.cost
                 && brand == car.brand
-                && Objects.equals(model, car.model);
+                && model.equals(car.model)
+                && plateNumber.equals(car.plateNumber);
     }
 
     /**
@@ -175,7 +212,13 @@ public abstract class Car {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, cost, mileage);
+        return Objects.hash(brand,
+                model,
+                cargoCapacity,
+                passengerCapacity,
+                plateNumber,
+                mileage,
+                cost);
     }
 
     /**

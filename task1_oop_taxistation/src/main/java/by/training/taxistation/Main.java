@@ -19,25 +19,5 @@ public final class Main {
         factory.fill();
         MainMenuController menuController = new MainMenuController();
         menuController.run();
-//        ReadFileService readFileService = new ReadFileService();
-//        List<String> lines = readFileService.loadValidLinesFromFile();
-//        CarRepositoryImpl carRepository = new CarRepositoryImpl(lines);
-//        List<Car> cars = carRepository.read();
-
-//        for (Car car : cars) {
-//            System.out.println(car.getClass());
-//            System.out.println(car);
-//        }
-
-//        SortByCarBrandImpl sortByCarBrand = new SortByCarBrandImpl();
-//        SortByCarBrandAndCostImpl sort = new SortByCarBrandAndCostImpl();
-
-//        SearchByPassengerCapacityCarSpecificationImpl search = new SearchByPassengerCapacityCarSpecificationImpl(1, 4);
-//        SearchByLoadCapacityCarSpecificationImpl search1 = new SearchByLoadCapacityCarSpecificationImpl(100, 500);
-//
-//        List<Car> cars1 = search1.find(cars);
-//        for (Car car : cars1) {
-//            System.out.println(car);
-//        }
     }
 }

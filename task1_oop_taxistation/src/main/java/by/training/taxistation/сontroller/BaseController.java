@@ -1,7 +1,5 @@
 package by.training.taxistation.сontroller;
 
-import by.training.taxistation.repository.factory.TaxiStationFactory;
-
 import java.util.Scanner;
 
 public abstract class BaseController {

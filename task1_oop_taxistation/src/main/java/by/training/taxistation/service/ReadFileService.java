@@ -26,11 +26,6 @@ public class ReadFileService {
         filePath = newFilePath;
     }
 
-//    public List<String> loadValidLinesFromFile() {
-//        List<String> linesFromFile = readLinesFromFile();
-//        return CarFactoryValidator.validateCarParametersFromFile(linesFromFile);
-//    }
-
     public List<String> readLinesFromFile() {
         List<String> linesFromFile = new ArrayList<>();
         if (isFileEmpty()) {
@@ -42,7 +37,6 @@ public class ReadFileService {
             stream.forEach(linesFromFile::add);
         } catch (IOException exception) {
             log.error("Возникла ошибка при чтении из файла.", exception);
-            exception.printStackTrace();
         }
         return linesFromFile;
     }
@@ -52,93 +46,93 @@ public class ReadFileService {
         return file.length() == 0;
     }
 
-    //TODO КОД НИЖЕ НАДО ПЕРЕНЕСТИ
-    //TODO ПОДУМАТЬ КАК РЕАЛИЗОВАТЬ ЗАПИТЬ В ФАЙЛ, МОЖЕТ ЧЕРЕЗ ФАБРИКУ ТОЖЕ?
-
-    private void writeCarToFile(String carProperties) {
-
-        if (!isFileEmpty() && !isEndingWithNewLine()) {
-            carProperties = "\n" + carProperties;
-        }
-
-        try (Writer writerToFile = new BufferedWriter(new FileWriter(filePath, true))) {
-            writerToFile.write(carProperties);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean isEndingWithNewLine() {
-        try {
-            FileReader r = new FileReader(filePath);
-
-            char[] buf = new char[1024];
-            char last = 0;
-
-            for (int n; (n = r.read(buf)) > 0; ) {
-                last = buf[n - 1];
-            }
-
-            return last == '\n';
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public void addTaxi(Taxi car) {
-        Object[] carParameters = new Object[]{
-                "taxi",
-                car.getBrand(),
-                car.getModel(),
-                car.getCost(),
-                car.getMileage(),
-                car.getPassengerCapacity()};
-
-        String valueForStorage = convertToStorageFormat(carParameters);
-        writeCarToFile(valueForStorage);
-    }
-
-
-    public void addMinibus(Minibus car) {
-        Object[] carParameters = new Object[]{
-                "minibus",
-                car.getBrand(),
-                car.getModel(),
-                car.getCost(),
-                car.getMileage(),
-                car.getPassengerCapacity()};
-
-        String valueForStorage = convertToStorageFormat(carParameters);
-        writeCarToFile(valueForStorage);
-    }
-
-
-    public void addCargoTaxi(CargoTaxi car) {
-        Object[] carParameters = new Object[]{
-                "cargotaxi",
-                car.getBrand(),
-                car.getModel(),
-                car.getCost(),
-                car.getMileage(),
-                car.getCargoCapacity()};
-
-        String valueForStorage = convertToStorageFormat(carParameters);
-        writeCarToFile(valueForStorage);
-    }
-
-    private String convertToStorageFormat(Object[] objects) {
-        StringBuilder forStorage = new StringBuilder();
-        int lastElementIndex = objects.length - 1;
-
-        for (int i = 0; i <= lastElementIndex; i++) {
-            forStorage.append(objects[i]);
-            if (i != lastElementIndex) {
-                forStorage.append(delimiter);
-            }
-        }
-
-        return forStorage.toString();
-    }
+//    //TODO КОД НИЖЕ НАДО ПЕРЕНЕСТИ
+//    //TODO ПОДУМАТЬ КАК РЕАЛИЗОВАТЬ ЗАПИТЬ В ФАЙЛ, МОЖЕТ ЧЕРЕЗ ФАБРИКУ ТОЖЕ?
+//
+//    private void writeCarToFile(String carProperties) {
+//
+//        if (!isFileEmpty() && !isEndingWithNewLine()) {
+//            carProperties = "\n" + carProperties;
+//        }
+//
+//        try (Writer writerToFile = new BufferedWriter(new FileWriter(filePath, true))) {
+//            writerToFile.write(carProperties);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private boolean isEndingWithNewLine() {
+//        try {
+//            FileReader r = new FileReader(filePath);
+//
+//            char[] buf = new char[1024];
+//            char last = 0;
+//
+//            for (int n; (n = r.read(buf)) > 0; ) {
+//                last = buf[n - 1];
+//            }
+//
+//            return last == '\n';
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return false;
+//    }
+//
+//    public void addTaxi(Taxi car) {
+//        Object[] carParameters = new Object[]{
+//                "taxi",
+//                car.getBrand(),
+//                car.getModel(),
+//                car.getCost(),
+//                car.getMileage(),
+//                car.getPassengerCapacity()};
+//
+//        String valueForStorage = convertToStorageFormat(carParameters);
+//        writeCarToFile(valueForStorage);
+//    }
+//
+//
+//    public void addMinibus(Minibus car) {
+//        Object[] carParameters = new Object[]{
+//                "minibus",
+//                car.getBrand(),
+//                car.getModel(),
+//                car.getCost(),
+//                car.getMileage(),
+//                car.getPassengerCapacity()};
+//
+//        String valueForStorage = convertToStorageFormat(carParameters);
+//        writeCarToFile(valueForStorage);
+//    }
+//
+//
+//    public void addCargoTaxi(CargoTaxi car) {
+//        Object[] carParameters = new Object[]{
+//                "cargotaxi",
+//                car.getBrand(),
+//                car.getModel(),
+//                car.getCost(),
+//                car.getMileage(),
+//                car.getCargoCapacity()};
+//
+//        String valueForStorage = convertToStorageFormat(carParameters);
+//        writeCarToFile(valueForStorage);
+//    }
+//
+//    private String convertToStorageFormat(Object[] objects) {
+//        StringBuilder forStorage = new StringBuilder();
+//        int lastElementIndex = objects.length - 1;
+//
+//        for (int i = 0; i <= lastElementIndex; i++) {
+//            forStorage.append(objects[i]);
+//            if (i != lastElementIndex) {
+//                forStorage.append(delimiter);
+//            }
+//        }
+//
+//        return forStorage.toString();
+//    }
 }

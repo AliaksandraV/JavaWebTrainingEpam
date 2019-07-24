@@ -6,7 +6,7 @@ import by.training.taxistation.service.specification.CarSpecification;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchByPassengerCapacityCarSpecificationImpl implements CarSpecification {//SearchCarSpecification {
+public class SearchByPassengerCapacityCarSpecificationImpl implements CarSpecification {
 
     private int from;
     private int to;

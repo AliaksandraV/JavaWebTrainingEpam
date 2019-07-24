@@ -1,9 +1,26 @@
 package by.training.taxistation.entity.car;
 
-public class Minibus extends PassengerTaxi {
+import java.util.Objects;
 
+public class Minibus extends PassengerTaxi {
+    /**
+     * true car make intercityT ransportation.
+     */
     private boolean intercityTransportation;
 
+    /**
+     * constructor.
+     * @param newBrand brand
+     * @param newModel model
+     * @param newCargoCapacity cargo capacity
+     * @param newPassengerCapacity passenger capacity
+     * @param newPlateNumber plate number
+     * @param newMileage mileage
+     * @param newCost cost
+     * @param isAccessibleForChildren true or false
+     * @param isAccessibleForDisabled true or false
+     * @param isIntercityTransportation true or false
+     */
     public Minibus(final CarBrand newBrand,
                    final String newModel,
                    final int newCargoCapacity,
@@ -13,7 +30,7 @@ public class Minibus extends PassengerTaxi {
                    final int newCost,
                    final boolean isAccessibleForChildren,
                    final boolean isAccessibleForDisabled,
-                   final boolean isIntercityTransportation){
+                   final boolean isIntercityTransportation) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -25,6 +42,52 @@ public class Minibus extends PassengerTaxi {
                 isAccessibleForDisabled);
         intercityTransportation = isIntercityTransportation;
 
+    }
+
+    /**
+     * get is Intercity Transportation.
+     * @return true or false
+     */
+    public boolean isIntercityTransportation() {
+        return intercityTransportation;
+    }
+
+    /**
+     * set value of Intercity Transportation.
+     * @param newIntercityTransportation true or false
+     */
+    public void setIntercityTransportation(
+            final boolean newIntercityTransportation) {
+        intercityTransportation = newIntercityTransportation;
+    }
+
+    /**
+     * equals.
+     * @param o car
+     * @return true if objects are equals
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Minibus minibus = (Minibus) o;
+        return intercityTransportation == minibus.intercityTransportation;
+    }
+
+    /**
+     * hashCode.
+     * @return hashCode
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), intercityTransportation);
     }
 
     /**
@@ -74,6 +137,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set car brand.
+         *
          * @param newBrand car brand
          * @return builder object with set brand
          */
@@ -84,6 +148,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set car model.
+         *
          * @param newModel car model
          * @return builder object with set model
          */
@@ -94,6 +159,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set cargo capacity.
+         *
          * @param newCargoCapacity cargo capacity
          * @return builder object with set cargo capacity
          */
@@ -104,6 +170,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set passenger capacity.
+         *
          * @param newPassengerCapacity passenger capacity
          * @return builder object with set passenger capacity
          */
@@ -114,6 +181,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set plate number.
+         *
          * @param newPlateNumber plate number
          * @return builder object with set plate number
          */
@@ -124,6 +192,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set mileage.
+         *
          * @param newMileage mileage
          * @return builder object with set mileage
          */
@@ -134,6 +203,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set cost.
+         *
          * @param newCost cost
          * @return builder object with set cost
          */
@@ -144,6 +214,7 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set true if car equipped with a child seat.
+         *
          * @param newAccessibleForChildren true if car has child seat
          * @return builder object with set accessibleForChildren value
          */
@@ -155,7 +226,8 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set true if car adapted for the transport of disabled people.
-         * @param newAccessibleForDisabled true if car adapted for the transport of disabled people
+         * @param newAccessibleForDisabled true if car adapted for the transport
+         *                                 of disabled people
          * @return builder object with set accessibleForDisabled value
          */
         public Builder setAccessibleForDisabled(
@@ -166,16 +238,19 @@ public class Minibus extends PassengerTaxi {
 
         /**
          * set true if car involved in intercity transportation.
-         * @param isIntercityTransportation true if car involved in intercity transportation
+         * @param isIntercityTransportation true if car involved in intercity
+         *                                  transportation
          * @return builder object with set intercityTransportation value
          */
-        public Builder setIsIntercityTransportation(final boolean isIntercityTransportation) {
+        public Builder setIsIntercityTransportation(
+                final boolean isIntercityTransportation) {
             intercityTransportation = isIntercityTransportation;
             return this;
         }
 
         /**
          * Build minibus object.
+         *
          * @return instance of taxi
          */
         public Minibus build() {
@@ -191,7 +266,6 @@ public class Minibus extends PassengerTaxi {
                     intercityTransportation);
         }
     }
-
 
 
 }

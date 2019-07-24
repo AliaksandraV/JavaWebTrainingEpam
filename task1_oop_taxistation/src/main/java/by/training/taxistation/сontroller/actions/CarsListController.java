@@ -18,12 +18,10 @@ public class CarsListController extends BaseActionController {
         super(mainMenuController);
     }
 
-    //TODO переделать, этот товарищ должен с сервисом общаться а не со станцией.
-    // НАВЕРНОЕ тут правильно передавать данные во вью
     @Override
     public void internalRun() {
-       List<Car> cars = new ArrayList<>();
-       cars.addAll(carService.read());  //TODO тут вылетает NullPointerException
+        List<Car> cars = new ArrayList<>();
+        cars.addAll(carService.read());
         carListView.print(cars);
     }
 }

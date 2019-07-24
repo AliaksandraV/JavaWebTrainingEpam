@@ -4,13 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-//TODO или это сделать сервисом или сделать универсальным и принимать имя конфиг файла, rename in service
+
 public class PropertiesService {
 
     private PropertiesService() {
 
     }
-//TODO имя get нельзя
+
+    //TODO имя get нельзя
     public static String getProperty(String key) {
         String name = "config.properties";
         ClassLoader classLoader = PropertiesService.class.getClassLoader();

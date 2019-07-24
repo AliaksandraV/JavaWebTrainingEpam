@@ -1,11 +1,9 @@
 package by.training.taxistation.сontroller.actions;
 
-import by.training.taxistation.entity.car.Car;
 import by.training.taxistation.сontroller.BaseController;
 import by.training.taxistation.сontroller.MainMenuController;
 
 import java.util.Arrays;
-import java.util.List;
 
 public abstract class BaseActionController extends BaseController {
 

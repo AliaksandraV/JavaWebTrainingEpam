@@ -4,10 +4,20 @@ import by.training.taxistation.entity.car.Car;
 import org.apache.log4j.Logger;
 
 public class CarFactoryImpl implements CarFactory {
-    private static final Logger log = Logger.getLogger(CarFactoryImpl.class);
+    /**
+     * logger declaration.
+     */
+    private static final Logger LOGGER = Logger.getLogger(CarFactoryImpl.class);
 
+    /**
+     * create car instance.
+     * @param carParameters car Parameters
+     * @return car instance
+     * @throws InvalidCarDataException if car Parameters invalid
+     */
     @Override
-    public Car create(String[] carParameters) throws InvalidCarDataException {
+    public Car create(final String[] carParameters)
+            throws InvalidCarDataException {
         Car car;
         CarFactoryValidator.validateCarParametersFromFile(carParameters);
         switch (carParameters[0]) {
@@ -21,7 +31,7 @@ public class CarFactoryImpl implements CarFactory {
                 car = new CargoTaxiFactory().create(carParameters);
                 break;
             default:
-                log.error("Несуществующий тип такси.");
+                LOGGER.error("Несуществующий тип такси.");
                 return null;
         }
         return car;

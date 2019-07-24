@@ -2,14 +2,12 @@ package by.training.taxistation.repository;
 
 import by.training.taxistation.entity.car.Car;
 import by.training.taxistation.entity.station.TaxiStation;
-import by.training.taxistation.repository.factory.CarFactory;
 import by.training.taxistation.service.specification.CarSpecification;
 
 import java.util.List;
 
 public class CarRepositoryImpl implements CarRepository {
 
-    //TODO этот чувак общиется с хранилищем таксистэйшен
     private final TaxiStation taxiStation = TaxiStation.getTaxiStationInstance();
 
     @Override
