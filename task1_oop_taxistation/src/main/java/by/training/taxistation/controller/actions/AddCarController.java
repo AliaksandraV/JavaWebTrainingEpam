@@ -13,7 +13,8 @@
 //
 //public class AddCarController extends BaseActionController {
 //
-//    private static final Logger log = Logger.getLogger(AddCarController.class);
+//    private static final Logger log
+//    = Logger.getLogger(AddCarController.class);
 //    private final AddCarView view = new AddCarView();
 //    private final MenuHandlerService menuHandler = new MenuHandlerService();
 //    private List<String> carParametrs = new ArrayList<>();
@@ -43,7 +44,8 @@
 //        return Integer.parseInt(input);
 //    }
 //
-//    private void validateCarTypeIndex(String index) throws InputFormatException {
+//    private void validateCarTypeIndex(String index)
+//    throws InputFormatException {
 //        validateInt(index);
 //        int input = Integer.valueOf(index);
 //        if (input < 0 || input > 3) {
@@ -71,7 +73,8 @@
 //                break;
 //            default:
 //                log.error("Введен несуществующий пункт меню");
-//                throw new IllegalArgumentException("Введен несуществующий пункт меню");
+//                throw new IllegalArgumentException(
+//                "Введен несуществующий пункт меню");
 //        }
 //    }
 //
@@ -111,7 +114,8 @@
 ////                break;
 ////            default:
 ////                log.error("Введен несуществующий пункт меню");
-////                throw new IllegalArgumentException("Введен несуществующий пункт меню");
+////                throw new IllegalArgumentException(
+// "Введен несуществующий пункт меню");
 ////        }
 //    }
 //
@@ -161,7 +165,8 @@
 //                break;
 //            default:
 //                log.error("Введен несуществующий пункт меню");
-//                throw new IllegalArgumentException("Введен несуществующий пункт меню");
+//                throw new IllegalArgumentException(
+//                "Введен несуществующий пункт меню");
 //        }
 //    }
 //
@@ -172,7 +177,8 @@
 ////        int mileage = mileageInput();
 ////        int passengerCapacity = passengerCapacityInput();
 ////
-////        Taxi taxi = new Taxi(carBrand, carModel, cost, mileage, passengerCapacity);
+////        Taxi taxi = new Taxi(
+// carBrand, carModel, cost, mileage, passengerCapacity);
 ////        model.addTaxi(taxi);
 //    }
 //
@@ -183,7 +189,8 @@
 //        int mileage = mileageInput();
 //        int passengerCapacity = passengerCapacityInput();
 //
-////        Minibus minibus = new Minibus(carBrand, carModel, cost, mileage, passengerCapacity);
+////        Minibus minibus = new Minibus(
+// carBrand, carModel, cost, mileage, passengerCapacity);
 ////        model.addMinibus(minibus);
 //    }
 //
@@ -194,12 +201,14 @@
 //        int mileage = mileageInput();
 //        int loadCapacity = inputLoadCapacity();
 //
-////        CargoTaxi cargoTaxi = new CargoTaxi(carBrand, carModel, cost, mileage, loadCapacity);
+////        CargoTaxi cargoTaxi = new CargoTaxi(
+// carBrand, carModel, cost, mileage, loadCapacity);
 ////        model.addCargoTaxi(cargoTaxi);
 //    }
 //
 ////    private String carBrandInput() {
-//////        System.out.print("Введите брэнд" + Arrays.toString(CarBrand.values()) + ":");
+//////        System.out.print(
+// "Введите брэнд" + Arrays.toString(CarBrand.values()) + ":");
 ////        String carBrand = readInput().toUpperCase();
 ////        try {
 //////            CarBrand.valueOf(carBrand);

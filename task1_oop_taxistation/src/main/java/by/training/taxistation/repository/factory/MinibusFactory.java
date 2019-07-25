@@ -5,7 +5,10 @@ import by.training.taxistation.entity.car.Minibus;
 
 class MinibusFactory implements CarFactory {
     /**
-     * .
+     * create minibus instance.
+     *
+     * @param carParameters car Parameters
+     * @return minibus instance
      */
     @Override
     public Minibus create(final String[] carParameters) {

@@ -5,9 +5,9 @@ import by.training.taxistation.entity.car.Taxi;
 
 class TaxiFactory implements CarFactory {
     /**
-     *
+     * create taxi instance.
      * @param carParameters car Parameters
-     * @return
+     * @return taxi instance.
      */
     @Override
     public Taxi create(final String[] carParameters) {

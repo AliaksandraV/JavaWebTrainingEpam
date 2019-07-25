@@ -254,7 +254,7 @@ public class Minibus extends PassengerTaxi {
          * @return instance of taxi
          */
         public Minibus build() {
-            return new Minibus(brand,
+            Minibus minibus = new Minibus(brand,
                     model,
                     cargoCapacity,
                     passengerCapacity,
@@ -264,6 +264,9 @@ public class Minibus extends PassengerTaxi {
                     accessibleForChildren,
                     accessibleForDisabled,
                     intercityTransportation);
+            minibus.setBrand(brand);
+            return minibus;
+
         }
     }
 

@@ -11,15 +11,15 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class SearchByLoadCapacityCarSpecificationImplTest {
+public class SearchByCargoCapacityCarSpecificationImplTest {
 
     private int from = 1000;
     private int to = 1399;
-    SearchByLoadCapacityCarSpecificationImpl search;
+    SearchByCargoCapacityCarSpecificationImpl search;
 
     @BeforeTest
     public void before() {
-        search = new SearchByLoadCapacityCarSpecificationImpl(from, to);
+        search = new SearchByCargoCapacityCarSpecificationImpl(from, to);
     }
 
     @Test

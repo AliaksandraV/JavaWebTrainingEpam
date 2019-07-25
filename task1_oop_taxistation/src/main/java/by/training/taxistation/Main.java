@@ -2,7 +2,7 @@ package by.training.taxistation;
 
 import by.training.taxistation.repository.factory.TaxiStationFactory;
 import by.training.taxistation.repository.factory.TaxiStationFactoryImpl;
-import by.training.taxistation.сontroller.MainMenuController;
+import by.training.taxistation.controller.MainMenuController;
 
 public final class Main {
 

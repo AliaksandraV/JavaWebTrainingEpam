@@ -13,7 +13,7 @@ public final class TaxiStation {
     /**
      * Taxi station is singleton.
      */
-    private static TaxiStation taxiStationInstance;
+    private static TaxiStation instance;
 
     /**
      * constructor.
@@ -26,11 +26,11 @@ public final class TaxiStation {
      * get Taxi Station Instance.
      * @return list of cars
      */
-    public static TaxiStation getTaxiStationInstance() {
-        if (taxiStationInstance == null) {
-            return taxiStationInstance = new TaxiStation();
+    public static TaxiStation getInstance() {
+        if (instance == null) {
+            return instance = new TaxiStation();
         }
-        return taxiStationInstance;
+        return instance;
     }
 
     /**

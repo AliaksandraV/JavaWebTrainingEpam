@@ -18,7 +18,8 @@
 //    }
 //
 //    public String carBrandInput(CarBrand [] carBrands) {
-//        System.out.print("Введите один из брэндов " + Arrays.toString(carBrands) + ":");
+//        System.out.print("Введите один из брэндов "
+//        + Arrays.toString(carBrands) + ":");
 //        return readInput();
 //    }
 //

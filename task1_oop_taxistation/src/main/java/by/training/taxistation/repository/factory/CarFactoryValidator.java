@@ -40,7 +40,8 @@ public final class CarFactoryValidator {
                 .length, carParameters[0])
                 && validateCarBrand(carParameters[1])
                 && validateCapacity(carParameters[CarConstants.CAR_BRAND_INDEX])
-                && validateCapacity(carParameters[CarConstants.PAS_CAPACITY_INDEX])
+                && validateCapacity(
+                        carParameters[CarConstants.PAS_CAPACITY_INDEX])
                 && validateMileage(carParameters[CarConstants.MILEAGE_INDEX])
                 && validateCost(carParameters[CarConstants.COST_INDEX])
                 && validateIndividualCharacteristics(carParameters)) {

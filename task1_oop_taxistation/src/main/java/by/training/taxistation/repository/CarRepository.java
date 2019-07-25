@@ -7,31 +7,31 @@ import java.util.List;
 
 public interface CarRepository {
     /**
-     * .
+     * add car to data store.
      *
-     * @param car .
+     * @param car car
      */
     void create(Car car);
 
     /**
-     * .
+     * read car from data store.
      *
-     * @return .
+     * @return list of cars
      */
     List<Car> read();
 
     /**
-     * .
+     * delete car from data store.
      *
-     * @param car .
+     * @param car car to delete
      */
     void delete(Car car);
 
     /**
-     * .
+     * read car from data store by specification.
      *
-     * @param specification .
-     * @return .
+     * @param specification specification for query
+     * @return list of cars
      */
     List<Car> query(CarSpecification specification);
 }

@@ -10,23 +10,24 @@ import java.util.List;
 
 public class TaxiStationFactoryImpl implements TaxiStationFactory {
     /**
-     * .
+     * logger declaration.
      */
     private static final Logger LOGGER
             = Logger.getLogger(TaxiStationFactoryImpl.class);
 
     /**
-     * .
+     * method for filling taxi station with data.
      */
     @Override
     public void fill() {
-        TaxiStation taxiStation = TaxiStation.getTaxiStationInstance();
+        TaxiStation taxiStation = TaxiStation.getInstance();
         taxiStation.getCars().addAll(createListOfCars());
     }
 
     /**
-     * .
-     * @return .
+     * create List Of Cars from file for filling taxi station.
+     *
+     * @return list of cars
      */
     private List<Car> createListOfCars() {
         List<Car> cars = new ArrayList<>();

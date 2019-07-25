@@ -8,26 +8,45 @@ import by.training.taxistation.service.specification.CarSpecification;
 import java.util.List;
 
 public class CarServiceImpl implements CarService {
-
+    /**
+     * initialization car Repository.
+     */
     private final CarRepository carRepository = new CarRepositoryImpl();
-
+    /**
+     * connect with repository to add car to data store.
+     *
+     * @param car car
+     */
     @Override
-    public void create(Car car) {
+    public void create(final Car car) {
 
     }
-
+    /**
+     * connect with repository to read car from data store.
+     *
+     * @return list of cars
+     */
     @Override
     public List read() {
         return carRepository.read();
     }
-
+    /**
+     * connect with repository to delete car from data store.
+     *
+     * @param car car to delete
+     */
     @Override
-    public void delete(Car car) {
+    public void delete(final Car car) {
 
     }
-
+    /**
+     * connect with repository to read car from data store by specification.
+     *
+     * @param specification specification for query
+     * @return list of cars
+     */
     @Override
-    public List query(CarSpecification specification) {
+    public List query(final CarSpecification specification) {
         return carRepository.query(specification);
     }
 }

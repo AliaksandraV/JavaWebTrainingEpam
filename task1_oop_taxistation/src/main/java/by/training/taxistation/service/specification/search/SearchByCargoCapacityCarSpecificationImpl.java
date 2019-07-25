@@ -6,7 +6,7 @@ import by.training.taxistation.service.specification.CarSpecification;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchByPassengerCapacityCarSpecificationImpl
+public class SearchByCargoCapacityCarSpecificationImpl
         implements CarSpecification {
     /**
      * began search from this value.
@@ -23,14 +23,14 @@ public class SearchByPassengerCapacityCarSpecificationImpl
      * @param newFrom value for <from> variable
      * @param newTo   value for <to> variable
      */
-    public SearchByPassengerCapacityCarSpecificationImpl(
+    public SearchByCargoCapacityCarSpecificationImpl(
             final int newFrom, final int newTo) {
         from = newFrom;
         to = newTo;
     }
 
     /**
-     * specification for searching car by load capacity.
+     * specification for searching car by cargo capacity.
      *
      * @param cars car for searching by load capacity
      * @return the list of cars found in the search options
@@ -39,12 +39,10 @@ public class SearchByPassengerCapacityCarSpecificationImpl
     public List<Car> query(final List<Car> cars) {
         return cars
                 .stream()
-                .filter(taxi -> {
-                    int capacity = taxi.getPassengerCapacity();
+                .filter(cargoTaxi -> {
+                    int capacity = cargoTaxi.getCargoCapacity();
                     return capacity >= from && capacity <= to;
                 })
                 .collect(Collectors.toList());
-
     }
-
 }

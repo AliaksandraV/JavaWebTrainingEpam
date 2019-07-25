@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 
 public class CarRepositoryImplTest {
 
-    TaxiStation station = TaxiStation.getTaxiStationInstance();
+    TaxiStation station = TaxiStation.getInstance();
     CarRepository repository = new CarRepositoryImpl();
 
     @BeforeTest

@@ -8,15 +8,15 @@ import java.util.List;
 
 public class CarRepositoryImpl implements CarRepository {
     /**
-     * .
+     * Taxi station instance is a storage for cars.
      */
     private final TaxiStation taxiStation
-            = TaxiStation.getTaxiStationInstance();
+            = TaxiStation.getInstance();
 
     /**
-     * .
+     * Add car to the taxi station storage.
      *
-     * @param car .
+     * @param car car.
      */
     @Override
     public void create(final Car car) {
@@ -24,9 +24,9 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     /**
-     * .
+     * Read list of cars from taxi station storage.
      *
-     * @return .
+     * @return car list.
      */
     @Override
     public List<Car> read() {
@@ -34,9 +34,9 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     /**
-     * .
+     * Delet car from taxi station storage.
      *
-     * @param car .
+     * @param car car for deleting from storage.
      */
     @Override
     public void delete(final Car car) {
@@ -44,10 +44,10 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     /**
-     * .
+     * returns the list of cars with the specified specification.
      *
-     * @param specification .
-     * @return .
+     * @param specification specification for query.
+     * @return the list of cars with the specified specification.
      */
     @Override
     public List<Car> query(final CarSpecification specification) {

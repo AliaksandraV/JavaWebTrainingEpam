@@ -6,10 +6,9 @@ import by.training.taxistation.entity.car.CargoTaxi;
 class CargoTaxiFactory implements CarFactory {
 
     /**
-     * create car instance.
-     *
+     * create cargo taxi instance.
      * @param carParameters car Parameters
-     * @return car instance
+     * @return cargo taxi instance
      * @throws InvalidCarDataException if car Parameters invalid
      */
     @Override

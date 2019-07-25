@@ -1,11 +1,9 @@
 package by.training.taxistation.service;
 
-import by.training.taxistation.entity.car.CargoTaxi;
-import by.training.taxistation.entity.car.Minibus;
-import by.training.taxistation.entity.car.Taxi;
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -13,34 +11,53 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ReadFileService {
-
+    /**
+     * file path.
+     */
     private String filePath;
-    private static final Logger log = Logger.getLogger(ReadFileService.class);
-    private final String delimiter = "|";
+    /**
+     * logger initialisation.
+     */
+    private static final Logger LOG = Logger.getLogger(ReadFileService.class);
 
+    /**
+     * constructor.
+     */
     public ReadFileService() {
-        filePath = PropertiesService.getProperty("storage.file.path");
+        filePath = PropertiesService.takeProperty("storage.file.path");
     }
 
-    public ReadFileService(String newFilePath) {
+    /**
+     * constructor.
+     * @param newFilePath file path
+     */
+    public ReadFileService(final String newFilePath) {
         filePath = newFilePath;
     }
 
+    /**
+     * read Lines From File.
+     * @return list lines from files
+     */
     public List<String> readLinesFromFile() {
         List<String> linesFromFile = new ArrayList<>();
         if (isFileEmpty()) {
-            log.info("Файл пустой. Нет данных.");
+            LOG.info("Файл пустой. Нет данных.");
             return linesFromFile;
         }
 
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
             stream.forEach(linesFromFile::add);
         } catch (IOException exception) {
-            log.error("Возникла ошибка при чтении из файла.", exception);
+            LOG.error("Возникла ошибка при чтении из файла.", exception);
         }
         return linesFromFile;
     }
 
+    /**
+     * check is file empty.
+     * @return true if file is empty
+     */
     private boolean isFileEmpty() {
         File file = new File(filePath);
         return file.length() == 0;
@@ -55,7 +72,8 @@ public class ReadFileService {
 //            carProperties = "\n" + carProperties;
 //        }
 //
-//        try (Writer writerToFile = new BufferedWriter(new FileWriter(filePath, true))) {
+//        try (Writer writerToFile = new BufferedWriter(
+//        new FileWriter(filePath, true))) {
 //            writerToFile.write(carProperties);
 //        } catch (IOException e) {
 //            e.printStackTrace();

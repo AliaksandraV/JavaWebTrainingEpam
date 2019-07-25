@@ -1,12 +1,11 @@
 package by.training.taxistation.repository.factory;
 
-public final class CarConstants {
+final class CarConstants {
     /**
-     * .
+     * constructor.
      */
     private CarConstants() {
     }
-
     /**
      * cost Index.
      */
@@ -36,7 +35,7 @@ public final class CarConstants {
      */
     public static final int LENGTH_INDEX = 8;
     /**
-     * Accessible For Children Index
+     * Accessible For Children Index.
      */
     public static final int ACCESSIBLE_FOR_CHILDREN_INDEX = 8;
     /**

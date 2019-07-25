@@ -7,9 +7,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SortByCarBrandImpl implements CarSpecification {
-
+    /**
+     * specification for sorting cars by brand.
+     *
+     * @param cars car for sorting
+     * @return the list of cars sorting by brand and cost
+     */
     @Override
-    public List<Car> query(List<Car> cars) {
+    public List<Car> query(final List<Car> cars) {
         cars.sort(Comparator.comparing((Car o) -> o.getBrand().getTitle()));
         return cars;
     }
