@@ -19,9 +19,6 @@ public class Taxi extends PassengerTaxi {
      * @param newPlateNumber       plate number
      * @param newMileage           mileage
      * @param newCost              cost
-     *                             //     * @param isAccessibleForChildren true or false
-     *                             //     * @param isAccessibleForDisabled true or false
-     *                             //     * @param isMinivanInfo true or false
      */
     public Taxi(final CarBrand newBrand,
                 final String newModel,
@@ -30,9 +27,6 @@ public class Taxi extends PassengerTaxi {
                 final String newPlateNumber,
                 final int newMileage,
                 final int newCost) {
-//                final boolean isAccessibleForChildren,
-//                final boolean isAccessibleForDisabled,
-//                final boolean isMinivanInfo) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
