@@ -19,18 +19,20 @@ public class CarRepositoryImplTest {
 
     @BeforeTest
     public void before(){
-        Car car = new CargoTaxi(CarBrand.MAN,
-                "TGM",
-                10000,
-                1,
-                "1525 MP-7",
-                460000,
-                36000,
-                7.3,
-                2.5,
-                2.9,
-                53
-        );
+        Car car = new CargoTaxi.Builder()
+                .setBrand(CarBrand.MAN)
+                .setModel("TGM")
+                .setCargoCapacity(10000)
+                .setPassengerCapacity(1)
+                .setPlateNumber("1525 MP-7")
+                .setMileage(460000)
+                .setCost(36000)
+                .setLength(7.3)
+                .setHeight(2.5)
+                .setWidth(2.9)
+                .setVolume(53)
+                .build();
+
         station.getCars().add(car);
     }
 
@@ -40,18 +42,19 @@ public class CarRepositoryImplTest {
 
     @Test
     public void testRead() {
-        Car car = new CargoTaxi(CarBrand.MAN,
-                "TGM",
-                10000,
-                1,
-                "1525 MP-7",
-                460000,
-                36000,
-                7.3,
-                2.5,
-                2.9,
-                53
-        );
+        Car car = new CargoTaxi.Builder()
+                .setBrand(CarBrand.MAN)
+                .setModel("TGM")
+                .setCargoCapacity(10000)
+                .setPassengerCapacity(1)
+                .setPlateNumber("1525 MP-7")
+                .setMileage(460000)
+                .setCost(36000)
+                .setLength(7.3)
+                .setHeight(2.5)
+                .setWidth(2.9)
+                .setVolume(53)
+                .build();
         List <Car> expected = new ArrayList<>();
         expected.add(car);
 

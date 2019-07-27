@@ -24,18 +24,114 @@ public class SortByCarBrandAndCostImplTest {
     @Test
     public void testQuery() {
         List<Car> cars = new ArrayList<>();
-        cars.add(new CargoTaxi(CarBrand.FORD, "Focus 2", 5000, 5, "6000", 152000, 5000, 1, 1, 1, 1));
-        cars.add(new CargoTaxi(CarBrand.AUDI, "A6", 1100, 4, "15000", 131000, 11000, 1, 1, 1, 1));
-        cars.add(new CargoTaxi(CarBrand.MERCEDES, "Bus", 1400, 5, "11000", 197000, 14000, 1, 1, 1, 1));
-        cars.add(new CargoTaxi(CarBrand.VOLKSWAGEN, "Crafter", 1200, 2, "9000", 184000, 12000, 1, 1, 1, 1));
+        cars.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.FORD)
+                .setModel("Focus 2")
+                .setCargoCapacity(5000)
+                .setPassengerCapacity(5)
+                .setPlateNumber("6000")
+                .setMileage(152000)
+                .setCost(5000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        cars.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.AUDI)
+                .setModel("A6")
+                .setCargoCapacity(1100)
+                .setPassengerCapacity(4)
+                .setPlateNumber("15000")
+                .setMileage(131000)
+                .setCost(11000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        cars.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.MERCEDES)
+                .setModel("Bus")
+                .setCargoCapacity(1400)
+                .setPassengerCapacity(5)
+                .setPlateNumber("11000")
+                .setMileage(197000)
+                .setCost(14000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        cars.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.VOLKSWAGEN)
+                .setModel("Crafter")
+                .setCargoCapacity(1200)
+                .setPassengerCapacity(2)
+                .setPlateNumber("9000")
+                .setMileage(184000)
+                .setCost(12000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
 
         List<Car> actual = search.query(cars);
 
         List<Car> expected = new ArrayList<>();
-        expected.add(new CargoTaxi(CarBrand.AUDI, "A6", 1100, 4, "15000", 131000, 11000, 1, 1, 1, 1));
-        expected.add(new CargoTaxi(CarBrand.FORD, "Focus 2", 5000, 5, "6000", 152000, 5000, 1, 1, 1, 1));
-        expected.add(new CargoTaxi(CarBrand.MERCEDES, "Bus", 1400, 5, "11000", 197000, 14000, 1, 1, 1, 1));
-        expected.add(new CargoTaxi(CarBrand.VOLKSWAGEN, "Crafter", 1200, 2, "9000", 184000, 12000, 1, 1, 1, 1));
+        expected.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.AUDI)
+                .setModel("A6")
+                .setCargoCapacity(1100)
+                .setPassengerCapacity(4)
+                .setPlateNumber("15000")
+                .setMileage(131000)
+                .setCost(11000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        expected.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.FORD)
+                .setModel("Focus 2")
+                .setCargoCapacity(5000)
+                .setPassengerCapacity(5)
+                .setPlateNumber("6000")
+                .setMileage(152000)
+                .setCost(5000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        expected.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.MERCEDES)
+                .setModel("Bus")
+                .setCargoCapacity(1400)
+                .setPassengerCapacity(5)
+                .setPlateNumber("11000")
+                .setMileage(197000)
+                .setCost(14000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
+        expected.add(new CargoTaxi.Builder()
+                .setBrand(CarBrand.VOLKSWAGEN)
+                .setModel("Crafter")
+                .setCargoCapacity(1200)
+                .setPassengerCapacity(2)
+                .setPlateNumber("9000")
+                .setMileage(184000)
+                .setCost(12000)
+                .setLength(1)
+                .setHeight(1)
+                .setWidth(1)
+                .setVolume(1)
+                .build());
 
         assertEquals(actual, expected);
     }

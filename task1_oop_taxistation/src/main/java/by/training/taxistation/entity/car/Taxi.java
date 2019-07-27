@@ -11,16 +11,17 @@ public class Taxi extends PassengerTaxi {
 
     /**
      * constructor.
-     * @param newBrand brand
-     * @param newModel model
-     * @param newCargoCapacity cargo capacity
+     *
+     * @param newBrand             brand
+     * @param newModel             model
+     * @param newCargoCapacity     cargo capacity
      * @param newPassengerCapacity passenger capacity
-     * @param newPlateNumber plate number
-     * @param newMileage mileage
-     * @param newCost cost
-     * @param isAccessibleForChildren true or false
-     * @param isAccessibleForDisabled true or false
-     * @param isMinivanInfo true or false
+     * @param newPlateNumber       plate number
+     * @param newMileage           mileage
+     * @param newCost              cost
+     *                             //     * @param isAccessibleForChildren true or false
+     *                             //     * @param isAccessibleForDisabled true or false
+     *                             //     * @param isMinivanInfo true or false
      */
     public Taxi(final CarBrand newBrand,
                 final String newModel,
@@ -28,24 +29,25 @@ public class Taxi extends PassengerTaxi {
                 final int newPassengerCapacity,
                 final String newPlateNumber,
                 final int newMileage,
-                final int newCost,
-                final boolean isAccessibleForChildren,
-                final boolean isAccessibleForDisabled,
-                final boolean isMinivanInfo) {
+                final int newCost) {
+//                final boolean isAccessibleForChildren,
+//                final boolean isAccessibleForDisabled,
+//                final boolean isMinivanInfo) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
                 newPassengerCapacity,
                 newPlateNumber,
                 newMileage,
-                newCost,
-                isAccessibleForChildren,
-                isAccessibleForDisabled);
-        this.isMinivan = isMinivanInfo;
+                newCost);
+//                isAccessibleForChildren,
+//                isAccessibleForDisabled);
+//        this.isMinivan = isMinivanInfo;
     }
 
     /**
      * return info.
+     *
      * @return true or false
      */
     public boolean isMinivan() {
@@ -54,6 +56,7 @@ public class Taxi extends PassengerTaxi {
 
     /**
      * set true if car is minivan.
+     *
      * @param newMinivan true or false
      */
     public void setMinivan(final boolean newMinivan) {
@@ -62,6 +65,7 @@ public class Taxi extends PassengerTaxi {
 
     /**
      * .
+     *
      * @param o car
      * @return .
      */
@@ -82,6 +86,7 @@ public class Taxi extends PassengerTaxi {
 
     /**
      * .
+     *
      * @return .
      */
     @Override
@@ -253,16 +258,17 @@ public class Taxi extends PassengerTaxi {
          * @return instance of taxi
          */
         public Taxi build() {
-            return new Taxi(brand,
+            Taxi taxi = new Taxi(brand,
                     model,
                     cargoCapacity,
                     passengerCapacity,
                     plateNumber,
                     mileage,
-                    cost,
-                    accessibleForChildren,
-                    accessibleForDisabled,
-                    isMinivan);
+                    cost);
+            taxi.setAccessibleForChildren(accessibleForChildren);
+            taxi.setAccessibleForDisabled(accessibleForDisabled);
+            taxi.isMinivan = isMinivan;
+            return taxi;
         }
     }
 }

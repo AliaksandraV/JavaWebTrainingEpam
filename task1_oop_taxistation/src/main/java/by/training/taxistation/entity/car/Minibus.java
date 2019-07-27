@@ -17,30 +17,30 @@ public class Minibus extends PassengerTaxi {
      * @param newPlateNumber plate number
      * @param newMileage mileage
      * @param newCost cost
-     * @param isAccessibleForChildren true or false
-     * @param isAccessibleForDisabled true or false
-     * @param isIntercityTransportation true or false
+//     * @param isAccessibleForChildren true or false
+//     * @param isAccessibleForDisabled true or false
+//     * @param isIntercityTransportation true or false
      */
-    public Minibus(final CarBrand newBrand,
+    protected Minibus(final CarBrand newBrand,
                    final String newModel,
                    final int newCargoCapacity,
                    final int newPassengerCapacity,
                    final String newPlateNumber,
                    final int newMileage,
-                   final int newCost,
-                   final boolean isAccessibleForChildren,
-                   final boolean isAccessibleForDisabled,
-                   final boolean isIntercityTransportation) {
+                   final int newCost) {
+//                   final boolean isAccessibleForChildren,
+//                   final boolean isAccessibleForDisabled,
+//                   final boolean isIntercityTransportation) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
                 newPassengerCapacity,
                 newPlateNumber,
                 newMileage,
-                newCost,
-                isAccessibleForChildren,
-                isAccessibleForDisabled);
-        intercityTransportation = isIntercityTransportation;
+                newCost);
+//                isAccessibleForChildren,
+//                isAccessibleForDisabled);
+//        intercityTransportation = isIntercityTransportation;
 
     }
 
@@ -260,11 +260,14 @@ public class Minibus extends PassengerTaxi {
                     passengerCapacity,
                     plateNumber,
                     mileage,
-                    cost,
-                    accessibleForChildren,
-                    accessibleForDisabled,
-                    intercityTransportation);
-            minibus.setBrand(brand);
+                    cost);
+            minibus.setAccessibleForChildren(accessibleForChildren);
+            minibus.setAccessibleForDisabled(accessibleForDisabled);
+            minibus.intercityTransportation = intercityTransportation;
+//                    accessibleForChildren,
+//                    accessibleForDisabled,
+//                    intercityTransportation);
+//            minibus.setBrand(brand);
             return minibus;
 
         }

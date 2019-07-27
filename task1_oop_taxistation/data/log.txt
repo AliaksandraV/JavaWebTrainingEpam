@@ -53,3 +53,16 @@
 2019-07-24 15:24:03 INFO  actions.AddCarController:33 - Выбран несуществующий пункт меню.
 2019-07-24 15:24:11 INFO  actions.AddCarController:33 - Выбран несуществующий пункт меню.
 2019-07-24 15:24:14 INFO  actions.AddCarController:33 - Выбран несуществующий пункт меню.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 1 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 3 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 4 неверное число параметров.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 5 указан невалидный размер грузовой платформы.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 6 указан невалидный размер грузовой платформы.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 7 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 13 неверное число параметров.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 14 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 15 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 18 указан несуществующий тип такси.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 19 неверное число параметров.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 20 указаны невалидные параметры возможностей перевозки.
+2019-07-26 16:22:20 ERROR factory.TaxiStationFactoryImpl:42 - У файла в строке 21 указаны невалидные параметры возможностей перевозки.

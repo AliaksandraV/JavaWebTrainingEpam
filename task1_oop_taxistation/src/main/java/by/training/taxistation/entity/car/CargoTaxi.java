@@ -24,29 +24,30 @@ public class CargoTaxi extends Car {
 
     /**
      * constructor.
-     * @param newBrand brand
-     * @param newModel model
-     * @param newCargoCapacity cargo capacity
+     *
+     * @param newBrand             brand
+     * @param newModel             model
+     * @param newCargoCapacity     cargo capacity
      * @param newPassengerCapacity passenger capacity
-     * @param newPlateNumber plate number
-     * @param newMileage mileage
-     * @param newCost cost
-     * @param newLength length
-     * @param newWidth width
-     * @param newHeight height
-     * @param newVolume volume
+     * @param newPlateNumber       plate number
+     * @param newMileage           mileage
+     * @param newCost              cost
+     *                             //     * @param newLength length
+     *                             //     * @param newWidth width
+     *                             //     * @param newHeight height
+     *                             //     * @param newVolume volume
      */
-    public CargoTaxi(final CarBrand newBrand,
+    protected CargoTaxi(final CarBrand newBrand,
                      final String newModel,
                      final int newCargoCapacity,
                      final int newPassengerCapacity,
                      final String newPlateNumber,
                      final int newMileage,
-                     final int newCost,
-                     final double newLength,
-                     final double newWidth,
-                     final double newHeight,
-                     final double newVolume) {
+                     final int newCost) { //,
+//                     final double newLength,
+//                     final double newWidth,
+//                     final double newHeight,
+//                     final double newVolume) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -54,14 +55,15 @@ public class CargoTaxi extends Car {
                 newPlateNumber,
                 newMileage,
                 newCost);
-        length = newLength;
-        width = newWidth;
-        height = newHeight;
-        volume = newVolume;
+//        length = newLength;
+//        width = newWidth;
+//        height = newHeight;
+//        volume = newVolume;
     }
 
     /**
      * get Length.
+     *
      * @return length
      */
     public double getLength() {
@@ -70,6 +72,7 @@ public class CargoTaxi extends Car {
 
     /**
      * set length.
+     *
      * @param newLength length
      */
     public void setLength(final double newLength) {
@@ -78,6 +81,7 @@ public class CargoTaxi extends Car {
 
     /**
      * get width.
+     *
      * @return width
      */
     public double getWidth() {
@@ -86,6 +90,7 @@ public class CargoTaxi extends Car {
 
     /**
      * set width.
+     *
      * @param newWidth width
      */
     public void setWidth(final double newWidth) {
@@ -94,6 +99,7 @@ public class CargoTaxi extends Car {
 
     /**
      * get height.
+     *
      * @return height
      */
     public double getHeight() {
@@ -102,6 +108,7 @@ public class CargoTaxi extends Car {
 
     /**
      * set height.
+     *
      * @param newHeight height
      */
     public void setHeight(final double newHeight) {
@@ -110,6 +117,7 @@ public class CargoTaxi extends Car {
 
     /**
      * get volume.
+     *
      * @return volume
      */
     public double getVolume() {
@@ -118,6 +126,7 @@ public class CargoTaxi extends Car {
 
     /**
      * set volume.
+     *
      * @param newVolume volume
      */
     public void setVolume(final double newVolume) {
@@ -126,6 +135,7 @@ public class CargoTaxi extends Car {
 
     /**
      * equals.
+     *
      * @param o car
      * @return true if objects are equals
      */
@@ -149,11 +159,27 @@ public class CargoTaxi extends Car {
 
     /**
      * hashCode.
+     *
      * @return hashCode
      */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), length, width, height, volume);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return super.toString()
+        + "CargoTaxi{"
+                + "length=" + length
+                + ", width=" + width
+                + ", height=" + height
+                + ", volume=" + volume
+                + '}';
     }
 
     public static class Builder {
@@ -201,6 +227,7 @@ public class CargoTaxi extends Car {
          * volume of area for placing cargo, measured in cubic meters.
          */
         private double volume;
+
         /**
          * set car brand.
          *
@@ -329,17 +356,23 @@ public class CargoTaxi extends Car {
          * @return instance of taxi
          */
         public CargoTaxi build() {
-            return new CargoTaxi(brand,
+            CargoTaxi cargoTaxi = new CargoTaxi(brand,
                     model,
                     cargoCapacity,
                     passengerCapacity,
                     plateNumber,
                     mileage,
-                    cost,
-                    length,
-                    width,
-                    height,
-                    volume);
+                    cost);
+            cargoTaxi.height = height;
+            cargoTaxi.length = length;
+            cargoTaxi.width = width;
+            cargoTaxi.volume = volume;
+            return cargoTaxi;
+            //,
+//                    length,
+//                    width,
+//                    height,
+//                    volume);
         }
     }
 

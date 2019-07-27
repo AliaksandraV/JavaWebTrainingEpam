@@ -21,18 +21,18 @@ public abstract class PassengerTaxi extends Car {
      * @param newPlateNumber plate number
      * @param newMileage mileage
      * @param newCost cost
-     * @param newAccessibleForChildren true or false
-     * @param newAccessibleForDisabled true or false
+//     * @param newAccessibleForChildren true or false
+//     * @param newAccessibleForDisabled true or false
      */
-    public PassengerTaxi(final CarBrand newBrand,
+    protected PassengerTaxi(final CarBrand newBrand,
                          final String newModel,
                          final int newCargoCapacity,
                          final int newPassengerCapacity,
                          final String newPlateNumber,
                          final int newMileage,
-                         final int newCost,
-                         final boolean newAccessibleForChildren,
-                         final boolean newAccessibleForDisabled) {
+                         final int newCost) {
+//                         final boolean newAccessibleForChildren,
+//                         final boolean newAccessibleForDisabled) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -41,8 +41,8 @@ public abstract class PassengerTaxi extends Car {
                 newMileage,
                 newCost);
 
-        accessibleForChildren = newAccessibleForChildren;
-        accessibleForDisabled = newAccessibleForDisabled;
+//        accessibleForChildren = newAccessibleForChildren;
+//        accessibleForDisabled = newAccessibleForDisabled;
     }
 
     /**
