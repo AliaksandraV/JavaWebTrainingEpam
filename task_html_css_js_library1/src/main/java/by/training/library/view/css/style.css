@@ -121,4 +121,7 @@ h2.tableHeadline {
     margin-left: 10px;
 }
 
+div.clearPadding{
+    padding: 0px;
+}
 

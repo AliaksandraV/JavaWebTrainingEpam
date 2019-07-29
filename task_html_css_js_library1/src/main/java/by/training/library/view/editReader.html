@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <div class="container-fluid h-100">
     <header>
         <div class="row no-gutters menu">
@@ -36,46 +35,55 @@
 
     <div class="row justify-content-center">
         <div class="col mt-5 col-xs-12 col-md-8 col-lg-8">
-<!--            <form action="http://localhost:8090/library/reader/save.html" method="post" onsubmit="return validateEditReader(this)">-->
+            <!--            <form action="http://localhost:8090/library/reader/save.html" method="post" onsubmit="return validateEditReader(this)">-->
             <form action="/action_page.php" class="forEditor was-validated">
-            <h2>Читатель Иванов Иван Иванович</h2>
+                <h2>Читатель Иванов Иван Иванович</h2>
                 <div class="form-group">
                     <label for="libraryCardNumber">Номер читательского билета:</label>
-                    <input type="text" class="form-control" id="libraryCardNumber" placeholder="Введите номер читательского билета" name="libraryCardNumber" value="2006-09-11-001" required>
+                    <input type="text" class="form-control" id="libraryCardNumber"
+                           placeholder="Введите номер читательского билета" name="libraryCardNumber"
+                           value="2006-09-11-001" required>
                     <div class="invalid-feedback">Заполните поле.</div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="surname">Фамилия:</label>
-                        <input type="text" class="form-control" id="surname" placeholder="Введите фамилию" name="surname" value="Иванов" required>
+                        <input type="text" class="form-control" id="surname" placeholder="Введите фамилию"
+                               name="surname" value="Иванов" required>
                         <div class="invalid-feedback">Заполните поле.</div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="name">Имя:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name" value="Иван" required>
+                        <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name"
+                               value="Иван" required>
                         <div class="invalid-feedback">Заполните поле.</div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patronymic">Отчество:</label>
-                        <input type="text" class="form-control" id="patronymic" placeholder="Введите отчество" name="patronymic" value="Иванович" required>
+                        <input type="text" class="form-control" id="patronymic" placeholder="Введите отчество"
+                               name="patronymic" value="Иванович" required>
                         <div class="invalid-feedback">Заполните поле.</div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="address">Адрес:</label>
-                        <input type="text" class="form-control" id="address"  placeholder="Введите адрес" name="address" value="ул. Покровского, 13-3" required>
+                        <input type="text" class="form-control" id="address" placeholder="Введите адрес" name="address"
+                               value="ул. Покровского, 13-3" required>
                         <div class="invalid-feedback">Заполните поле.</div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="phone">Телефон:</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Введите телефон" name="phone" value="+375 (29) 123-45-67" required>
+                        <input type="text" class="form-control" id="phone" placeholder="Введите телефон" name="phone"
+                               value="+375 (29) 123-45-67" required>
                         <div class="invalid-feedback">Заполните поле.</div>
                     </div>
                 </div>
-                <div>
+                <div class="text-center">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <button type="button" onclick="submitFormById('form-delete')" class="btn btn-danger" disabled="">Удалить</button>
+                    <button type="button" onclick="submitFormById('form-delete')" class="btn btn-danger" disabled="">
+                        Удалить
+                    </button>
                     <button type="reset" class="btn btn-info">Сбросить</button>
                 </div>
             </form>
@@ -129,7 +137,5 @@
 
 
 </div>
-
-
 </body>
 </html>
