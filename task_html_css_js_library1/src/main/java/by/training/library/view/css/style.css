@@ -87,23 +87,38 @@ table.table {
 
 }
 
-form {
+form.forEditor {
     margin-top: 20px;
     padding: 15px;
     background: rgba(0, 0, 0, 0.8);
     color: #D3D3D3;
 }
 
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
-    opacity: 1; /* Firefox */
+form.forTable {
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #D3D3D3;
 }
 
-input::-webkit-input-placeholder {
+::placeholder {
     color: #D3D3D3 !important;
 }
 
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
-    opacity: 1; /* Firefox */
+table.borderGrey{
+    border:1px solid dimgray;
+    margin-top:5px;
 }
+table.borderGrey > thead > tr > th{
+    border:1px solid darkslategray;
+}
+table.borderGrey > tbody > tr > td{
+    border:1px solid darkslategray;
+}
+
+h2.tableHeadline {
+    margin-left: 10px;
+}
+
+

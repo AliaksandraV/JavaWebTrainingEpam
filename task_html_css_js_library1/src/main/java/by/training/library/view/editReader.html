@@ -37,7 +37,7 @@
     <div class="row justify-content-center">
         <div class="col mt-5 col-xs-12 col-md-8 col-lg-8">
 <!--            <form action="http://localhost:8090/library/reader/save.html" method="post" onsubmit="return validateEditReader(this)">-->
-            <form action="/action_page.php" class="was-validated">
+            <form action="/action_page.php" class="forEditor was-validated">
             <h2>Читатель Иванов Иван Иванович</h2>
                 <div class="form-group">
                     <label for="libraryCardNumber">Номер читательского билета:</label>
@@ -88,12 +88,12 @@
         </div>
     </div>
 
-    <form>
-        <h2>Список невозвращённых вовремя книг</h2>
+    <form class="forTable">
+        <h2 class="tableHeadline">Список невозвращённых вовремя книг</h2>
         <div class="call-to row align-items-center">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-hover table-borderless">
+                    <table class="table table-hover table-bordered borderGrey">
                         <thead>
                         <tr>
                             <th>Автор</th>
