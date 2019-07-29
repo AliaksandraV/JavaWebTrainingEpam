@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Readers</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,45 +11,30 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="//code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
 </head>
 <body>
 <div class="container-fluid h-100">
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand"><img src="img/logo.png"></a>
+    <div id="header"></div>
 
-            <button class="navbar-toggler-icon" type="button">
-            </button>
+<!--    <nav class="navbar navbar-expand-md navbar-dark bg-dark">-->
+<!--        <div class="container-fluid">-->
+<!--            <a href="#" class="navbar-brand"><img src="img/logo.png"></a>-->
 
-        </div>
-    </nav>
+<!--            <button class="navbar-toggler-icon" type="button">-->
+<!--            </button>-->
 
-
-
-
-
-
-
-<!--    <header>-->
-<!--        <div class="row no-gutters menu">-->
-<!--            &lt;!&ndash;Logo&ndash;&gt;-->
-<!--            <div class="col-md-3">-->
-<!--                <a href="/"><img class="logoStyle" src="img/logo.png" ></a>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;Menu items&ndash;&gt;-->
-<!--            <div class="col-md-9 d-flex justify-content-end align-items-center">-->
-<!--                <nav class="nav navbar-brand">-->
-<!--                    <ul class="p-2 bd-highlight">-->
-<!--                        <li><a href="">Читатели</a></li>-->
-<!--                        <li><a href="">Сотрудники</a></li>-->
-<!--                        <li><a href="">Авторы</a></li>-->
-<!--                        <li><a href="">Войти</a></li>-->
-<!--                    </ul>-->
-<!--                </nav>-->
-<!--            </div>-->
 <!--        </div>-->
-<!--    </header>-->
+<!--    </nav>-->
+
+
     <!--     Content of the page-->
     <div class="row justify-content-center">
         <div class="col mt-5 col-xs-12 col-md-8 col-lg-8">
