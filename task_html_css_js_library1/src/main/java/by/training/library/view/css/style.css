@@ -9,7 +9,7 @@ body {
 
 body {
     background-image: url(../img/books.jpg);
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     background-position: center center;
 }
 
@@ -37,7 +37,7 @@ header nav ul li {
 
 header nav ul li a {
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
 }
 
@@ -81,10 +81,29 @@ header div.call-to a {
     text-decoration: none;
 }
 
-tr {
-    background: rgba(0, 0, 0, 0.3);
+table.table {
+    background: rgba(0, 0, 0, 0.8);
+    color: #D3D3D3;
+
 }
 
-table.table-hover {
-    color: #A9A9A9;
+form {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #D3D3D3;
+}
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
+}
+
+input::-webkit-input-placeholder {
+    color: #D3D3D3 !important;
+}
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
 }
