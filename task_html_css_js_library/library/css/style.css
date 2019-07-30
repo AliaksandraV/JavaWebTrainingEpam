@@ -147,3 +147,19 @@ div.clearPadding {
     /*bottom:0;*/
 }
 
+div.login-form {
+    color: #D3D3D3;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background: rgba(0, 0, 0, 0.8);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 0.25rem;
+}
+
+

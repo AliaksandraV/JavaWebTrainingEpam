@@ -1,7 +1,11 @@
 function loadHeaderAndFooter() {
     if (getCookie("token") == undefined) {
         //добавила эту строку для проверки нахожусь ли я сейчас на странице логина, и если нет, то перехожу
-        window.location.href = "login.html";
+        // window.location.href = "login.html";
+        $(function () {
+            $("#header").load("../shared/header.html");
+            $("#footer").load("../shared/footer.html");
+        });
     }
 
     if (getCookie("token") == "0") {

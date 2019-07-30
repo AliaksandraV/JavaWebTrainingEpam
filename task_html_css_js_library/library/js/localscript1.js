@@ -1,4 +1,4 @@
-// function EnterToAccount(login,password){
+// function enterToAccount(login,password){
 //     if (login == "admin" && password =="admin"){
 //         //if user entered as admin create cookie with value 1, else 0
 //         document.cookie = "token=1;";
@@ -50,7 +50,7 @@
 //
 // }
 //
-// function CheckCookieFromLogInPage() {
+// function checkCookieFromLogInPage() {
 //     if (getCookie("token")=="1"){
 //         //тут вставить значение для АдминХедера
 //         $("#header").load("../shared/header-admin.html");
@@ -64,8 +64,8 @@
 //     }
 // }
 //
-// function CheckLogIn() {
-//     EnterToAccount($('#inputName').val(), $('#inputPassword').val())
+// function checkLogIn() {
+//     enterToAccount($('#inputName').val(), $('#inputPassword').val())
 // }
 //
 //
