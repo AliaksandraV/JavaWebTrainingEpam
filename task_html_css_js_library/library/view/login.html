@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>login</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/prototypeScripts.js"></script>
+</head>
+
+<body class="text-center">
+
+<script>CheckCookieFromLogInPage();</script>
+
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Вход в систему</h1>
+
+    <label for="inputName" class="sr-only">Имя пользователя</label>
+    <input type="text" id="inputName" class="form-control" placeholder="Имя пользователя" required="" autofocus="">
+
+    <label for="inputPassword" class="sr-only">Пароль</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="CheckLogIn()">Войти</button>
+
+</form>
+
+
+</body>
+</html>
