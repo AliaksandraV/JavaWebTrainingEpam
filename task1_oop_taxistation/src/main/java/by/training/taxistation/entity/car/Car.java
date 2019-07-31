@@ -7,7 +7,6 @@ public abstract class Car {
     /**
      * brand.
      */
-    //TODO add search by id
     private CarBrand brand;
     /**
      * model.

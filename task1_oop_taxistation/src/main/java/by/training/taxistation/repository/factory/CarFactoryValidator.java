@@ -35,19 +35,17 @@ public final class CarFactoryValidator {
      */
     public static boolean validateCarParameters(final String[] carParameters)
             throws InvalidCarDataException {
-        if (validateTaxiType(carParameters[0])
+
+        return (validateTaxiType(carParameters[0])
                 && validateNumberOfParameters(carParameters
                 .length, carParameters[0])
                 && validateCarBrand(carParameters[1])
                 && validateCapacity(carParameters[CarConstants.CAR_BRAND_INDEX])
                 && validateCapacity(
-                        carParameters[CarConstants.PAS_CAPACITY_INDEX])
+                carParameters[CarConstants.PAS_CAPACITY_INDEX])
                 && validateMileage(carParameters[CarConstants.MILEAGE_INDEX])
                 && validateCost(carParameters[CarConstants.COST_INDEX])
-                && validateIndividualCharacteristics(carParameters)) {
-            return true;
-        }
-        return false;
+                && validateIndividualCharacteristics(carParameters));
     }
 
     /**
@@ -163,9 +161,10 @@ public final class CarFactoryValidator {
 
     /**
      * validate Individual Characteristics for different car types.
+     *
      * @param carParameters car Parameters
-     * @throws InvalidCarDataException if car Parameters invalid
      * @return true or throws InvalidCarDataException
+     * @throws InvalidCarDataException if car Parameters invalid
      */
     private static boolean validateIndividualCharacteristics(
             final String[] carParameters) throws InvalidCarDataException {
@@ -229,7 +228,7 @@ public final class CarFactoryValidator {
      * @return true or false
      */
     private static boolean isBoolean(final String carParameter) {
-        return "true".equals(carParameter.toLowerCase())
-                || "false".equals(carParameter.toLowerCase());
+        return "true".equalsIgnoreCase(carParameter)
+                || "false".equalsIgnoreCase(carParameter);
     }
 }

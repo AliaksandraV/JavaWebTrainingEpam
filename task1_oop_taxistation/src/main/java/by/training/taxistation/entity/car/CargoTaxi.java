@@ -44,10 +44,6 @@ public class CargoTaxi extends Car {
                      final String newPlateNumber,
                      final int newMileage,
                      final int newCost) { //,
-//                     final double newLength,
-//                     final double newWidth,
-//                     final double newHeight,
-//                     final double newVolume) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -55,10 +51,6 @@ public class CargoTaxi extends Car {
                 newPlateNumber,
                 newMileage,
                 newCost);
-//        length = newLength;
-//        width = newWidth;
-//        height = newHeight;
-//        volume = newVolume;
     }
 
     /**
@@ -368,11 +360,6 @@ public class CargoTaxi extends Car {
             cargoTaxi.width = width;
             cargoTaxi.volume = volume;
             return cargoTaxi;
-            //,
-//                    length,
-//                    width,
-//                    height,
-//                    volume);
         }
     }
 

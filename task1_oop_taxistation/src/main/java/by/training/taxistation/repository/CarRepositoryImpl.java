@@ -20,7 +20,7 @@ public class CarRepositoryImpl implements CarRepository {
      */
     @Override
     public void create(final Car car) {
-
+        //some code here
     }
 
     /**
@@ -40,7 +40,7 @@ public class CarRepositoryImpl implements CarRepository {
      */
     @Override
     public void delete(final Car car) {
-
+        //some code here
     }
 
     /**

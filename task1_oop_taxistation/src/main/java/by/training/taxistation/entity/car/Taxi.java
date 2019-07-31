@@ -34,9 +34,6 @@ public class Taxi extends PassengerTaxi {
                 newPlateNumber,
                 newMileage,
                 newCost);
-//                isAccessibleForChildren,
-//                isAccessibleForDisabled);
-//        this.isMinivan = isMinivanInfo;
     }
 
     /**

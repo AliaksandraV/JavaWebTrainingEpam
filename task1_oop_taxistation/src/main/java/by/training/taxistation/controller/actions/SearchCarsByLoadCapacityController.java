@@ -71,6 +71,7 @@ public class SearchCarsByLoadCapacityController extends BaseActionController {
      * @param input input
      * @throws InputFormatException if input invalid
      */
+    @Override
     protected void validateInt(final String input) throws InputFormatException {
         try {
             Integer.parseInt(input);

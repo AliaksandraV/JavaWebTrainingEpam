@@ -30,31 +30,31 @@ public class MainMenuController extends BaseController {
     /**
      * menu index.
      */
-    private final int firstMenuIndex = 1;
+    private static final int FIRST_MENU_INDEX = 1;
     /**
      * menu index.
      */
-    private final int secondMenuIndex = 2;
+    private static final int SECOND_MENU_INDEX = 2;
     /**
      * menu index.
      */
-    private final int thirdMenuIndex = 3;
+    private static final int THIRD_MENU_INDEX = 3;
     /**
      * menu index.
      */
-    private final int fourthMenuIndex = 4;
+    private static final int FOURTH_MENU_INDEX = 4;
     /**
      * menu index.
      */
-    private final int fifthMenuIndex = 5;
+    private static final int FIFTH_MENU_INDEX = 5;
     /**
      * menu index.
      */
-    private final int sixthMenuIndex = 6;
+    private static final int SIXTH_MENU_INDEX = 6;
     /**
      * menu index.
      */
-    private final int eighthMenuIndex = 8;
+    private static final int EIGHTH_MENU_INDEX = 8;
 
     /**
      * constructor.
@@ -69,18 +69,17 @@ public class MainMenuController extends BaseController {
      */
     private void initControllerMap() {
         controllerMap.put(
-                firstMenuIndex, new CarsListController(this));
-        controllerMap.put(secondMenuIndex, new CarsCostController(this));
+                FIRST_MENU_INDEX, new CarsListController(this));
+        controllerMap.put(SECOND_MENU_INDEX, new CarsCostController(this));
         controllerMap.put(
-                thirdMenuIndex, new CarsSortedByBrandController(this));
+                THIRD_MENU_INDEX, new CarsSortedByBrandController(this));
         controllerMap.put(
-                fourthMenuIndex, new CarsSortedByBrandAndCostController(this));
-        controllerMap.put(fifthMenuIndex,
+                FOURTH_MENU_INDEX, new CarsSortedByBrandAndCostController(this));
+        controllerMap.put(FIFTH_MENU_INDEX,
                 new SearchCarsByPassengerCapacityController(this));
-        controllerMap.put(sixthMenuIndex,
+        controllerMap.put(SIXTH_MENU_INDEX,
                 new SearchCarsByLoadCapacityController(this));
-//        controllerMap.put(7, new AddCarController(this));
-        controllerMap.put(eighthMenuIndex, new ExitController());
+        controllerMap.put(EIGHTH_MENU_INDEX, new ExitController());
     }
 
     /**

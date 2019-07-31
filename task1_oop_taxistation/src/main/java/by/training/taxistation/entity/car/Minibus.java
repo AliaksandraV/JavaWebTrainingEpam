@@ -28,9 +28,6 @@ public class Minibus extends PassengerTaxi {
                    final String newPlateNumber,
                    final int newMileage,
                    final int newCost) {
-//                   final boolean isAccessibleForChildren,
-//                   final boolean isAccessibleForDisabled,
-//                   final boolean isIntercityTransportation) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -38,9 +35,6 @@ public class Minibus extends PassengerTaxi {
                 newPlateNumber,
                 newMileage,
                 newCost);
-//                isAccessibleForChildren,
-//                isAccessibleForDisabled);
-//        intercityTransportation = isIntercityTransportation;
 
     }
 
@@ -264,10 +258,6 @@ public class Minibus extends PassengerTaxi {
             minibus.setAccessibleForChildren(accessibleForChildren);
             minibus.setAccessibleForDisabled(accessibleForDisabled);
             minibus.intercityTransportation = intercityTransportation;
-//                    accessibleForChildren,
-//                    accessibleForDisabled,
-//                    intercityTransportation);
-//            minibus.setBrand(brand);
             return minibus;
 
         }

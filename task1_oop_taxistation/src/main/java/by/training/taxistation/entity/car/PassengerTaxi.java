@@ -31,8 +31,6 @@ public abstract class PassengerTaxi extends Car {
                          final String newPlateNumber,
                          final int newMileage,
                          final int newCost) {
-//                         final boolean newAccessibleForChildren,
-//                         final boolean newAccessibleForDisabled) {
         super(newBrand,
                 newModel,
                 newCargoCapacity,
@@ -40,9 +38,6 @@ public abstract class PassengerTaxi extends Car {
                 newPlateNumber,
                 newMileage,
                 newCost);
-
-//        accessibleForChildren = newAccessibleForChildren;
-//        accessibleForDisabled = newAccessibleForDisabled;
     }
 
     /**
