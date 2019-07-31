@@ -22,10 +22,8 @@ header div.menu {
     background: rgba(0, 0, 0, 0.8);
 }
 
-header a img.logoStyle {
-    padding: 0px;
+header .logoStyle {
     width: 69%;
-    height: 75%;
     margin-top: 10px;
     margin-left: 30px;
 }
@@ -162,4 +160,52 @@ div.login-form {
     border-radius: 0.25rem;
 }
 
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+}
 
+.navbar-brand {
+    margin-left: 20px;
+    padding: 0px;
+}
+
+.navbar-brand img {
+    width: 50%;
+}
+
+.bg-dark {
+    background-color: rgba(0,0,0,.8)!important;
+}
+
+.navbar-nav {
+    font-size: 14pt;
+    padding-right: 20px;
+}
+
+.navbar-toggler {
+    margin-right: 20px;
+}
+
+.navbar-collapse {
+    margin-right: 10px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: rgba(0,0,0,.8)!important;
+    color: white;
+}
+
+#mymenu a {
+    background-color: rgba(0,0,0,.8)!important;
+    color: dimgray;
+}
+
+#mymenu a:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,.1);
+}
+
+.dropdown-divider {
+    border-top: 1px solid dimgray;
+
+}

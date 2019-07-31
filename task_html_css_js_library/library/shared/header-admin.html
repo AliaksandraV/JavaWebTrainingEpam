@@ -1,18 +1,40 @@
 <header>
-    <div class="row no-gutters menu">
-        <div class="col-md-3">
-            <a href="/"><img src="../img/logo.png" class="logoStyle"></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="../view/main.html"><img src="../img/logo.png"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse  navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav align-items-end">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../view/main.html">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../view/readers.html">Читатели</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../view/employees.html">Сотрудники</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        admin
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" id="mymenu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="../view/profile.html">Профиль</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../view/main.html" onclick="exitFromAccount()">Выйти</a>
+                    </div>
+                </li>
+
+            </ul>
         </div>
-        <div class="col-md-9 d-flex justify-content-end align-items-center">
-            <nav class="nav nav-masthead ">
-                <ul class="p-2 bd-highlight">
-                    <li><a href="../view/readers.html">Читатели</a></li>
-                    <li><a href="../view/employees.html">Сотрудники</a></li>
-                    <li><a href="../view/profile.html">Профиль</a></li>
-                    <li><a href="">Авторы</a></li>
-                    <li><a href="../view/main.html" onclick="exitFromAccount()">Выйти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+    </nav>
 </header>

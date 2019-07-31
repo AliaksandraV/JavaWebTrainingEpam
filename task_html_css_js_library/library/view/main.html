@@ -9,9 +9,26 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- Java script -->
     <script src="//code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../js/prototypeScripts.js"></script>
+
+    <style type="text/css">
+        #main {
+            overflow: hidden;
+            width: 735px;
+            height: 380px;
+        }
+    </style>
+    <script type="text/javascript">
+        function loadFrame() {
+            document.getElementById('main').scrollTop = 113;
+            document.getElementById('main').scrollLeft = 57;
+        }
+    </script>
+
+
 </head>
-<body>
+<body onload="loadFrame();">
 
 <script>
     checkCookie();
@@ -19,8 +36,10 @@
 
 <div id="header"></div>
 
-<div class="container-fluid">
-    <h2 style="color: greenyellow">тут что-то</h2>
+<div class="main">
+    <div class="row justify-content-center">
+        <iframe src="https://readrate.com/rus/news" width="1024" height="1000"></iframe>
+    </div>
 </div>
 
 <footer class="footer mt-auto py-5">
