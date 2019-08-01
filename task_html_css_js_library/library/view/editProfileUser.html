@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Java script -->
+    <script src="//code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../js/prototypeScripts.js"></script>
+</head>
+<body>
+<script>
+    checkCookie();
+</script>
+
+<div id="header"></div>
+
+<div class="container-fluid h-100">
+    <!--     Content of the page-->
+    <div class="row justify-content-center">
+        <div class="col mt-5 col-xs-12 col-md-8 col-lg-8">
+            <form class="forEditor">
+                <h2>Профиль пользователя «admin»</h2>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="login">Имя пользователя:</label>
+                        <input type="text" class="form-control" id="login" value="user" disabled="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="role">Роль:</label>
+                        <select id="role" class="form-control" disabled="">
+                            <option selected="">user</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group clearPadding col-md-6 ">
+                    <label for="old-password">Старый пароль:</label>
+                    <input type="password" class="form-control" id="old-password" placeholder="Введите старый пароль" name="old-password">
+                </div>
+
+                <div class="form-group clearPadding col-md-6">
+                    <label for="new-password-1">Новый пароль:</label>
+                    <input type="password" class="form-control" id="new-password-1" placeholder="Введите новый пароль" name="new-password">
+                </div>
+                <div class="form-group clearPadding col-md-6">
+                    <label for="new-password-2">Новый пароль ещё раз:</label>
+                    <input type="password" class="form-control" id="new-password-2" placeholder="Повторите ввод нового пароля">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Сменить пароль</button>
+                    <button type="reset" class="btn btn-info">Сбросить</button>
+                </div>
+            </form>
+
+
+                        <form action="http://localhost:8090/library/reader/delete.html" method="post" id="form-delete"
+                              onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить читателя?')">
+                            <input type="hidden" name="identity" value="1">
+                        </form>
+        </div>
+    </div>
+</div>
+
+<footer class="footer mt-auto py-5">
+    <div class="container">
+        <footer id="footer"></footer>
+    </div>
+</footer>
+</body>
+</html>
