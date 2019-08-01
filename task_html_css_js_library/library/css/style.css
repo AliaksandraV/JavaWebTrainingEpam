@@ -1,6 +1,7 @@
-/*body, html {*/
-/*    height: 100%;*/
-/*}*/
+
+body, html {
+    height: 100%;
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -138,11 +139,6 @@ div.clearPadding {
 #map{
     /*margin: 50px;*/
     height:200px;
-}
-
-#footer {
-    /*position:sticky;*/
-    /*bottom:0;*/
 }
 
 div.login-form {

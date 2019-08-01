@@ -1,12 +1,16 @@
-<div id="map">footer!!!!!!!</div>
-<!--<script>-->
-<!--    var map;-->
-<!--    function initMap() {-->
-<!--        map = new google.maps.Map(document.getElementById('map'), {-->
-<!--            center: {lat: -34.397, lng: 150.644},-->
-<!--            zoom: 8-->
-<!--        });-->
-<!--    }-->
-<!--</script>-->
+
+<div id="map"></div>
+<div class="card-footer text-muted">
+    <h1 style="color: white">2 days ago</h1>
+</div>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcClbX7qK_8y5_-B5p6k9x2F1N7_WVRZg&callback=initMap"
         async defer></script>
