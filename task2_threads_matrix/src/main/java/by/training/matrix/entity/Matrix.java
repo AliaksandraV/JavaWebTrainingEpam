@@ -5,35 +5,38 @@ import by.training.matrix.exceptions.MatrixException;
 public class Matrix {
 
     private int[][] a;
+    private int verticalSize;
+    private int horizontalSize;
 
     public Matrix(int n, int m) throws MatrixException {
-        // проверка на отрицательные значения размерности матрицы
         if ((n < 1) || (m < 1)) {
-            throw new MatrixException();
+            throw new MatrixException("Отрицательное значение размера матрицы.");
         }
         a = new int[n][m];
+        verticalSize = a.length;
+        horizontalSize = a[0].length;
     }
 
     public int getVerticalSize() {
-        return a.length;
+        return verticalSize;
     }
 
     public int getHorizontalSize() {
-        return a[0].length;
+        return horizontalSize;
     }
 
-    public int getElement(int i, int j) throws MatrixException {
-        if (checkRange(i, j)) { // проверка i и j
-            return a[i][j];
+    public int getElement(int columnIndex, int rowIndex) throws MatrixException {
+        if (checkRange(columnIndex, rowIndex)) {
+            return a[columnIndex][rowIndex];
         }
-        throw new MatrixException();
+        throw new MatrixException("Выход за пределы массива.");
     }
 
-    public void setElement(int i, int j, int value) throws MatrixException {
-        if (checkRange(i, j)) { // проверка i и j
-            a[i][j] = value;
+    public void setElement(int columnIndex, int rowIndex, int value) throws MatrixException {
+        if (checkRange(columnIndex, rowIndex)) {
+            a[columnIndex][rowIndex] = value;
         } else {
-            throw new MatrixException();
+            throw new MatrixException("Выход за пределы массива.");
         }
     }
 
@@ -49,9 +52,16 @@ public class Matrix {
         return s.toString();
     }
 
-    // проверка возможности выхода за пределы матрицы
-    private boolean checkRange(int i, int j) {
-        if (i >= 0 && i < a.length && j >= 0 && j < a[0].length) {
+
+    /**
+     * check possibility index out of bond exception.
+     *
+     * @param verticalSize   matrix verticalSize.
+     * @param horizontalSize matrix horizontalSize.
+     * @return true if range is correct.
+     */
+    private boolean checkRange(int verticalSize, int horizontalSize) {
+        if (verticalSize >= 0 && verticalSize < a.length && horizontalSize >= 0 && horizontalSize < a[0].length) {
             return true;
         } else {
             return false;
