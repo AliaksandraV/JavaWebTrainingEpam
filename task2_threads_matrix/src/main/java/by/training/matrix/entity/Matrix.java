@@ -8,11 +8,11 @@ public class Matrix {
     private int verticalSize;
     private int horizontalSize;
 
-    public Matrix(int n, int m) throws MatrixException {
-        if ((n < 1) || (m < 1)) {
+    public Matrix(int newVerticalSize, int newHorizontalSize) throws MatrixException {
+        if ((newVerticalSize < 1) || (newHorizontalSize < 1)) {
             throw new MatrixException("Отрицательное значение размера матрицы.");
         }
-        a = new int[n][m];
+        a = new int[newVerticalSize][newHorizontalSize];
         verticalSize = a.length;
         horizontalSize = a[0].length;
     }
