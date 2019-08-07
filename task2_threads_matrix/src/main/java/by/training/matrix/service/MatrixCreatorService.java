@@ -5,6 +5,11 @@ import by.training.matrix.exceptions.MatrixException;
 
 public class MatrixCreatorService {
 
+//    /**
+//     * file path.
+//     */
+//    private String filePath;
+
     public static void fillRandomized(Matrix t, int start, int end) {
         int v = t.getVerticalSize();
         int h = t.getHorizontalSize();
@@ -21,7 +26,9 @@ public class MatrixCreatorService {
     }
 
 
-    // public void fillFromFile(Matrix t, File f) { /* код*/ }
+//     public void fillFromFile(Matrix t, File f) {
+//         filePath = PropertiesService.takeProperty("storage.file.path");
+//     }
     // public void fillFromStream(Matrix t, InputStream input) { /* код*/ }
     // public void fillFromDataBase(Matrix t, Connection conn) { /* код*/ }
 }
