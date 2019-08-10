@@ -1,4 +1,4 @@
-package by.training.matrix;
+package matrix;
 
 import by.training.matrix.entity.Matrix;
 import by.training.matrix.exceptions.MatrixException;

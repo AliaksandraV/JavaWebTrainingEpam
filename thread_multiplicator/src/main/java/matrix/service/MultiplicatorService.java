@@ -1,4 +1,4 @@
-package by.training.matrix.service;
+package matrix.service;
 
 import by.training.matrix.entity.Matrix;
 import by.training.matrix.exceptions.MatrixException;
