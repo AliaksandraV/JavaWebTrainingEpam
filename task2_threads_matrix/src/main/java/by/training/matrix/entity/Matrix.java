@@ -8,6 +8,7 @@ public class Matrix {
     private int verticalSize;
     private int horizontalSize;
 
+
     public Matrix(int newVerticalSize, int newHorizontalSize) throws MatrixException {
         if ((newVerticalSize < 1) || (newHorizontalSize < 1)) {
             throw new MatrixException("Отрицательное значение размера матрицы.");
@@ -27,14 +28,18 @@ public class Matrix {
 
     public int getElement(int columnIndex, int rowIndex) throws MatrixException {
         if (checkRange(columnIndex, rowIndex)) {
-            return a[columnIndex][rowIndex];
+            int value = a[columnIndex][rowIndex];
+            return value;
+        } else {
+            throw new MatrixException("Выход за пределы массива.");
         }
-        throw new MatrixException("Выход за пределы массива.");
+
     }
 
     public void setElement(int columnIndex, int rowIndex, int value) throws MatrixException {
         if (checkRange(columnIndex, rowIndex)) {
             a[columnIndex][rowIndex] = value;
+//            System.out.println("Записано значение " + value);
         } else {
             throw new MatrixException("Выход за пределы массива.");
         }

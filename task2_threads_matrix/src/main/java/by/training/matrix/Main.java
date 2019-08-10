@@ -2,69 +2,65 @@ package by.training.matrix;
 
 import by.training.matrix.entity.Matrix;
 import by.training.matrix.exceptions.MatrixException;
-import by.training.matrix.service.MatrixCreatorService;
-import by.training.matrix.service.MultiplicatorService;
+import by.training.matrix.service.MainDiagonalFillService;
+import by.training.matrix.service.MatrixGeneratorService;
+import by.training.matrix.service.MatrixService;
+import by.training.matrix.service.TaskValidator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Main {
 
     public static void main(String[] args) throws MatrixException {
-        try {
+        //TODO: сообразить как передать а потом забрать одну единственную матрицу через все слои классов
+        MatrixGeneratorService generatorService = new MatrixGeneratorService();
+        Matrix matrix = generatorService.fillFromFile();
 
-            Matrix p = new Matrix(10, 10);
-            MatrixCreatorService.fillRandomized(p, 2, 8);
-            System.out.println("Matrix first is: " + p);
-            Matrix q = new Matrix(100, 100);
-            MatrixCreatorService.fillRandomized(q, 2, 7);
-            System.out.println("Matrix second is: " + q);
-            MultiplicatorService mult = new MultiplicatorService();
-            System.out.println("Matrices product is " + mult.multiply(p, q));
-        } catch (MatrixException ex) {
-            System.err.println("Error of creating matrix " + ex);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        System.out.println("Matrix is: " + matrix);
+
+        TaskValidator validator = new TaskValidator();
+        matrix = new Matrix(8,12);
+        System.out.println(validator.isCorrectMatrixSize(matrix));
+
 //        try {
-//            Matrix p = matrix1();
+//            Matrix matrix = new Matrix(3, 3);
+//            MatrixGeneratorService.fillRandomized(matrix, 9, 9);
+//            System.out.println("Matrix is: " + matrix);
 //
-//            System.out.println("Matrix first is: " + p);
+//            ReentrantLock locker = new ReentrantLock(); // создаем заглушку
 //
-//            Matrix q = matrix2();
 //
-//            System.out.println("Matrix second is: " + q);
-//            MultiplicatorService mult = new MultiplicatorService();
-//            System.out.println("Matrices product is " + mult.multiply(p, q));
-//        } catch (MatrixException ex) {
-//            System.err.println("Error of creating matrix " + ex);
+//            threadCreator(matrix, 4, locker);
+//
+//            System.out.println("NEW Matrix is: " + matrix);
+//
+//
+//        } catch (MatrixException e) {
+//            e.printStackTrace();
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
+
+
     }
 
-    public static Matrix matrix1() throws MatrixException {
-        Matrix p = new Matrix(2, 3);
-        p.setElement(0, 0, 3);
-        p.setElement(0, 1, 4);
-        p.setElement(0, 2, 7);
-        p.setElement(1, 0, 4);
-        p.setElement(1, 1, 7);
-        p.setElement(1, 2, 2);
-        return p;
-    }
+//    private static void threadCreator(final Matrix matrix, final int threadNumbers, final ReentrantLock locker) throws InterruptedException {
+//        List<Thread> threads = new ArrayList<>();
+//
+//        for (int i = 1; i <= threadNumbers; i++){
+//            threads.add(new Thread(new MainDiagonalFillService(i , matrix, locker)));
+//        }
+//
+//        for (Thread thread: threads){
+//            thread.start();
+//        }
+//
+//        for (Thread thread: threads){
+//            thread.join();
+//        }
+//
+//    }
 
-    public static Matrix matrix2() throws MatrixException {
-        Matrix q = new Matrix(3, 4);
-        q.setElement(0, 0, 3);
-        q.setElement(0, 1, 3);
-        q.setElement(0, 2, 6);
-        q.setElement(0, 3, 6);
-        q.setElement(1, 0, 5);
-        q.setElement(1, 1, 6);
-        q.setElement(1, 2, 5);
-        q.setElement(1, 3, 5);
-        q.setElement(2, 0, 4);
-        q.setElement(2, 1, 3);
-        q.setElement(2, 2, 3);
-        q.setElement(2, 3, 4);
-        return q;
-    }
 }

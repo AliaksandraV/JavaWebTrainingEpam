@@ -7,10 +7,10 @@ public class ProducerConsumerApp {
         new Producer(store).start();
         new Consumer(store).start();
 
-        Producer producer = new Producer(store);
-        Consumer consumer = new Consumer(store);
-        new Thread(producer).start();
-        new Thread(consumer).start();
+//        Producer producer = new Producer(store);
+//        Consumer consumer = new Consumer(store);
+//        new Thread(producer).start();
+//        new Thread(consumer).start();
 
     }
 }
