@@ -1,5 +1,8 @@
 package by.training.matrix.exceptions;
 
+/**
+ * Thrown when an exceptional matrix condition has occurred.
+ */
 public class MatrixException extends Exception {
 
     /**

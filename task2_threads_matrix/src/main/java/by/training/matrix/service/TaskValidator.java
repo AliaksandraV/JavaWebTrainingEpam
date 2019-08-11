@@ -4,13 +4,18 @@ import by.training.matrix.entity.Matrix;
 import by.training.matrix.exceptions.MatrixException;
 
 public class TaskValidator {
+
+   public boolean isMatrixSuitableForTheTask(Matrix matrix) throws MatrixException {
+       return isSquareMatrix(matrix)&&isCorrectMatrixSize(matrix)&&isZeroMainDiagonal(matrix);
+   }
+
     //TODO: проверять что матрица квадратная
-    public boolean isSquareMatrix(Matrix matrix) {
+    private boolean isSquareMatrix(Matrix matrix) {
         return matrix.getHorizontalSize() == matrix.getVerticalSize();
     }
 
     //TODO: проверять что главная диагональ матрицы заполнена нулями
-    public boolean isZeroMainDiagonal(Matrix matrix) throws MatrixException {
+    private boolean isZeroMainDiagonal(Matrix matrix) throws MatrixException {
         for (int i = 0; i < matrix.getVerticalSize(); i++) {
             if (matrix.getElement(i, i) != 0) {
                return false;
@@ -20,7 +25,7 @@ public class TaskValidator {
     }
 
     //TODO: проверять размер матрицы в соответствиями с условиями таска
-    public boolean isCorrectMatrixSize(Matrix matrix) {
+    private boolean isCorrectMatrixSize(Matrix matrix) {
         return matrix.getHorizontalSize()>=8 && matrix.getHorizontalSize()<=12
                 && matrix.getVerticalSize()>=8 && matrix.getVerticalSize()<=12;
     }

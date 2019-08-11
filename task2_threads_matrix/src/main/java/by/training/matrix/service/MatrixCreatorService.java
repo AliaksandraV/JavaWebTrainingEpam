@@ -10,18 +10,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class MatrixGeneratorService {
+public class MatrixCreatorService {
 
     /**
      * logger initialisation.
      */
-    private static final Logger LOG = Logger.getLogger(MatrixGeneratorService.class);
+    private static final Logger LOG = Logger.getLogger(MatrixCreatorService.class);
 
+    public Matrix createWithRandomValues(int size, int start, int end) throws MatrixException {
+        Matrix matrix = new Matrix(size, size);
 
-    public static void fillRandomized(Matrix matrix, int start, int end) throws MatrixException {
         int v = matrix.getVerticalSize();
         int h = matrix.getHorizontalSize();
         for (int i = 0; i < v; i++) {
@@ -32,13 +32,13 @@ public class MatrixGeneratorService {
                     int value = (int) (Math.random() * (end - start) + start);
                     matrix.setElement(i, j, value);
                 }
-
             }
         }
+
+        return matrix;
     }
 
-
-    public Matrix fillFromFile() throws MatrixException {
+    public Matrix loadFromFile() throws MatrixException {
         String filePath = PropertiesService.takeProperty("storage.file.path.matrix");
         List<String> lines = new ArrayList<>();
         Matrix matrix = null;
@@ -52,17 +52,17 @@ public class MatrixGeneratorService {
             LOG.error("Возникла ошибка при чтении из файла.", exception);
         }
 
-
-// TODO: массив не строк а интов надо и следовтельно валидация элемента на возможность его быть интом
+        // TODO: массив не строк а интов надо и следовтельно валидация элемента на возможность его быть интом
         for (int i = 0; i < lines.size(); i++) {
             String[] rowMatrixElements = lines.get(i).split(" ");
-            if (matrix==null){
+            if (matrix == null) {
                 matrix = new Matrix(lines.size(), rowMatrixElements.length);
             }
             for (int j = 0; j < rowMatrixElements.length; j++) {
                 matrix.setElement(i, j, Integer.valueOf(rowMatrixElements[j]));
             }
         }
+
         return matrix;
     }
 
