@@ -4,28 +4,26 @@ import by.training.matrix.entity.Matrix;
 import by.training.matrix.exceptions.MatrixException;
 import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
+/**
+ * contains methods for creating matrix with values.
+ */
 public class MatrixCreatorService {
 
     /**
-     * logger initialisation.
+     * creates a matrix of a given size fills it with random values ​​and the main diagonal zeros.
+     * @param size matrix size.
+     * @return the filled matrix.
+     * @throws MatrixException if the index is out of range.
      */
-    private static final Logger LOG = Logger.getLogger(MatrixCreatorService.class);
-
-    public Matrix createWithRandomValues(int size, int start, int end) throws MatrixException {
+    public Matrix createWithRandomValues(int size) throws MatrixException {
         Matrix matrix = new Matrix(size, size);
+        int start = 9;
+        int end = 9;
 
-        int v = matrix.getVerticalSize();
-        int h = matrix.getHorizontalSize();
-        for (int i = 0; i < v; i++) {
-            for (int j = 0; j < h; j++) {
+        int verticalSize = matrix.getVerticalSize();
+        int horizontalSize = matrix.getHorizontalSize();
+        for (int i = 0; i < verticalSize; i++) {
+            for (int j = 0; j < horizontalSize; j++) {
                 if (i == j) {
                     matrix.setElement(i, j, 0);
                 } else {
@@ -34,46 +32,6 @@ public class MatrixCreatorService {
                 }
             }
         }
-
         return matrix;
     }
-
-    public Matrix loadFromFile() throws MatrixException {
-        String filePath = PropertiesService.takeProperty("storage.file.path.matrix");
-        List<String> lines = new ArrayList<>();
-        Matrix matrix = null;
-
-        if (isFileEmpty(filePath)) {
-            LOG.info("Файл пустой. Нет данных.");
-        }
-        try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
-            stream.forEach(lines::add);
-        } catch (IOException exception) {
-            LOG.error("Возникла ошибка при чтении из файла.", exception);
-        }
-
-        // TODO: массив не строк а интов надо и следовтельно валидация элемента на возможность его быть интом
-        for (int i = 0; i < lines.size(); i++) {
-            String[] rowMatrixElements = lines.get(i).split(" ");
-            if (matrix == null) {
-                matrix = new Matrix(lines.size(), rowMatrixElements.length);
-            }
-            for (int j = 0; j < rowMatrixElements.length; j++) {
-                matrix.setElement(i, j, Integer.valueOf(rowMatrixElements[j]));
-            }
-        }
-
-        return matrix;
-    }
-
-    /**
-     * check is file empty.
-     *
-     * @return true if file is empty
-     */
-    private boolean isFileEmpty(String filePath) {
-        File file = new File(filePath);
-        return file.length() == 0;
-    }
-
 }

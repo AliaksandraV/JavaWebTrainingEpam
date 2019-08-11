@@ -5,11 +5,18 @@ import org.apache.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * class for creating threads which try to fill matrix main diagonal.
+ */
 public class MainDiagonalFillService implements Runnable {
-
-    private int unicNumber;
+    /**
+     * unique number for thread instance
+     */
+    private int uniqNumber;
+    /**
+     * matrix instance.
+     */
     private Matrix matrix;
-
     /**
      * logger initialisation.
      */
@@ -19,24 +26,24 @@ public class MainDiagonalFillService implements Runnable {
      * constructor.
      */
     public MainDiagonalFillService(final int newUnicNumber, final Matrix newMatrix) {
-        unicNumber = newUnicNumber;
+        uniqNumber = newUnicNumber;
         matrix = newMatrix;
     }
 
+    /**
+     * Each thread writes its uniqNumber to the matrix.
+     */
     @Override
     public void run() {
-        boolean haveMore = true;
-
-        while (haveMore) {
-            try {
+        try {
+            boolean canContinue = true;
+            while (canContinue) {
                 TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                LOG.error(e);
+                canContinue = MatrixService.getInstance().tryInsert(matrix, uniqNumber);
             }
-            haveMore = MatrixService.getInstance().tryInsert(matrix, unicNumber);
+        } catch (InterruptedException e) {
+            LOG.error(e);
         }
     }
-
 }
 

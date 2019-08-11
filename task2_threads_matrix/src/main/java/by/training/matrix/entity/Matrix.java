@@ -95,6 +95,10 @@ public class Matrix {
         }
     }
 
+    /**
+     * Returns a string representation of the object.
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("\nMatrix : " + matrix.length + "x" + matrix[0].length + "\n");
@@ -115,10 +119,6 @@ public class Matrix {
      * @return true if range is correct.
      */
     private boolean checkRange(int verticalSize, int horizontalSize) {
-        if (verticalSize >= 0 && verticalSize < matrix.length && horizontalSize >= 0 && horizontalSize < matrix[0].length) {
-            return true;
-        } else {
-            return false;
-        }
+        return verticalSize >= 0 && verticalSize < matrix.length && horizontalSize >= 0 && horizontalSize < matrix[0].length;
     }
 }
