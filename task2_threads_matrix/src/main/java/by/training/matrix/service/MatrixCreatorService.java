@@ -1,24 +1,31 @@
 package by.training.matrix.service;
 
 import by.training.matrix.entity.Matrix;
-import by.training.matrix.exceptions.MatrixException;
-import org.apache.log4j.Logger;
+import by.training.matrix.exception.MatrixException;
 
 /**
  * contains methods for creating matrix with values.
  */
 public class MatrixCreatorService {
+    /**
+     * A constant holding the minimum value for random.
+     */
+    private static final int MIN_VALUE_FOR_RANDOM = 9;
+    /**
+     * A constant holding the maximum value for random.
+     */
+    private static final int MAX_VALUE_FOR_RANDOM = 9;
 
     /**
-     * creates a matrix of a given size fills it with random values ​​and the main diagonal zeros.
+     * creates a matrix of a given size fills it with random values ​​and the
+     * main diagonal zeros.
      * @param size matrix size.
      * @return the filled matrix.
      * @throws MatrixException if the index is out of range.
      */
-    public Matrix createWithRandomValues(int size) throws MatrixException {
+    public Matrix createWithRandomValues(final int size)
+            throws MatrixException {
         Matrix matrix = new Matrix(size, size);
-        int start = 9;
-        int end = 9;
 
         int verticalSize = matrix.getVerticalSize();
         int horizontalSize = matrix.getHorizontalSize();
@@ -27,7 +34,9 @@ public class MatrixCreatorService {
                 if (i == j) {
                     matrix.setElement(i, j, 0);
                 } else {
-                    int value = (int) (Math.random() * (end - start) + start);
+                    int value = (int) (Math.random() * (
+                            MAX_VALUE_FOR_RANDOM - MIN_VALUE_FOR_RANDOM)
+                            + MIN_VALUE_FOR_RANDOM);
                     matrix.setElement(i, j, value);
                 }
             }

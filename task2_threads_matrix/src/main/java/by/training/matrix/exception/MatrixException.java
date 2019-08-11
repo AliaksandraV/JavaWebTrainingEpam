@@ -1,4 +1,4 @@
-package by.training.matrix.exceptions;
+package by.training.matrix.exception;
 
 /**
  * Thrown when an exceptional matrix condition has occurred.

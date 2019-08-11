@@ -1,6 +1,6 @@
 package by.training.matrix.entity;
 
-import by.training.matrix.exceptions.MatrixException;
+import by.training.matrix.exception.MatrixException;
 
 /**
  * matrix entity.
@@ -9,7 +9,7 @@ public class Matrix {
     /**
      * store elements of matrix.
      */
-    private int[][] matrix;
+    private int[][] values;
     /**
      * matrix vertical size.
      */
@@ -33,13 +33,15 @@ public class Matrix {
      * @param newHorizontalSize matrix horizontal size.
      * @throws MatrixException if size contain negative meaning.
      */
-    public Matrix(int newVerticalSize, int newHorizontalSize) throws MatrixException {
+    public Matrix(final int newVerticalSize, final int newHorizontalSize)
+            throws MatrixException {
         if ((newVerticalSize < 1) || (newHorizontalSize < 1)) {
-            throw new MatrixException("Отрицательное значение размера матрицы.");
+            throw new MatrixException(
+                    "Отрицательное значение размера матрицы.");
         }
-        matrix = new int[newVerticalSize][newHorizontalSize];
-        verticalSize = matrix.length;
-        horizontalSize = matrix[0].length;
+        values = new int[newVerticalSize][newHorizontalSize];
+        verticalSize = values.length;
+        horizontalSize = values[0].length;
     }
 
     /**
@@ -68,10 +70,10 @@ public class Matrix {
      * @return the element at the specified position in this list
      * @throws MatrixException if the index is out of range.
      */
-    public int getElement(int columnIndex, int rowIndex) throws MatrixException {
+    public int getElement(final int columnIndex, final int rowIndex)
+            throws MatrixException {
         if (checkRange(columnIndex, rowIndex)) {
-            int value = matrix[columnIndex][rowIndex];
-            return value;
+            return values[columnIndex][rowIndex];
         } else {
             throw new MatrixException("Выход за пределы массива.");
         }
@@ -79,17 +81,19 @@ public class Matrix {
     }
 
     /**
-     * Inserts the specified element at the specified position in this matrix
+     * Inserts the specified element at the specified position in this matrix.
      *
-     * @param columnIndex column index at which the specified element is to be inserted
-     * @param rowIndex    row index at which the specified element is to be inserted
+     * @param columnIndex column index at which the specified element is to be
+     *                    inserted
+     * @param rowIndex    row index at which the specified element is to be
+     *                    inserted
      * @param value       element to be inserted
      * @throws MatrixException if the index is out of range.
      */
-    public void setElement(int columnIndex, int rowIndex, int value) throws MatrixException {
+    public void setElement(final int columnIndex, final int rowIndex,
+                           final int value) throws MatrixException {
         if (checkRange(columnIndex, rowIndex)) {
-            matrix[columnIndex][rowIndex] = value;
-//            System.out.println("Записано значение " + value);
+            values[columnIndex][rowIndex] = value;
         } else {
             throw new MatrixException("Выход за пределы массива.");
         }
@@ -101,24 +105,29 @@ public class Matrix {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("\nMatrix : " + matrix.length + "x" + matrix[0].length + "\n");
-        for (int[] row : matrix) {
+        StringBuilder matrixValues = new StringBuilder("\nMatrix : "
+                + values.length + "x" + values[0].length + "\n");
+        for (int[] row : values) {
             for (int value : row) {
-                s.append(value + " ");
+                matrixValues.append(value + " ");
             }
-            s.append("\n");
+            matrixValues.append("\n");
         }
-        return s.toString();
+        return matrixValues.toString();
     }
 
     /**
      * check possibility index out of bond exception.
      *
-     * @param verticalSize   matrix verticalSize.
-     * @param horizontalSize matrix horizontalSize.
+     * @param actualVerticalSize   matrix verticalSize.
+     * @param actualHorizontalSize matrix horizontalSize.
      * @return true if range is correct.
      */
-    private boolean checkRange(int verticalSize, int horizontalSize) {
-        return verticalSize >= 0 && verticalSize < matrix.length && horizontalSize >= 0 && horizontalSize < matrix[0].length;
+    private boolean checkRange(final int actualVerticalSize,
+                               final int actualHorizontalSize) {
+        return actualVerticalSize >= 0
+                && actualVerticalSize < values.length
+                && actualHorizontalSize >= 0
+                && actualHorizontalSize < values[0].length;
     }
 }

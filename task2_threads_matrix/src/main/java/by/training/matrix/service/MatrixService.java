@@ -7,9 +7,10 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
- * thread safe singleton, provides access to threads to fill the main diagonal of the matrix.
+ * thread safe singleton, provides access to threads to fill
+ * the main diagonal of the matrix.
  */
-public class MatrixService {
+public final class MatrixService {
     /**
      * logger initialisation.
      */
@@ -29,7 +30,7 @@ public class MatrixService {
     /**
      * create instance of MatrixService class.
      */
-    public static class MatrixServiceHolder {
+    public static final class MatrixServiceHolder {
         /**
          * private constructor to hide the implicit public one.
          */
@@ -51,13 +52,15 @@ public class MatrixService {
     }
 
     /**
-     * iterates over the main diagonal of the matrix, provides access to threads to fill the main diagonal of the matrix,
+     * iterates over the main diagonal of the matrix, provides access to threads
+     * to fill the main diagonal of the matrix,
      * controls that the element is overwritten only once.
      * @param matrix matrix in which you need to fill in the diagonal
      * @param value value which will be written.
-     * @return true if value has been established, false if there are no more values ​​that can be set.
+     * @return true if value has been established, false if there are no
+     * more values ​​that can be set.
      */
-    public boolean tryInsert(Matrix matrix, int value) {
+    public boolean tryInsert(final Matrix matrix, final int value) {
         try {
             locker.lock();
 
@@ -68,7 +71,6 @@ public class MatrixService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             LOG.error(e);
         } finally {
             locker.unlock();

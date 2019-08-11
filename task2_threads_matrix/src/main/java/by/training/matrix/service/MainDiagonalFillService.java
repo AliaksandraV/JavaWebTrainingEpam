@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MainDiagonalFillService implements Runnable {
     /**
-     * unique number for thread instance
+     * unique number for thread instance.
      */
     private int uniqNumber;
     /**
@@ -20,13 +20,17 @@ public class MainDiagonalFillService implements Runnable {
     /**
      * logger initialisation.
      */
-    private static final Logger LOG = Logger.getLogger(MainDiagonalFillService.class);
+    private static final Logger LOG = Logger.getLogger(
+            MainDiagonalFillService.class);
 
     /**
      * constructor.
+     * @param newUniqNumber unique Number
+     * @param newMatrix matrix
      */
-    public MainDiagonalFillService(final int newUnicNumber, final Matrix newMatrix) {
-        uniqNumber = newUnicNumber;
+    public MainDiagonalFillService(final int newUniqNumber,
+                                   final Matrix newMatrix) {
+        uniqNumber = newUniqNumber;
         matrix = newMatrix;
     }
 
@@ -39,7 +43,8 @@ public class MainDiagonalFillService implements Runnable {
             boolean canContinue = true;
             while (canContinue) {
                 TimeUnit.SECONDS.sleep(1);
-                canContinue = MatrixService.getInstance().tryInsert(matrix, uniqNumber);
+                canContinue = MatrixService.getInstance()
+                        .tryInsert(matrix, uniqNumber);
             }
         } catch (InterruptedException e) {
             LOG.error(e);

@@ -29,9 +29,8 @@ public final class PropertiesService {
     public static String takeProperty(final String valueFromPropertiesFile) {
         String name = "config.properties";
         ClassLoader classLoader = PropertiesService.class.getClassLoader();
+        Properties prop = new Properties();
         try (InputStream input = classLoader.getResourceAsStream(name)) {
-            Properties prop = new Properties();
-
             if (input == null) {
                 throw new FileNotFoundException(
                         "Невозможно найти файл config.properties");
@@ -39,11 +38,9 @@ public final class PropertiesService {
 
             prop.load(input);
 
-            return prop.getProperty(valueFromPropertiesFile);
         } catch (IOException ex) {
             LOG.error("Ошибка чтения файла config.properties.");
-            throw new RuntimeException(
-                    "Ошибка чтения файла config.properties.");
         }
+        return prop.getProperty(valueFromPropertiesFile);
     }
 }
