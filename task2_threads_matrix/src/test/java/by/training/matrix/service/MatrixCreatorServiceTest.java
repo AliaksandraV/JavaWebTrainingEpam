@@ -73,7 +73,7 @@ public class MatrixCreatorServiceTest {
      * @throws MatrixException if getting element out of range
      */
     @Test(description = "Positive scenario for check matrix main diagonal",
-            dataProvider = "createPositiveDataForCheckMainDiagonal")
+            dataProvider = "dataForTestCheckZeroMainDiagonal")
     public void testCreateWithRandomValues(
             final int size,
             final List<Integer> expectedMainDiagonal)

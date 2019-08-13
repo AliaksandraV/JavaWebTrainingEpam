@@ -107,7 +107,7 @@ public class ParameterServiceTest {
      * @throws FileException if perameters in file are invalid
      */
     @Test(description = "Negative scenario for Get Matrix Size",
-            dataProvider = "createInvalidDataForGetMatrixSizeParameter")
+            dataProvider = "dataForTestGetMatrix")
     public void testGetMatrixSize(
             final ParameterService parameter,
             final Class expected) throws FileException {
@@ -121,7 +121,7 @@ public class ParameterServiceTest {
      * @throws FileException if perameters in file are invalid
      */
     @Test(description = "Negative scenario for Get Thread Number",
-            dataProvider = "createInvalidDataForGetThreadNumberParameter")
+            dataProvider = "dataForTestGetThreadNumber")
     public void testGetThreadNumber(
             final ParameterService parameter,
             final Class expected) throws FileException {
