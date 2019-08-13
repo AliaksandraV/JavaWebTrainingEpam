@@ -18,8 +18,7 @@ public class ParameterService {
     /**
      * File path from properties file.
      */
-    private String filePath = PropertiesService.takeProperty(
-            "storage.file.path.matrix");
+    private String filePath;
 
     /**
      * A constant holding the minimum value for matrix size.
@@ -37,6 +36,14 @@ public class ParameterService {
      * A constant holding the maximum value for thread amount.
      */
     private static final int MAX_THREAD_AMOUNT = 6;
+
+    /**
+     * default constructor.
+     */
+    public ParameterService() {
+        setFilePath(PropertiesService.takeProperty(
+                "storage.file.path.matrix"));
+    }
 
     /**
      * Search matrix size parameter in file.
@@ -173,5 +180,21 @@ public class ParameterService {
     private boolean isFileEmpty(final String actualFilePath) {
         File file = new File(actualFilePath);
         return file.length() == 0;
+    }
+
+    /**
+     * return file path.
+     * @return file path.
+     */
+    public String getFilePath() {
+        return filePath;
+    }
+
+    /**
+     * set file path.
+     * @param newFilePath file path.
+     */
+    public void setFilePath(final String newFilePath) {
+        this.filePath = newFilePath;
     }
 }

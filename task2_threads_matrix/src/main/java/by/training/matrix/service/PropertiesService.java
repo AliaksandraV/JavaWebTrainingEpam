@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Class reading properties for applications from property file.
+ */
 public final class PropertiesService {
     /**
      * logger initialisation.

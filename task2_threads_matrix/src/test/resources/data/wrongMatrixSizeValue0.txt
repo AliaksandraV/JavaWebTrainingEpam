@@ -1,0 +1,2 @@
+matrix size=0
+thread number=4

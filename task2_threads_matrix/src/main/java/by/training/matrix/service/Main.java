@@ -22,6 +22,9 @@ public final class Main {
      */
     private static final long TIMEOUT = 24L;
 
+    /**
+     * default constructor.
+     */
     private Main() {
     }
 
@@ -38,14 +41,16 @@ public final class Main {
                     = new MatrixCreatorService();
 
             Matrix matrixForThread = matrixCreatorService
-                    .createWithRandomValues(parameter.getMatrixSize());
+                    .createRandomWithZeroMainDiagonal(
+                            parameter.getMatrixSize());
             LOG.info("Matrix is: " + matrixForThread);
             threadCreator(matrixForThread, parameter.getThreadNumber());
             LOG.info("Matrix with new main diagonal by Thread: "
                     + matrixForThread);
 
             Matrix matrixForExecutor = matrixCreatorService
-                    .createWithRandomValues(parameter.getMatrixSize());
+                    .createRandomWithZeroMainDiagonal(
+                            parameter.getMatrixSize());
             LOG.info("Matrix is: " + matrixForExecutor);
             executorCreator(matrixForExecutor, parameter.getThreadNumber());
             LOG.info("Matrix with new main diagonal by executer: "

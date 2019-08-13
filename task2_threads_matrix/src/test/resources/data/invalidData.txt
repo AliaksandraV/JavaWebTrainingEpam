@@ -1,0 +1,2 @@
+matr size=8
+thread number =sdf
