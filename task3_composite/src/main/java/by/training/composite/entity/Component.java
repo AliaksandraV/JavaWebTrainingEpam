@@ -1,8 +1,10 @@
 package by.training.composite.entity;
 
+/**
+ * Component defines a common interface for simple and composite
+ * tree components.
+ */
 public interface Component {
-
-    String EXCEPTION_INFO = "This operation is not supported in the current class.";
 
     /**
      * Gathers component.
@@ -10,16 +12,4 @@ public interface Component {
      * @return component in string representation
      */
     String compose();
-
-    default void add(Component c) {
-        throw new UnsupportedOperationException(EXCEPTION_INFO);
-    }
-
-    default void remove(Component c) {
-        throw new UnsupportedOperationException(EXCEPTION_INFO);
-    }
-
-    default Object getChild(int index) {
-        throw new UnsupportedOperationException(EXCEPTION_INFO);
-    }
 }

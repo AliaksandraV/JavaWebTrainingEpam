@@ -1,4 +1,4 @@
-package by.training.composite.exception;
+package by.training.composite.dao;
 
 /**
  * Thrown when an exceptional file condition has occurred.

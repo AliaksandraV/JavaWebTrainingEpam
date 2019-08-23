@@ -2,9 +2,23 @@ package by.training.composite.service.parser;
 
 import by.training.composite.entity.Component;
 
-import java.util.List;
-
+/**
+ * interface for parser.
+ */
 public interface Parser {
 
-  Component parse(String string);
+    /**
+     * parser for string.
+     *
+     * @param string string for parsing
+     * @return component
+     */
+    Component parse(String string);
+
+    /**
+     * set next parser.
+     *
+     * @param parser next parser
+     */
+    void setNext(Parser parser);
 }

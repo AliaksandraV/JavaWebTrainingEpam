@@ -1,55 +1,39 @@
 package by.training.composite.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Sentence implements Component {
+/**
+ * Sentence component. Should contains list of lexemes.
+ */
+public class Sentence extends Composite {
     /**
-     * List of lexemes.
+     * Default constructs.
      */
-    private List<Component> lexemes = new ArrayList<>();
+    public Sentence() {
+    }
+
+    /**
+     * Constructs a list containing the elements of the specified
+     * collection, in the order they are returned by the collection's
+     * iterator.
+     *
+     * @param components the collection whose elements are to be placed
+     *                   into this list
+     */
+    public Sentence(final List<Component> components) {
+        super(components);
+    }
 
     /**
      * Gathers lexeme.
      *
-     * @return
+     * @return gather element
      */
     @Override
     public String compose() {
-        return lexemes.stream()
+        return components.stream()
                 .map(Component::compose)
                 .collect(Collectors.joining(" "));
-    }
-
-    /**
-     * Appends the specified element to the end of this list.
-     *
-     * @param c element to be appended to this list
-     */
-    @Override
-    public void add(final Component c) {
-        lexemes.add(c);
-    }
-
-    /**
-     * Removes the first occurrence of the specified element from list.
-     *
-     * @param c element to be removed from this list, if present
-     */
-    @Override
-    public void remove(final Component c) {
-        lexemes.remove(c);
-    }
-
-    /**
-     * Returns the element at the specified position in this list.
-     *
-     * @param index index of the element to return
-     * @return the element at the specified position in this list
-     */
-    @Override
-    public Object getChild(final int index) {
-        return lexemes.get(index);
     }
 }

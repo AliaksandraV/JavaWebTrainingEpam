@@ -3,7 +3,7 @@ package by.training.composite.service.parser;
 import by.training.composite.entity.Component;
 import by.training.composite.entity.Symbol;
 
-public class SymbolParserService implements Parser {
+public class SymbolParserService extends BaseParser {
 
     @Override
     public Component parse(final String symbol) {

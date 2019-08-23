@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.epam.training.by/posts"
+       xsi:schemaLocation="http://www.epam.training.by/posts posts.xsd">
+    <post id="001" is-sent="true" year="1990">
+        <image-theme>Nature</image-theme>
+        <congratulation>
+            <address-from>
+                <zip-code>220037</zip-code>
+                <country>Belarus</country>
+                <city>Minsk</city>
+                <street>Bagrationa</street>
+                <house>19</house>
+                <apartament>17</apartament>
+            </address-from>
+            <text>Happy New Year!</text>
+            <author>Kogareva A.</author>
+            <date>31.12.12</date>
+            <event>New YEAR</event>
+        </congratulation>
+        <recipient>Epam</recipient>
+        <country>Belarus</country>
+        <artists>
+            <artist>Lebedev A.</artist>
+            <artist>Drozdov S.</artist>
+        </artists>
+        <valuable>historical</valuable>
+        <address-to>
+            <zip-code>220037</zip-code>
+            <country>Belarus</country>
+            <city>Minsk</city>
+            <street>Gukovo</street>
+            <house>29</house>
+            <apartament>1</apartament>
+        </address-to>
+        <to>group of people</to>
+    </post>
+</posts>

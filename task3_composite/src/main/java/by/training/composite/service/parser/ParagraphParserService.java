@@ -6,17 +6,29 @@ import by.training.composite.entity.Paragraph;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParagraphParserService implements Parser {
+/**
+ * Paragraph Parser class.
+ */
+public class ParagraphParserService extends BaseParser {
+    /**
+     * regex for sentence split.
+     */
+    private static final String SENTENCE_SPLIT_REGEX =
+            "([^.!?\\n]+[(\\.{1,3})*\\?*\\!*]+)";
 
-    private static final String SENTENCE_SPLIT_REGEX ="([^.!?\\n]+[(\\.{1,3})*\\?*\\!*]+)";//"([^.!?]+[.!?])";
-    private SentencesParserService sentenceParser = new SentencesParserService();
-
+    /**
+     * parser for string.
+     *
+     * @param sParagraph string for parsing
+     * @return component
+     */
     @Override
     public Component parse(final String sParagraph) {
         Paragraph paragraph = new Paragraph();
-        Matcher sentenceMatcher = Pattern.compile(SENTENCE_SPLIT_REGEX).matcher(sParagraph);
+        Matcher sentenceMatcher = Pattern.compile(SENTENCE_SPLIT_REGEX)
+                .matcher(sParagraph);
         while (sentenceMatcher.find()) {
-            paragraph.add(sentenceParser.parse(sentenceMatcher.group().trim()));
+            paragraph.add(next.parse(sentenceMatcher.group().trim()));
         }
         return paragraph;
     }

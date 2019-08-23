@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.epam.training.by/posts"
+        xmlns:tns="http://www.epam.training.by/posts">
+    <element name="posts">
+        <complexType>
+            <sequence>
+                <element name="post" type="tns:Post" minOccurs="1"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Post">
+        <all>
+            <element name="image-theme" type="tns:ImageTheme"/>
+            <element name="type" type="tns:Type" />
+            <element name="country" type="string"/>
+            <element name="valuable" type="string"/>
+            <element name="address-to" type="tns:Address"/>
+        </all>
+        <attribute name="id" type="string" use="required"/>
+        <attribute name="year" type="gYear" use="optional"/>
+        <attribute name="is-sent" type="boolean" use="optional" default="true"/>
+    </complexType>
+
+    <simpleType name="ImageTheme">
+        <restriction base="string">
+            <enumeration value="Nature"/>
+            <enumeration value="Peoples"/>
+            <enumeration value="City"/>
+            <enumeration value="Religion"/>
+            <enumeration value="Architecture"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Address">
+        <all>
+            <element name="zip" type="string"/>
+            <element name="country" type="string"/>
+            <element name="city" type="string"/>
+            <element name="street" type="string"/>
+            <element name="house" type="int"/>
+            <element name="apartments" type="int"/>
+        </all>
+    </complexType>
+
+    <complexType name="Type">
+        <sequence>
+            <element name="address-from" type="tns:Address"/>
+            <element name="text" type="string"/>
+            <element name="date" type="date"/>
+            <element name="author" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="congratulation">
+        <complexContent>
+            <extension base="tns:Type">
+                <sequence>
+                    <element name="event" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+</schema>

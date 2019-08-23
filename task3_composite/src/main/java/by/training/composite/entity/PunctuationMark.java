@@ -1,14 +1,29 @@
 package by.training.composite.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PunctuationMark implements Component {
+/**
+ * PunctuationMark component. Should contains list of symbols.
+ */
+public class PunctuationMark extends Composite {
     /**
-     * List of word And Punctuation mark.
+     * Default constructs.
      */
-    private List<Component> symbols = new ArrayList<>();
+    public PunctuationMark() {
+    }
+
+    /**
+     * Constructs a list containing the elements of the specified
+     * collection, in the order they are returned by the collection's
+     * iterator.
+     *
+     * @param components the collection whose elements are to be placed
+     *                   into this list
+     */
+    public PunctuationMark(final List<Component> components) {
+        super(components);
+    }
 
     /**
      * Gathers lexeme.
@@ -17,28 +32,8 @@ public class PunctuationMark implements Component {
      */
     @Override
     public String compose() {
-        return symbols.stream()
+        return components.stream()
                 .map(Component::compose)
                 .collect(Collectors.joining(""));
-    }
-
-    /**
-     * Appends the specified element to the end of this list.
-     *
-     * @param c element to be appended to this list
-     */
-    @Override
-    public void add(final Component c) {
-        symbols.add(c);
-    }
-
-    /**
-     * Removes the first occurrence of the specified element from list.
-     *
-     * @param c element to be removed from this list, if present
-     */
-    @Override
-    public void remove(final Component c) {
-        symbols.remove(c);
     }
 }

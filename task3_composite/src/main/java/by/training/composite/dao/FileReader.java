@@ -1,7 +1,5 @@
 package by.training.composite.dao;
 
-import by.training.composite.exception.FileException;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

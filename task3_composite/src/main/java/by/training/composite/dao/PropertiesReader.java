@@ -10,7 +10,7 @@ import java.util.Properties;
 /**
  * Class reading properties for applications from property file.
  */
-public class PropertiesReader {
+public final class PropertiesReader {
     /**
      * logger initialisation.
      */
@@ -25,13 +25,16 @@ public class PropertiesReader {
     /**
      * configurations properties.
      *
-     * @param key value From Properties File
+     * @param propertieFile name of property File
+     * @param key           value From Properties File
      * @return properties
      */
-    public static String takeProperty(String propertieFile, final String key) {
+    public static String takeProperty(final String propertieFile,
+                                      final String key) {
         ClassLoader classLoader = PropertiesReader.class.getClassLoader();
         Properties property = new Properties();
-        try (InputStream input = classLoader.getResourceAsStream(propertieFile)) {
+        try (InputStream input = classLoader
+                .getResourceAsStream(propertieFile)) {
             if (input == null) {
                 throw new FileNotFoundException(
                         "Невозможно найти файл config.properties");
