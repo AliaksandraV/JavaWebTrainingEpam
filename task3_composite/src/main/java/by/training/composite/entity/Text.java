@@ -35,6 +35,6 @@ public class Text extends Composite {
     public String compose() {
         return components.stream()
                 .map(Component::compose)
-                .collect(Collectors.joining("\n\t"));
+                .collect(Collectors.joining("\n"));
     }
 }

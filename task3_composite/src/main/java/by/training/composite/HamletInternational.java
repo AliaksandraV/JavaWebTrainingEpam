@@ -37,17 +37,19 @@ public class HamletInternational {
         System.out.println(s1);
         String s2 = rb.getString("str2");
         System.out.println(s2);
+        String s3 = rb.getString("main_menu");
+        System.out.println(s3);
 
 //        ResourceBundle rb = ResourceBundle.getBundle("property.text", current);
 //        String s1 = rb.getString("str1");
 //        System.out.println("s1 = " + s1);
 //        try {
-        String coorectStr = null;
-        try {
-            coorectStr = new String(s1.getBytes("ISO-8859-1"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        System.out.println("coorectStr = " + coorectStr);
+//        String coorectStr = null;
+//        try {
+//            coorectStr = new String(s1.getBytes(), "ISO-8859-15");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("coorectStr = " + coorectStr);
     }
 }

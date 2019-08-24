@@ -13,7 +13,7 @@ public class ParserInitializer {
     public static Parser gather() {
         TextParserService textParser = new TextParserService();
         ParagraphParserService paragraphParser = new ParagraphParserService();
-        SentencesParserService sentencesParser = new SentencesParserService();
+        SentenceParserService sentencesParser = new SentenceParserService();
         LexemeParserService lexemeParser = new LexemeParserService();
         WordParserService wordParser = new WordParserService();
         SymbolParserService symbolParser = new SymbolParserService();
