@@ -1,5 +1,7 @@
 package by.training.composite;
 
+import by.training.composite.view.MainMenu;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
@@ -32,6 +34,7 @@ public class HamletInternational {
                 break;
         }
         Locale current = new Locale(language, country);
+//        Locale.
         ResourceBundle rb = ResourceBundle.getBundle("property.text", current);
         String s1 = rb.getString("str1");
         System.out.println(s1);
@@ -51,5 +54,9 @@ public class HamletInternational {
 //            e.printStackTrace();
 //        }
 //        System.out.println("coorectStr = " + coorectStr);
+    }
+
+    public static void test(MainMenu menu){
+        menu.print();
     }
 }
