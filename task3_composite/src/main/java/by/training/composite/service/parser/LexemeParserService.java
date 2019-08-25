@@ -41,7 +41,7 @@ public class LexemeParserService extends BaseParser {
         Lexeme lexeme = new Lexeme();
         String[] words = sLexeme.split(WORD_SPLIT_REGEX);
         for (String word : words) {
-            lexeme.add(next.parse(word));
+            lexeme.add(getNext().parse(word));
         }
         Pattern pattern = Pattern.compile(PUNCTUATION_SPLIT_REGEX);
         Matcher matcher = pattern.matcher(sLexeme);

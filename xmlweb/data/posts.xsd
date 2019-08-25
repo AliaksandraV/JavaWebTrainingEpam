@@ -10,6 +10,8 @@
             </sequence>
         </complexType>
     </element>
+    <element name="type" type="tns:Type" abstract="true"></element>
+    <element name="congratulation" type="tns:Congratulation" substitutionGroup="tns:type"></element>
     <complexType name="Post">
         <all>
             <element name="image-theme" type="tns:ImageTheme"/>
@@ -53,7 +55,7 @@
         </sequence>
     </complexType>
 
-    <complexType name="congratulation">
+    <complexType name="Congratulation">
         <complexContent>
             <extension base="tns:Type">
                 <sequence>

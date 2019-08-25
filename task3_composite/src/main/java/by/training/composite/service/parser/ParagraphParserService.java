@@ -28,7 +28,7 @@ public class ParagraphParserService extends BaseParser {
         Matcher sentenceMatcher = Pattern.compile(SENTENCE_SPLIT_REGEX)
                 .matcher(sParagraph);
         while (sentenceMatcher.find()) {
-            paragraph.add(next.parse(sentenceMatcher.group().trim()));
+            paragraph.add(getNext().parse(sentenceMatcher.group().trim()));
         }
         return paragraph;
     }

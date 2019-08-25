@@ -25,7 +25,7 @@ public class TextParserService extends BaseParser {
         String[] paragraphs = string.split(PARAGRAPH_SPLIT_REGEX);
         List<Component> paragraphList = new ArrayList<>();
         for (String paragraph : paragraphs) {
-            paragraphList.add(next.parse(paragraph));
+            paragraphList.add(getNext().parse(paragraph));
         }
         return new Text(paragraphList);
     }

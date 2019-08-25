@@ -1,37 +1,10 @@
 package by.training.composite.controller;
 
-import by.training.composite.HamletInternational;
-import by.training.composite.ResourceBundleManager;
-import by.training.composite.dao.FileException;
-import by.training.composite.dao.FileReader;
-import by.training.composite.entity.Component;
-import by.training.composite.entity.ComponentException;
-import by.training.composite.entity.Composite;
-import by.training.composite.entity.Text;
-import by.training.composite.service.ParagraphsBySentencesNumberSort;
-import by.training.composite.service.SentenceInParagraphByWordsNumberSort;
-import by.training.composite.service.WordsByLengthInSentenceSort;
-import by.training.composite.service.parser.Parser;
-import by.training.composite.service.parser.ParserInitializer;
-import by.training.composite.view.MainMenu;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
-
-public class Main {
+public class Runner {
 
     public static void main(String[] args) {
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.print();
-
-
-//        try {
-//        FileReader fileReader = new FileReader();
-//        String string = fileReader.read();
-//        Parser textParser = ParserInitializer.gather();
-//        Component text = textParser.parse(string);
+        MainMenuMenuController menuController = new MainMenuMenuController();
+        menuController.run();
 //        System.out.println("------------------");
 //        System.out.println(text.compose());
 //        System.out.println("--------sorted by paragraph length----------");

@@ -23,7 +23,7 @@ public class PunctuationParserService extends BaseParser {
         PunctuationMark punctuation = new PunctuationMark();
         String[] symbols = sPunctuation.split(SYMBOL_SPLIT_REGEX);
         for (String simbol : symbols) {
-            punctuation.add(next.parse(simbol));
+            punctuation.add(getNext().parse(simbol));
         }
         return punctuation;
     }

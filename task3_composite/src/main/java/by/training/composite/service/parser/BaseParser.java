@@ -8,7 +8,7 @@ public abstract class BaseParser implements Parser {
     /**
      * Next parser chain of parsers.
      */
-    protected Parser next;
+    private Parser next;
 
     /**
      * set next parser in chain.
@@ -17,7 +17,16 @@ public abstract class BaseParser implements Parser {
      */
     @Override
     public void setNext(final Parser parser) {
-        this.next = parser;
+        next = parser;
     }
 
+    /**
+     * Return next parser.
+     *
+     * @return next parser
+     */
+    @Override
+    public Parser getNext() {
+        return next;
+    }
 }

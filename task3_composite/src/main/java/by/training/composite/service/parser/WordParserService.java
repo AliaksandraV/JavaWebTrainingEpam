@@ -23,7 +23,7 @@ public class WordParserService extends BaseParser {
         Word word = new Word();
         String[] symbols = sWord.split(SYMBOL_SPLIT_REGEX);
         for (String simbol : symbols) {
-            word.add(next.parse(simbol));
+            word.add(getNext().parse(simbol));
         }
         return word;
     }
