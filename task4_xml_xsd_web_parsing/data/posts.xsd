@@ -5,25 +5,33 @@
     <element name="posts">
         <complexType>
             <sequence>
-                <element name="post" type="tns:Post" minOccurs="1"
-                         maxOccurs="unbounded"/>
+                <element name="post" type="tns:Post" minOccurs="1" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
-    <element name="type" type="tns:Type" abstract="true"></element>
-    <element name="congratulation" type="tns:Congratulation" substitutionGroup="tns:type"></element>
+
+    <element name="type" type="tns:Type" abstract="true" />
+    <element name="congratulation" type="tns:Congratulation" substitutionGroup="tns:type"/>
+    <element name="advertising" type="tns:Advertising" substitutionGroup="tns:type"/>
+    <element name="ordinary" type="tns:Ordinary" substitutionGroup="tns:type"/>
+
+
     <complexType name="Post">
-        <all>
-            <element name="image-theme" type="tns:ImageTheme"/>
+        <all minOccurs="1" maxOccurs="1">
             <element name="type" type="tns:Type" />
+            <element name="image-theme" type="tns:ImageTheme"/>
             <element name="country" type="string"/>
             <element name="valuable" type="string"/>
             <element name="address-to" type="tns:Address"/>
+            <element name="recipient" type="string"/>
+            <element name="artists" type="tns:ArtistList"/>
         </all>
         <attribute name="id" type="string" use="required"/>
         <attribute name="year" type="gYear" use="optional"/>
         <attribute name="is-sent" type="boolean" use="optional" default="true"/>
     </complexType>
+
+
 
     <simpleType name="ImageTheme">
         <restriction base="string">
@@ -35,9 +43,18 @@
         </restriction>
     </simpleType>
 
+    <complexType name="Type">
+        <all>
+            <element name="address-from" type="tns:Address"/>
+            <element name="text" type="string"/>
+            <element name="date" type="date"/>
+            <element name="author" type="string"/>
+        </all>
+    </complexType>
+
     <complexType name="Address">
         <all>
-            <element name="zip" type="string"/>
+            <element name="zip-code" type="string"/>
             <element name="country" type="string"/>
             <element name="city" type="string"/>
             <element name="street" type="string"/>
@@ -46,22 +63,38 @@
         </all>
     </complexType>
 
-    <complexType name="Type">
+    <complexType name="ArtistList">
         <sequence>
-            <element name="address-from" type="tns:Address"/>
-            <element name="text" type="string"/>
-            <element name="date" type="date"/>
-            <element name="author" type="string"/>
+            <element name="artist" type="string"/>
         </sequence>
     </complexType>
 
     <complexType name="Congratulation">
         <complexContent>
             <extension base="tns:Type">
-                <sequence>
+                <sequence minOccurs="1" maxOccurs="1">
                     <element name="event" type="string"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
+    <complexType name="Advertising">
+        <complexContent>
+            <extension base="tns:Type">
+                <sequence minOccurs="1" maxOccurs="1" >
+                    <element name="product" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="Ordinary">
+        <complexContent>
+            <extension base="tns:Type">
+                <sequence minOccurs="1" maxOccurs="1" >
+                    <element name="theme" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
 </schema>
