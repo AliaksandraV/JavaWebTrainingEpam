@@ -1,14 +1,22 @@
 package by.training.composite.controller;
 
+import by.training.composite.controller.action.PrintTextFromFileMenuController;
+import by.training.composite.controller.action.SortParagraphsMenuController;
+import by.training.composite.controller.action.SortSentenceMenuController;
+import by.training.composite.controller.action.SortWordsMenuController;
+import by.training.composite.controller.action.ChangeLanguageMenuController;
+import by.training.composite.controller.action.ExitMenuController;
 import by.training.composite.service.LanguageManager;
-import by.training.composite.controller.action.*;
 import by.training.composite.view.MainMenu;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuMenuController extends BaseMenuController {
+/**
+ * Main Menu Controller.
+ */
+public class MainMenuController extends BaseMenuController {
     /**
      * view initialisation.
      */
@@ -21,7 +29,7 @@ public class MainMenuMenuController extends BaseMenuController {
      * logger initialisation.
      */
     private static final org.apache.log4j.Logger LOG
-            = Logger.getLogger(MainMenuMenuController.class);
+            = Logger.getLogger(MainMenuController.class);
     /**
      * menu index.
      */
@@ -50,7 +58,7 @@ public class MainMenuMenuController extends BaseMenuController {
     /**
      * constructor.
      */
-    public MainMenuMenuController() {
+    public MainMenuController() {
         view = new MainMenu();
         initMenuMap();
     }
@@ -88,8 +96,10 @@ public class MainMenuMenuController extends BaseMenuController {
         try {
             validateMainMenuInput(input);
         } catch (MenuChoiceException e) {
-            LOG.error(LanguageManager.INSTANCE.getString("menu_item_not_exist"));
-            System.out.println(LanguageManager.INSTANCE.getString("repeat_input"));
+            LOG.error(LanguageManager
+                    .INSTANCE.getString("menu_item_not_exist"));
+            System.out.println(LanguageManager
+                    .INSTANCE.getString("repeat_input"));
             return inputToInt();
         }
         return Integer.parseInt(input);
@@ -115,5 +125,4 @@ public class MainMenuMenuController extends BaseMenuController {
             throw new MenuChoiceException();
         }
     }
-
 }

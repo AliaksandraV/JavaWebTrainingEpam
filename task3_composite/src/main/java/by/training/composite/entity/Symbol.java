@@ -7,15 +7,15 @@ public class Symbol implements Component {
     /**
      * List of word And Punctuation mark.
      */
-    private Character symbol;
+    private Character character;
 
     /**
      * Constructor.
      *
-     * @param newSymbol symbol
+     * @param newSymbol character
      */
     public Symbol(final Character newSymbol) {
-        symbol = newSymbol;
+        character = newSymbol;
     }
 
     /**
@@ -25,6 +25,6 @@ public class Symbol implements Component {
      */
     @Override
     public String compose() {
-        return String.valueOf(symbol);
+        return String.valueOf(character);
     }
 }

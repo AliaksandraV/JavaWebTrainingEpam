@@ -22,6 +22,10 @@ public class ChangeLanguageService {
      */
     private Locale byLocale = new Locale("be", "BY");
     /**
+     * one of choice.
+     */
+    private static final int INT = 3;
+    /**
      * chosen language.
      */
     private int languageChoise;
@@ -48,7 +52,7 @@ public class ChangeLanguageService {
             case 2:
                 setBYlanguage();
                 break;
-            case 3:
+            case INT:
                 setENlanguage();
                 break;
             default:

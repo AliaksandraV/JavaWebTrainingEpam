@@ -1,5 +1,8 @@
 package by.training.composite.controller;
 
+/**
+ * Thrown when an exceptional menu choice condition has occurred.
+ */
 public class MenuChoiceException extends InputFormatException {
     /**
      * constructor.

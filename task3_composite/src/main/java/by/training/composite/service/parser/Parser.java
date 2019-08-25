@@ -22,5 +22,8 @@ public interface Parser {
      */
     void setNext(Parser parser);
 
+    /**
+     * @return next parser
+     */
     Parser getNext();
 }

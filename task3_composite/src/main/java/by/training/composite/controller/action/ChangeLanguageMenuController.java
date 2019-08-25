@@ -2,7 +2,7 @@ package by.training.composite.controller.action;
 
 import by.training.composite.service.LanguageManager;
 import by.training.composite.controller.InputFormatException;
-import by.training.composite.controller.MainMenuMenuController;
+import by.training.composite.controller.MainMenuController;
 import by.training.composite.controller.MenuChoiceException;
 import by.training.composite.service.action.ChangeLanguageService;
 import by.training.composite.view.action.ChangeLanguage;
@@ -47,7 +47,7 @@ public class ChangeLanguageMenuController extends BaseActionMenuController {
      * @param mainMenuController controller
      */
     public ChangeLanguageMenuController(
-            final MainMenuMenuController mainMenuController) {
+            final MainMenuController mainMenuController) {
         super(mainMenuController);
         initMenuMap();
     }
@@ -110,7 +110,7 @@ public class ChangeLanguageMenuController extends BaseActionMenuController {
             throw new MenuChoiceException();
         }
 
-        int input = Integer.valueOf(chosenIndex);
+        int input = Integer.parseInt(chosenIndex);
 
         if (!menuMap.containsKey(input)) {
             throw new MenuChoiceException();

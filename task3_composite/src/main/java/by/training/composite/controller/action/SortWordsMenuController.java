@@ -1,17 +1,21 @@
 package by.training.composite.controller.action;
 
-import by.training.composite.controller.MainMenuMenuController;
+import by.training.composite.controller.MainMenuController;
 import by.training.composite.dao.FileException;
 import by.training.composite.entity.ComponentException;
 import by.training.composite.service.action.SortWordsService;
 import by.training.composite.view.action.SortWords;
 import org.apache.log4j.Logger;
 
+/**
+ * SortWordsMenuController.
+ */
 public class SortWordsMenuController extends BaseActionMenuController {
     /**
      * logger initialisation.
      */
-    private static final Logger LOG = Logger.getLogger(SortWordsMenuController.class);
+    private static final Logger LOG =
+            Logger.getLogger(SortWordsMenuController.class);
     /**
      * view.
      */
@@ -26,7 +30,8 @@ public class SortWordsMenuController extends BaseActionMenuController {
      *
      * @param mainMenuController controller
      */
-    public SortWordsMenuController(final MainMenuMenuController mainMenuController) {
+    public SortWordsMenuController(
+            final MainMenuController mainMenuController) {
         super(mainMenuController);
     }
 
@@ -38,7 +43,6 @@ public class SortWordsMenuController extends BaseActionMenuController {
         try {
             view.print(service.sort());
         } catch (FileException | ComponentException e) {
-            e.printStackTrace();
             LOG.error(e);
         }
     }

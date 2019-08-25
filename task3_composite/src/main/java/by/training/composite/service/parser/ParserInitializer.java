@@ -3,7 +3,13 @@ package by.training.composite.service.parser;
 /**
  * parser initializer.
  */
-public class ParserInitializer {
+public final class ParserInitializer {
+    /**
+     * default constructor for singleton.
+     */
+    private ParserInitializer() {
+
+    }
 
     /**
      * gather chain of parsers.
