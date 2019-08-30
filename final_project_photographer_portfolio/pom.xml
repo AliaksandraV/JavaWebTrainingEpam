@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>xml-web</groupId>
-    <artifactId>xml-web</artifactId>
+    <groupId>by.training.final_project_photographer_portfolio</groupId>
+    <artifactId>final_project_photographer_portfolio</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <build>

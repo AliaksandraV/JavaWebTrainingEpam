@@ -2,6 +2,7 @@ package by.training.composite.entity;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.concurrent.Callable;
 
 /**
  * Lexeme component. Should contains list of word and punctuation.
@@ -35,5 +36,6 @@ public class Lexeme extends Composite {
         return components.stream()
                 .map(Component::compose)
                 .collect(Collectors.joining(""));
+
     }
 }

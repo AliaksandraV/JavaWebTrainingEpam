@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.epam.training.by/posts"
-        xmlns:tns="http://www.epam.training.by/posts">
+        xmlns:tns="http://www.epam.training.by/posts"
+        elementFormDefault="qualified">
     <element name="posts">
         <complexType>
             <sequence>
@@ -10,27 +11,26 @@
         </complexType>
     </element>
 
-    <element name="type" type="tns:Type" abstract="true" />
+    <element name="type" type="tns:Type" abstract="true"/>
     <element name="congratulation" type="tns:Congratulation" substitutionGroup="tns:type"/>
     <element name="advertising" type="tns:Advertising" substitutionGroup="tns:type"/>
     <element name="ordinary" type="tns:Ordinary" substitutionGroup="tns:type"/>
 
 
     <complexType name="Post">
-        <all minOccurs="1" maxOccurs="1">
-            <element name="type" type="tns:Type" />
+        <sequence>
             <element name="image-theme" type="tns:ImageTheme"/>
             <element name="country" type="string"/>
             <element name="valuable" type="string"/>
             <element name="address-to" type="tns:Address"/>
             <element name="recipient" type="string"/>
             <element name="artists" type="tns:ArtistList"/>
-        </all>
+            <element name="type" type="tns:Type"/>
+        </sequence>
         <attribute name="id" type="string" use="required"/>
         <attribute name="year" type="gYear" use="optional"/>
         <attribute name="is-sent" type="boolean" use="optional" default="true"/>
     </complexType>
-
 
 
     <simpleType name="ImageTheme">
@@ -44,12 +44,12 @@
     </simpleType>
 
     <complexType name="Type">
-        <all>
+        <sequence>
             <element name="address-from" type="tns:Address"/>
             <element name="text" type="string"/>
-            <element name="date" type="date"/>
             <element name="author" type="string"/>
-        </all>
+            <element name="date" type="date"/>
+        </sequence>
     </complexType>
 
     <complexType name="Address">
@@ -64,7 +64,7 @@
     </complexType>
 
     <complexType name="ArtistList">
-        <sequence>
+        <sequence minOccurs="1" maxOccurs="unbounded">
             <element name="artist" type="string"/>
         </sequence>
     </complexType>
@@ -72,7 +72,7 @@
     <complexType name="Congratulation">
         <complexContent>
             <extension base="tns:Type">
-                <sequence minOccurs="1" maxOccurs="1">
+                <sequence>
                     <element name="event" type="string"/>
                 </sequence>
             </extension>
@@ -81,7 +81,7 @@
     <complexType name="Advertising">
         <complexContent>
             <extension base="tns:Type">
-                <sequence minOccurs="1" maxOccurs="1" >
+                <sequence>
                     <element name="product" type="string"/>
                 </sequence>
             </extension>
@@ -90,7 +90,7 @@
     <complexType name="Ordinary">
         <complexContent>
             <extension base="tns:Type">
-                <sequence minOccurs="1" maxOccurs="1" >
+                <sequence>
                     <element name="theme" type="string"/>
                 </sequence>
             </extension>

@@ -2,22 +2,7 @@
 <posts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.epam.training.by/posts"
        xsi:schemaLocation="http://www.epam.training.by/posts posts.xsd">
-    <post id="001" is-sent="true" year="1990">
-        <congratulation>
-            <address-from>
-                <zip-code>220037</zip-code>
-                <country>Belarus</country>
-                <city>Minsk</city>
-                <street>Bagrationa</street>
-                <house>19</house>
-                <apartments>17</apartments>
-            </address-from>
-            <text>Happy New Year!</text>
-            <author>Kogareva A.</author>
-            <date>31.12.12</date>
-            <event>New YEAR</event>
-        </congratulation>
-
+    <post is-sent="true" year="1990" id="001">
         <image-theme>Nature</image-theme>
 
         <country>Belarus</country>
@@ -36,23 +21,24 @@
             <artist>Lebedev A.</artist>
             <artist>Drozdov S.</artist>
         </artists>
-    </post>
 
-    <post id="002" is-sent="true" year="2012">
-        <ordinary>
+        <type xsi:type="Congratulation">
             <address-from>
-                <zip-code>005-476</zip-code>
-                <country>Германия</country>
-                <city>Берлин</city>
-                <street>Вальштрассе</street>
-                <house>42</house>
+                <zip-code>220037</zip-code>
+                <country>Belarus</country>
+                <city>Minsk</city>
+                <street>Bagrationa</street>
+                <house>19</house>
                 <apartments>17</apartments>
             </address-from>
-            <text>Привете тебе из Германии!</text>
-            <date>05.17.2012</date>
-            <author>Гриша Савичев</author>
-            <theme>передать привет.</theme>
-        </ordinary>
+            <text>Happy New Year!</text>
+            <author>Kogareva A.</author>
+            <date>2012-11-12</date>
+            <event>New YEAR</event>
+        </type>
+    </post>
+
+    <post is-sent="true" id="002" year="2012">
         <image-theme>Architecture</image-theme>
         <country>Germany</country>
         <valuable>thematic</valuable>
@@ -68,24 +54,23 @@
         <artists>
             <artist>Gerasimova N.</artist>
         </artists>
+        <type xsi:type="Ordinary">
+            <address-from>
+                <zip-code>005-476</zip-code>
+                <country>Германия</country>
+                <city>Берлин</city>
+                <street>Вальштрассе</street>
+                <house>42</house>
+                <apartments>17</apartments>
+            </address-from>
+            <text>Привете тебе из Германии!</text>
+            <author>Гриша Савичев</author>
+            <date>2012-11-12</date>
+            <theme>передать привет.</theme>
+        </type>
     </post>
 
-    <post id="003" is-sent="true" year="2019">
-        <advertising>
-            <address-from>
-                <zip-code>220037</zip-code>
-                <country>Belarus</country>
-                <city>Minsk</city>
-                <street>Nezavisimosti</street>
-                <house>119</house>
-                <apartments>1</apartments>
-            </address-from>
-            <text>Vsegda Coca-Cola!</text>
-            <author>Coca-Cola company</author>
-            <date>01.08.19</date>
-            <product>Coca-cola</product>
-        </advertising>
-
+    <post year="2019" id="003" is-sent="true">
         <image-theme>Peoples</image-theme>
 
         <country>USA</country>
@@ -103,23 +88,24 @@
         <artists>
             <artist>Morozov A.</artist>
         </artists>
+
+        <type xsi:type="Advertising">
+            <address-from>
+                <zip-code>220037</zip-code>
+                <country>Belarus</country>
+                <city>Minsk</city>
+                <street>Nezavisimosti</street>
+                <house>119</house>
+                <apartments>1</apartments>
+            </address-from>
+            <text>Vsegda Coca-Cola!</text>
+            <author>Coca-Cola company</author>
+            <date>2019-08-01</date>
+            <product>Coca-cola</product>
+        </type>
     </post>
 
     <post id="004" is-sent="true" year="1798">
-        <congratulation>
-            <address-from>
-                <zip-code>75008</zip-code>
-                <country>France</country>
-                <city>Paris</city>
-                <street>Avenue Franklin Delano Roosevelt</street>
-                <house>1</house>
-                <apartments>1</apartments>
-            </address-from>
-            <text>Happy your new family!</text>
-            <author>Napoleon B.</author>
-            <date>22.08.1798</date>
-            <event>Wedding</event>
-        </congratulation>
 
         <image-theme>Peoples</image-theme>
 
@@ -138,23 +124,24 @@
         <artists>
             <artist>Jean-Baptiste Perronneau</artist>
         </artists>
+
+        <type xsi:type="Congratulation">
+            <address-from>
+                <zip-code>75008</zip-code>
+                <country>France</country>
+                <city>Paris</city>
+                <street>Avenue Franklin Delano Roosevelt</street>
+                <house>1</house>
+                <apartments>1</apartments>
+            </address-from>
+            <text>Happy your new family!</text>
+            <author>Napoleon B.</author>
+            <date>1798-08-22</date>
+            <event>Wedding</event>
+        </type>
     </post>
 
     <post id="005" is-sent="true" year="2018">
-        <congratulation>
-            <address-from>
-                <zip-code>15008</zip-code>
-                <country>Spain</country>
-                <city>Barselona</city>
-                <street>Avenue Franklin Delano Roosevelt</street>
-                <house>13</house>
-                <apartments>10</apartments>
-            </address-from>
-            <text>Happy birthday!</text>
-            <author>Jose M.</author>
-            <date>04.05.2018</date>
-            <event>Birthday</event>
-        </congratulation>
 
         <image-theme>City</image-theme>
 
@@ -173,23 +160,24 @@
         <artists>
             <artist>Jean-Baptiste Perronneau</artist>
         </artists>
-    </post>
 
-    <post id="006" is-sent="true" year="2019">
-        <advertising>
+        <type xsi:type="Congratulation">
             <address-from>
-                <zip-code>201149</zip-code>
-                <country>Italy</country>
-                <city>Milan</city>
-                <street>Via Marco Antonio Colonna</street>
-                <house>35</house>
+                <zip-code>15008</zip-code>
+                <country>Spain</country>
+                <city>Barselona</city>
+                <street>Avenue Franklin Delano Roosevelt</street>
+                <house>13</house>
                 <apartments>10</apartments>
             </address-from>
             <text>Happy birthday!</text>
             <author>Jose M.</author>
-            <date>04.05.2018</date>
-            <product>Robert Bosch Spa</product>
-        </advertising>
+            <date>2018-05-04</date>
+            <event>Birthday</event>
+        </type>
+    </post>
+
+    <post id="006" is-sent="true" year="2019">
 
         <image-theme>City</image-theme>
 
@@ -208,24 +196,24 @@
         <artists>
             <artist>Jean-Baptiste Perronneau</artist>
         </artists>
+
+        <type xsi:type="Advertising">
+            <address-from>
+                <zip-code>201149</zip-code>
+                <country>Italy</country>
+                <city>Milan</city>
+                <street>Via Marco Antonio Colonna</street>
+                <house>35</house>
+                <apartments>10</apartments>
+            </address-from>
+            <text>Happy birthday!</text>
+            <author>Jose M.</author>
+            <date>2018-05-04</date>
+            <product>Robert Bosch Spa</product>
+        </type>
     </post>
 
     <post id="007" is-sent="true" year="2019">
-        <congratulation>
-            <address-from>
-                <zip-code>115193</zip-code>
-                <country>Россия</country>
-                <city>Москва</city>
-                <street>ул. Южнопортовая</street>
-                <house>18</house>
-                <apartments>35</apartments>
-            </address-from>
-            <text>Happy birthday!</text>
-            <author>Петров П.</author>
-            <date>24.04.2019</date>
-            <event>День рождения</event>
-        </congratulation>
-
         <image-theme>Religion</image-theme>
 
         <country>Россия</country>
@@ -243,23 +231,25 @@
         <artists>
             <artist>Илья Кабаков</artist>
         </artists>
+
+        <type xsi:type="Congratulation">
+            <address-from>
+                <zip-code>115193</zip-code>
+                <country>Россия</country>
+                <city>Москва</city>
+                <street>ул. Южнопортовая</street>
+                <house>18</house>
+                <apartments>35</apartments>
+            </address-from>
+            <text>Happy birthday!</text>
+            <author>Петров П.</author>
+            <date>2019-04-24</date>
+            <event>День рождения</event>
+        </type>
+
     </post>
 
     <post id="008" is-sent="true" year="2019">
-        <congratulation>
-            <address-from>
-                <zip-code>603140</zip-code>
-                <country>Россия</country>
-                <city>Нижний Новгород</city>
-                <street>пр. Ленина</street>
-                <house>25А</house>
-                <apartments>102</apartments>
-            </address-from>
-            <text>Happy birthday!</text>
-            <author>Малахов П.</author>
-            <date>28.06.2019</date>
-            <event>День рождения</event>
-        </congratulation>
 
         <image-theme>Nature</image-theme>
 
@@ -278,24 +268,24 @@
         <artists>
             <artist>Оскар Рабин</artist>
         </artists>
+
+        <type xsi:type="Congratulation">
+            <address-from>
+                <zip-code>603140</zip-code>
+                <country>Россия</country>
+                <city>Нижний Новгород</city>
+                <street>пр. Ленина</street>
+                <house>25</house>
+                <apartments>102</apartments>
+            </address-from>
+            <text>Happy birthday!</text>
+            <author>Малахов П.</author>
+            <date>2019-06-28</date>
+            <event>День рождения</event>
+        </type>
     </post>
 
     <post id="009" is-sent="false" year="2019">
-        <ordinary>
-            <address-from>
-                <zip-code>210023</zip-code>
-                <country>Беларусь</country>
-                <city>Витебск</city>
-                <street>проспект Фрунзе</street>
-                <house>12</house>
-                <apartments>85</apartments>
-            </address-from>
-            <text>Пишу тебе бла бла бла</text>
-            <author>Горкина А.</author>
-            <date>26.08.2019</date>
-            <theme>Давно не писала</theme>
-        </ordinary>
-
         <image-theme>Architecture</image-theme>
 
         <country>Беларусь</country>
@@ -313,10 +303,8 @@
         <artists>
             <artist>Головач П.</artist>
         </artists>
-    </post>
 
-    <post id="010" is-sent="true" year="2019">
-        <advertising>
+        <type xsi:type="Ordinary">
             <address-from>
                 <zip-code>210023</zip-code>
                 <country>Беларусь</country>
@@ -325,11 +313,15 @@
                 <house>12</house>
                 <apartments>85</apartments>
             </address-from>
-            <text>Вкусно со сметанкой</text>
+            <text>Пишу тебе бла бла бла</text>
             <author>Горкина А.</author>
-            <date>26.08.2019</date>
-            <product>Пельмеши</product>
-        </advertising>
+            <date>2019-08-27</date>
+            <theme>Давно не писала</theme>
+        </type>
+
+    </post>
+
+    <post id="010" is-sent="true" year="2019">
 
         <image-theme>Architecture</image-theme>
 
@@ -348,24 +340,26 @@
         <artists>
             <artist>Антрапологов П.</artist>
         </artists>
+
+        <type xsi:type="Advertising">
+            <address-from>
+                <zip-code>210023</zip-code>
+                <country>Беларусь</country>
+                <city>Витебск</city>
+                <street>проспект Фрунзе</street>
+                <house>12</house>
+                <apartments>85</apartments>
+            </address-from>
+            <text>Вкусно со сметанкой</text>
+            <author>Горкина А.</author>
+            <date>2019-08-26</date>
+            <product>Пельмеши</product>
+        </type>
+
     </post>
 
     <post id="011" is-sent="true" year="2012">
 
-        <ordinary>
-            <address-from>
-                <zip-code>005-476</zip-code>
-                <country>Germany</country>
-                <city>Berlin</city>
-                <street>Waltshtrasse</street>
-                <house>2</house>
-                <apartments>7</apartments>
-            </address-from>
-            <text>Bonjorno</text>
-            <date>05.17.2012</date>
-            <author>Filipov D.</author>
-            <theme>hello</theme>
-        </ordinary>
         <image-theme>City</image-theme>
         <country>Germany</country>
         <valuable>thematic</valuable>
@@ -381,24 +375,24 @@
         <artists>
             <artist>Gerasimova N.</artist>
         </artists>
+
+        <type xsi:type="Ordinary">
+            <address-from>
+                <zip-code>005-476</zip-code>
+                <country>Germany</country>
+                <city>Berlin</city>
+                <street>Waltshtrasse</street>
+                <house>2</house>
+                <apartments>7</apartments>
+            </address-from>
+            <text>Bonjorno</text>
+            <author>Filipov D.</author>
+            <date>2012-05-11</date>
+            <theme>hello</theme>
+        </type>
     </post>
 
     <post id="012" is-sent="true" year="2017">
-        <congratulation>
-            <address-from>
-                <zip-code>104 31</zip-code>
-                <country>Greece</country>
-                <city>Athina</city>
-                <street>Pl. Omonias</street>
-                <house>4</house>
-                <apartments>11</apartments>
-            </address-from>
-            <text>Happy birthday!</text>
-            <author>D. Holton</author>
-            <date>04.05.2017</date>
-            <event>Birthday</event>
-        </congratulation>
-
         <image-theme>Architecture</image-theme>
 
         <country>Spain</country>
@@ -416,24 +410,24 @@
         <artists>
             <artist>I. Philippaki-Warburton</artist>
         </artists>
-    </post>
-<!--fjfjfjfjfj-->
-    <post id="013" is-sent="true" year="2001">
-        <congratulation>
+        <type xsi:type="Congratulation">
             <address-from>
-                <zip-code>75008</zip-code>
-                <country>France</country>
-                <city>Paris</city>
-                <street>Avenue Franklin Delano Roosevelt</street>
-                <house>1</house>
-                <apartments>1</apartments>
+                <zip-code>104 31</zip-code>
+                <country>Greece</country>
+                <city>Athina</city>
+                <street>Pl. Omonias</street>
+                <house>4</house>
+                <apartments>11</apartments>
             </address-from>
-            <text>Happy your new family!</text>
-            <author>Napoleon B.</author>
-            <date>22.08.1798</date>
-            <event>Wedding</event>
-        </congratulation>
+            <text>Happy birthday!</text>
+            <author>D. Holton</author>
+            <date>2017-11-06</date>
+            <event>Birthday</event>
+        </type>
 
+    </post>
+    <!--fjfjfjfjfj-->
+    <post id="013" is-sent="true" year="2001">
         <image-theme>Peoples</image-theme>
 
         <country>France</country>
@@ -451,23 +445,24 @@
         <artists>
             <artist>Jean-Baptiste Perronneau</artist>
         </artists>
+
+        <type xsi:type="Congratulation">
+            <address-from>
+                <zip-code>75008</zip-code>
+                <country>France</country>
+                <city>Paris</city>
+                <street>Avenue Franklin Delano Roosevelt</street>
+                <house>1</house>
+                <apartments>1</apartments>
+            </address-from>
+            <text>Happy your new family!</text>
+            <author>Napoleon B.</author>
+            <date>1798-08-22</date>
+            <event>Wedding</event>
+        </type>
     </post>
 
     <post id="014" is-sent="true" year="2012">
-        <ordinary>
-            <address-from>
-                <zip-code>005-476</zip-code>
-                <country>Германия</country>
-                <city>Берлин</city>
-                <street>Вальштрассе</street>
-                <house>42</house>
-                <apartments>17</apartments>
-            </address-from>
-            <text>Привете тебе из Германии!</text>
-            <date>05.17.2012</date>
-            <author>Гриша Савичев</author>
-            <theme>передать привет.</theme>
-        </ordinary>
         <image-theme>Architecture</image-theme>
         <country>Germany</country>
         <valuable>thematic</valuable>
@@ -483,24 +478,23 @@
         <artists>
             <artist>Gerasimova N.</artist>
         </artists>
+        <type xsi:type="Ordinary">
+            <address-from>
+                <zip-code>005-476</zip-code>
+                <country>Германия</country>
+                <city>Берлин</city>
+                <street>Вальштрассе</street>
+                <house>42</house>
+                <apartments>17</apartments>
+            </address-from>
+            <text>Привете тебе из Германии!</text>
+            <author>Гриша Савичев</author>
+            <date>2012-07-05</date>
+            <theme>передать привет.</theme>
+        </type>
     </post>
 
     <post id="015" is-sent="true" year="2019">
-        <congratulation>
-            <address-from>
-                <zip-code>115193</zip-code>
-                <country>Россия</country>
-                <city>Москва</city>
-                <street>ул. Южнопортовая</street>
-                <house>18</house>
-                <apartments>35</apartments>
-            </address-from>
-            <text>Happy birthday!</text>
-            <author>Петров П.</author>
-            <date>24.04.2019</date>
-            <event>День рождения</event>
-        </congratulation>
-
         <image-theme>Religion</image-theme>
 
         <country>Россия</country>
@@ -518,24 +512,24 @@
         <artists>
             <artist>Илья Кабаков</artist>
         </artists>
+
+        <type xsi:type="Congratulation">
+            <address-from>
+                <zip-code>115193</zip-code>
+                <country>Россия</country>
+                <city>Москва</city>
+                <street>ул. Южнопортовая</street>
+                <house>18</house>
+                <apartments>35</apartments>
+            </address-from>
+            <text>Happy birthday!</text>
+            <author>Петров П.</author>
+            <date>2019-04-24</date>
+            <event>День рождения</event>
+        </type>
     </post>
 
     <post id="016" is-sent="false" year="2019">
-        <ordinary>
-            <address-from>
-                <zip-code>210023</zip-code>
-                <country>Беларусь</country>
-                <city>Витебск</city>
-                <street>проспект Фрунзе</street>
-                <house>12</house>
-                <apartments>85</apartments>
-            </address-from>
-            <text>Пишу тебе бла бла бла</text>
-            <author>Горкина А.</author>
-            <date>26.08.2019</date>
-            <theme>Давно не писала</theme>
-        </ordinary>
-
         <image-theme>Architecture</image-theme>
 
         <country>Беларусь</country>
@@ -553,6 +547,21 @@
         <artists>
             <artist>Головач П.</artist>
         </artists>
+
+        <type xsi:type="Ordinary">
+            <address-from>
+                <zip-code>210023</zip-code>
+                <country>Беларусь</country>
+                <city>Витебск</city>
+                <street>проспект Фрунзе</street>
+                <house>12</house>
+                <apartments>85</apartments>
+            </address-from>
+            <text>Пишу тебе бла бла бла</text>
+            <author>Горкина А.</author>
+            <date>2019-08-26</date>
+            <theme>Давно не писала</theme>
+        </type>
     </post>
 
 </posts>
