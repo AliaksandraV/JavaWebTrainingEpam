@@ -8,20 +8,15 @@
 
 package by.training.xml_xsd_web_parsing.posts;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java class for Post complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Post">
  *   &lt;complexContent>
@@ -42,18 +37,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Post", propOrder = {
-    "imageTheme",
-    "country",
-    "valuable",
-    "addressTo",
-    "recipient",
-    "artists",
-    "type"
+        "imageTheme",
+        "country",
+        "valuable",
+        "addressTo",
+        "recipient",
+        "artists",
+        "type"
 })
 public class Post {
 
@@ -82,11 +75,9 @@ public class Post {
 
     /**
      * Gets the value of the imageTheme property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ImageTheme }
-     *     
+     *
+     * @return possible object is
+     * {@link ImageTheme }
      */
     public ImageTheme getImageTheme() {
         return imageTheme;
@@ -94,11 +85,9 @@ public class Post {
 
     /**
      * Sets the value of the imageTheme property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImageTheme }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ImageTheme }
      */
     public void setImageTheme(ImageTheme value) {
         this.imageTheme = value;
@@ -106,11 +95,9 @@ public class Post {
 
     /**
      * Gets the value of the country property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCountry() {
         return country;
@@ -118,11 +105,9 @@ public class Post {
 
     /**
      * Sets the value of the country property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCountry(String value) {
         this.country = value;
@@ -130,11 +115,9 @@ public class Post {
 
     /**
      * Gets the value of the valuable property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValuable() {
         return valuable;
@@ -142,11 +125,9 @@ public class Post {
 
     /**
      * Sets the value of the valuable property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValuable(String value) {
         this.valuable = value;
@@ -154,11 +135,9 @@ public class Post {
 
     /**
      * Gets the value of the addressTo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Address }
-     *     
+     *
+     * @return possible object is
+     * {@link Address }
      */
     public Address getAddressTo() {
         return addressTo;
@@ -166,11 +145,9 @@ public class Post {
 
     /**
      * Sets the value of the addressTo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Address }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Address }
      */
     public void setAddressTo(Address value) {
         this.addressTo = value;
@@ -178,11 +155,9 @@ public class Post {
 
     /**
      * Gets the value of the recipient property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRecipient() {
         return recipient;
@@ -190,11 +165,9 @@ public class Post {
 
     /**
      * Sets the value of the recipient property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRecipient(String value) {
         this.recipient = value;
@@ -202,11 +175,9 @@ public class Post {
 
     /**
      * Gets the value of the artists property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArtistList }
-     *     
+     *
+     * @return possible object is
+     * {@link ArtistList }
      */
     public ArtistList getArtists() {
         return artists;
@@ -214,11 +185,9 @@ public class Post {
 
     /**
      * Sets the value of the artists property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArtistList }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArtistList }
      */
     public void setArtists(ArtistList value) {
         this.artists = value;
@@ -226,11 +195,9 @@ public class Post {
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Type }
-     *     
+     *
+     * @return possible object is
+     * {@link Type }
      */
     public Type getType() {
         return type;
@@ -238,11 +205,9 @@ public class Post {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Type }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Type }
      */
     public void setType(Type value) {
         this.type = value;
@@ -250,11 +215,9 @@ public class Post {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -262,11 +225,9 @@ public class Post {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -274,11 +235,9 @@ public class Post {
 
     /**
      * Gets the value of the year property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getYear() {
         return year;
@@ -286,11 +245,9 @@ public class Post {
 
     /**
      * Sets the value of the year property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setYear(XMLGregorianCalendar value) {
         this.year = value;
@@ -298,11 +255,9 @@ public class Post {
 
     /**
      * Gets the value of the isSent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     *
+     * @return possible object is
+     * {@link Boolean }
      */
     public boolean isIsSent() {
         if (isSent == null) {
@@ -314,11 +269,9 @@ public class Post {
 
     /**
      * Sets the value of the isSent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Boolean }
      */
     public void setIsSent(Boolean value) {
         this.isSent = value;
@@ -337,6 +290,6 @@ public class Post {
                 ", id='" + id + '\'' +
                 ", year=" + year +
                 ", isSent=" + isSent +
-                '}'+ "\n";
+                '}' + "\n";
     }
 }

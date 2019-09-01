@@ -18,15 +18,15 @@
 
 
     <complexType name="Post">
-        <sequence>
-            <element name="image-theme" type="tns:ImageTheme"/>
+        <all>
+            <element name="image_theme" type="tns:ImageTheme"/>
             <element name="country" type="string"/>
             <element name="valuable" type="string"/>
-            <element name="address-to" type="tns:Address"/>
+            <element name="address_to" type="tns:Address"/>
             <element name="recipient" type="string"/>
             <element name="artists" type="tns:ArtistList"/>
             <element name="type" type="tns:Type"/>
-        </sequence>
+        </all>
         <attribute name="id" type="string" use="required"/>
         <attribute name="year" type="gYear" use="optional"/>
         <attribute name="is-sent" type="boolean" use="optional" default="true"/>
@@ -45,7 +45,7 @@
 
     <complexType name="Type">
         <sequence>
-            <element name="address-from" type="tns:Address"/>
+            <element name="address_from" type="tns:Address"/>
             <element name="text" type="string"/>
             <element name="author" type="string"/>
             <element name="date" type="date"/>
@@ -54,7 +54,7 @@
 
     <complexType name="Address">
         <all>
-            <element name="zip-code" type="string"/>
+            <element name="zip_code" type="string"/>
             <element name="country" type="string"/>
             <element name="city" type="string"/>
             <element name="street" type="string"/>

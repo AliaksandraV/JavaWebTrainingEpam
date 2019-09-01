@@ -68,4 +68,14 @@ public class Ordinary extends Type
         this.theme = value;
     }
 
+    @Override
+    public String toString() {
+        return "Ordinary{" +
+                "theme='" + theme + '\'' +
+                ", addressFrom=" + addressFrom +
+                ", text='" + text + '\'' +
+                ", author='" + author + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

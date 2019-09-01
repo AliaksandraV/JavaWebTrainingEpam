@@ -73,4 +73,10 @@ public class ArtistList {
         return this.artist;
     }
 
+    @Override
+    public String toString() {
+        return "ArtistList{" +
+                "artist=" + artist +
+                '}';
+    }
 }

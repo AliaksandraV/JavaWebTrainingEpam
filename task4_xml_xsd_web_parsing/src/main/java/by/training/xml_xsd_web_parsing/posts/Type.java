@@ -159,4 +159,13 @@ public class Type {
         this.date = value;
     }
 
+    @Override
+    public String toString() {
+        return "Type{" +
+                "addressFrom=" + addressFrom +
+                ", text='" + text + '\'' +
+                ", author='" + author + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

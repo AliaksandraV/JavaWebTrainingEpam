@@ -183,4 +183,15 @@ public class Address {
         this.apartments = value;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "zipCode='" + zipCode + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", house=" + house +
+                ", apartments=" + apartments +
+                '}';
+    }
 }

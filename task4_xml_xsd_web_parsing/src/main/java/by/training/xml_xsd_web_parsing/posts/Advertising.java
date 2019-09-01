@@ -68,4 +68,14 @@ public class Advertising extends Type
         this.product = value;
     }
 
+    @Override
+    public String toString() {
+        return "Advertising{" +
+                "product='" + product + '\'' +
+                ", addressFrom=" + addressFrom +
+                ", text='" + text + '\'' +
+                ", author='" + author + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

@@ -67,4 +67,14 @@ public class Congratulation extends Type
         this.event = value;
     }
 
+    @Override
+    public String toString() {
+        return "Congratulation{" +
+                "event='" + event + '\'' +
+                ", addressFrom=" + addressFrom +
+                ", text='" + text + '\'' +
+                ", author='" + author + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
