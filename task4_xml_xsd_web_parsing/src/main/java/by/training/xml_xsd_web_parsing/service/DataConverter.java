@@ -32,7 +32,7 @@ public class DataConverter {
     public static XMLGregorianCalendar stringToDataXMLGregorianCalendar(String s)
             throws ParseException,
             DatatypeConfigurationException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = simpleDateFormat.parse(s);
         GregorianCalendar gregorianCalendar =
                 (GregorianCalendar) GregorianCalendar.getInstance();

@@ -115,11 +115,12 @@ public class PostsDOMBuilder {
                 type = getXMLCongratulation(typeElement);
                 break;
             case "Ordinary":
+                type = getXMLOrdinary(typeElement);
                 break;
             case "Advertising":
+                type = getXMLAdvertising(typeElement);
                 break;
         }
-
         return type;
     }
 
@@ -130,12 +131,18 @@ public class PostsDOMBuilder {
         return congratulation;
     }
 
-    private static Ordinary getXMLOrdinary(Element typeElement) {
-        return null;
+    private static Ordinary getXMLOrdinary(Element typeElement) throws ParseException, DatatypeConfigurationException {
+        Ordinary ordinary = new Ordinary();
+        putCommonForType(ordinary, typeElement);
+        ordinary.setTheme(getElementTextContent(typeElement,"theme"));
+        return ordinary;
     }
 
-    private static Advertising getXMLAdvertising(Element typeElement) {
-        return null;
+    private static Advertising getXMLAdvertising(Element typeElement) throws ParseException, DatatypeConfigurationException {
+        Advertising advertising = new Advertising();
+        putCommonForType(advertising, typeElement);
+        advertising.setProduct(getElementTextContent(typeElement,"product"));
+        return advertising;
     }
 
     private static void putCommonForType(Type type, Element typeElement) throws ParseException, DatatypeConfigurationException {
