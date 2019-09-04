@@ -1,20 +1,22 @@
 package by.training.xml_xsd_web_parsing.parsers.dom;
 
-import by.training.xml_xsd_web_parsing.posts.Address;
-import by.training.xml_xsd_web_parsing.posts.ImageTheme;
-import by.training.xml_xsd_web_parsing.posts.Post;
+import by.training.xml_xsd_web_parsing.posts.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
+
+import static by.training.xml_xsd_web_parsing.service.DataConverter.*;
 
 public class PostsDOMBuilder {
     private Set<Post> posts;
@@ -51,38 +53,104 @@ public class PostsDOMBuilder {
             System.err.println("File error or I/O error: " + e);
         } catch (SAXException e) {
             System.err.println("Parsing failure: " + e);
+        } catch (ParseException | DatatypeConfigurationException e) {
+            e.printStackTrace();
         }
     }
 
-    private Post buildPost(Element postElement) {
+    private Post buildPost(Element postElement) throws ParseException, DatatypeConfigurationException {
         Post post = new Post();
         // заполнение объекта student
         post.setId(postElement.getAttribute("id"));
         post.setIsSent(Boolean.valueOf(postElement.getAttribute("is_sent")));
+        post.setYear(stringToYearXMLGregorianCalendar(postElement.getAttribute("year")));
+
         post.setImageTheme(ImageTheme.fromValue(getElementTextContent(postElement, "image_theme")));
         post.setCountry(getElementTextContent(postElement, "country"));
         post.setValuable(getElementTextContent(postElement, "valuable"));
+
+        post.setAddressTo(getXMLAddress(postElement, "address_to"));
+        post.setRecipient(getElementTextContent(postElement, "recipient"));
+
+        post.setArtists(getXMLArtistList(postElement));
+
+        post.setType(getXMLType(postElement));
+
+
+        return post;
+    }
+
+    private static Address getXMLAddress(Element postElement, String addressType) {
         Address address = new Address();
-        Element addressElement = (Element) postElement.getElementsByTagName("address_to").item(0);
+        Element addressElement = (Element) postElement.getElementsByTagName(addressType).item(0);
         address.setZipCode(getElementTextContent(addressElement, "zip_code"));
         address.setCountry(getElementTextContent(addressElement, "country"));
         address.setCity(getElementTextContent(addressElement, "city"));
         address.setStreet(getElementTextContent(addressElement, "street"));
-        Integer house = Integer.parseInt(getElementTextContent(addressElement, "house"));
+        int house = Integer.parseInt(getElementTextContent(addressElement, "house"));
         address.setHouse(house);
-        Integer ap = Integer.parseInt(getElementTextContent(addressElement, "apartments"));
+        int ap = Integer.parseInt(getElementTextContent(addressElement, "apartments"));
         address.setApartments(ap);
-        post.setAddressTo(address);
-        post.setRecipient(getElementTextContent(postElement, "recipient"));
-        //TODO заполнение поля Artists
-        return post;
+        return address;
+    }
+
+    private static ArtistList getXMLArtistList(Element postElement) {
+        ArtistList artistList = new ArtistList();
+        Element artistElement = (Element) postElement.getElementsByTagName("artists").item(0);
+
+        NodeList nList = artistElement.getElementsByTagName("artist");
+        for (int i = 0; i < nList.getLength(); i++) {
+            Node node = nList.item(i);
+            artistList.getArtists().add(node.getTextContent());
+        }
+
+        return artistList;
+    }
+
+    private static Type getXMLType(Element postElement) throws ParseException, DatatypeConfigurationException {
+        Type type = null;
+        Element typeElement = (Element) postElement.getElementsByTagName("type").item(0);
+        switch (typeElement.getAttribute("xsi:type")) {
+            case "Congratulation":
+                type = getXMLCongratulation(typeElement);
+                break;
+            case "Ordinary":
+                break;
+            case "Advertising":
+                break;
+        }
+
+        return type;
+    }
+
+    private static Congratulation getXMLCongratulation(Element typeElement) throws ParseException, DatatypeConfigurationException {
+        Congratulation congratulation = new Congratulation();
+        putCommonForType(congratulation, typeElement);
+        congratulation.setEvent(getElementTextContent(typeElement, "event"));
+        return congratulation;
+    }
+
+    private static Ordinary getXMLOrdinary(Element typeElement) {
+        return null;
+    }
+
+    private static Advertising getXMLAdvertising(Element typeElement) {
+        return null;
+    }
+
+    private static void putCommonForType(Type type, Element typeElement) throws ParseException, DatatypeConfigurationException {
+        type.setAuthor(getElementTextContent(typeElement, "author"));
+        type.setText(getElementTextContent(typeElement, "text"));
+        type.setAddressFrom(getXMLAddress(typeElement, "address_from"));
+        type.setDate(stringToDataXMLGregorianCalendar(getElementTextContent(typeElement, "date")));
     }
 
     // получение текстового содержимого тега
     private static String getElementTextContent(Element element, String elementName) {
         NodeList nList = element.getElementsByTagName(elementName);
         Node node = nList.item(0);
-        String text = node.getTextContent();
-        return text;
+        return node.getTextContent();
     }
+
+
 }

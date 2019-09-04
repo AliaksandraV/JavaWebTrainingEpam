@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence maxOccurs="unbounded">
- *         &lt;element name="artist" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="artists" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,26 +37,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ArtistList", propOrder = {
-    "artist"
+        "artists"
 })
 public class ArtistList {
 
     @XmlElement(required = true)
-    protected List<String> artist;
+    protected List<String> artists;
 
     /**
-     * Gets the value of the artist property.
+     * Gets the value of the artists property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the artist property.
+     * This is why there is not a <CODE>set</CODE> method for the artists property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getArtist().add(newItem);
+     *    getArtists().add(newItem);
      * </pre>
      * 
      * 
@@ -66,17 +66,17 @@ public class ArtistList {
      * 
      * 
      */
-    public List<String> getArtist() {
-        if (artist == null) {
-            artist = new ArrayList<String>();
+    public List<String> getArtists() {
+        if (artists == null) {
+            artists = new ArrayList<String>();
         }
-        return this.artist;
+        return this.artists;
     }
 
     @Override
     public String toString() {
         return "ArtistList{" +
-                "artist=" + artist +
+                "artists=" + artists +
                 '}';
     }
 }

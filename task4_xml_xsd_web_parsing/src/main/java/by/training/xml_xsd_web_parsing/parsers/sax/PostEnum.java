@@ -18,7 +18,7 @@ public enum PostEnum {
     ADDRESS_FROM("address_from"),
     RECIPIENT("recipient"),
     ARTISTS("artists"),
-    ARTIST("artist"),
+    ARTIST("artists"),
     TYPE("type"),
     TEXT("text"),
     AUTHOR("author"),

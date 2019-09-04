@@ -65,7 +65,7 @@
 
     <complexType name="ArtistList">
         <sequence minOccurs="1" maxOccurs="unbounded">
-            <element name="artist" type="string"/>
+            <element name="artists" type="string"/>
         </sequence>
     </complexType>
 
