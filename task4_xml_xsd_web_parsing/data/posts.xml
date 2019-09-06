@@ -114,7 +114,7 @@
             <zip_code>75006</zip_code>
             <country>France</country>
             <city>Paris</city>
-            <street>Rue Guynemer</street>
+            <street>Rue Gu</street>
             <house>38</house>
             <apartments>13</apartments>
         </address_to>
@@ -150,8 +150,8 @@
             <zip_code>75006</zip_code>
             <country>France</country>
             <city>Paris</city>
-            <street>Rue Guynemer</street>
-            <house>38</house>
+            <street>Guynemer</street>
+            <house>8</house>
             <apartments>13</apartments>
         </address_to>
         <recipient>Julep I.</recipient>
@@ -186,9 +186,9 @@
             <zip_code>75006</zip_code>
             <country>France</country>
             <city>Paris</city>
-            <street>Rue Guynemer</street>
-            <house>38</house>
-            <apartments>13</apartments>
+            <street>Euynemer</street>
+            <house>5</house>
+            <apartments>1</apartments>
         </address_to>
         <recipient>Julep I.</recipient>
 
