@@ -11,12 +11,12 @@ import java.util.Set;
 public class PostsSAXBuilder {
 
     private Set<Post> posts;
-    private PostHandler sh;
+    private PostSAXHandler sh;
     private XMLReader reader;
 
     public PostsSAXBuilder() {
-// создание SAX-анализатора
-        sh = new PostHandler();
+        // создание SAX-анализатора
+        sh = new PostSAXHandler();
         try {
             // создание объекта-обработчика
             reader = XMLReaderFactory.createXMLReader();
@@ -30,7 +30,7 @@ public class PostsSAXBuilder {
         return posts;
     }
 
-    public void buildSetStudents(String fileName) {
+    public void buildSetPosts(String fileName) {
         try {
             // разбор XML-документа
             reader.parse(fileName);

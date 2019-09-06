@@ -1,4 +1,4 @@
-package by.training.xml_xsd_web_parsing.parsers.sax;
+package by.training.xml_xsd_web_parsing.parsers;
 
 public enum PostEnum {
     POSTS("posts"),
@@ -25,9 +25,7 @@ public enum PostEnum {
     DATE("date"),
     EVENT("event"),
     THEME("theme"),
-    PRODUCT("product")
-
-    ;
+    PRODUCT("product");
 
     private String value;
 
@@ -37,5 +35,23 @@ public enum PostEnum {
 
     public String getValue() {
         return value;
+    }
+
+//    public static HashSet<String> getEnums() {
+//        HashSet<String> values = new HashSet<String>();
+//
+//        for (PostEnum c : PostEnum.values()) {
+//            values.add(c.name());
+//        }
+//        return values;
+//    }
+
+    public static boolean contains(String test) {
+        for (PostEnum c : PostEnum.values()) {
+            if (c.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

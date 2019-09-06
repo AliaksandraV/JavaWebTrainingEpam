@@ -280,14 +280,14 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "imageTheme=" + imageTheme +
+                "id='" + id + '\'' +
+                ", imageTheme=" + imageTheme +
                 ", country='" + country + '\'' +
                 ", valuable='" + valuable + '\'' +
                 ", addressTo=" + addressTo +
                 ", recipient='" + recipient + '\'' +
                 ", artists=" + artists +
                 ", type=" + type +
-                ", id='" + id + '\'' +
                 ", year=" + year +
                 ", isSent=" + isSent +
                 '}' + "\n";

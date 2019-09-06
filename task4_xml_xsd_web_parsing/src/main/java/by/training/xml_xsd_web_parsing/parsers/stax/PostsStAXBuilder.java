@@ -1,6 +1,6 @@
 package by.training.xml_xsd_web_parsing.parsers.stax;
 
-import by.training.xml_xsd_web_parsing.parsers.sax.PostEnum;
+import by.training.xml_xsd_web_parsing.parsers.PostEnum;
 import by.training.xml_xsd_web_parsing.posts.Address;
 import by.training.xml_xsd_web_parsing.posts.ImageTheme;
 import by.training.xml_xsd_web_parsing.posts.Post;
@@ -74,18 +74,6 @@ public class PostsStAXBuilder {
                 case XMLStreamConstants.START_ELEMENT:
                     name = reader.getLocalName();
                     switch (PostEnum.valueOf(name.toUpperCase())) {
-//                        case NAME:
-//                            post.setName(getXMLText(reader));
-//                            break;
-//                        case TELEPHONE:
-//                            name = getXMLText(reader);
-//                            post.setTelephone(Integer.parseInt(name));
-//                            break;
-//                        case ADDRESS:
-//                            post.setAddress(getXMLAddress(reader));
-//                            break;
-
-
                         case IMAGE_THEME:
                             post.setImageTheme(ImageTheme.fromValue(getXMLText(reader)));
                             break;
@@ -157,12 +145,12 @@ public class PostsStAXBuilder {
                         case COUNTRY:
                             address.setCountry(getXMLText(reader));
                             break;
-                        case CITY:
-                            address.setCity(getXMLText(reader));
-                            break;
-                        case STREET:
-                            address.setStreet(getXMLText(reader));
-                            break;
+//                        case CITY:
+//                            address.setCity(getXMLText(reader));
+//                            break;
+//                        case STREET:
+//                            address.setStreet(getXMLText(reader));
+//                            break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
