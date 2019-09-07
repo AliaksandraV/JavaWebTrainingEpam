@@ -1,4 +1,4 @@
-package by.training.xml_xsd_web_parsing.parsers.sax;
+package by.training.xml_xsd_web_parsing.service.papser.sax;
 
 public class SAXRunner {
 

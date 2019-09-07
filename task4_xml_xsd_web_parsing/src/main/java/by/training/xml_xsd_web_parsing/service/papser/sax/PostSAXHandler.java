@@ -1,6 +1,6 @@
-package by.training.xml_xsd_web_parsing.parsers.sax;
+package by.training.xml_xsd_web_parsing.service.papser.sax;
 
-import by.training.xml_xsd_web_parsing.parsers.PostEnum;
+import by.training.xml_xsd_web_parsing.service.papser.PostEnum;
 import by.training.xml_xsd_web_parsing.posts.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

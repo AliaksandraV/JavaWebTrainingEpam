@@ -1,4 +1,4 @@
-package by.training.xml_xsd_web_parsing.parsers.dom;
+package by.training.xml_xsd_web_parsing.service.papser.dom;
 
 public class DOMRunner {
 
@@ -7,4 +7,6 @@ public class DOMRunner {
         domBuilder.buildSetPosts("data/posts.xml");
         System.out.println(domBuilder.getPosts());
     }
+
+
 }

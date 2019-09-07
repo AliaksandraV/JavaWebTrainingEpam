@@ -1,6 +1,7 @@
-package by.training.xml_xsd_web_parsing.parsers.stax;
+package by.training.xml_xsd_web_parsing.service.papser.stax;
 
-import by.training.xml_xsd_web_parsing.parsers.PostEnum;
+import by.training.xml_xsd_web_parsing.service.AbstractPostsBuilder;
+import by.training.xml_xsd_web_parsing.service.papser.PostEnum;
 import by.training.xml_xsd_web_parsing.posts.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -19,12 +20,18 @@ import java.util.Set;
 import static by.training.xml_xsd_web_parsing.service.DataConverter.stringToDataXMLGregorianCalendar;
 import static by.training.xml_xsd_web_parsing.service.DataConverter.stringToYearXMLGregorianCalendar;
 
-public class PostsStAXBuilder {
+public class PostsStAXBuilder extends AbstractPostsBuilder {
 
-    private HashSet<Post> posts = new HashSet<>();
+//    private HashSet<Post> posts = new HashSet<>();
     private XMLInputFactory inputFactory;
 
     public PostsStAXBuilder() {
+        posts = new HashSet<>();
+        inputFactory = XMLInputFactory.newInstance();
+    }
+
+    public PostsStAXBuilder (Set<Post> posts) {
+        super(posts);
         inputFactory = XMLInputFactory.newInstance();
     }
 
@@ -32,7 +39,10 @@ public class PostsStAXBuilder {
         return posts;
     }
 
-    public void buildSetStudents(String fileName) {
+    @Override
+    public void buildSetPosts(String fileName) {
+        System.out.println("STAX");
+
         FileInputStream inputStream = null;
         XMLStreamReader reader = null;
         String name;

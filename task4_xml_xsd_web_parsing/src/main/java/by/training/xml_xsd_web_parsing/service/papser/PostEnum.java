@@ -1,4 +1,4 @@
-package by.training.xml_xsd_web_parsing.parsers;
+package by.training.xml_xsd_web_parsing.service.papser;
 
 public enum PostEnum {
     POSTS("posts"),
@@ -36,15 +36,6 @@ public enum PostEnum {
     public String getValue() {
         return value;
     }
-
-//    public static HashSet<String> getEnums() {
-//        HashSet<String> values = new HashSet<String>();
-//
-//        for (PostEnum c : PostEnum.values()) {
-//            values.add(c.name());
-//        }
-//        return values;
-//    }
 
     public static boolean contains(String test) {
         for (PostEnum c : PostEnum.values()) {

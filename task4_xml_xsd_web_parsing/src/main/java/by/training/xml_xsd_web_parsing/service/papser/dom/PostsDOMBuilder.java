@@ -1,6 +1,7 @@
-package by.training.xml_xsd_web_parsing.parsers.dom;
+package by.training.xml_xsd_web_parsing.service.papser.dom;
 
 import by.training.xml_xsd_web_parsing.posts.*;
+import by.training.xml_xsd_web_parsing.service.AbstractPostsBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,15 +17,26 @@ import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
-import static by.training.xml_xsd_web_parsing.service.DataConverter.*;
+import static by.training.xml_xsd_web_parsing.service.DataConverter.stringToDataXMLGregorianCalendar;
+import static by.training.xml_xsd_web_parsing.service.DataConverter.stringToYearXMLGregorianCalendar;
 
-public class PostsDOMBuilder {
-    private Set<Post> posts;
+public class PostsDOMBuilder extends AbstractPostsBuilder {
+    //    private Set<Post> posts;
     private DocumentBuilder docBuilder;
 
     public PostsDOMBuilder() {
-        this.posts = new HashSet<Post>();
+        posts = new HashSet<Post>();
         // создание DOM-анализатора
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        try {
+            docBuilder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            System.err.println("Ошибка конфигурации парсера: " + e);
+        }
+    }
+
+    public PostsDOMBuilder(Set<Post> posts) {
+        super(posts);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
@@ -37,7 +49,9 @@ public class PostsDOMBuilder {
         return posts;
     }
 
+    @Override
     public void buildSetPosts(String fileName) {
+        System.out.println("DOM");
         try {
             //parsingXML-документа и создание древовидной структуры
             Document doc = docBuilder.parse(fileName);
@@ -134,14 +148,14 @@ public class PostsDOMBuilder {
     private static Ordinary getXMLOrdinary(Element typeElement) throws ParseException, DatatypeConfigurationException {
         Ordinary ordinary = new Ordinary();
         putCommonForType(ordinary, typeElement);
-        ordinary.setTheme(getElementTextContent(typeElement,"theme"));
+        ordinary.setTheme(getElementTextContent(typeElement, "theme"));
         return ordinary;
     }
 
     private static Advertising getXMLAdvertising(Element typeElement) throws ParseException, DatatypeConfigurationException {
         Advertising advertising = new Advertising();
         putCommonForType(advertising, typeElement);
-        advertising.setProduct(getElementTextContent(typeElement,"product"));
+        advertising.setProduct(getElementTextContent(typeElement, "product"));
         return advertising;
     }
 
