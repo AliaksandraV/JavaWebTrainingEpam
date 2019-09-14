@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `user`
 (
     `id`           INT         NOT NULL AUTO_INCREMENT,
     `email`        VARCHAR(255) NOT NULL,
-    `password`     NCHAR(45) NOT NULL,
+    `password`     NCHAR(64) NOT NULL,
     `name`         VARCHAR(45) NULL,
     `phone_number` VARCHAR(18) NOT NULL,
     `role`         TINYINT DEFAULT NULL,
@@ -57,4 +57,17 @@ CREATE TABLE IF NOT EXISTS `user`
 ) DEFAULT CHARSET = utf8;
 
 
+CREATE TABLE IF NOT EXISTS `like`
+(
+    `id`           INT         NOT NULL AUTO_INCREMENT,
+    `user_id`      INT NOT NULL,
+    `photo_id`     INT NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+    KEY `FK_like_user` (`user_id`),
+    KEY `FK_like_photo` (`photo_id`),
+    CONSTRAINT `FK_like_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+    CONSTRAINT `FK_like_photo` FOREIGN KEY (`photo_id`) REFERENCES `photo` (`id`)
+
+) DEFAULT CHARSET = utf8;
 
