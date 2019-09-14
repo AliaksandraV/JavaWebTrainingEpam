@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `album`
     `date`                     DATE DEFAULT NULL,
     `localized_name_id`        INT  DEFAULT NULL,
     `localized_description_id` INT  DEFAULT NULL,
-    `photo_category_id`        INT  DEFAULT NULL,
+    `photo_category_id`        INT  DEFAULT NOT NULL,
     PRIMARY KEY (`id`),
     KEY `FK_album_localized_name` (`localized_name_id`),
     KEY `FK_album_localized_description` (`localized_description_id`),

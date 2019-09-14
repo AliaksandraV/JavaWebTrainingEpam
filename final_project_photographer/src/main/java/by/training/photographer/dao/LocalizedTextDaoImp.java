@@ -7,7 +7,7 @@ import java.util.List;
 public class LocalizedTextDaoImp implements LocalizedTextDao {
 
     public void add(final LocalizedTextEntity localizedText) {
-
+        
     }
 
     public void update(final LocalizedTextEntity localizedText) {

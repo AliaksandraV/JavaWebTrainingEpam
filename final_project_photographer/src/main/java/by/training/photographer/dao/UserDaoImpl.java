@@ -5,7 +5,7 @@ import by.training.photographer.entity.Entity;
 import java.sql.Connection;
 import java.util.List;
 
-public class UserDaoImpl extends AbstractDAO {
+public class UserDaoImpl extends Dao {
 
 
     public UserDaoImpl(final Connection connection) {
