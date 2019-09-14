@@ -12,11 +12,11 @@ public class Main {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/photographer";
         Properties prop = new Properties();
-        prop.put("user", "root");
-        prop.put("password", "root");
-        prop.put("autoReconnect", "true");
-        prop.put("characterEncoding", "UTF-8");
-        prop.put("useUnicode", "true");
+//        prop.put("user", "root");
+//        prop.put("password", "root");
+//        prop.put("autoReconnect", "true");
+//        prop.put("characterEncoding", "UTF-8");
+//        prop.put("useUnicode", "true");
         Connection cn = null;
 
         try {
