@@ -4,7 +4,7 @@ import by.training.photographer.entity.LocalizedTextEntity;
 
 import java.util.List;
 
-public class LocalizedTextDaoImp implements LocalizedTextDao {
+public class LocalizedTextDaoImpl implements LocalizedTextDao {
 
     public void add(final LocalizedTextEntity localizedText) {
         

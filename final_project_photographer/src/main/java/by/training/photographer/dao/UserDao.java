@@ -5,15 +5,16 @@ import by.training.photographer.entity.UserEntity;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserDao extends Dao<Integer, UserEntity> {
 
-    void add(UserEntity user);
+    public abstract void create(UserEntity user);
 
-    void update(UserEntity user);
+    public abstract void update(UserEntity user);
 
-    void delete(long id);
+    public abstract void delete(Integer id);
 
-    PhotoEntity get(long id);
+    public abstract UserEntity findById(Integer id);
 
-    List<UserEntity> list();
+    public abstract List<UserEntity> findAll();
+
 }

@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `user`
     `id`           INT         NOT NULL AUTO_INCREMENT,
     `email`        VARCHAR(255) NOT NULL,
     `password`     NCHAR(64) NOT NULL,
-    `name`         VARCHAR(45) NULL,
+    `name`         VARCHAR(45) NOT NULL,
     `phone_number` VARCHAR(18) NOT NULL,
-    `role`         TINYINT DEFAULT NULL,
+    `role`         TINYINT DEFAULT NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `id_UNIQUE` (`id` ASC),
     UNIQUE INDEX `email_UNIQUE` (`email` ASC)

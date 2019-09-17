@@ -4,14 +4,15 @@ import by.training.photographer.entity.PhotoCategoryEntity;
 
 import java.util.List;
 
-public interface PhotoCategoryDao {
-    void add(PhotoCategoryEntity photoCategory);
+public interface PhotoCategoryDao extends Dao<Integer, PhotoCategoryEntity> {
 
-    void update(PhotoCategoryEntity photoCategory);
+    public abstract void create(PhotoCategoryEntity photoCategory);
 
-    void delete(long id);
+    public abstract void update(PhotoCategoryEntity photoCategory);
 
-    PhotoCategoryEntity get(long id);
+    public abstract void delete(Integer id);
 
-    List<PhotoCategoryEntity> list();
+    public abstract PhotoCategoryEntity findById(Integer id);
+
+    public abstract List<PhotoCategoryEntity> findAll();
 }

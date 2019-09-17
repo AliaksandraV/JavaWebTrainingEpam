@@ -4,7 +4,7 @@ import by.training.photographer.entity.PhotoEntity;
 
 import java.util.List;
 
-public class PhotoDaoImp implements PhotoDao {
+public class PhotoDaoImpl implements PhotoDao {
 
     public void add(final PhotoEntity photo) {
 

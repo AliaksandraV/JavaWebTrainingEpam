@@ -10,6 +10,10 @@ public class UserEntity extends Entity {
     private String phone_number;
     private int role;
 
+    public UserEntity(){
+
+    }
+
     public UserEntity(final int id, final String email, final String password, final String name, final String phone_number, final int role) {
         this.id = id;
         this.email = email;
