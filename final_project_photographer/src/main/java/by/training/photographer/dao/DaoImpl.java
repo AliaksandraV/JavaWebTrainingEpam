@@ -2,10 +2,7 @@ package by.training.photographer.dao;
 
 import by.training.photographer.entity.Entity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -22,6 +19,11 @@ public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {
         prop.put("useUnicode", "true");
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         return DriverManager.getConnection(url, prop);
+    }
+
+    protected ResultSet createResultSet(final PreparedStatement statement, Integer id) throws SQLException {
+        statement.setInt(1, id);
+        return statement.executeQuery();
     }
 
 //    @Override

@@ -62,12 +62,6 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
         return album;
     }
 
-    private ResultSet createResultSet(final PreparedStatement statement, Integer id) throws SQLException {
-        statement.setInt(1, id);
-        return statement.executeQuery();
-
-    }
-
     @Override
     public List<AlbumEntity> findAll() {
         String sql = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";

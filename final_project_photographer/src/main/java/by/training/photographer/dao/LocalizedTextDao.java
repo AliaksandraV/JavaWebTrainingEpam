@@ -4,15 +4,20 @@ import by.training.photographer.entity.LocalizedTextEntity;
 
 import java.util.List;
 
-public interface LocalizedTextDao {
+public interface LocalizedTextDao extends Dao<Integer, LocalizedTextEntity>{
 
-    void add(LocalizedTextEntity localizedText);
+    @Override
+    void create(LocalizedTextEntity entity);
 
-    void update(LocalizedTextEntity localizedText);
+    @Override
+    void update(LocalizedTextEntity entity);
 
-    void delete(long id);
+    @Override
+    void delete(Integer id);
 
-    LocalizedTextEntity get(long id);
+    @Override
+    LocalizedTextEntity findById(Integer id);
 
-    List<LocalizedTextEntity> list();
+    @Override
+    List<LocalizedTextEntity> findAll();
 }
