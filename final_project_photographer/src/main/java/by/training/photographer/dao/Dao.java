@@ -15,10 +15,8 @@ public interface Dao<K, T extends Entity> {
 
     public abstract void delete(K id);
 
-    public abstract void delete(T entity);
-
     public abstract T findById(K id);
 
-    public abstract List<T> FindAll();
+    public abstract List<T> findAll();
 
 }

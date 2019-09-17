@@ -5,12 +5,8 @@ import by.training.photographer.entity.Entity;
 import java.sql.Connection;
 import java.util.List;
 
-public class UserDaoImpl extends Dao {
+public class UserDaoImpl implements Dao {
 
-
-    public UserDaoImpl(final Connection connection) {
-        super(connection);
-    }
 
     @Override
     public void create(final Entity entity) {
@@ -27,10 +23,10 @@ public class UserDaoImpl extends Dao {
 
     }
 
-    @Override
-    public void delete(final Entity entity) {
-
-    }
+//    @Override
+//    public void delete(final Entity entity) {
+//
+//    }
 
     @Override
     public Entity findById(final Object id) {
@@ -38,7 +34,8 @@ public class UserDaoImpl extends Dao {
     }
 
     @Override
-    public List FindAll() {
+    public List findAll() {
         return null;
     }
+
 }

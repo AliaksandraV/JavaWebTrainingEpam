@@ -1,22 +1,24 @@
 package by.training.photographer.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class AlbumEntity extends Entity {
 
-    private Date date;
+    private Calendar date;
     private LocalizedTextEntity nameEntity;
     private LocalizedTextEntity descriptionEntity;
     private PhotoCategoryEntity photoCategory;
     private List<PhotoEntity> photoList;
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final Calendar date) {
         this.date = date;
     }
 
@@ -72,7 +74,7 @@ public class AlbumEntity extends Entity {
     @Override
     public String toString() {
         return "AlbumEntity{" +
-                "date=" + date +
+                "date=" + new SimpleDateFormat("dd MM YYYY").format(date.getTime())+
                 ", nameEntity=" + nameEntity +
                 ", photoCategory=" + photoCategory +
                 ", photoList=" + photoList +

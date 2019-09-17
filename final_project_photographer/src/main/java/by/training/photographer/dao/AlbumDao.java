@@ -12,7 +12,7 @@ public interface AlbumDao extends Dao <Integer, AlbumEntity> {
 
     void delete(Integer id);
 
-    void delete(AlbumEntity entity);
+//    void delete(AlbumEntity entity);
 
     AlbumEntity findById(Integer id);
 
