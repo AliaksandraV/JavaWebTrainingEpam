@@ -1,19 +1,28 @@
 package by.training.photographer.dao;
 
 import by.training.photographer.entity.LocalizedTextEntity;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> implements LocalizedTextDao {
+    private static Logger logger = Logger.getLogger(LocalizedTextDaoImpl.class);
+
+    private static final String CREATE = "INSERT INTO localized_text (russian) VALUES (?);";
+    private static final String UPDATE = "UPDATE localized_text SET russian = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM localized_text WHERE id = ?";
+    private static final String FIND_BY_ID = "SELECT id, russian FROM localized_text WHERE id= ?";
+    private static final String FIND_ALL = "SELECT id, russian FROM localized_text ORDER BY id";
+
 
     @Override
     public void create(final LocalizedTextEntity text) {
-        String sql = "INSERT INTO localized_text (russian) VALUES (?);";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(CREATE)) {
             initFields(statement, text);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -23,8 +32,7 @@ public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> 
 
     @Override
     public void update(final LocalizedTextEntity text) {
-        String sql = "UPDATE `localized_text` SET `russian` = ? WHERE `id` = ?";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE)) {
             initFields(statement, text);
             statement.setInt(2, text.getId());
             statement.executeUpdate();
@@ -35,8 +43,7 @@ public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> 
 
     @Override
     public void delete(final Integer id) {
-        String sql = "DELETE FROM `localized_text` WHERE `id` = ?";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(DELETE)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -46,9 +53,8 @@ public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> 
 
     @Override
     public LocalizedTextEntity findById(final Integer id) {
-        String sql = "SELECT `id`, `cover_image_path`, `localized_name_id` FROM `photo_category` WHERE `id`= ?";
         LocalizedTextEntity text = new LocalizedTextEntity();
-        try (PreparedStatement statement = initConnection().prepareStatement(sql);
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID);
              ResultSet resultSet = createResultSet(statement, id)) {
             if (resultSet.next()) {
                 createLocalizedText(resultSet, text);
@@ -61,7 +67,17 @@ public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> 
 
     @Override
     public List<LocalizedTextEntity> findAll() {
-        return null;
+        List<LocalizedTextEntity> texts = new ArrayList<>();
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                LocalizedTextEntity text = new LocalizedTextEntity();
+                texts.add(createLocalizedText(resultSet, text));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return texts;
     }
 
     private void initFields(final PreparedStatement statement, final LocalizedTextEntity text) throws SQLException {

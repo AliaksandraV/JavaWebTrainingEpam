@@ -4,15 +4,20 @@ import by.training.photographer.entity.PhotoEntity;
 
 import java.util.List;
 
-public interface PhotoDao {
+public interface PhotoDao extends Dao<Integer, PhotoEntity>{
 
-    void add(PhotoEntity photo);
+    @Override
+    void create(PhotoEntity entity);
 
-    void update(PhotoEntity photo);
+    @Override
+    void update(PhotoEntity entity);
 
-    void delete(long id);
+    @Override
+    void delete(Integer id);
 
-    PhotoEntity get(long id);
+    @Override
+    PhotoEntity findById(Integer id);
 
-    List<PhotoEntity> list();
+    @Override
+    List<PhotoEntity> findAll();
 }

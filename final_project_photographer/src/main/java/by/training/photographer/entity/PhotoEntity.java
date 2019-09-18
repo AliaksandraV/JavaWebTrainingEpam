@@ -1,11 +1,13 @@
 package by.training.photographer.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class PhotoEntity extends Entity{
 
     private String path;
-    private AlbumEntity albumId;
+    private AlbumEntity albumEntity;
+    private List <LikeEntity> likes;
 
     public String getPath() {
         return path;
@@ -15,12 +17,12 @@ public class PhotoEntity extends Entity{
         this.path = path;
     }
 
-    public AlbumEntity getAlbumId() {
-        return albumId;
+    public AlbumEntity getAlbumEntity() {
+        return albumEntity;
     }
 
-    public void setAlbumId(final AlbumEntity albumId) {
-        this.albumId = albumId;
+    public void setAlbumEntity(final AlbumEntity albumEntity) {
+        this.albumEntity = albumEntity;
     }
 
     @Override
@@ -30,12 +32,12 @@ public class PhotoEntity extends Entity{
         if (!super.equals(o)) return false;
         PhotoEntity that = (PhotoEntity) o;
         return Objects.equals(path, that.path) &&
-                Objects.equals(albumId, that.albumId);
+                Objects.equals(albumEntity, that.albumEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), path, albumId);
+        return Objects.hash(super.hashCode(), path, albumEntity);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class PhotoEntity extends Entity{
         return "PhotoEntity{" +
                 "id=" + id +
                 ", path='" + path + '\'' +
-                ", albumId=" + albumId +
+                ", albumEntity=" + albumEntity +
                 '}';
     }
 }

@@ -2,7 +2,6 @@ package by.training.photographer.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,23 +61,24 @@ public class AlbumEntity extends Entity {
         AlbumEntity that = (AlbumEntity) o;
         return Objects.equals(date, that.date) &&
                 Objects.equals(nameEntity, that.nameEntity) &&
+                Objects.equals(descriptionEntity, that.descriptionEntity) &&
                 Objects.equals(photoCategory, that.photoCategory) &&
                 Objects.equals(photoList, that.photoList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), date, nameEntity, photoCategory, photoList);
+        return Objects.hash(super.hashCode(), date, nameEntity, descriptionEntity, photoCategory, photoList);
     }
 
     @Override
     public String toString() {
         return "AlbumEntity{" +
-                "date=" + new SimpleDateFormat("dd MM YYYY").format(date.getTime())+
+                "date=" + date +
                 ", nameEntity=" + nameEntity +
+                ", descriptionEntity=" + descriptionEntity +
                 ", photoCategory=" + photoCategory +
                 ", photoList=" + photoList +
-                ", id=" + id +
                 '}';
     }
 }

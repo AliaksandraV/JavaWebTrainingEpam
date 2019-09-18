@@ -13,10 +13,15 @@ import java.util.List;
 public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements AlbumDao {
     private static Logger logger = Logger.getLogger(AlbumDaoImpl.class);
 
+    private static final String CREATE = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";
+    private static final String UPDATE = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
+    private static final String DELETE = "DELETE FROM `album` WHERE `id` = ?";
+    private static final String FIND_BY_ID = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` WHERE `id`= ?";
+    private static final String FIND_ALL = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";
+
     @Override
     public void create(final AlbumEntity album) {
-        String sql = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(CREATE)) {
             initFields(statement, album);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -26,8 +31,7 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
 
     @Override
     public void update(final AlbumEntity album) {
-        String sql = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE)) {
             initFields(statement, album);
             statement.setInt(5, album.getId());
             statement.executeUpdate();
@@ -38,8 +42,7 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
 
     @Override
     public void delete(final Integer id) {
-        String sql = "DELETE FROM `album` WHERE `id` = ?";
-        try (PreparedStatement statement = initConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(DELETE)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -49,9 +52,8 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
 
     @Override
     public AlbumEntity findById(final Integer id) {
-        String sql = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` WHERE `id`= ?";
         AlbumEntity album = new AlbumEntity();
-        try (PreparedStatement statement = initConnection().prepareStatement(sql);
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID);
              ResultSet resultSet = createResultSet(statement, id)) {
             if (resultSet.next()) {
                 createAlbum(resultSet, album);
@@ -64,9 +66,8 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
 
     @Override
     public List<AlbumEntity> findAll() {
-        String sql = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";
         List<AlbumEntity> albums = new ArrayList<>();
-        try (PreparedStatement statement = initConnection().prepareStatement(sql);
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 AlbumEntity album = new AlbumEntity();
