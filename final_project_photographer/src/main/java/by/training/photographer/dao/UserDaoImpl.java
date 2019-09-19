@@ -26,28 +26,6 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        PreparedStatement statement = null;
-//        try {
-//            StatementCreator statementCreator = new StatementCreator();
-////            statement = statementCreator.takeStatement(sql);
-//
-//            statement.setString(1, user.getEmail());
-//            statement.setString(2, user.getPassword());
-//            statement.setString(3, user.getName());
-//            statement.setString(4, user.getPhone_number());
-//            statement.setInt(5, user.getRole());
-//
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch (SQLException | NullPointerException e) {
-//                e.printStackTrace();
-//
-//            }
-//        }
     }
 
 
@@ -60,29 +38,6 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        PreparedStatement statement = null;
-//        try {
-//            StatementCreator statementCreator = new StatementCreator();
-////            statement = statementCreator.takeStatement(sql);
-//
-//            statement.setString(1, user.getEmail());
-//            statement.setString(2, user.getPassword());
-//            statement.setString(3, user.getName());
-//            statement.setString(4, user.getPhone_number());
-//            statement.setInt(5, user.getRole());
-//
-//            statement.setInt(6, user.getId());
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch (SQLException | NullPointerException e) {
-//                e.printStackTrace();
-//
-//            }
-//        }
     }
 
     @Override
@@ -93,20 +48,6 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        PreparedStatement statement = null;
-//        try {
-//            StatementCreator statementCreator = new StatementCreator();
-////            statement = statementCreator.takeStatement(sql);
-//            statement.setInt(1, id);
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch (SQLException | NullPointerException e) {
-//            }
-//        }
     }
 
     @Override
@@ -121,33 +62,6 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
             e.printStackTrace();
         }
         return user;
-//        PreparedStatement statement = null;
-//        ResultSet resultSet = null;
-//        try {
-//            StatementCreator statementCreator = new StatementCreator();
-////            statement = statementCreator.takeStatement(sql);
-//            statement.setInt(1, id);
-//            resultSet = statement.executeQuery();
-//            UserEntity user = null;
-//            if (resultSet.next()) {
-//                user = new UserEntity();
-//                user.setId(resultSet.getInt("id"));
-//                user.setEmail(resultSet.getString("email"));
-//                user.setPassword(resultSet.getString("password"));
-//                user.setName(resultSet.getString("name"));
-//                user.setPhone_number(resultSet.getString("phone_number"));
-//                user.setRole(resultSet.getInt("role"));
-//            }
-//            return user;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch (SQLException | NullPointerException e) {
-//            }
-//        }
-//        return null;
     }
 
     @Override
@@ -163,36 +77,6 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
             e.printStackTrace();
         }
         return users;
-        //        `email`, `password`, `name`, `phone_number`, `role`
-//        PreparedStatement statement = null;
-//        ResultSet resultSet = null;
-//        try {
-//            StatementCreator statementCreator = new StatementCreator();
-////            statement = statementCreator.takeStatement(sql);
-//            resultSet = statement.executeQuery();
-//            List<UserEntity> users = new ArrayList<>();
-//            UserEntity user = null;
-//            while (resultSet.next()) {
-//                user = new UserEntity();
-//                user.setId(resultSet.getInt("id"));
-//                user.setEmail(resultSet.getString("email"));
-//                user.setPassword(resultSet.getString("password"));
-//                user.setName(resultSet.getString("name"));
-//                user.setPhone_number(resultSet.getString("phone_number"));
-//                user.setRole(resultSet.getInt("role"));
-//
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch (SQLException | NullPointerException e) {
-//            }
-//        }
-//        return null;
     }
 
     private void initFields(final PreparedStatement statement, final UserEntity user) throws SQLException {

@@ -1,15 +1,18 @@
 package by.training.photographer.dao;
 
-import by.training.photographer.entity.Entity;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
-public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {
+public class CreateConection {
 
-    public Connection initConnection() throws SQLException {
+
+    @BeforeSuite
+    public static Connection initConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/photographer";
         Properties prop = new Properties();
         prop.put("user", "root");
@@ -21,8 +24,5 @@ public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {
         return DriverManager.getConnection(url, prop);
     }
 
-    protected ResultSet createResultSet(final PreparedStatement statement, Integer id) throws SQLException {
-        statement.setInt(1, id);
-        return statement.executeQuery();
-    }
+
 }

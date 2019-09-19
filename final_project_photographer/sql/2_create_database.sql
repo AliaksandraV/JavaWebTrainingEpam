@@ -4,6 +4,5 @@ CREATE USER editor IDENTIFIED BY 'Aa123+';
 
 GRANT SELECT, INSERT, UPDATE, DELETE
     ON `photographer`.*
-    TO photographer@localhost
-    IDENTIFIED BY 'Aa123+';
+    TO photographer@localhost;
 
