@@ -14,20 +14,28 @@ public class PropertiesReader {
     private static final Logger LOG = Logger.getLogger(PropertiesReader.class);
 
     /**
+     * propertiesFile name of property File
+     */
+    private String propertiesFile;
+
+    /**
      * constructor.
      */
-    private PropertiesReader() {
+//    private PropertiesReader() {
+//    }
+
+    public PropertiesReader(final String newPropertiesFile){
+        propertiesFile = newPropertiesFile;
     }
 
     /**
      * configurations properties.
      *
-     * @param propertiesFile name of property File
+
      * @param key           value From Properties File
      * @return properties
      */
-    public static String takeProperty(final String propertiesFile,
-                                      final String key) {
+    public String takeProperty(final String key) {
         ClassLoader classLoader = PropertiesReader.class.getClassLoader();
         Properties property = new Properties();
         try (InputStream input = classLoader

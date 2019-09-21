@@ -10,6 +10,9 @@ public class UserEntity extends Entity {
     private String phone_number;
     private int role;
 
+    /**
+     * default constructor
+     */
     public UserEntity(){
 
     }
@@ -62,25 +65,38 @@ public class UserEntity extends Entity {
     public void setRole(final int role) {
         this.role = role;
     }
-
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param obj the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        UserEntity that = (UserEntity) o;
+    public boolean equals(final Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        UserEntity that = (UserEntity) obj;
         return role == that.role &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(phone_number, that.phone_number);
     }
-
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), email, password, name, phone_number, role);
     }
-
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         return "UserEntity{" +

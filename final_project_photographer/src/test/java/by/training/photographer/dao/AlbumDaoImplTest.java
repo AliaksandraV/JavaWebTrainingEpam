@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 
 public class AlbumDaoImplTest {
     AlbumEntity album = new AlbumEntity();
-    AlbumDaoImpl dao = new AlbumDaoImpl();
+//     AlbumDaoImpl dao = new AlbumDaoImpl();
 
     @BeforeTest
     private void createAlbum() {
@@ -38,7 +38,7 @@ public class AlbumDaoImplTest {
 //        }
 
         AlbumEntity album1 = new AlbumEntity();
-        album1 = dao.findById(1);
+//        album1 = dao.findById(1);
         System.out.println(album1);
     }
 

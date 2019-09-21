@@ -36,7 +36,7 @@ CREATE TABLE `album`
 CREATE TABLE `photo`
 (
     `id`       INT NOT NULL AUTO_INCREMENT,
-    `path`     VARCHAR(255) NOT NULL,
+    `path`     VARCHAR(4096) NOT NULL,
     `album_id` INT          NOT NULL,
     CONSTRAINT `PK_photo` PRIMARY KEY (`id`),
     KEY `FK_photo_album` (`album_id`),

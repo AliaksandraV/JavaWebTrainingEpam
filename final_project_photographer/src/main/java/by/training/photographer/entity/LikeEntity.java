@@ -6,6 +6,12 @@ public class LikeEntity extends Entity {
     private UserEntity userEntity;
     private PhotoEntity photoEntity;
 
+    /**
+     * default constructor
+     */
+    public LikeEntity() {
+    }
+
     public UserEntity getUserEntity() {
         return userEntity;
     }
@@ -22,21 +28,36 @@ public class LikeEntity extends Entity {
         this.photoEntity = photoEntity;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param obj the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        LikeEntity that = (LikeEntity) o;
+    public boolean equals(final Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        LikeEntity that = (LikeEntity) obj;
         return Objects.equals(userEntity, that.userEntity) &&
                 Objects.equals(photoEntity, that.photoEntity);
     }
-
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), userEntity, photoEntity);
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         return "LikeEntity{" +
