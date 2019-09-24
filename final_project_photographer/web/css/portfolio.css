@@ -1,0 +1,44 @@
+body {
+    background-color: grey;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: "Playfairdisplay";
+    src: url("../fonts/Playfairdisplay.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/*.nav-link{*/
+/*    color: #FFFFFF;*/
+/*    font-size: 20px;*/
+/*    font-family:Playfairdisplay, serif;*/
+/*    text-transform: uppercase;*/
+/*}*/
+
+/*.nav-link:hover{*/
+/*    color: #898989;*/
+/*}*/
+
+/*.nav .nav-link.active{*/
+/*    color: #898989;*/
+/*    background-color: initial;*/
+/*}*/
+/*.mynavbar{*/
+
+/*}*/
+
+/*.menu{*/
+/*    font-size: 24px;*/
+/*    color: #808080;*/
+/*    font-weight: bold;*/
+/*    justify-content: center;*/
+/*    text-align: center;*/
+/*    box-sizing: border-box;*/
+/*    font-family: Vollcorn, serif;*/
+/*}*/
+
+/*.logotype {*/
+/*    padding-top: 50px;*/
+/*}*/
