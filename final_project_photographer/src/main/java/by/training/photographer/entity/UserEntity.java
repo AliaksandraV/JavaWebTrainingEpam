@@ -7,7 +7,7 @@ public class UserEntity extends Entity {
     private String email;
     private String password;
     private String name;
-    private String phone_number;
+    private String phoneNumber;
     private int role;
 
     /**
@@ -17,12 +17,12 @@ public class UserEntity extends Entity {
 
     }
 
-    public UserEntity(final int id, final String email, final String password, final String name, final String phone_number, final int role) {
+    public UserEntity(final int id, final String email, final String password, final String name, final String phoneNumber, final int role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
         this.role = role;
     }
 
@@ -50,12 +50,12 @@ public class UserEntity extends Entity {
         this.name = name;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(final String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(final String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getRole() {
@@ -81,7 +81,7 @@ public class UserEntity extends Entity {
                 Objects.equals(email, that.email) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(phone_number, that.phone_number);
+                Objects.equals(phoneNumber, that.phoneNumber);
     }
     /**
      * Returns a hash code value for the object.
@@ -90,7 +90,7 @@ public class UserEntity extends Entity {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, password, name, phone_number, role);
+        return Objects.hash(super.hashCode(), email, password, name, phoneNumber, role);
     }
     /**
      * Returns a string representation of the object.
@@ -104,7 +104,7 @@ public class UserEntity extends Entity {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", role=" + role +
                 '}';
     }

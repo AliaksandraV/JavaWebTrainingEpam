@@ -83,7 +83,7 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
         statement.setString(1, user.getEmail());
         statement.setString(2, user.getPassword());
         statement.setString(3, user.getName());
-        statement.setString(4, user.getPhone_number());
+        statement.setString(4, user.getPhoneNumber());
         statement.setInt(5, user.getRole());
     }
 
@@ -92,7 +92,7 @@ public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao
         user.setEmail(resultSet.getString("email"));
         user.setPassword(resultSet.getString("password"));
         user.setName(resultSet.getString("name"));
-        user.setPhone_number(resultSet.getString("phone_number"));
+        user.setPhoneNumber(resultSet.getString("phone_number"));
         user.setRole(resultSet.getInt("role"));
         return user;
     }

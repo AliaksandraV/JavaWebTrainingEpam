@@ -28,5 +28,13 @@
 }
 
 .logotype {
-    padding-top: 50px;
+    padding-top: 10px;
+}
+
+.logo-container {
+    height: 95px;
+}
+
+.img-responsive {
+    display: inline-block;
 }

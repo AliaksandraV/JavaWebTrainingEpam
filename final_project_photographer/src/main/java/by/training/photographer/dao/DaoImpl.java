@@ -3,8 +3,6 @@ package by.training.photographer.dao;
 import by.training.photographer.entity.Entity;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {

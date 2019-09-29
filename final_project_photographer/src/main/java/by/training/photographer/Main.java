@@ -7,7 +7,6 @@ import by.training.photographer.entity.PhotoCategoryEntity;
 import by.training.photographer.entity.UserEntity;
 
 import java.util.Calendar;
-import java.util.List;
 
 public class Main {
 
@@ -21,7 +20,7 @@ public class Main {
         user.setEmail("someMilo3@mail.ru");
         user.setPassword("Aa123+");
         user.setName("Roma");
-        user.setPhone_number("+375299992883");
+        user.setPhoneNumber("+375299992883");
         user.setRole(2);
 
         UserDaoImpl dao = new UserDaoImpl();

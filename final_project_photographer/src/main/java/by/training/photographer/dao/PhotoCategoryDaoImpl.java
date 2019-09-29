@@ -18,7 +18,7 @@ public class PhotoCategoryDaoImpl extends DaoImpl<Integer, PhotoCategoryEntity> 
     private static final String UPDATE = "UPDATE `photo_category` SET `cover_image_path` = ?, `localized_name_id` = ? WHERE `id` = ?";
     private static final String DELETE = "DELETE FROM `photo_category` WHERE `id` = ?";
     private static final String FIND_BY_ID = "SELECT `id`, `cover_image_path`, `localized_name_id` FROM `photo_category` WHERE `id`= ?";
-    private static final String FIND_ALL = "SELECT `id`, `localized_name_id` FROM `photo_category` ORDER BY `id`";
+    private static final String FIND_ALL = "SELECT `id`, `cover_image_path`, `localized_name_id` FROM `photo_category` ORDER BY `id`";
 
 
     @Override
@@ -99,7 +99,7 @@ public class PhotoCategoryDaoImpl extends DaoImpl<Integer, PhotoCategoryEntity> 
 
         category.setId(resultSet.getInt("id"));
 
-        String coverPath = resultSet.getString("photo_category_id");
+        String coverPath = resultSet.getString("cover_image_path");
         if (!resultSet.wasNull()) {
             category.setCoverImagePath(coverPath);
         }
