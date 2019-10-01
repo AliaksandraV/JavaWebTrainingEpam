@@ -1,18 +1,82 @@
 package by.training.photographer;
 
-import by.training.photographer.dao.AlbumDaoImpl;
-import by.training.photographer.dao.UserDaoImpl;
-import by.training.photographer.entity.AlbumEntity;
-import by.training.photographer.entity.PhotoCategoryEntity;
-import by.training.photographer.entity.UserEntity;
+import by.training.photographer.dao.*;
+import by.training.photographer.entity.*;
+import by.training.photographer.service.*;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 //        checkUserDao();
-        checkAlbumDao();
+//        checkAlbumDao();
+//        checkAlbumFindAll();
+
+//        AlbumService service = new AlbumServiceImpl();
+//        List<AlbumEntity> albums = service.findAll();
+//        for (AlbumEntity album : albums) {
+//            System.out.println(album);
+//        }
+
+//        System.out.println(service.findById(3));
+
+//        LikeService service1 = new LikeServiceImpl();
+//        List<LikeEntity> likes = service1.findAll();
+//        for (LikeEntity like : likes) {
+//            System.out.println(like);
+//        }
+//
+//        System.out.println(service1.findById(4));
+
+//        LocalizedTextService service = new LocalizedTextServiceImpl();
+//        List<LocalizedTextEntity> texts = service.findAll();
+//        for (LocalizedTextEntity text : texts) {
+//            System.out.println(text);
+//        }
+//
+//        System.out.println(service.findById(5));
+
+//        PhotoCategoryService service = new PhotoCategoryServiceImpl();
+//        List<PhotoCategoryEntity> categories = service.findAll();
+//        for (PhotoCategoryEntity cat : categories) {
+//            System.out.println(cat);
+//        }
+//
+//        System.out.println(service.findById(5));
+
+//        PhotoService service = new PhotoServiceImpl();
+//        List<PhotoEntity> photos = service.findAll();
+//        for (PhotoEntity photo : photos) {
+//            System.out.println(photo);
+//        }
+//
+//        System.out.println(service.findById(1));
+
+//        UserService service = new UserServiceImpl();
+//        List<UserEntity> users = service.findAll();
+//        for (UserEntity user : users) {
+//            System.out.println(user);
+//        }
+//
+//        System.out.println(service.findById(1));
+
+        AlbumServiceImpl service = new AlbumServiceImpl();
+        List<AlbumEntity> albums = service.findAll();
+        for (AlbumEntity album : albums) {
+            System.out.println(album);
+        }
+
+//        AlbumDao dao = new AlbumDaoImpl();
+//        List<AlbumEntity> albums = dao.findAll();
+//        for (AlbumEntity album : albums) {
+//            System.out.println(album);
+//        }
+
+        System.out.println("________");
+        System.out.println(service.findById(3));
+
     }
 
     private static void checkUserDao() {
@@ -69,4 +133,33 @@ public class Main {
         album1 = dao.findById(1);
         System.out.println(album1);
     }
+
+    private static void checkCategoryFindAll() {
+        PhotoCategoryDao dao = new PhotoCategoryDaoImpl();
+        List<PhotoCategoryEntity> categories = dao.findAll();
+        for (PhotoCategoryEntity category : categories) {
+            LocalizedTextDao textDao = new LocalizedTextDaoImpl();
+            int id = category.getLocalizedName().getId();
+            LocalizedTextEntity name = textDao.findById(id);
+            category.setLocalizedName(name);
+            System.out.println(category);
+        }
+    }
+
+    private static void checkAlbumFindAll() {
+        AlbumDao albumDao = new AlbumDaoImpl();
+        List<AlbumEntity> albums = albumDao.findAll();
+//        for (AlbumEntity album : albums) {
+//            LocalizedTextDao textDao = new LocalizedTextDaoImpl();
+//            album.setNameEntity(textDao.findById(album.getNameEntity().getId()));
+//            if(album.getDescriptionEntity()!=null){
+//                LocalizedTextEntity text = textDao.findById(album.getDescriptionEntity().getId());
+//                album.setDescriptionEntity(text);
+//            }
+//            PhotoCategoryDao categoryDao = new PhotoCategoryDaoImpl();
+//            album.setPhotoCategory(categoryDao.findById(album.getPhotoCategory().getId()));
+//            System.out.println(album);
+//        }
+    }
 }
+

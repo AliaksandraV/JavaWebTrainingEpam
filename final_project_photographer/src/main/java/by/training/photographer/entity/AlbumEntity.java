@@ -163,11 +163,21 @@ public class AlbumEntity extends Entity {
     @Override
     public String toString() {
         return "AlbumEntity{" +
-                "date=" + date +
-                ", nameEntity=" + nameEntity +
+                dataPrint()
+                + ", nameEntity=" + nameEntity +
                 ", descriptionEntity=" + descriptionEntity +
                 ", photoCategory=" + photoCategory +
                 ", photoList=" + photoList +
                 '}';
+    }
+
+    private String dataPrint(){
+        if(date!=null){
+            return "date=" + date.get(Calendar.DAY_OF_MONTH)
+                    + "." + date.get(Calendar.MONTH)
+                    + "." + date.get(Calendar.YEAR);
+        } else {
+            return "not indicated";
+        }
     }
 }

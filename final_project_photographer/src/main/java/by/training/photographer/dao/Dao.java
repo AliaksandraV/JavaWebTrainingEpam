@@ -1,6 +1,7 @@
 package by.training.photographer.dao;
 
 import by.training.photographer.entity.Entity;
+import by.training.photographer.dao.specification.Specification;
 
 import java.util.List;
 
@@ -15,5 +16,9 @@ public interface Dao<K, T extends Entity> {
     T findById(K id);
 
     List<T> findAll();
+
+    default List<T> query(final Integer specification){
+        return null;
+    }
 
 }

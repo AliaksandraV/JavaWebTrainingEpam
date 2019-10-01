@@ -16,8 +16,37 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
     private static final String CREATE = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";
     private static final String UPDATE = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
     private static final String DELETE = "DELETE FROM `album` WHERE `id` = ?";
-    private static final String FIND_BY_ID = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` WHERE `id`= ?";
-    private static final String FIND_ALL = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";
+    private static final String FIND_BY_ID = "SELECT a.id, " +
+            "       a.date, " +
+            "       a.localized_name_id, " +
+            "       a.localized_description_id, " +
+            "       a.photo_category_id, " +
+            "       lt.russian  as name, " +
+            "       lt2.russian as description " +
+            "FROM album a " +
+            "         LEFT JOIN localized_text lt " +
+            "                   ON a.localized_name_id = lt.id " +
+            "         LEFT JOIN localized_text lt2 " +
+            "                   ON a.localized_description_id = lt2.id " +
+            "WHERE a.id = ?";
+//    private static final String FIND_BY_ID = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` WHERE `id`= ?";
+    //    private static final String FIND_ALL = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";
+    private static final String FIND_ALL = "SELECT a.id, " +
+            "       a.date, " +
+            "       a.localized_name_id, " +
+            "       a.localized_description_id, " +
+            "       a.photo_category_id, " +
+            "       lt.russian AS name, " +
+            "       lt2.russian AS description " +
+            "FROM album a " +
+            "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
+            "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
+            "ORDER BY id;";
+
+    private static final String BY_CATEGORY_ID = "" +
+            "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` " +
+            "FROM `album` " +
+            "WHERE photo_category_id=?";
 
     @Override
     public void create(final AlbumEntity album) {
@@ -79,6 +108,21 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
         return albums;
     }
 
+    @Override
+    public List<AlbumEntity> query(final Integer specification) {
+        List<AlbumEntity> albums = new ArrayList<>();
+        try (PreparedStatement statement = initConnection().prepareStatement(BY_CATEGORY_ID);
+             ResultSet resultSet = createResultSet(statement, specification)) {
+            while (resultSet.next()) {
+                AlbumEntity album = new AlbumEntity();
+                albums.add(createAlbum(resultSet, album));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return albums;
+    }
+
     private void initFields(final PreparedStatement statement, final AlbumEntity album) throws SQLException {
         if (album.getDate() != null) {
             statement.setDate(1, new Date(album.getDate().getTime().getTime()));
@@ -104,6 +148,8 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
         } else {
             statement.setNull(4, Types.INTEGER);
         }
+
+
     }
 
     private AlbumEntity createAlbum(final ResultSet resultSet, final AlbumEntity album) throws SQLException {
@@ -118,16 +164,20 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
         }
 
         Integer nameId = resultSet.getInt("localized_name_id");
+        String nameStr = resultSet.getString("name");
         if (!resultSet.wasNull()) {
             LocalizedTextEntity name = new LocalizedTextEntity();
             name.setId(nameId);
+            name.setRussian(nameStr);
             album.setNameEntity(name);
         }
 
         Integer descriptionId = resultSet.getInt("localized_description_id");
+        String descriptionStr = resultSet.getString("description");
         if (!resultSet.wasNull()) {
             LocalizedTextEntity description = new LocalizedTextEntity();
             description.setId(descriptionId);
+            description.setRussian(descriptionStr);
             album.setDescriptionEntity(description);
         }
 

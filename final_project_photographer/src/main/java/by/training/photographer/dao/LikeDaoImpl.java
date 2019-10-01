@@ -17,8 +17,8 @@ public class LikeDaoImpl extends DaoImpl<Integer, LikeEntity> implements LikeDao
     private static final String CREATE = "INSERT INTO like (user_id, photo_id) VALUES (?, ?);";
     private static final String UPDATE = "UPDATE like SET user_id = ?, photo_id = ? WHERE id = ?";
     private static final String DELETE = "DELETE FROM like WHERE id = ?";
-    private static final String FIND_BY_ID = "SELECT id, user_id, photo_id FROM like WHERE id= ?";
-    private static final String FIND_ALL = "SELECT id, user_id, photo_id FROM like ORDER BY id";
+    private static final String FIND_BY_ID = "SELECT id, user_id, photo_id FROM `like` WHERE id= ?";
+    private static final String FIND_ALL = "SELECT id, user_id, photo_id FROM `like` ORDER BY id";
 
 
     @Override

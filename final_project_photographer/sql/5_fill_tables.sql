@@ -25,6 +25,12 @@ INSERT INTO localized_text(id, russian)
 VALUES (7, 'Индивидуальная фотосессия в студии в студии ARt');
 INSERT INTO localized_text(id, russian)
 VALUES (8, 'Маленький Петенька');
+INSERT INTO localized_text(id, russian)
+VALUES (9, 'Пустая дата');
+INSERT INTO localized_text(id, russian)
+VALUES (10, 'Описание в пустая дата');
+INSERT INTO localized_text(id, russian)
+VALUES (11, 'Описание в пустое имя');
 
 INSERT INTO photo_category (id, cover_image_path, localized_name_id)
 VALUES (1, 'wedding_category', 1);
@@ -39,6 +45,10 @@ INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_
 VALUES (2, '2018-09-11', 6, 7, 2);
 INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
 VALUES (3, '2018-11-23', 8, null, 3);
+INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (4, null, 9, 10, 3);
+INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (5, '2019-07-09', null, 11, 3);
 
 INSERT INTO photo(id, path, album_id)
 VALUES (1, 'path1', 1);

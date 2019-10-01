@@ -91,7 +91,7 @@ public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> 
     private LocalizedTextEntity createLocalizedText(final ResultSet resultSet, final LocalizedTextEntity text) throws SQLException {
         text.setId(resultSet.getInt("id"));
 
-        String russian = resultSet.getString("cover_image_path");
+        String russian = resultSet.getString("russian");
         if (!resultSet.wasNull()) {
             text.setRussian(russian);
         }

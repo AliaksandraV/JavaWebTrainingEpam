@@ -1,5 +1,6 @@
 package by.training.photographer.dao;
 
+import by.training.photographer.dao.specification.Specification;
 import by.training.photographer.entity.AlbumEntity;
 
 import java.util.List;
@@ -15,4 +16,7 @@ public interface AlbumDao extends Dao<Integer, AlbumEntity> {
     AlbumEntity findById(Integer id);
 
     List<AlbumEntity> findAll();
+
+    @Override
+    List<AlbumEntity> query(final Integer specification);
 }
