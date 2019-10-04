@@ -2,13 +2,16 @@ package by.training.photographer.service;
 
 import by.training.photographer.dao.*;
 import by.training.photographer.entity.AlbumEntity;
-import by.training.photographer.entity.LocalizedTextEntity;
 
 import java.util.List;
 
 public class AlbumServiceImpl implements AlbumService {
 
-    private AlbumDao dao = new AlbumDaoImpl();
+    private final AlbumDao dao;
+
+    public AlbumServiceImpl(final AlbumDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public void create(final AlbumEntity entity) {
@@ -27,42 +30,16 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public AlbumEntity findById(final Integer id) {
-//        AlbumEntity album = dao.findById(id);
-//        buildAlbum(album);
-//        return album;
         return dao.findById(id);
     }
 
     @Override
     public List<AlbumEntity> findAll() {
-//        List<AlbumEntity> albums = dao.findAll();
-//        for (AlbumEntity album : albums) {
-//           buildAlbum(album);
-//        }
-//        return albums;
         return dao.findAll();
     }
 
-    public List<AlbumEntity> query(final Integer specification){
-        List<AlbumEntity> albums = dao.query(specification);
-//        for (AlbumEntity album : albums) {
-//            buildAlbum(album);
-//        }
-        return albums;
-
-    }
-
-    private AlbumEntity buildAlbum (final AlbumEntity album){
-//        LocalizedTextDao textDao = new LocalizedTextDaoImpl();
-//        if (album.getNameEntity()!=null) {
-//            album.setNameEntity(textDao.findById(album.getNameEntity().getId()));
-//        }
-//        if(album.getDescriptionEntity()!=null){
-//            LocalizedTextEntity text = textDao.findById(album.getDescriptionEntity().getId());
-//            album.setDescriptionEntity(text);
-//        }
-//        PhotoCategoryDao categoryDao = new PhotoCategoryDaoImpl();
-//        album.setPhotoCategory(categoryDao.findById(album.getPhotoCategory().getId()));
-        return album;
+    @Override
+    public List<AlbumEntity> findByCategory(final Integer id) {
+        return dao.findByCategory(id);
     }
 }

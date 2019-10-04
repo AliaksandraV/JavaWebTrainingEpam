@@ -1,4 +1,4 @@
-package by.training.photographer.actions;
+package by.training.photographer.action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

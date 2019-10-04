@@ -17,8 +17,4 @@ public interface Dao<K, T extends Entity> {
 
     List<T> findAll();
 
-    default List<T> query(final Integer specification){
-        return null;
-    }
-
 }

@@ -20,4 +20,6 @@ public interface AlbumService extends Service<Integer, AlbumEntity> {
 
     @Override
     List<AlbumEntity> findAll();
+
+    List<AlbumEntity> findByCategory(Integer id);
 }

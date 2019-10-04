@@ -8,6 +8,13 @@
         <welcome-file>/WEB-INF/jsp/home.jsp</welcome-file>
     </welcome-file-list>
 
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
     <!--    <servlet>-->
     <!--        <servlet-name>home</servlet-name>-->
     <!--        <servlet-class>by.training.photographer.controller.Home</servlet-class>-->

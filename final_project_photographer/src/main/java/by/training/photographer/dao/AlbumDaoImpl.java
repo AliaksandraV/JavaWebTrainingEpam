@@ -29,8 +29,6 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
             "         LEFT JOIN localized_text lt2 " +
             "                   ON a.localized_description_id = lt2.id " +
             "WHERE a.id = ?";
-//    private static final String FIND_BY_ID = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` WHERE `id`= ?";
-    //    private static final String FIND_ALL = "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` FROM `album` ORDER BY `id`";
     private static final String FIND_ALL = "SELECT a.id, " +
             "       a.date, " +
             "       a.localized_name_id, " +
@@ -43,9 +41,19 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
             "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
             "ORDER BY id;";
 
-    private static final String BY_CATEGORY_ID = "" +
-            "SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id` " +
-            "FROM `album` " +
+    private static final String FIND_BY_CATEGORY_ID = "" +
+            "SELECT a.id, " +
+            "       a.date, " +
+            "       a.localized_name_id, " +
+            "       a.localized_description_id, " +
+            "       a.photo_category_id, " +
+            "       lt.russian  as name, " +
+            "       lt2.russian as description " +
+            "FROM album a " +
+            "         LEFT JOIN localized_text lt " +
+            "                   ON a.localized_name_id = lt.id " +
+            "         LEFT JOIN localized_text lt2 " +
+            "                   ON a.localized_description_id = lt2.id " +
             "WHERE photo_category_id=?";
 
     @Override
@@ -109,10 +117,10 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
     }
 
     @Override
-    public List<AlbumEntity> query(final Integer specification) {
+    public List<AlbumEntity> findByCategory(final Integer id) {
         List<AlbumEntity> albums = new ArrayList<>();
-        try (PreparedStatement statement = initConnection().prepareStatement(BY_CATEGORY_ID);
-             ResultSet resultSet = createResultSet(statement, specification)) {
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_CATEGORY_ID);
+             ResultSet resultSet = createResultSet(statement, id)) {
             while (resultSet.next()) {
                 AlbumEntity album = new AlbumEntity();
                 albums.add(createAlbum(resultSet, album));
@@ -148,7 +156,6 @@ public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements Album
         } else {
             statement.setNull(4, Types.INTEGER);
         }
-
 
     }
 

@@ -62,20 +62,20 @@ public class Main {
 //
 //        System.out.println(service.findById(1));
 
-        AlbumServiceImpl service = new AlbumServiceImpl();
-        List<AlbumEntity> albums = service.findAll();
+        AlbumServiceImpl service = new AlbumServiceImpl(new AlbumDaoImpl());
+        List<AlbumEntity> albums = service.findByCategory(3);
         for (AlbumEntity album : albums) {
             System.out.println(album);
         }
 
 //        AlbumDao dao = new AlbumDaoImpl();
-//        List<AlbumEntity> albums = dao.findAll();
+//        List<AlbumEntity> albums = dao.findByCategory(2);
 //        for (AlbumEntity album : albums) {
 //            System.out.println(album);
 //        }
 
-        System.out.println("________");
-        System.out.println(service.findById(3));
+//        System.out.println("________");
+//        System.out.println(service.findById(3));
 
     }
 

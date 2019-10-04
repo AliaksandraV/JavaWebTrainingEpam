@@ -14,9 +14,9 @@ import java.util.List;
 public class LikeDaoImpl extends DaoImpl<Integer, LikeEntity> implements LikeDao {
     private static Logger logger = Logger.getLogger(LikeDaoImpl.class);
 
-    private static final String CREATE = "INSERT INTO like (user_id, photo_id) VALUES (?, ?);";
-    private static final String UPDATE = "UPDATE like SET user_id = ?, photo_id = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM like WHERE id = ?";
+    private static final String CREATE = "INSERT INTO `like` (user_id, photo_id) VALUES (?, ?);";
+    private static final String UPDATE = "UPDATE `like` SET user_id = ?, photo_id = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM `like` WHERE id = ?";
     private static final String FIND_BY_ID = "SELECT id, user_id, photo_id FROM `like` WHERE id= ?";
     private static final String FIND_ALL = "SELECT id, user_id, photo_id FROM `like` ORDER BY id";
 
@@ -41,6 +41,26 @@ public class LikeDaoImpl extends DaoImpl<Integer, LikeEntity> implements LikeDao
             e.printStackTrace();
         }
     }
+
+//    public interface Callback {
+//        void execute(PreparedStatement statement) throws SQLException;
+//    }
+//
+//    protected void executeCommand(String sqlCommand, Callback callback) {
+//        try (PreparedStatement statement = initConnection().prepareStatement(sqlCommand)) {
+//            callback.execute(statement);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void delete2(final Integer id) {
+//        executeCommand(DELETE, statement -> {
+//            statement.setInt(1, id);
+//            statement.executeUpdate();
+//        });
+//    }
 
     @Override
     public void delete(final Integer id) {

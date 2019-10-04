@@ -17,6 +17,5 @@ public interface AlbumDao extends Dao<Integer, AlbumEntity> {
 
     List<AlbumEntity> findAll();
 
-    @Override
-    List<AlbumEntity> query(final Integer specification);
+    List<AlbumEntity> findByCategory(Integer id);
 }

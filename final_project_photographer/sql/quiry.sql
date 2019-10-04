@@ -54,3 +54,17 @@ FROM album a
          LEFT JOIN localized_text lt2
                    ON a.localized_description_id = lt2.id
 WHERE a.id = 5;
+
+SELECT a.id,
+       a.date,
+       a.localized_name_id,
+       a.localized_description_id,
+       a.photo_category_id,
+       lt.russian  as name,
+       lt2.russian as description
+FROM album a
+         LEFT JOIN localized_text lt
+                   ON a.localized_name_id = lt.id
+         LEFT JOIN localized_text lt2
+                   ON a.localized_description_id = lt2.id
+WHERE photo_category_id = 1;
