@@ -7,6 +7,12 @@
     <groupId>training.by</groupId>
     <artifactId>final_project_photografer</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -28,6 +34,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -49,7 +56,6 @@
             <artifactId>jquery</artifactId>
             <version>3.4.1</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>
@@ -73,27 +79,30 @@
             <version>0.1.1</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
+        <finalName>photographer-final-build</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/photographer</path>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-
-
-
 
 </project>
