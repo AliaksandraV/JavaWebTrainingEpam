@@ -10,8 +10,8 @@ public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {
     public Connection initConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/photographer";
         Properties prop = new Properties();
-        prop.put("user", "root");
-        prop.put("password", "root");
+        prop.put("user", "editor");
+        prop.put("password", "Aa123+");
         prop.put("autoReconnect", "true");
         prop.put("characterEncoding", "UTF-8");
         prop.put("useUnicode", "true");

@@ -82,7 +82,7 @@
     </dependencies>
 
     <build>
-        <finalName>photographer-final-build</finalName>
+        <finalName>photographer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -99,7 +99,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/photographer</path>
+                    <path>/${project.build.finalName}</path>
                 </configuration>
             </plugin>
         </plugins>
