@@ -4,7 +4,7 @@ import by.training.photographer.entity.PhotoCategoryEntity;
 
 import java.util.List;
 
-public interface PhotoCategoryDao extends Dao<Integer, PhotoCategoryEntity> {
+public interface PhotoCategoryDao extends BaseDao<Integer, PhotoCategoryEntity> {
 
     public abstract void create(PhotoCategoryEntity photoCategory);
 

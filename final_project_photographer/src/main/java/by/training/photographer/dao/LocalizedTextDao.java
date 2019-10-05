@@ -4,7 +4,7 @@ import by.training.photographer.entity.LocalizedTextEntity;
 
 import java.util.List;
 
-public interface LocalizedTextDao extends Dao<Integer, LocalizedTextEntity>{
+public interface LocalizedTextDao extends BaseDao<Integer, LocalizedTextEntity> {
 
     @Override
     void create(LocalizedTextEntity entity);

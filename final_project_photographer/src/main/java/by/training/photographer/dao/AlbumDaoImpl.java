@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class AlbumDaoImpl extends DaoImpl<Integer, AlbumEntity> implements AlbumDao {
+public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements AlbumDao {
     private static Logger logger = Logger.getLogger(AlbumDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";

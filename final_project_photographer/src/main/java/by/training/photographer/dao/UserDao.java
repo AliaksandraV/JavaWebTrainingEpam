@@ -1,11 +1,10 @@
 package by.training.photographer.dao;
 
-import by.training.photographer.entity.PhotoEntity;
 import by.training.photographer.entity.UserEntity;
 
 import java.util.List;
 
-public interface UserDao extends Dao<Integer, UserEntity> {
+public interface UserDao extends BaseDao<Integer, UserEntity> {
 
     public abstract void create(UserEntity user);
 

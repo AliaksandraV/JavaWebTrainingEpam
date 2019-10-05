@@ -4,7 +4,7 @@ import by.training.photographer.entity.LikeEntity;
 
 import java.util.List;
 
-public interface LikeDao extends Dao<Integer, LikeEntity> {
+public interface LikeDao extends BaseDao<Integer, LikeEntity> {
 
     @Override
     void create(LikeEntity entity);

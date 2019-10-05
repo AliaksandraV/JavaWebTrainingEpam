@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikeDaoImpl extends DaoImpl<Integer, LikeEntity> implements LikeDao {
+public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements LikeDao {
     private static Logger logger = Logger.getLogger(LikeDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO `like` (user_id, photo_id) VALUES (?, ?);";

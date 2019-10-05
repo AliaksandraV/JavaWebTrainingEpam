@@ -1,6 +1,5 @@
 package by.training.photographer.service;
 
-import by.training.photographer.dao.Dao;
 import by.training.photographer.entity.Entity;
 
 import java.util.List;

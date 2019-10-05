@@ -10,7 +10,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalizedTextDaoImpl extends DaoImpl<Integer, LocalizedTextEntity> implements LocalizedTextDao {
+public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEntity> implements LocalizedTextDao {
     private static Logger logger = Logger.getLogger(LocalizedTextDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO localized_text (russian) VALUES (?);";

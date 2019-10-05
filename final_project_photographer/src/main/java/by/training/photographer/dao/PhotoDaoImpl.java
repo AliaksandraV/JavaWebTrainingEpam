@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoDaoImpl extends DaoImpl<Integer, PhotoEntity> implements PhotoDao {
+public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements PhotoDao {
     private static Logger logger = Logger.getLogger(PhotoDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO photo (path, album_id ) VALUES (?, ?);";

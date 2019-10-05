@@ -4,7 +4,7 @@ import by.training.photographer.entity.PhotoEntity;
 
 import java.util.List;
 
-public interface PhotoDao extends Dao<Integer, PhotoEntity>{
+public interface PhotoDao extends BaseDao<Integer, PhotoEntity> {
 
     @Override
     void create(PhotoEntity entity);

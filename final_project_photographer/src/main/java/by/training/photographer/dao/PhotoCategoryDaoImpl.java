@@ -11,7 +11,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoCategoryDaoImpl extends DaoImpl<Integer, PhotoCategoryEntity> implements PhotoCategoryDao {
+public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEntity> implements PhotoCategoryDao {
     private static Logger logger = Logger.getLogger(PhotoCategoryDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO photo_category (cover_image_path, localized_name_id) VALUES (?, ?);";

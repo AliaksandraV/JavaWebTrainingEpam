@@ -5,7 +5,7 @@ import by.training.photographer.entity.Entity;
 import java.sql.*;
 import java.util.Properties;
 
-public abstract class DaoImpl<K, T extends Entity> implements Dao<K, T> {
+public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> {
 
     public Connection initConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/photographer";

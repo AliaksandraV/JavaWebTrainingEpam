@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl extends DaoImpl<Integer, UserEntity> implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements UserDao {
     private static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     private static final String CREATE = "INSERT INTO user (`email`, `password`, `name`, `phone_number`, `role`) VALUES (?, ?, ?, ?, ?);";

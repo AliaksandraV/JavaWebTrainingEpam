@@ -1,11 +1,10 @@
 package by.training.photographer.dao;
 
-import by.training.photographer.dao.specification.Specification;
 import by.training.photographer.entity.AlbumEntity;
 
 import java.util.List;
 
-public interface AlbumDao extends Dao<Integer, AlbumEntity> {
+public interface AlbumDao extends BaseDao<Integer, AlbumEntity> {
 
     void create(AlbumEntity album);
 
