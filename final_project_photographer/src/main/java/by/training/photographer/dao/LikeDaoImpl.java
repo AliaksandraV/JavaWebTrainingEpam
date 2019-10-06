@@ -42,26 +42,6 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
         }
     }
 
-//    public interface Callback {
-//        void execute(PreparedStatement statement) throws SQLException;
-//    }
-//
-//    protected void executeCommand(String sqlCommand, Callback callback) {
-//        try (PreparedStatement statement = initConnection().prepareStatement(sqlCommand)) {
-//            callback.execute(statement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void delete2(final Integer id) {
-//        executeCommand(DELETE, statement -> {
-//            statement.setInt(1, id);
-//            statement.executeUpdate();
-//        });
-//    }
-
     @Override
     public void delete(final Integer id) {
         try (PreparedStatement statement = initConnection().prepareStatement(DELETE)) {

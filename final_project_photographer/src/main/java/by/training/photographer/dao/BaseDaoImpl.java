@@ -19,6 +19,7 @@ public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> 
         return DriverManager.getConnection(url, prop);
     }
 
+    // todo move to children classes
     protected ResultSet createResultSet(final PreparedStatement statement, Integer id) throws SQLException {
         statement.setInt(1, id);
         return statement.executeQuery();

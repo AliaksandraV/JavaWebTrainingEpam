@@ -57,7 +57,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             "WHERE photo_category_id=?";
 
     @Override
-    public void create(final AlbumEntity album) {
+    public Integer create(final AlbumEntity album) {
         try (PreparedStatement statement = initConnection().prepareStatement(CREATE)) {
             initFields(statement, album);
             statement.executeUpdate();
@@ -170,7 +170,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             album.setDate(cal);
         }
 
-        Integer nameId = resultSet.getInt("localized_name_id");
+        int nameId = resultSet.getInt("localized_name_id");
         String nameStr = resultSet.getString("name");
         if (!resultSet.wasNull()) {
             LocalizedTextEntity name = new LocalizedTextEntity();
@@ -179,7 +179,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             album.setNameEntity(name);
         }
 
-        Integer descriptionId = resultSet.getInt("localized_description_id");
+        int descriptionId = resultSet.getInt("localized_description_id");
         String descriptionStr = resultSet.getString("description");
         if (!resultSet.wasNull()) {
             LocalizedTextEntity description = new LocalizedTextEntity();
@@ -188,7 +188,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             album.setDescriptionEntity(description);
         }
 
-        Integer categoryId = resultSet.getInt("photo_category_id");
+        int categoryId = resultSet.getInt("photo_category_id");
         if (!resultSet.wasNull()) {
             PhotoCategoryEntity category = new PhotoCategoryEntity();
             category.setId(categoryId);

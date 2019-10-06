@@ -6,15 +6,5 @@ import java.util.List;
 
 public interface AlbumDao extends BaseDao<Integer, AlbumEntity> {
 
-    void create(AlbumEntity album);
-
-    void update(AlbumEntity album);
-
-    void delete(Integer id);
-
-    AlbumEntity findById(Integer id);
-
-    List<AlbumEntity> findAll();
-
     List<AlbumEntity> findByCategory(Integer id);
 }
