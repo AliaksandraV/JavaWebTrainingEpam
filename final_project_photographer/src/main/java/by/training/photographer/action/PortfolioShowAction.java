@@ -15,8 +15,8 @@ public class PortfolioShowAction implements Action {
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException, PersistenceException {
         PhotoCategoryService service = new PhotoCategoryServiceImpl();
-        List<PhotoCategoryEntity> categories = service.findAll();
-//        categories.get(0)
+        List<PhotoCategoryEntity> categories;
+        categories = service.findAll();
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("WEB-INF/jsp/portfolio.jsp").forward(request, response);
     }

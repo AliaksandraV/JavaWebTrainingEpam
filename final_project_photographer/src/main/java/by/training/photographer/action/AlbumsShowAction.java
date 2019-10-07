@@ -21,12 +21,13 @@ public class AlbumsShowAction implements Action {
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, PersistenceException, ServletException {
 
         AlbumService service = new AlbumServiceImpl(new AlbumDaoImpl());
-        List<AlbumEntity> albums = service.findAll();
-        AlbumList list = new AlbumList(albums);
-        logger.debug(list);
-
+        List<AlbumEntity> albums = service.findByCategory(
+            Integer.parseInt(request.getParameter("id")));
+//пример использования тэгов
+//        AlbumList list = new AlbumList(albums);
+//        logger.debug(list);
+//        request.setAttribute("album_list", list);
         request.setAttribute("albums", albums);
-        request.setAttribute("album_list", list);
         request.getRequestDispatcher("WEB-INF/jsp/albums.jsp").forward(request, response);
 
     }

@@ -1,5 +1,12 @@
 USE photographer;
 
+DROP TABLE `like`;
+DROP TABLE `photo`;
+DROP TABLE `album`;
+DROP TABLE `photo_category`;
+DROP TABLE `localized_text`;
+
+
 SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id`
 FROM `album`
 ORDER BY `id`;

@@ -1,0 +1,17 @@
+body {
+    background-color: #2f3034;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: "Playfairdisplay";
+    src: url("../fonts/Playfairdisplay.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+hr {
+    border-top: 1px solid rgba(137, 137, 137, 1);
+}
+
+

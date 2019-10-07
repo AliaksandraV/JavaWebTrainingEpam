@@ -17,15 +17,11 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("id"));
-
         process(req, resp);
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println(req.getParameter("id"));
         process(req, resp);
     }
 
@@ -41,10 +37,6 @@ public class DispatcherServlet extends HttpServlet {
             switch (contextPath) {
                 case "/portfolio":
                     action = new PortfolioShowAction();
-                    action.execute(request, response);
-                    break;
-                case "/contact":
-                    action = new AlbumsShowAction();
                     action.execute(request, response);
                     break;
                 case "/home":
