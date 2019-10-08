@@ -2,6 +2,7 @@ package by.training.photographer.action;
 
 import by.training.photographer.dao.AlbumDaoImpl;
 import by.training.photographer.entity.AlbumEntity;
+import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.AlbumService;
 import by.training.photographer.service.AlbumServiceImpl;
 import by.training.photographer.tag.AlbumList;
@@ -17,7 +18,7 @@ public class AlbumsShowAction implements Action {
     private static Logger logger = Logger.getLogger(AlbumsShowAction.class);
 
     @Override
-    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, PersistenceException, ServletException {
 
         AlbumService service = new AlbumServiceImpl(new AlbumDaoImpl());
         List<AlbumEntity> albums = service.findAll();

@@ -1,23 +1,24 @@
 package by.training.photographer.service;
 
 import by.training.photographer.entity.LocalizedTextEntity;
+import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
 public interface LocalizedTextService extends Service<Integer, LocalizedTextEntity> {
 
     @Override
-    void create(LocalizedTextEntity entity);
+    void create(LocalizedTextEntity entity) throws PersistenceException;
 
     @Override
-    void update(LocalizedTextEntity entity);
+    void update(LocalizedTextEntity entity) throws PersistenceException;
 
     @Override
-    void delete(Integer id);
+    void delete(Integer id) throws PersistenceException;
 
     @Override
-    LocalizedTextEntity findById(Integer id);
+    LocalizedTextEntity findById(Integer id) throws PersistenceException;
 
     @Override
-    List<LocalizedTextEntity> findAll();
+    List<LocalizedTextEntity> findAll() throws PersistenceException;
 }

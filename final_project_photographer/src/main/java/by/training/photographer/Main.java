@@ -1,12 +1,5 @@
 package by.training.photographer;
 
-import by.training.photographer.dao.*;
-import by.training.photographer.entity.*;
-import by.training.photographer.service.*;
-
-import java.util.Calendar;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -62,11 +55,11 @@ public class Main {
 //
 //        System.out.println(service.findById(1));
 
-        AlbumServiceImpl service = new AlbumServiceImpl(new AlbumDaoImpl());
-        List<AlbumEntity> albums = service.findByCategory(3);
-        for (AlbumEntity album : albums) {
-            System.out.println(album);
-        }
+//        AlbumServiceImpl service = new AlbumServiceImpl(new AlbumDaoImpl());
+//        List<AlbumEntity> albums = service.findByCategory(3);
+//        for (AlbumEntity album : albums) {
+//            System.out.println(album);
+//        }
 
 //        AlbumDao dao = new AlbumDaoImpl();
 //        List<AlbumEntity> albums = dao.findByCategory(2);
@@ -79,15 +72,15 @@ public class Main {
 
     }
 
-    private static void checkUserDao() {
-        UserEntity user = new UserEntity();
-        user.setEmail("someMilo3@mail.ru");
-        user.setPassword("Aa123+");
-        user.setName("Roma");
-        user.setPhoneNumber("+375299992883");
-        user.setRole(2);
-
-        UserDaoImpl dao = new UserDaoImpl();
+//    private static void checkUserDao() {
+//        UserEntity user = new UserEntity();
+//        user.setEmail("someMilo3@mail.ru");
+//        user.setPassword("Aa123+");
+//        user.setName("Roma");
+//        user.setPhoneNumber("+375299992883");
+//        user.setRole(2);
+//
+//        UserDaoImpl dao = new UserDaoImpl();
 
 //        dao.create(user);
 
@@ -100,26 +93,26 @@ public class Main {
 //            System.out.println(u);
 //        }
 
-        System.out.println(dao.findById(4));
+//        System.out.println(dao.findById(4));
 
-    }
+//    }
 
-    private static void checkAlbumDao() {
-        AlbumEntity album = new AlbumEntity();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2019);
-        calendar.set(Calendar.MONTH, 11);
-        calendar.set(Calendar.DAY_OF_MONTH, 6);
-        System.out.println(calendar.get(Calendar.YEAR));
-        System.out.println(calendar.get(Calendar.MONTH));
-        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
-        album.setDate(calendar);
-
-        PhotoCategoryEntity category = new PhotoCategoryEntity();
-        category.setId(1);
-        album.setPhotoCategory(category);
-
-        AlbumDaoImpl dao = new AlbumDaoImpl();
+//    private static void checkAlbumDao() {
+//        AlbumEntity album = new AlbumEntity();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.YEAR, 2019);
+//        calendar.set(Calendar.MONTH, 11);
+//        calendar.set(Calendar.DAY_OF_MONTH, 6);
+//        System.out.println(calendar.get(Calendar.YEAR));
+//        System.out.println(calendar.get(Calendar.MONTH));
+//        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+//        album.setDate(calendar);
+//
+//        PhotoCategoryEntity category = new PhotoCategoryEntity();
+//        category.setId(1);
+//        album.setPhotoCategory(category);
+//
+//        AlbumDaoImpl dao = new AlbumDaoImpl();
 //        dao.create(album);
 //        album.setId(14);
 //        dao.update(album);
@@ -129,26 +122,26 @@ public class Main {
 //            System.out.println(a);
 //        }
 
-        AlbumEntity album1 = new AlbumEntity();
-        album1 = dao.findById(1);
-        System.out.println(album1);
-    }
-
-    private static void checkCategoryFindAll() {
-        PhotoCategoryDao dao = new PhotoCategoryDaoImpl();
-        List<PhotoCategoryEntity> categories = dao.findAll();
-        for (PhotoCategoryEntity category : categories) {
-            LocalizedTextDao textDao = new LocalizedTextDaoImpl();
-            int id = category.getLocalizedName().getId();
-            LocalizedTextEntity name = textDao.findById(id);
-            category.setLocalizedName(name);
-            System.out.println(category);
-        }
-    }
-
-    private static void checkAlbumFindAll() {
-        AlbumDao albumDao = new AlbumDaoImpl();
-        List<AlbumEntity> albums = albumDao.findAll();
+//        AlbumEntity album1 = new AlbumEntity();
+//        album1 = dao.findById(1);
+//        System.out.println(album1);
+//    }
+//
+//    private static void checkCategoryFindAll() {
+//        PhotoCategoryDao dao = new PhotoCategoryDaoImpl();
+//        List<PhotoCategoryEntity> categories = dao.findAll();
+//        for (PhotoCategoryEntity category : categories) {
+//            LocalizedTextDao textDao = new LocalizedTextDaoImpl();
+//            int id = category.getLocalizedName().getId();
+//            LocalizedTextEntity name = textDao.findById(id);
+//            category.setLocalizedName(name);
+//            System.out.println(category);
+//        }
+//    }
+//
+//    private static void checkAlbumFindAll() {
+//        AlbumDao albumDao = new AlbumDaoImpl();
+//        List<AlbumEntity> albums = albumDao.findAll();
 //        for (AlbumEntity album : albums) {
 //            LocalizedTextDao textDao = new LocalizedTextDaoImpl();
 //            album.setNameEntity(textDao.findById(album.getNameEntity().getId()));
@@ -160,6 +153,6 @@ public class Main {
 //            album.setPhotoCategory(categoryDao.findById(album.getPhotoCategory().getId()));
 //            System.out.println(album);
 //        }
-    }
+//    }
 }
 

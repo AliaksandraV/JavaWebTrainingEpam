@@ -1,25 +1,26 @@
 package by.training.photographer.service;
 
 import by.training.photographer.entity.AlbumEntity;
+import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
 public interface AlbumService extends Service<Integer, AlbumEntity> {
 
     @Override
-    void create(AlbumEntity entity);
+    void create(AlbumEntity entity) throws PersistenceException;
 
     @Override
-    void update(AlbumEntity entity);
+    void update(AlbumEntity entity) throws PersistenceException;
 
     @Override
-    void delete(Integer id);
+    void delete(Integer id) throws PersistenceException;
 
     @Override
-    AlbumEntity findById(Integer id);
+    AlbumEntity findById(Integer id) throws PersistenceException;
 
     @Override
-    List<AlbumEntity> findAll();
+    List<AlbumEntity> findAll() throws PersistenceException;
 
-    List<AlbumEntity> findByCategory(Integer id);
+    List<AlbumEntity> findByCategory(Integer id) throws PersistenceException;
 }

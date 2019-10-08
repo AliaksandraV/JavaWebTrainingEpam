@@ -2,7 +2,9 @@ package by.training.photographer.dao;
 
 import by.training.photographer.entity.Entity;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> {
@@ -17,11 +19,5 @@ public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> 
         prop.put("useUnicode", "true");
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         return DriverManager.getConnection(url, prop);
-    }
-
-    // todo move to children classes
-    protected ResultSet createResultSet(final PreparedStatement statement, Integer id) throws SQLException {
-        statement.setInt(1, id);
-        return statement.executeQuery();
     }
 }

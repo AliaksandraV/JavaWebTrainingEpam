@@ -4,6 +4,7 @@ import by.training.photographer.action.Action;
 import by.training.photographer.action.AlbumsShowAction;
 import by.training.photographer.action.HomePageShowAction;
 import by.training.photographer.action.PortfolioShowAction;
+import by.training.photographer.exception.PersistenceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,24 +37,27 @@ public class DispatcherServlet extends HttpServlet {
         System.out.println("uri:" + uri);
 
         System.out.println(request.getParameter("id"));
-
-        switch (contextPath) {
-            case "/portfolio":
-                action = new PortfolioShowAction();
-                action.execute(request, response);
-                break;
-            case "/contact":
-                action = new AlbumsShowAction();
-                action.execute(request, response);
-                break;
-            case "/home":
-                action = new HomePageShowAction();
-                action.execute(request, response);
-                break;
-            case "/album":
-                action = new AlbumsShowAction();
-                action.execute(request, response);
-                break;
+        try {
+            switch (contextPath) {
+                case "/portfolio":
+                    action = new PortfolioShowAction();
+                    action.execute(request, response);
+                    break;
+                case "/contact":
+                    action = new AlbumsShowAction();
+                    action.execute(request, response);
+                    break;
+                case "/home":
+                    action = new HomePageShowAction();
+                    action.execute(request, response);
+                    break;
+                case "/album":
+                    action = new AlbumsShowAction();
+                    action.execute(request, response);
+                    break;
+            }
+        } catch (PersistenceException e) {
+            e.printStackTrace();
         }
     }
 

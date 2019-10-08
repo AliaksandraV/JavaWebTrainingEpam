@@ -1,6 +1,7 @@
 package by.training.photographer.action;
 
 import by.training.photographer.entity.PhotoCategoryEntity;
+import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.PhotoCategoryService;
 import by.training.photographer.service.PhotoCategoryServiceImpl;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class PortfolioShowAction implements Action {
     @Override
-    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException, PersistenceException {
         PhotoCategoryService service = new PhotoCategoryServiceImpl();
         List<PhotoCategoryEntity> categories = service.findAll();
 //        categories.get(0)

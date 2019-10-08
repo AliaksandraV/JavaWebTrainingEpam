@@ -1,11 +1,17 @@
 package by.training.photographer.dao;
 
 import by.training.photographer.entity.AlbumEntity;
+import by.training.photographer.entity.Entity;
 import by.training.photographer.entity.LocalizedTextEntity;
 import by.training.photographer.entity.PhotoCategoryEntity;
+import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,10 +19,10 @@ import java.util.List;
 public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements AlbumDao {
     private static Logger logger = Logger.getLogger(AlbumDaoImpl.class);
 
-    private static final String CREATE = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";
-    private static final String UPDATE = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
-    private static final String DELETE = "DELETE FROM `album` WHERE `id` = ?";
-    private static final String FIND_BY_ID = "SELECT a.id, " +
+    private static final String CREATE_QUERY = "INSERT INTO album (date, localized_name_id, localized_description_id, photo_category_id) VALUES (?, ?, ?, ?);";
+    private static final String UPDATE_QUERY = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
+    private static final String DELETE_QUERY = "DELETE FROM `album` WHERE `id` = ?";
+    private static final String FIND_BY_ID_QUERY = "SELECT a.id, " +
             "       a.date, " +
             "       a.localized_name_id, " +
             "       a.localized_description_id, " +
@@ -29,7 +35,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             "         LEFT JOIN localized_text lt2 " +
             "                   ON a.localized_description_id = lt2.id " +
             "WHERE a.id = ?";
-    private static final String FIND_ALL = "SELECT a.id, " +
+    private static final String FIND_ALL_QUERY = "SELECT a.id, " +
             "       a.date, " +
             "       a.localized_name_id, " +
             "       a.localized_description_id, " +
@@ -40,8 +46,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
             "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
             "ORDER BY id;";
-
-    private static final String FIND_BY_CATEGORY_ID = "" +
+    private static final String FIND_BY_CATEGORY_ID_QUERY = "" +
             "SELECT a.id, " +
             "       a.date, " +
             "       a.localized_name_id, " +
@@ -57,109 +62,129 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             "WHERE photo_category_id=?";
 
     @Override
-    public Integer create(final AlbumEntity album) {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE)) {
-            initFields(statement, album);
-            statement.executeUpdate();
+    public Integer create(final AlbumEntity album) throws PersistenceException {
+        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+             ResultSet resultSet = createAndGenerateId(statement, album)) {
+
+            return getGeneratedId(resultSet);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
+        }
+    }
+
+    private ResultSet createAndGenerateId(final PreparedStatement statement, final AlbumEntity album) throws SQLException {
+        setDateParameterToStatement(statement, 1, album.getDate());
+        setIdParameterToStatement(statement, 2, album.getNameEntity());
+        setIdParameterToStatement(statement, 3, album.getDescriptionEntity());
+        setIdParameterToStatement(statement, 4, album.getPhotoCategory());
+
+        statement.executeUpdate();
+
+        return statement.getGeneratedKeys();
+    }
+
+    private void setDateParameterToStatement(PreparedStatement statement, int index, Calendar date) throws SQLException {
+        if (date != null) {
+            statement.setDate(index, new Date(date.getTime().getTime()));
+        } else {
+            statement.setNull(index, Types.DATE);
+        }
+    }
+
+    private void setIdParameterToStatement(final PreparedStatement statement, final int index, final Entity entity) throws SQLException {
+        if (entity != null) {
+            statement.setInt(index, entity.getId());
+        } else {
+            statement.setNull(index, Types.INTEGER);
+        }
+    }
+
+    private Integer getGeneratedId(ResultSet resultSet) throws SQLException, PersistenceException {
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        } else {
+            logger.error("There is no auto incremented index after trying to add record into table `album`");
+            throw new PersistenceException();
         }
     }
 
     @Override
-    public void update(final AlbumEntity album) {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE)) {
-            initFields(statement, album);
+    public void update(final AlbumEntity album) throws PersistenceException {
+        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+            setDateParameterToStatement(statement, 1, album.getDate());
+            setIdParameterToStatement(statement, 2, album.getNameEntity());
+            setIdParameterToStatement(statement, 3, album.getDescriptionEntity());
+            setIdParameterToStatement(statement, 4, album.getPhotoCategory());
             statement.setInt(5, album.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
         }
     }
 
     @Override
-    public void delete(final Integer id) {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE)) {
+    public void delete(final Integer id) throws PersistenceException {
+        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
         }
     }
 
     @Override
-    public AlbumEntity findById(final Integer id) {
-        AlbumEntity album = new AlbumEntity();
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID);
-             ResultSet resultSet = createResultSet(statement, id)) {
-            if (resultSet.next()) {
-                createAlbum(resultSet, album);
-            }
+    public AlbumEntity findById(final Integer id) throws PersistenceException {
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+             ResultSet resultSet = findById(statement, id)) {
+
+            return resultSet.next() ? createAlbumEntity(resultSet) : null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
         }
-        return album;
+    }
+
+    private ResultSet findById(final PreparedStatement statement, Integer id) throws SQLException {
+        statement.setInt(1, id);
+        return statement.executeQuery();
     }
 
     @Override
-    public List<AlbumEntity> findAll() {
+    public List<AlbumEntity> findAll() throws PersistenceException {
         List<AlbumEntity> albums = new ArrayList<>();
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL);
+
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
+
             while (resultSet.next()) {
-                AlbumEntity album = new AlbumEntity();
-                albums.add(createAlbum(resultSet, album));
+                albums.add(createAlbumEntity(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
         }
+
         return albums;
     }
 
     @Override
-    public List<AlbumEntity> findByCategory(final Integer id) {
+    public List<AlbumEntity> findByCategory(final Integer id) throws PersistenceException {
         List<AlbumEntity> albums = new ArrayList<>();
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_CATEGORY_ID);
-             ResultSet resultSet = createResultSet(statement, id)) {
+
+        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_CATEGORY_ID_QUERY);
+             ResultSet resultSet = findById(statement, id)) {
+
             while (resultSet.next()) {
-                AlbumEntity album = new AlbumEntity();
-                albums.add(createAlbum(resultSet, album));
+                albums.add(createAlbumEntity(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PersistenceException(e);
         }
+
         return albums;
     }
 
-    private void initFields(final PreparedStatement statement, final AlbumEntity album) throws SQLException {
-        if (album.getDate() != null) {
-            statement.setDate(1, new Date(album.getDate().getTime().getTime()));
-        } else {
-            statement.setNull(1, Types.DATE);
-        }
 
-        if (album.getNameEntity() != null) {
-            statement.setInt(2, album.getNameEntity().getId());
-        } else {
-            statement.setNull(2, Types.INTEGER);
-        }
-
-        if (album.getDescriptionEntity() != null) {
-            statement.setInt(3, album.getDescriptionEntity().getId());
-        } else {
-            statement.setNull(3, Types.INTEGER);
-
-        }
-
-        if (album.getPhotoCategory() != null) {
-            statement.setInt(4, album.getPhotoCategory().getId());
-        } else {
-            statement.setNull(4, Types.INTEGER);
-        }
-
-    }
-
-    private AlbumEntity createAlbum(final ResultSet resultSet, final AlbumEntity album) throws SQLException {
+    private AlbumEntity createAlbumEntity(final ResultSet resultSet) throws SQLException {
+        AlbumEntity album = new AlbumEntity();
 
         album.setId(resultSet.getInt("id"));
 
