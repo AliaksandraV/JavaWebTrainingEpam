@@ -3,6 +3,7 @@ package by.training.photographer.controller;
 import by.training.photographer.action.Action;
 import by.training.photographer.action.AlbumsShowAction;
 import by.training.photographer.action.HomePageShowAction;
+import by.training.photographer.action.LoginAction;
 import by.training.photographer.action.PortfolioShowAction;
 import by.training.photographer.exception.PersistenceException;
 
@@ -45,6 +46,10 @@ public class DispatcherServlet extends HttpServlet {
                     break;
                 case "/album":
                     action = new AlbumsShowAction();
+                    action.execute(request, response);
+                    break;
+                case "/login":
+                    action = new LoginAction();
                     action.execute(request, response);
                     break;
             }

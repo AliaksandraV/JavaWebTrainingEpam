@@ -25,15 +25,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 <hr>
-
-<%--<c:forEach items="${categories}" var="category">--%>
-<%--   <h2> ${category.coverImagePath}</h2>--%>
-<%--    <h2>${category.localizedName.russian}</h2>--%>
-<%--</c:forEach>--%>
-
 <div class="container-fluid aos-init aos-animate" data-aos-delay="500">
     <div class="swiper-container images-carousel swiper-container-horizontal swiper-container-free-mode">
         <div class="swiper-wrapper" style="transform: translate3d(-2425px, 0px, 0px); transition-duration: 0ms;">
@@ -48,12 +41,6 @@
                     </div>
                 </div>
             </c:forEach>
-
-
-
-
-
-
         </div>
 
         <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
