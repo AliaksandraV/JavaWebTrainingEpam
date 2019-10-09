@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PhotoServiceImpl implements PhotoService {
 
-    private PhotoDao dao = new PhotoDaoImpl();
+    private PhotoDao dao = new PhotoDaoImpl(null);
 
     @Override
     public void create(final PhotoEntity entity) throws PersistenceException {

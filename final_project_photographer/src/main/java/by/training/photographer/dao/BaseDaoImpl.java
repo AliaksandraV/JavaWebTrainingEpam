@@ -9,6 +9,12 @@ import java.util.Properties;
 
 public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> {
 
+    private final Connection connection;
+
+    protected BaseDaoImpl(final Connection connection) {
+        this.connection = connection;
+    }
+
     public Connection initConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/photographer";
         Properties prop = new Properties();
@@ -19,5 +25,9 @@ public abstract class BaseDaoImpl<K, T extends Entity> implements BaseDao<K, T> 
         prop.put("useUnicode", "true");
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         return DriverManager.getConnection(url, prop);
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }

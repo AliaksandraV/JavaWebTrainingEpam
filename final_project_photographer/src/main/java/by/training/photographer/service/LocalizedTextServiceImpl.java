@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LocalizedTextServiceImpl implements LocalizedTextService {
 
-    private LocalizedTextDao dao = new LocalizedTextDaoImpl();
+    private LocalizedTextDao dao = new LocalizedTextDaoImpl(null);
 
     @Override
     public void create(final LocalizedTextEntity entity) throws PersistenceException {

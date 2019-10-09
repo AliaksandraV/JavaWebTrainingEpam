@@ -4,6 +4,7 @@ import by.training.photographer.entity.LocalizedTextEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,10 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
     private static final String DELETE_QUERY = "DELETE FROM localized_text WHERE id = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT id, russian FROM localized_text WHERE id= ?";
     private static final String FIND_ALL_QUERY = "SELECT id, russian FROM localized_text ORDER BY id";
+
+    public LocalizedTextDaoImpl(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public Integer create(final LocalizedTextEntity text) throws PersistenceException {

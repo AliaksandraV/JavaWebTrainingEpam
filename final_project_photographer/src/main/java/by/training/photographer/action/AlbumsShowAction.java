@@ -5,7 +5,6 @@ import by.training.photographer.entity.AlbumEntity;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.AlbumService;
 import by.training.photographer.service.AlbumServiceImpl;
-import by.training.photographer.tag.AlbumList;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ public class AlbumsShowAction implements Action {
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, PersistenceException, ServletException {
 
-        AlbumService service = new AlbumServiceImpl(new AlbumDaoImpl());
+        AlbumService service = new AlbumServiceImpl(new AlbumDaoImpl(null));
         List<AlbumEntity> albums = service.findByCategory(
             Integer.parseInt(request.getParameter("id")));
 //пример использования тэгов

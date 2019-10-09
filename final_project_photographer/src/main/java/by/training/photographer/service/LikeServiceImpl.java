@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LikeServiceImpl implements LikeService {
 
-    private LikeDao dao = new LikeDaoImpl();
+    private LikeDao dao = new LikeDaoImpl(null);
 
     @Override
     public void create(final LikeEntity entity) throws PersistenceException {

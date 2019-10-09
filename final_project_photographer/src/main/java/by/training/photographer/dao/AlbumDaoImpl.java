@@ -7,6 +7,7 @@ import by.training.photographer.entity.PhotoCategoryEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,6 +61,10 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             "         LEFT JOIN localized_text lt2 " +
             "                   ON a.localized_description_id = lt2.id " +
             "WHERE photo_category_id=?";
+
+    public AlbumDaoImpl(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public Integer create(final AlbumEntity album) throws PersistenceException {

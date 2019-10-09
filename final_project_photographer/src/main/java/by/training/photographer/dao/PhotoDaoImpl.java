@@ -5,6 +5,7 @@ import by.training.photographer.entity.PhotoEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,10 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
     private static final String DELETE_QUERY = "DELETE FROM photo WHERE id = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT id, path, album_id FROM photo WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT id, path, album_id FROM photo ORDER BY id";
+
+    public PhotoDaoImpl(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public Integer create(final PhotoEntity photo) throws PersistenceException {

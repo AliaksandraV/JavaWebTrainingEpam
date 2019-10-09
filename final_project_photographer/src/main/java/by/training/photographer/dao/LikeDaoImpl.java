@@ -6,6 +6,7 @@ import by.training.photographer.entity.UserEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,10 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
     private static final String DELETE_QUERY = "DELETE FROM `like` WHERE id = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT id, user_id, photo_id FROM `like` WHERE id= ?";
     private static final String FIND_ALL_QUERY = "SELECT id, user_id, photo_id FROM `like` ORDER BY id";
+
+    public LikeDaoImpl(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public Integer create(final LikeEntity like) throws PersistenceException {
