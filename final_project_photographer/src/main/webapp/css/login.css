@@ -1,0 +1,25 @@
+.form form {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+div.login-form {
+    color: #D3D3D3;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background: rgba(0, 0, 0, 0.8);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 0.25rem;
+}
+
+.btn {
+    width: 30%;
+    min-width: 82px;
+}

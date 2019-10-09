@@ -21,7 +21,7 @@
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
-<div class="container fixed-bottom">
+<div class="container fixed-bottom" style="margin-left: 20px">
 <div class="row">
     <div class="position-sticky fixed-bottom">
         <h2 class="element-heading-title">

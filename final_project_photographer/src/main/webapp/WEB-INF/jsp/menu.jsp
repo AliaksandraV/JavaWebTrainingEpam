@@ -7,15 +7,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#submitLogin').click(function(){
-                var dataBack = ('#loginModal #inputEmail').val().trim();
-                $('#result').html(dataBack);
+    <%--    <script>--%>
+    <%--        $(document).ready(function () {--%>
+    <%--            $('#submitLogin').click(function(){--%>
+    <%--                var dataBack = ('#loginModal #inputEmail').val().trim();--%>
+    <%--                $('#result').html(dataBack);--%>
 
-            });
-        });
-    </script>
+    <%--            });--%>
+    <%--        });--%>
+    <%--    </script>--%>
 </head>
 <body class="home">
 <header>
@@ -31,8 +31,7 @@
             <ul class="nav justify-content-center nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-home-tab" href="home"
-                       role="tab" aria-controls="pills-home"
-                       aria-selected="true">Главная</a>
+                       role="tab" aria-controls="pills-home" aria-selected="true">Главная</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-profile-tab" href="portfolio"
@@ -40,14 +39,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" href="contact"
-                       role="tab"
-                       aria-controls="pills-contact"
-                       aria-selected="false">Контакты</a>
+                       role="tab" aria-controls="pills-contact" aria-selected="false">Контакты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#loginModal" id="pills-login-tab" href="#"
-                       role="tab" aria-controls="pills-login"
-                       aria-selected="false">Вход</a>
+                       role="tab" aria-controls="pills-login" aria-selected="false">Вход</a>
                 </li>
             </ul>
         </div>
@@ -57,15 +53,19 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Вход</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header text-center">
+
+                        <h5 class="modal-title w-100" id="modalLabel">Вход</h5>
+
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form>
+                    <form action="${pageContext.request.contextPath}/login" method="post">
                         <div class="form-group">
                             <label for="inputEmail">
                                 Email address
