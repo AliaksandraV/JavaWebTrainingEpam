@@ -17,13 +17,18 @@ public class UserEntity extends Entity {
 
     }
 
-    public UserEntity(final int id, final String email, final String password, final String name, final String phoneNumber, final int role) {
+    public UserEntity(final String email, final String password, final String name, final String phoneNumber, final int role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.role = role;
+    }
+
+    public UserEntity(final int id, final String email, final String password, final String name, final String phoneNumber, final int role) {
+        this(email, password, name, phoneNumber, role);
+        this.id = id;
     }
 
     public String getEmail() {

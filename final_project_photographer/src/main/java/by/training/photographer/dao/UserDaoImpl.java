@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     @Override
     public Integer create(final UserEntity user) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, user)) {
 
             return getGeneratedId(resultSet);
@@ -58,7 +59,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     @Override
     public void update(final UserEntity user) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getName());
@@ -73,7 +74,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -83,7 +84,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     @Override
     public UserEntity findById(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createUserEntity(resultSet) : null;
@@ -101,7 +102,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
     public List<UserEntity> findAll() throws PersistenceException {
         List<UserEntity> users = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
