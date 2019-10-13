@@ -1,5 +1,6 @@
 package by.training.photographer.service;
 
+import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.LikeDao;
 import by.training.photographer.dao.LikeDaoImpl;
 import by.training.photographer.entity.LikeEntity;
@@ -7,13 +8,18 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public class LikeServiceImpl implements LikeService {
+public class LikeServiceImpl extends BaseServiceImpl<Integer, LikeEntity> implements LikeService {
 
     private LikeDao dao = new LikeDaoImpl(null);
 
+    protected LikeServiceImpl(DaoFactory daoFactory) {
+        super(daoFactory);
+    }
+
     @Override
-    public void create(final LikeEntity entity) throws PersistenceException {
+    public Integer create(final LikeEntity entity) throws PersistenceException {
         dao.create(entity);
+        return null;
     }
 
     @Override

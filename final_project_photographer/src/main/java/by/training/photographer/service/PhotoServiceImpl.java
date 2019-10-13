@@ -1,5 +1,6 @@
 package by.training.photographer.service;
 
+import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.PhotoDao;
 import by.training.photographer.dao.PhotoDaoImpl;
 import by.training.photographer.entity.PhotoEntity;
@@ -7,13 +8,18 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public class PhotoServiceImpl implements PhotoService {
+public class PhotoServiceImpl extends BaseServiceImpl<Integer, PhotoEntity> implements PhotoService {
 
     private PhotoDao dao = new PhotoDaoImpl(null);
 
+    protected PhotoServiceImpl(DaoFactory daoFactory) {
+        super(daoFactory);
+    }
+
     @Override
-    public void create(final PhotoEntity entity) throws PersistenceException {
+    public Integer create(final PhotoEntity entity) throws PersistenceException {
         dao.create(entity);
+        return null;
     }
 
     @Override

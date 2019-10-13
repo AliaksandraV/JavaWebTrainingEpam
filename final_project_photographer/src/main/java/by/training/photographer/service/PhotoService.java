@@ -5,10 +5,10 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public interface PhotoService extends Service<Integer, PhotoEntity> {
+public interface PhotoService extends BaseService<Integer, PhotoEntity> {
 
     @Override
-    void create(PhotoEntity entity) throws PersistenceException;
+    Integer create(PhotoEntity entity) throws PersistenceException;
 
     @Override
     void update(PhotoEntity entity) throws PersistenceException;

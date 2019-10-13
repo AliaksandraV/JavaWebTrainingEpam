@@ -5,10 +5,10 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public interface LikeService extends Service<Integer, LikeEntity> {
+public interface LikeService extends BaseService<Integer, LikeEntity> {
 
     @Override
-    void create(LikeEntity entity) throws PersistenceException;
+    Integer create(LikeEntity entity) throws PersistenceException;
 
     @Override
     void update(LikeEntity entity) throws PersistenceException;

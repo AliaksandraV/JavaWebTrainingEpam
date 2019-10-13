@@ -1,5 +1,6 @@
 package by.training.photographer.service;
 
+import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.LocalizedTextDao;
 import by.training.photographer.dao.LocalizedTextDaoImpl;
 import by.training.photographer.dao.PhotoCategoryDao;
@@ -10,13 +11,18 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public class PhotoCategoryServiceImpl implements PhotoCategoryService {
+public class PhotoCategoryServiceImpl extends BaseServiceImpl<Integer, PhotoCategoryEntity> implements PhotoCategoryService {
 
     private PhotoCategoryDao dao = new PhotoCategoryDaoImpl(null);
 
+    public PhotoCategoryServiceImpl(DaoFactory daoFactory) {
+        super(daoFactory);
+    }
+
     @Override
-    public void create(final PhotoCategoryEntity entity) throws PersistenceException {
+    public Integer create(final PhotoCategoryEntity entity) throws PersistenceException {
         dao.create(entity);
+        return null;
     }
 
     @Override

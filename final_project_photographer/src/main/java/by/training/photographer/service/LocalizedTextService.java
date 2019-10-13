@@ -5,10 +5,10 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public interface LocalizedTextService extends Service<Integer, LocalizedTextEntity> {
+public interface LocalizedTextService extends BaseService<Integer, LocalizedTextEntity> {
 
     @Override
-    void create(LocalizedTextEntity entity) throws PersistenceException;
+    Integer create(LocalizedTextEntity entity) throws PersistenceException;
 
     @Override
     void update(LocalizedTextEntity entity) throws PersistenceException;

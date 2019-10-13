@@ -1,5 +1,6 @@
 package by.training.photographer.action;
 
+import by.training.photographer.dao.DaoFactoryImpl;
 import by.training.photographer.entity.PhotoCategoryEntity;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.PhotoCategoryService;
@@ -14,7 +15,7 @@ import java.util.List;
 public class PortfolioShowAction implements Action {
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException, PersistenceException {
-        PhotoCategoryService service = new PhotoCategoryServiceImpl();
+        PhotoCategoryService service = new PhotoCategoryServiceImpl(new DaoFactoryImpl());
         List<PhotoCategoryEntity> categories;
         categories = service.findAll();
         request.setAttribute("categories", categories);

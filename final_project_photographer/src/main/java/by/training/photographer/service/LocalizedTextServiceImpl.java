@@ -1,5 +1,6 @@
 package by.training.photographer.service;
 
+import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.LocalizedTextDao;
 import by.training.photographer.dao.LocalizedTextDaoImpl;
 import by.training.photographer.entity.LocalizedTextEntity;
@@ -7,13 +8,18 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public class LocalizedTextServiceImpl implements LocalizedTextService {
+public class LocalizedTextServiceImpl extends BaseServiceImpl<Integer, LocalizedTextEntity> implements LocalizedTextService {
 
     private LocalizedTextDao dao = new LocalizedTextDaoImpl(null);
 
+    protected LocalizedTextServiceImpl(DaoFactory daoFactory) {
+        super(daoFactory);
+    }
+
     @Override
-    public void create(final LocalizedTextEntity entity) throws PersistenceException {
+    public Integer create(final LocalizedTextEntity entity) throws PersistenceException {
         dao.create(entity);
+        return null;
     }
 
     @Override

@@ -6,17 +6,19 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public class AlbumServiceImpl implements AlbumService {
+public class AlbumServiceImpl extends BaseServiceImpl<Integer, AlbumEntity> implements AlbumService {
 
     private final AlbumDao dao;
 
     public AlbumServiceImpl(final AlbumDao dao) {
+        super(null);
         this.dao = dao;
     }
 
     @Override
-    public void create(final AlbumEntity entity) throws PersistenceException {
+    public Integer create(final AlbumEntity entity) throws PersistenceException {
         dao.create(entity);
+        return null;
     }
 
     @Override

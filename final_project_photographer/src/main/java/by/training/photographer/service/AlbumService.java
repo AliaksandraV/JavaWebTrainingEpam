@@ -5,10 +5,10 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public interface AlbumService extends Service<Integer, AlbumEntity> {
+public interface AlbumService extends BaseService<Integer, AlbumEntity> {
 
     @Override
-    void create(AlbumEntity entity) throws PersistenceException;
+    Integer create(AlbumEntity entity) throws PersistenceException;
 
     @Override
     void update(AlbumEntity entity) throws PersistenceException;
