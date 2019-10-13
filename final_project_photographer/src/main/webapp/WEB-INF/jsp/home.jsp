@@ -4,7 +4,12 @@
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="ctgmy" tagdir="/WEB-INF/tags" %>
 
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.messages" var="lang"/>
+
+<html lang="${language}">
 <head>
     <title>Home</title>
     <!-- Required meta tag -->
@@ -25,8 +30,8 @@
 <div class="row">
     <div class="position-sticky fixed-bottom">
         <h2 class="element-heading-title">
-            “Запечатляй моменты<br>
-            своей жизни!”
+            <fmt:message key="home_text_1" bundle="${lang}"/><br>
+            <fmt:message key="home_text_2" bundle="${lang}"/><br>
         </h2>
     </div>
 </div>

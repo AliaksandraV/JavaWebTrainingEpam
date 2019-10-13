@@ -1,13 +1,7 @@
-package by.training.composite.service.action;
-
-import by.training.composite.service.LanguageManager;
-import by.training.composite.controller.MenuChoiceException;
+package by.training.photographer.service.language;
 
 import java.util.Locale;
 
-/**
- * Change Language Service.
- */
 public class ChangeLanguageService {
     /**
      * english locale.
@@ -17,10 +11,6 @@ public class ChangeLanguageService {
      * russian locale.
      */
     private Locale ruLocale = new Locale("ru", "RU");
-    /**
-     * belorussian locale.
-     */
-    private Locale byLocale = new Locale("be", "BY");
     /**
      * one of choice.
      */
@@ -39,12 +29,8 @@ public class ChangeLanguageService {
         languageChoise = language;
     }
 
-    /**
-     * set application language.
-     *
-     * @throws MenuChoiceException if no case
-     */
-    public void setLanguage() throws MenuChoiceException {
+
+    public void setLanguage() throws Exception {
         switch (languageChoise) {
             case 1:
                 setRUlanguage();
@@ -53,7 +39,7 @@ public class ChangeLanguageService {
                 setENlanguage();
                 break;
             default:
-                throw new MenuChoiceException();
+                throw new Exception();
         }
     }
 
@@ -71,4 +57,6 @@ public class ChangeLanguageService {
         LanguageManager.INSTANCE.changeResource(ruLocale);
 
     }
+
+
 }

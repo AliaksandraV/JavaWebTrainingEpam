@@ -18,11 +18,13 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("DispatcherServlet GET");
         process(req, resp);
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("DispatcherServlet POST");
         process(req, resp);
     }
 

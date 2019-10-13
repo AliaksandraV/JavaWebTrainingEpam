@@ -1,21 +1,26 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.messages" var="lang"/>
+<html lang="${language}">
 <head>
     <title>menu</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/menu.css"/>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <%--    <script>--%>
-    <%--        $(document).ready(function () {--%>
-    <%--            $('#submitLogin').click(function(){--%>
-    <%--                var dataBack = ('#loginModal #inputEmail').val().trim();--%>
-    <%--                $('#result').html(dataBack);--%>
+    <script>
+        $(document).ready(function () {
+            $('#submitLogin').click(function(){
+                var dataBack = ('#loginModal #inputEmail').val().trim();
+                $('#result').html(dataBack);
 
-    <%--            });--%>
-    <%--        });--%>
-    <%--    </script>--%>
+            });
+        });
+    </script>
 </head>
 <body class="home">
 <header>
@@ -31,21 +36,33 @@
             <ul class="nav justify-content-center nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-home-tab" href="home"
-                       role="tab" aria-controls="pills-home" aria-selected="true">Главная</a>
+                       role="tab" aria-controls="pills-home"
+                       aria-selected="true"><fmt:message key="menu_home" bundle="${lang}"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-profile-tab" href="portfolio"
-                       role="tab" aria-controls="pills-profile" aria-selected="false">Портфолио</a>
+                       role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_portfolio" bundle="${lang}"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" href="contact"
-                       role="tab" aria-controls="pills-contact" aria-selected="false">Контакты</a>
+                       role="tab"
+                       aria-controls="pills-contact"
+                       aria-selected="false"><fmt:message key="menu_contact" bundle="${lang}"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#loginModal" id="pills-login-tab" href="#"
-                       role="tab" aria-controls="pills-login" aria-selected="false">Вход</a>
+                       role="tab" aria-controls="pills-login"
+                       aria-selected="false"><fmt:message key="menu_login" bundle="${lang}"/></a>
                 </li>
             </ul>
+        </div>
+        <div class="row">
+            <form>
+                <select id="language" name="language" onchange="submit()">
+                    <option value="ru" ${language == 'ru' ? 'selected' : ''} data-content='<span class="flag-icon flag-icon-us"></span> English'>Russian</option>
+                    <option value="en" ${language == 'en' ? 'selected' : ''} data-content='<span class="flag-icon flag-icon-ru"></span> Russian'></span>English</option>
+                </select>
+            </form>
         </div>
     </div>
 </header>
@@ -70,7 +87,7 @@
                             <label for="inputEmail">
                                 Email address
                             </label>
-                            <input class="form-control" id="inputEmail" type="email"
+                            <input class="form-control" id="inputEmail" name="email" type="email"
                                    aria-describedby="emailHelp" placeholder="Email">
                             <small id="emailHelp" class="form-text text-muted">
                                 Enter your email
@@ -80,7 +97,7 @@
                             <label for="inputPass">
                                 Password
                             </label>
-                            <input class="form-control" id="inputPass" type="password"
+                            <input class="form-control" id="inputPass" name="password" type="password"
                                    placeholder="Password">
                             <small id="passHelp" class="form-text text-muted">
                                 Password must contain 10 symbols
@@ -100,6 +117,9 @@
                                 Close
                             </button>
                         </div>
+                        <hr>
+                        <h5>text</h5>
+                        <span class="error">${error}</span>
                     </form>
                 </div>
             </div>
