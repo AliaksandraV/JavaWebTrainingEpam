@@ -7,11 +7,7 @@ import java.sql.SQLException;
 
 public class Transaction {
 
-    private final Connection connection;
-
-    public Transaction() {
-        connection = DataSource.getConnection();
-    }
+    private Connection connection;
 
     public <R> R commitWithResult(final CallbackWithResult<R> callback) throws PersistenceException {
         try {
@@ -39,7 +35,10 @@ public class Transaction {
         });
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() throws PersistenceException {
+        if (connection == null) {
+            connection = DataSource.getConnection();
+        }
         return connection;
     }
 

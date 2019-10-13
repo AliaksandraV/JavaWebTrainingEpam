@@ -1,4 +1,4 @@
-package by.training.photographer.dao;
+package by.training.photographer.dao.connection;
 
 import org.apache.log4j.Logger;
 
@@ -9,47 +9,41 @@ import java.util.Properties;
 
 public class PropertiesReader {
     /**
-     * logger initialisation.
+     * Logger initialisation.
      */
     private static final Logger LOG = Logger.getLogger(PropertiesReader.class);
 
     /**
-     * propertiesFile name of property File
+     * Source property file name.
      */
     private String propertiesFile;
 
     /**
-     * constructor.
+     * Constructor.
      */
-//    private PropertiesReader() {
-//    }
-
-    public PropertiesReader(final String newPropertiesFile){
+    public PropertiesReader(final String newPropertiesFile) {
         propertiesFile = newPropertiesFile;
     }
 
     /**
-     * configurations properties.
+     * Take the property value by a key.
      *
-
-     * @param key           value From Properties File
-     * @return properties
+     * @param key - property name
+     * @return property value
      */
     public String takeProperty(final String key) {
         ClassLoader classLoader = PropertiesReader.class.getClassLoader();
         Properties property = new Properties();
-        try (InputStream input = classLoader
-                .getResourceAsStream(propertiesFile)) {
+
+        try (InputStream input = classLoader.getResourceAsStream(propertiesFile)) {
             if (input == null) {
-                throw new FileNotFoundException(
-                        "Невозможно найти файл config.properties");
+                throw new FileNotFoundException("Невозможно найти файл " + propertiesFile);
             }
-
             property.load(input);
-
         } catch (IOException ex) {
-            LOG.error("Ошибка чтения файла config.properties.");
+            LOG.error("Ошибка чтения файла " + propertiesFile);
         }
+
         return property.getProperty(key);
     }
 }

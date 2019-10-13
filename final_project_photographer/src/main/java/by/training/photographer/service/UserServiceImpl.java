@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         Transaction transaction = new Transaction();
         UserDao dao = daoFactory.getUserDao(transaction.getConnection());
 
-        transaction.commitWithResult(() -> dao.create(entity));
+        Integer id = transaction.commitWithResult(() -> dao.create(entity));
         // todo return id in the end
     }
 

@@ -1,6 +1,12 @@
 package by.training.photographer.controller;
 
 import by.training.photographer.action.Action;
+import by.training.photographer.action.AlbumsShowAction;
+import by.training.photographer.action.HomePageShowAction;
+import by.training.photographer.action.LoginAction;
+import by.training.photographer.action.PortfolioShowAction;
+import by.training.photographer.dao.connection.DataSource;
+import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -12,6 +18,16 @@ import java.io.IOException;
 public class DispatcherServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(DispatcherServlet.class);
     private ActionFactory actionFactory = new ActionFactoryImpl();
+
+    @Override
+    public void init() {
+        try {
+            DataSource.init();
+        } catch (PersistenceException e) {
+            logger.error("It is impossible to initialize application", e);
+            destroy();
+        }
+    }
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
