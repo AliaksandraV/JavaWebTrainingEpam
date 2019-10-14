@@ -11,14 +11,21 @@ public class UserEntity extends Entity {
     private int role;
 
     /**
-     * default constructor
+     * default constructor.
      */
     public UserEntity(){
 
     }
 
-    public UserEntity(final String email, final String password, final String name, final String phoneNumber, final int role) {
-        this.id = id;
+    public UserEntity(final int id) {
+        super(id);
+    }
+
+    public UserEntity(final String email,
+                      final String password,
+                      final String name,
+                      final String phoneNumber,
+                      final int role) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -26,9 +33,18 @@ public class UserEntity extends Entity {
         this.role = role;
     }
 
-    public UserEntity(final int id, final String email, final String password, final String name, final String phoneNumber, final int role) {
-        this(email, password, name, phoneNumber, role);
-        this.id = id;
+    public UserEntity(final int id,
+                      final String email,
+                      final String password,
+                      final String name,
+                      final String phoneNumber,
+                      final int role) {
+        super(id);
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
     }
 
     public String getEmail() {

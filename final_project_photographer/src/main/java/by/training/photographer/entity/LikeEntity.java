@@ -12,6 +12,23 @@ public class LikeEntity extends Entity {
     public LikeEntity() {
     }
 
+    public LikeEntity(final int id) {
+        super(id);
+    }
+
+    public LikeEntity(final UserEntity userEntity, final PhotoEntity photoEntity) {
+        this.userEntity = userEntity;
+        this.photoEntity = photoEntity;
+    }
+
+    public LikeEntity(final int id,
+                      final UserEntity userEntity,
+                      final PhotoEntity photoEntity) {
+        super(id);
+        this.userEntity = userEntity;
+        this.photoEntity = photoEntity;
+    }
+
     public UserEntity getUserEntity() {
         return userEntity;
     }

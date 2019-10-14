@@ -15,8 +15,6 @@ import static org.testng.Assert.assertTrue;
 
 public class UserDaoImplTest extends BaseDaoImplTest {
 
-    private UserDao userDao;
-
     private static final String EMAIL = "email";
     private static final String NAME = "name";
     private static final String PASSWORD = "password";
@@ -25,6 +23,8 @@ public class UserDaoImplTest extends BaseDaoImplTest {
     private static final int ID = 1;
     private static final UserEntity NEW_USER_ENTITY = new UserEntity(EMAIL, PASSWORD, NAME, PHONE, ROLE);
     private static final UserEntity SAVED_USER_ENTITY = new UserEntity(ID, EMAIL, PASSWORD, NAME, PHONE, ROLE);
+
+    private UserDao userDao;
 
     @BeforeClass
     public void initClass() {
@@ -47,7 +47,7 @@ public class UserDaoImplTest extends BaseDaoImplTest {
     public void testUpdate() throws PersistenceException {
         // init
         executeScript("INSERT INTO user (email, password, name, phone_number, role) VALUES ('"
-                + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+            + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         String updatedName = "new name";
         UserEntity updatedUserEntity = new UserEntity(ID, EMAIL, PASSWORD, updatedName, PHONE, ROLE);
@@ -63,7 +63,7 @@ public class UserDaoImplTest extends BaseDaoImplTest {
     public void testDelete() throws PersistenceException {
         // init
         executeScript("INSERT INTO user (email, password, name, phone_number, role) VALUES ('"
-                + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+            + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
         assertFalse(userDao.findAll().isEmpty());
 
         // when
@@ -78,7 +78,7 @@ public class UserDaoImplTest extends BaseDaoImplTest {
         // init
         assertNull(userDao.findById(ID));
         executeScript("INSERT INTO user (email, password, name, phone_number, role) VALUES ('"
-                + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+            + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         // when
         UserEntity result = userDao.findById(ID);
@@ -91,7 +91,7 @@ public class UserDaoImplTest extends BaseDaoImplTest {
     public void testFindAll() throws PersistenceException {
         // init
         executeScript("INSERT INTO user (email, password, name, phone_number, role) VALUES ('"
-                + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+            + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         // when
         List<UserEntity> result = userDao.findAll();

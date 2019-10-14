@@ -14,6 +14,13 @@ public abstract class Entity {
      */
     protected int id;
 
+    public Entity() {
+    }
+
+    public Entity(final int id) {
+        this.id = id;
+    }
+
     /**
      * Return id.
      *

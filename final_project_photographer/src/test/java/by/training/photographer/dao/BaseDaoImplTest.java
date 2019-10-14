@@ -33,17 +33,17 @@ public abstract class BaseDaoImplTest {
     @BeforeSuite
     public void init() throws SQLException {
         MysqldConfig config = aMysqldConfig(v8_0_11)
-                .withPort(PORT)
-                .withCharset(UTF8)
-                .withUser(USERNAME, PASSWORD)
-                .build();
+            .withPort(PORT)
+            .withCharset(UTF8)
+            .withUser(USERNAME, PASSWORD)
+            .build();
 
         database = anEmbeddedMysql(config)
-                .addSchema(DATABASE_NAME, SQL_SCRIPT_SOURCES)
-                .start();
+            .addSchema(DATABASE_NAME, SQL_SCRIPT_SOURCES)
+            .start();
 
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:" + PORT + "/" + DATABASE_NAME, USERNAME, PASSWORD);
+            "jdbc:mysql://localhost:" + PORT + "/" + DATABASE_NAME, USERNAME, PASSWORD);
     }
 
     @BeforeMethod

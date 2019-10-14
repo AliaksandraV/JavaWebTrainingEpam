@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
 
     @Override
     public Integer create(final PhotoEntity photo) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, photo)) {
 
             return getGeneratedId(resultSet);
@@ -56,7 +57,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
 
     @Override
     public void update(final PhotoEntity photo) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, photo.getPath());
             statement.setInt(2, photo.getAlbumEntity().getId());
             statement.setInt(3, photo.getId());
@@ -68,7 +69,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -78,7 +79,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
 
     @Override
     public PhotoEntity findById(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createPhotoEntity(resultSet) : null;
@@ -96,7 +97,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
     public List<PhotoEntity> findAll() throws PersistenceException {
         List<PhotoEntity> photos = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {

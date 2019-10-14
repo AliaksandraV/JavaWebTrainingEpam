@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
 
     @Override
     public Integer create(final LocalizedTextEntity text) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, text)) {
 
             return getGeneratedId(resultSet);
@@ -59,7 +60,7 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
 
     @Override
     public void update(final LocalizedTextEntity text) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             if (text.getRussian() != null) {
                 statement.setString(1, text.getRussian());
             } else {
@@ -74,7 +75,7 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -84,8 +85,7 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
 
     @Override
     public LocalizedTextEntity findById(final Integer id) throws PersistenceException {
-
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createLocalizedTextEntity(resultSet) : null;
@@ -103,7 +103,7 @@ public class LocalizedTextDaoImpl extends BaseDaoImpl<Integer, LocalizedTextEnti
     public List<LocalizedTextEntity> findAll() throws PersistenceException {
         List<LocalizedTextEntity> texts = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {

@@ -36,6 +36,26 @@ public class AlbumEntity extends Entity {
     public AlbumEntity() {
     }
 
+    public AlbumEntity(final int id) {
+        super(id);
+    }
+
+    public AlbumEntity(final Calendar date, final LocalizedTextEntity nameEntity, final LocalizedTextEntity descriptionEntity, final PhotoCategoryEntity photoCategory, final List<PhotoEntity> photoList) {
+        this.date = date;
+        this.nameEntity = nameEntity;
+        this.descriptionEntity = descriptionEntity;
+        this.photoCategory = photoCategory;
+        this.photoList = photoList;
+    }
+
+    public AlbumEntity(final int id, final Calendar date, final LocalizedTextEntity nameEntity, final LocalizedTextEntity descriptionEntity, final PhotoCategoryEntity photoCategory, final List<PhotoEntity> photoList) {
+        super(id);
+        this.date = date;
+        this.nameEntity = nameEntity;
+        this.descriptionEntity = descriptionEntity;
+        this.photoCategory = photoCategory;
+        this.photoList = photoList;
+    }
     /**
      * Return data.
      *
@@ -129,20 +149,20 @@ public class AlbumEntity extends Entity {
     /**
      * Indicates whether some other object is "equal to" this one.
      *
-     * @param obj the reference object with which to compare.
+     * @param o the reference object with which to compare.
      * @return true if this object is the same as the obj argument; false otherwise.
      */
     @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        if (!super.equals(obj)) return false;
-        AlbumEntity that = (AlbumEntity) obj;
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AlbumEntity that = (AlbumEntity) o;
         return Objects.equals(date, that.date) &&
-                Objects.equals(nameEntity, that.nameEntity) &&
-                Objects.equals(descriptionEntity, that.descriptionEntity) &&
-                Objects.equals(photoCategory, that.photoCategory) &&
-                Objects.equals(photoList, that.photoList);
+            Objects.equals(nameEntity, that.nameEntity) &&
+            Objects.equals(descriptionEntity, that.descriptionEntity) &&
+            Objects.equals(photoCategory, that.photoCategory) &&
+            Objects.equals(photoList, that.photoList);
     }
 
     /**
@@ -163,19 +183,20 @@ public class AlbumEntity extends Entity {
     @Override
     public String toString() {
         return "AlbumEntity{" +
-                dataPrint()
-                + ", nameEntity=" + nameEntity +
-                ", descriptionEntity=" + descriptionEntity +
-                ", photoCategory=" + photoCategory +
-                ", photoList=" + photoList +
-                '}';
+            "id=" + id + ", "
+            + dataPrint()
+            + ", nameEntity=" + nameEntity +
+            ", descriptionEntity=" + descriptionEntity +
+            ", photoCategory=" + photoCategory +
+            ", photoList=" + photoList +
+            '}';
     }
 
-    private String dataPrint(){
-        if(date!=null){
+    private String dataPrint() {
+        if (date != null) {
             return "date=" + date.get(Calendar.DAY_OF_MONTH)
-                    + "." + date.get(Calendar.MONTH)
-                    + "." + date.get(Calendar.YEAR);
+                + "." + date.get(Calendar.MONTH)
+                + "." + date.get(Calendar.YEAR);
         } else {
             return "not indicated";
         }

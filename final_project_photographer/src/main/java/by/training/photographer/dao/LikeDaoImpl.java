@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,6 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
     private static Logger logger = Logger.getLogger(LikeDaoImpl.class);
 
     private static final String CREATE_QUERY = "INSERT INTO `like` (user_id, photo_id) VALUES (?, ?);";
-    private static final String UPDATE_QUERY = "UPDATE `like` SET user_id = ?, photo_id = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM `like` WHERE id = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT id, user_id, photo_id FROM `like` WHERE id= ?";
     private static final String FIND_ALL_QUERY = "SELECT id, user_id, photo_id FROM `like` ORDER BY id";
@@ -28,7 +28,7 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
 
     @Override
     public Integer create(final LikeEntity like) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, like)) {
 
             return getGeneratedId(resultSet);
@@ -56,20 +56,13 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
     }
 
     @Override
-    public void update(final LikeEntity like) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
-            statement.setInt(1, like.getUserEntity().getId());
-            statement.setInt(2, like.getPhotoEntity().getId());
-            statement.setInt(3, like.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new PersistenceException(e);
-        }
+    public void update(final LikeEntity like) {
+
     }
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -79,8 +72,7 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
 
     @Override
     public LikeEntity findById(final Integer id) throws PersistenceException {
-        LikeEntity like = new LikeEntity();
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createLikeEntity(resultSet) : null;
@@ -98,7 +90,7 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
     public List<LikeEntity> findAll() throws PersistenceException {
         List<LikeEntity> likes = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
 
     @Override
     public Integer create(final PhotoCategoryEntity photoCategory) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, photoCategory)) {
 
             return getGeneratedId(resultSet);
@@ -74,7 +75,7 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
 
     @Override
     public void update(final PhotoCategoryEntity category) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             setStringParameterToStatement(statement, 1, category.getCoverImagePath());
             setIdParameterToStatement(statement, 2, category.getLocalizedName());
             statement.setInt(3, category.getId());
@@ -86,7 +87,7 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -96,7 +97,7 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
 
     @Override
     public PhotoCategoryEntity findById(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createCategory(resultSet) : null;
@@ -114,7 +115,7 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
     public List<PhotoCategoryEntity> findAll() throws PersistenceException {
         List<PhotoCategoryEntity> categories = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {

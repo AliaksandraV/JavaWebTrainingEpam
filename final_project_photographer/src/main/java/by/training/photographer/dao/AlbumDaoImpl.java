@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,43 +25,43 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
     private static final String UPDATE_QUERY = "UPDATE `album` SET `date` = ?, `localized_name_id` = ?, `localized_description_id` = ?, `photo_category_id` = ? WHERE `id` = ?";
     private static final String DELETE_QUERY = "DELETE FROM `album` WHERE `id` = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT a.id, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian  as name, " +
-            "       lt2.russian as description " +
-            "FROM album a " +
-            "         LEFT JOIN localized_text lt " +
-            "                   ON a.localized_name_id = lt.id " +
-            "         LEFT JOIN localized_text lt2 " +
-            "                   ON a.localized_description_id = lt2.id " +
-            "WHERE a.id = ?";
+        "       a.date, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian  as name, " +
+        "       lt2.russian as description " +
+        "FROM album a " +
+        "         LEFT JOIN localized_text lt " +
+        "                   ON a.localized_name_id = lt.id " +
+        "         LEFT JOIN localized_text lt2 " +
+        "                   ON a.localized_description_id = lt2.id " +
+        "WHERE a.id = ?";
     private static final String FIND_ALL_QUERY = "SELECT a.id, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian AS name, " +
-            "       lt2.russian AS description " +
-            "FROM album a " +
-            "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
-            "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
-            "ORDER BY id;";
+        "       a.date, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian AS name, " +
+        "       lt2.russian AS description " +
+        "FROM album a " +
+        "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
+        "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
+        "ORDER BY id;";
     private static final String FIND_BY_CATEGORY_ID_QUERY = "" +
-            "SELECT a.id, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian  as name, " +
-            "       lt2.russian as description " +
-            "FROM album a " +
-            "         LEFT JOIN localized_text lt " +
-            "                   ON a.localized_name_id = lt.id " +
-            "         LEFT JOIN localized_text lt2 " +
-            "                   ON a.localized_description_id = lt2.id " +
-            "WHERE photo_category_id=?";
+        "SELECT a.id, " +
+        "       a.date, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian  as name, " +
+        "       lt2.russian as description " +
+        "FROM album a " +
+        "         LEFT JOIN localized_text lt " +
+        "                   ON a.localized_name_id = lt.id " +
+        "         LEFT JOIN localized_text lt2 " +
+        "                   ON a.localized_description_id = lt2.id " +
+        "WHERE photo_category_id=?";
 
     public AlbumDaoImpl(Connection connection) {
         super(connection);
@@ -68,7 +69,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
 
     @Override
     public Integer create(final AlbumEntity album) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(CREATE_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
              ResultSet resultSet = createAndGenerateId(statement, album)) {
 
             return getGeneratedId(resultSet);
@@ -115,7 +116,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
 
     @Override
     public void update(final AlbumEntity album) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(UPDATE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             setDateParameterToStatement(statement, 1, album.getDate());
             setIdParameterToStatement(statement, 2, album.getNameEntity());
             setIdParameterToStatement(statement, 3, album.getDescriptionEntity());
@@ -129,7 +130,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(DELETE_QUERY)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -139,7 +140,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
 
     @Override
     public AlbumEntity findById(final Integer id) throws PersistenceException {
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             return resultSet.next() ? createAlbumEntity(resultSet) : null;
@@ -157,7 +158,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
     public List<AlbumEntity> findAll() throws PersistenceException {
         List<AlbumEntity> albums = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_ALL_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_ALL_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
@@ -174,7 +175,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
     public List<AlbumEntity> findByCategory(final Integer id) throws PersistenceException {
         List<AlbumEntity> albums = new ArrayList<>();
 
-        try (PreparedStatement statement = initConnection().prepareStatement(FIND_BY_CATEGORY_ID_QUERY);
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_CATEGORY_ID_QUERY);
              ResultSet resultSet = findById(statement, id)) {
 
             while (resultSet.next()) {
@@ -199,7 +200,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             cal.setTime(myDate);
             album.setDate(cal);
         }
-
+        //TODO написать тест с учетом description.setRussian(descriptionStr);
         int nameId = resultSet.getInt("localized_name_id");
         String nameStr = resultSet.getString("name");
         if (!resultSet.wasNull()) {
@@ -208,7 +209,7 @@ public class AlbumDaoImpl extends BaseDaoImpl<Integer, AlbumEntity> implements A
             name.setRussian(nameStr);
             album.setNameEntity(name);
         }
-
+        //TODO написать тест с учетом description.setRussian(descriptionStr);
         int descriptionId = resultSet.getInt("localized_description_id");
         String descriptionStr = resultSet.getString("description");
         if (!resultSet.wasNull()) {
