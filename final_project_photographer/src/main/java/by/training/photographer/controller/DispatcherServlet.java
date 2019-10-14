@@ -1,11 +1,7 @@
 package by.training.photographer.controller;
 
 import by.training.photographer.action.Action;
-import by.training.photographer.action.AlbumsShowAction;
-import by.training.photographer.action.HomePageShowAction;
-import by.training.photographer.action.LoginAction;
-import by.training.photographer.action.PortfolioShowAction;
-import by.training.photographer.exception.PersistenceException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class DispatcherServlet extends HttpServlet {
-    private Action action;
+    private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+    private ActionFactory actionFactory = new ActionFactoryImpl();
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
@@ -29,41 +26,17 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         String contextPath = request.getServletPath();
-        System.out.println("contextPath:" + contextPath);
         String uri = request.getRequestURI();
-        System.out.println("uri:" + uri);
 
-        System.out.println(request.getParameter("id"));
         try {
-            switch (contextPath) {
-                case "/portfolio":
-                    action = new PortfolioShowAction();
-                    action.execute(request, response);
-                    break;
-                case "/home":
-                    action = new HomePageShowAction();
-                    action.execute(request, response);
-                    break;
-                case "/album":
-                    action = new AlbumsShowAction();
-                    action.execute(request, response);
-                    break;
-                case "/login":
-                    action = new LoginAction();
-                    action.execute(request, response);
-                    break;
-            }
-        } catch (PersistenceException e) {
-            e.printStackTrace();
+            Action action = actionFactory.create(contextPath);
+            action.execute(request, response);
+        } catch (Exception e) {
+            logger.error("It is impossible to create action handler object", e);
+            request.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
+            request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
         }
     }
-
-    // todo порядок действий
-    // 1. из запроса получаем подстроку с командой (что надо сделать) - на ее основе выполняем действие
-    // 2. выносим логику выполнения действия в команды, здесь только определяем нужную команду и вызываем ее (можно для начала свитч-кейсами)
-    // 3. делаем map урл_команды - объект_команды (ActionFromUriFilter, только вместо классов будут объекты)
-    // 4. заменяем вызов сервиса в команде на сервис фактори (напишем перед этим сервис фактори)
 
 }
