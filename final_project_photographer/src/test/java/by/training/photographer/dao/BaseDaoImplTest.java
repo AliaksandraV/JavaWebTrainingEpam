@@ -27,8 +27,8 @@ public abstract class BaseDaoImplTest {
     private static final int PORT = 3307;
     private static final SqlScriptSource[] SQL_SCRIPT_SOURCES = {classPathScript("sql/create_db.sql")};
 
-    private Connection connection;
-    private EmbeddedMysql database;
+    private static Connection connection;
+    private static EmbeddedMysql database;
 
     @BeforeSuite
     public void init() throws SQLException {

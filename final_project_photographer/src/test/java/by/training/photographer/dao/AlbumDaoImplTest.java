@@ -20,10 +20,10 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
 
     private static final int ID_ALBUM_NAME = 1;
     private static final String ALBUM_NAME_TEXT = "albumName";
-    private static final LocalizedTextEntity ALBUM_NAME = new LocalizedTextEntity(ID_ALBUM_NAME);
+    private static final LocalizedTextEntity ALBUM_NAME = new LocalizedTextEntity(ID_ALBUM_NAME, ALBUM_NAME_TEXT);
     private static final int ID_ALBUM_DESCRIPTION = 2;
     private static final String ALBUM_DESCRIPTION_TEXT = "albumDescription";
-    private static final LocalizedTextEntity ALBUM_DESCRIPTION = new LocalizedTextEntity(ID_ALBUM_DESCRIPTION);
+    private static final LocalizedTextEntity ALBUM_DESCRIPTION = new LocalizedTextEntity(ID_ALBUM_DESCRIPTION, ALBUM_DESCRIPTION_TEXT);
     private static final int ID_CATEGORY_NAME = 3;
     private static final String CATEGORY_NAME_TEXT = "categoryDescription";
     private static final String CATEGORY_COVER_IMG_PATH = "categoryCoverImgPath";
