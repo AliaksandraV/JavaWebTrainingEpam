@@ -2,6 +2,7 @@ package by.training.photographer.action;
 
 import by.training.photographer.entity.Role;
 import by.training.photographer.entity.UserEntity;
+import by.training.photographer.service.factory.ServiceFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginAction implements Action {
+public class LoginAction extends Action {
+
+    public LoginAction(ServiceFactory serviceFactory) {
+        super(serviceFactory);
+    }
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
@@ -33,8 +38,8 @@ public class LoginAction implements Action {
         List<UserEntity> users = new ArrayList<>();
         users.add(user);
 
-        for (UserEntity entity:users) {
-            if (entity.getEmail().equals(username)&& entity.getPassword().equals(password)){
+        for (UserEntity entity : users) {
+            if (entity.getEmail().equals(username) && entity.getPassword().equals(password)) {
                 System.out.println("user EXIST");
             } else {
                 System.out.println("NO such user");
@@ -44,8 +49,7 @@ public class LoginAction implements Action {
         if (user != null) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("home");
-        }
-        else {
+        } else {
             request.setAttribute("error", "Unknown user, please try again");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }

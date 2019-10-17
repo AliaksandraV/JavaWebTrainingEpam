@@ -1,8 +1,10 @@
 package by.training.photographer.controller;
 
 import by.training.photographer.action.Action;
+import by.training.photographer.dao.DaoFactoryImpl;
 import by.training.photographer.dao.connection.DataSource;
 import by.training.photographer.exception.PersistenceException;
+import by.training.photographer.service.factory.ServiceFactoryImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,7 +15,7 @@ import java.io.IOException;
 
 public class DispatcherServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(DispatcherServlet.class);
-    private ActionFactory actionFactory = new ActionFactoryImpl();
+    private final ActionFactory actionFactory = new ActionFactoryImpl(new ServiceFactoryImpl(new DaoFactoryImpl()));
 
     @Override
     public void init() {

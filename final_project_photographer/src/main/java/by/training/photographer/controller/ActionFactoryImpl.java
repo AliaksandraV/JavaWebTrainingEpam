@@ -8,27 +8,34 @@ import by.training.photographer.action.PhotoShowAction;
 import by.training.photographer.action.PortfolioShowAction;
 import by.training.photographer.action.RegistrationAction;
 import by.training.photographer.action.RegistrationShowAction;
+import by.training.photographer.service.factory.ServiceFactory;
 
 public class ActionFactoryImpl implements ActionFactory {
+
+    private final ServiceFactory serviceFactory;
+
+    public ActionFactoryImpl(ServiceFactory serviceFactory) {
+        this.serviceFactory = serviceFactory;
+    }
 
     @Override
     public Action create(String actionPath) {
         String[] parts = actionPath.split("/");
         switch (parts[1]) {
             case "portfolio":
-                return new PortfolioShowAction();
+                return new PortfolioShowAction(serviceFactory);
             case "home":
-                return new HomePageShowAction();
+                return new HomePageShowAction(serviceFactory);
             case "album":
-                return new AlbumsShowAction();
+                return new AlbumsShowAction(serviceFactory);
             case "photos":
-                return new PhotoShowAction();
+                return new PhotoShowAction(serviceFactory);
             case "login":
-                return new LoginAction();
+                return new LoginAction(serviceFactory);
             case "registration":
-                return new RegistrationShowAction();
+                return new RegistrationShowAction(serviceFactory);
             case "signup":
-                return new RegistrationAction();
+                return new RegistrationAction(serviceFactory);
 
             default:
                 throw new IllegalArgumentException();

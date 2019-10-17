@@ -1,10 +1,9 @@
 package by.training.photographer.action;
 
-import by.training.photographer.dao.DaoFactoryImpl;
 import by.training.photographer.entity.AlbumEntity;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.AlbumService;
-import by.training.photographer.service.AlbumServiceImpl;
+import by.training.photographer.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class AlbumsShowAction implements Action {
+public class AlbumsShowAction extends Action {
     private static Logger logger = Logger.getLogger(AlbumsShowAction.class);
+
+    public AlbumsShowAction(ServiceFactory serviceFactory) {
+        super(serviceFactory);
+    }
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, PersistenceException, ServletException {
-        AlbumService service = new AlbumServiceImpl(new DaoFactoryImpl());
+        AlbumService service = getServiceFactory().createAlbumService();
 
         String[] parts = request.getServletPath().split("/");
         int id = Integer.parseInt(parts[2]);
