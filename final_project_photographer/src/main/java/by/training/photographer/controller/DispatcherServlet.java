@@ -1,10 +1,6 @@
 package by.training.photographer.controller;
 
 import by.training.photographer.action.Action;
-import by.training.photographer.action.AlbumsShowAction;
-import by.training.photographer.action.HomePageShowAction;
-import by.training.photographer.action.LoginAction;
-import by.training.photographer.action.PortfolioShowAction;
 import by.training.photographer.dao.connection.DataSource;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
@@ -55,4 +51,9 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+    @Override
+    public void destroy() {
+        //TODO add distroy connection pool here
+        super.destroy();
+    }
 }

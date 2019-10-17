@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class HomePageShowAction implements Action {
+public class RegistrationShowAction implements Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
     }
 }

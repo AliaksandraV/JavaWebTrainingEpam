@@ -19,6 +19,6 @@ public class PortfolioShowAction implements Action {
         List<PhotoCategoryEntity> categories;
         categories = service.findAll();
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("WEB-INF/jsp/portfolio.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/portfolio.jsp").forward(request, response);
     }
 }

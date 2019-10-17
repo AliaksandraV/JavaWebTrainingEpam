@@ -1,6 +1,6 @@
 package by.training.photographer.action;
 
-import by.training.photographer.dao.AlbumDaoImpl;
+import by.training.photographer.dao.DaoFactoryImpl;
 import by.training.photographer.entity.AlbumEntity;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.AlbumService;
@@ -18,16 +18,18 @@ public class AlbumsShowAction implements Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, PersistenceException, ServletException {
+        AlbumService service = new AlbumServiceImpl(new DaoFactoryImpl());
 
-        AlbumService service = new AlbumServiceImpl(new AlbumDaoImpl(null));
-        List<AlbumEntity> albums = service.findByCategory(
-            Integer.parseInt(request.getParameter("id")));
+        String[] parts = request.getServletPath().split("/");
+        int id = Integer.parseInt(parts[2]);
+
+        List<AlbumEntity> albums = service.findByCategory(id);
 //пример использования тэгов
 //        AlbumList list = new AlbumList(albums);
 //        logger.debug(list);
 //        request.setAttribute("album_list", list);
         request.setAttribute("albums", albums);
-        request.getRequestDispatcher("WEB-INF/jsp/albums.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/albums.jsp").forward(request, response);
 
     }
 }

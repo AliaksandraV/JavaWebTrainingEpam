@@ -19,11 +19,12 @@ CREATE TABLE `photo_category`
 
 CREATE TABLE `album`
 (
-    `id`                       INT  NOT NULL AUTO_INCREMENT,
-    `date`                     DATE NULL,
-    `localized_name_id`        INT  NULL,
-    `localized_description_id` INT  NULL,
-    `photo_category_id`        INT  NOT NULL,
+    `id`                       INT           NOT NULL AUTO_INCREMENT,
+    `cover_image_path`         VARCHAR(4096) NULL,
+    `date`                     DATE          NULL,
+    `localized_name_id`        INT           NULL,
+    `localized_description_id` INT           NULL,
+    `photo_category_id`        INT           NOT NULL,
     CONSTRAINT `PK_album` PRIMARY KEY (`id`),
     KEY `FK_album_localized_name` (`localized_name_id`),
     KEY `FK_album_localized_description` (`localized_description_id`),

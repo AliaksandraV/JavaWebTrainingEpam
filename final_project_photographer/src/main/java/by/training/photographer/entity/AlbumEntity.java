@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class AlbumEntity extends Entity {
 
+    private String coverImagePath;
     /**
      * Date for album. Could be null.
      */
@@ -40,7 +41,13 @@ public class AlbumEntity extends Entity {
         super(id);
     }
 
-    public AlbumEntity(final Calendar date, final LocalizedTextEntity nameEntity, final LocalizedTextEntity descriptionEntity, final PhotoCategoryEntity photoCategory, final List<PhotoEntity> photoList) {
+    public AlbumEntity(final String coverImagePath,
+                       final Calendar date,
+                       final LocalizedTextEntity nameEntity,
+                       final LocalizedTextEntity descriptionEntity,
+                       final PhotoCategoryEntity photoCategory,
+                       final List<PhotoEntity> photoList) {
+        this.coverImagePath = coverImagePath;
         this.date = date;
         this.nameEntity = nameEntity;
         this.descriptionEntity = descriptionEntity;
@@ -48,14 +55,30 @@ public class AlbumEntity extends Entity {
         this.photoList = photoList;
     }
 
-    public AlbumEntity(final int id, final Calendar date, final LocalizedTextEntity nameEntity, final LocalizedTextEntity descriptionEntity, final PhotoCategoryEntity photoCategory, final List<PhotoEntity> photoList) {
+    public AlbumEntity(final int id,
+                       final String coverImagePath,
+                       final Calendar date,
+                       final LocalizedTextEntity nameEntity,
+                       final LocalizedTextEntity descriptionEntity,
+                       final PhotoCategoryEntity photoCategory,
+                       final List<PhotoEntity> photoList) {
         super(id);
+        this.coverImagePath = coverImagePath;
         this.date = date;
         this.nameEntity = nameEntity;
         this.descriptionEntity = descriptionEntity;
         this.photoCategory = photoCategory;
         this.photoList = photoList;
     }
+
+    public String getCoverImagePath() {
+        return coverImagePath;
+    }
+
+    public void setCoverImagePath(final String coverImagePath) {
+        this.coverImagePath = coverImagePath;
+    }
+
     /**
      * Return data.
      *
@@ -106,7 +129,8 @@ public class AlbumEntity extends Entity {
      *
      * @param descriptionEntity album description.
      */
-    public void setDescriptionEntity(final LocalizedTextEntity descriptionEntity) {
+    public void setDescriptionEntity(
+        final LocalizedTextEntity descriptionEntity) {
         this.descriptionEntity = descriptionEntity;
     }
 
@@ -150,7 +174,8 @@ public class AlbumEntity extends Entity {
      * Indicates whether some other object is "equal to" this one.
      *
      * @param o the reference object with which to compare.
-     * @return true if this object is the same as the obj argument; false otherwise.
+     * @return true if this object is the same as the obj argument;
+     * false otherwise.
      */
     @Override
     public boolean equals(final Object o) {
@@ -158,7 +183,8 @@ public class AlbumEntity extends Entity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         AlbumEntity that = (AlbumEntity) o;
-        return Objects.equals(date, that.date) &&
+        return Objects.equals(coverImagePath, that.coverImagePath) &&
+            Objects.equals(date, that.date) &&
             Objects.equals(nameEntity, that.nameEntity) &&
             Objects.equals(descriptionEntity, that.descriptionEntity) &&
             Objects.equals(photoCategory, that.photoCategory) &&
@@ -172,7 +198,8 @@ public class AlbumEntity extends Entity {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), date, nameEntity, descriptionEntity, photoCategory, photoList);
+        return Objects.hash(super.hashCode(), coverImagePath, date, nameEntity,
+            descriptionEntity, photoCategory, photoList);
     }
 
     /**
@@ -183,9 +210,10 @@ public class AlbumEntity extends Entity {
     @Override
     public String toString() {
         return "AlbumEntity{" +
-            "id=" + id + ", "
-            + dataPrint()
-            + ", nameEntity=" + nameEntity +
+            "id=" + id +
+            ", coverImagePath='" + coverImagePath + '\'' +
+            dataPrint() +
+            ", nameEntity=" + nameEntity +
             ", descriptionEntity=" + descriptionEntity +
             ", photoCategory=" + photoCategory +
             ", photoList=" + photoList +

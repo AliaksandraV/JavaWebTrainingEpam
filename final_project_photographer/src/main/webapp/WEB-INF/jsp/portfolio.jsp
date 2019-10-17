@@ -39,7 +39,7 @@
                     <div class="image-wrap">
                         <div class="image-info">
                             <h2 class="mb-3">${category.localizedName.russian}</h2>
-                            <a href="album?id=${category.id}" class="btn btn-outline-white py-2 px-4">More Photos</a>
+                            <a href="album/${category.id}" class="btn btn-outline-white py-2 px-4"><fmt:message key="more_photos" bundle="${lang}"/></a>
                         </div>
                         <img src="<%=request.getContextPath()%>${category.coverImagePath}" alt="Image">
                     </div>

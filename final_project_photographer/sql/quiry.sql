@@ -7,11 +7,19 @@ DROP TABLE `photo_category`;
 DROP TABLE `localized_text`;
 
 
-SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id`
+SELECT `id`,
+       `date`,
+       `localized_name_id`,
+       `localized_description_id`,
+       `photo_category_id`
 FROM `album`
 ORDER BY `id`;
 
-SELECT `id`, `date`, `localized_name_id`, `localized_description_id`, `photo_category_id`
+SELECT `id`,
+       `date`,
+       `localized_name_id`,
+       `localized_description_id`,
+       `photo_category_id`
 FROM `album`
 WHERE `id` = 11;
 
@@ -26,7 +34,11 @@ SELECT id, user_id, photo_id
 FROM `like`
 where id = 1;
 
-SELECT id, date, `localized_name_id`, `localized_description_id`, `photo_category_id`
+SELECT id,
+       date,
+       `localized_name_id`,
+       `localized_description_id`,
+       `photo_category_id`
 FROM `album`
 WHERE photo_category_id = 3;
 
@@ -75,3 +87,16 @@ FROM album a
          LEFT JOIN localized_text lt2
                    ON a.localized_description_id = lt2.id
 WHERE photo_category_id = 1;
+
+SELECT a.id,
+       a.cover_image_path,
+       a.date,
+       a.localized_name_id,
+       a.localized_description_id,
+       a.photo_category_id,
+       lt.russian  AS name,
+       lt2.russian AS description
+FROM album a
+         LEFT JOIN localized_text lt ON a.localized_name_id = lt.id
+         LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id
+ORDER BY id;

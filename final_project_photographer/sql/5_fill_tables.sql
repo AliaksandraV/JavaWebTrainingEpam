@@ -55,16 +55,24 @@ VALUES (6, '/img/baby.jpg', 6);
 INSERT INTO photo_category (id, cover_image_path, localized_name_id)
 VALUES (7, '/img/pregnancy.jpg', 7);
 
-INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
-VALUES (1, '2018-07-01', 8, 9, 1);
-INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
-VALUES (2, '2018-09-11', 10, 11, 2);
-INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
-VALUES (3, '2018-11-23', 12, null, 3);
-INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
-VALUES (4, null, 13, 14, 3);
-INSERT INTO album (id, date, localized_name_id, localized_description_id, photo_category_id)
-VALUES (5, '2019-07-09', null, 15, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (1, '/img/lovestory.jpg', '2018-07-01', 8, 9, 1);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (2, '/img/lovestory.jpg', '2018-09-11', 10, 11, 2);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (3, '/img/lovestory.jpg', '2018-11-23', 12, null, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (4, '/img/lovestory.jpg', null, 13, 14, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (5, '/img/lovestory.jpg', '2019-07-09', null, 15, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (6, '/img/lovestory.jpg', '2018-07-01', 8, 9, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (7, '/img/lovestory.jpg', '2018-09-11', 10, 11, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (8, '/img/lovestory.jpg', '2018-07-01', 8, 9, 3);
+INSERT INTO album (id, cover_image_path, date, localized_name_id, localized_description_id, photo_category_id)
+VALUES (9, '/img/lovestory.jpg', '2018-09-11', 10, 11, 3);
 
 INSERT INTO photo(id, path, album_id)
 VALUES (1, 'path1', 1);
