@@ -8,12 +8,12 @@ public class UserEntity extends Entity {
     private String password;
     private String name;
     private String phoneNumber;
-    private int role;
+    private Role role;
 
     /**
      * default constructor.
      */
-    public UserEntity(){
+    public UserEntity() {
 
     }
 
@@ -25,7 +25,7 @@ public class UserEntity extends Entity {
                       final String password,
                       final String name,
                       final String phoneNumber,
-                      final int role) {
+                      final Role role) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -38,7 +38,7 @@ public class UserEntity extends Entity {
                       final String password,
                       final String name,
                       final String phoneNumber,
-                      final int role) {
+                      final Role role) {
         super(id);
         this.email = email;
         this.password = password;
@@ -79,13 +79,14 @@ public class UserEntity extends Entity {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(final int role) {
+    public void setRole(final Role role) {
         this.role = role;
     }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      *
@@ -104,6 +105,7 @@ public class UserEntity extends Entity {
                 Objects.equals(name, that.name) &&
                 Objects.equals(phoneNumber, that.phoneNumber);
     }
+
     /**
      * Returns a hash code value for the object.
      *
@@ -113,6 +115,7 @@ public class UserEntity extends Entity {
     public int hashCode() {
         return Objects.hash(super.hashCode(), email, password, name, phoneNumber, role);
     }
+
     /**
      * Returns a string representation of the object.
      *

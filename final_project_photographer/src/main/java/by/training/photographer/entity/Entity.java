@@ -1,5 +1,6 @@
 package by.training.photographer.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Objects;
  * Every class that has Entity as a superclass. All objects,
  *  * including arrays, implement the methods of this class.
  */
-public abstract class Entity {
+public abstract class Entity implements Serializable {
 
     /**
      * Uniq id. Not Null. Any inheritor must have id.

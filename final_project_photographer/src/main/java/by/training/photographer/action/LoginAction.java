@@ -1,5 +1,6 @@
 package by.training.photographer.action;
 
+import by.training.photographer.entity.Role;
 import by.training.photographer.entity.UserEntity;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class LoginAction implements Action {
         user.setPassword("Aa123+");
         user.setName("Nata");
         user.setPhoneNumber("+375-29-255-04-62");
-        user.setRole(2);
+        user.setRole(Role.USER);
 
         List<UserEntity> users = new ArrayList<>();
         users.add(user);

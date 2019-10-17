@@ -1,5 +1,6 @@
 package by.training.photographer.dao;
 
+import by.training.photographer.entity.Role;
 import by.training.photographer.entity.UserEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
@@ -41,7 +42,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
         statement.setString(2, user.getPassword());
         statement.setString(3, user.getName());
         statement.setString(4, user.getPhoneNumber());
-        statement.setInt(5, user.getRole());
+        statement.setInt(5, user.getRole().getId());
 
         statement.executeUpdate();
 
@@ -64,7 +65,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getName());
             statement.setString(4, user.getPhoneNumber());
-            statement.setInt(5, user.getRole());
+            statement.setInt(5, user.getRole().getId());
             statement.setInt(6, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -123,7 +124,7 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
         user.setPassword(resultSet.getString("password"));
         user.setName(resultSet.getString("name"));
         user.setPhoneNumber(resultSet.getString("phone_number"));
-        user.setRole(resultSet.getInt("role"));
+        user.setRole(Role.getById(resultSet.getInt("role")));
 
         return user;
     }
