@@ -33,4 +33,9 @@ public class RegistrationAction extends Action {
         request.getSession().setAttribute("user", user);
         response.sendRedirect("home");
     }
+
+    @Override
+    public String getPageName() {
+        throw new IllegalStateException(); // todo
+    }
 }

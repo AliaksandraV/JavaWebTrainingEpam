@@ -32,7 +32,11 @@ public class AlbumsShowAction extends Action {
 //        logger.debug(list);
 //        request.setAttribute("album_list", list);
         request.setAttribute("albums", albums);
-        request.getRequestDispatcher("/WEB-INF/jsp/albums.jsp").forward(request, response);
+        forward(request, response);
+    }
 
+    @Override
+    public String getPageName() {
+        return "albums";
     }
 }

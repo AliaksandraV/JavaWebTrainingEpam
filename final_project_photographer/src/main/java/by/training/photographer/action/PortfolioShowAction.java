@@ -22,6 +22,11 @@ public class PortfolioShowAction extends Action {
         List<PhotoCategoryEntity> categories;
         categories = service.findAll();
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("/WEB-INF/jsp/portfolio.jsp").forward(request, response);
+        forward(request, response);
+    }
+
+    @Override
+    public String getPageName() {
+        return "portfolio";
     }
 }

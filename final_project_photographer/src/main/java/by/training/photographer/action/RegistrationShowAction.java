@@ -15,6 +15,11 @@ public class RegistrationShowAction extends Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
+        forward(request, response);
+    }
+
+    @Override
+    public String getPageName() {
+        return "registration";
     }
 }

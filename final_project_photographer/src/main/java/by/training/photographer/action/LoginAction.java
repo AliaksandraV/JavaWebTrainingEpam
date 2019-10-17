@@ -51,9 +51,14 @@ public class LoginAction extends Action {
             response.sendRedirect("home");
         } else {
             request.setAttribute("error", "Unknown user, please try again");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            forward(request, response);
         }
 
 //        request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request,response);
+    }
+
+    @Override
+    public String getPageName() {
+        return "login";
     }
 }

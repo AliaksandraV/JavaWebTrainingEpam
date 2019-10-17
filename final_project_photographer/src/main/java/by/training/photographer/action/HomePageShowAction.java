@@ -15,6 +15,11 @@ public class HomePageShowAction extends Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
+        forward(request, response);
+    }
+
+    @Override
+    public String getPageName() {
+        return "home";
     }
 }
