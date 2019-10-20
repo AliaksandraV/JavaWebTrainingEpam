@@ -15,11 +15,11 @@ public class RegistrationShowAction extends Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        forward(request, response);
+        forwardToSuccessPage(request, response);
     }
 
     @Override
-    public String getPageName() {
+    public String getSuccessResponsePageName() {
         return "registration";
     }
 }

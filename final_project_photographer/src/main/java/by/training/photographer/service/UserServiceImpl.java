@@ -57,4 +57,12 @@ public class UserServiceImpl extends BaseServiceImpl<Integer, UserEntity> implem
     private UserDao getUserDao(Transaction transaction) throws PersistenceException {
         return getDaoFactory().getUserDao(transaction.getConnection());
     }
+
+    @Override
+    public UserEntity findByEmailAndPassword(String email, String password) throws PersistenceException {
+        Transaction transaction = createTransaction();
+        UserDao dao = getUserDao(transaction);
+
+        return transaction.commitWithResult(() -> dao.findByEmailAndPassword(email, password));
+    }
 }

@@ -1,64 +1,44 @@
 package by.training.photographer.action;
 
-import by.training.photographer.entity.Role;
 import by.training.photographer.entity.UserEntity;
+import by.training.photographer.exception.PersistenceException;
+import by.training.photographer.service.UserService;
 import by.training.photographer.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.MessageFormat;
 
 public class LoginAction extends Action {
+    private static Logger logger = Logger.getLogger(LoginAction.class);
 
     public LoginAction(ServiceFactory serviceFactory) {
         super(serviceFactory);
     }
 
     @Override
-    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getContextPath());
-        System.out.println(request.getParameter("email"));
-        System.out.println(request.getParameter("password"));
-        System.out.println("Сюда зашли))");
+    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException, PersistenceException {
+        UserService userService = getServiceFactory().createUserService();
 
-//        UserService service = new UserServiceImpl();
-        String username = request.getParameter("email");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
-        UserEntity user = new UserEntity();
-        user.setId(1);
-        user.setEmail("somemail1@gmail.com");
-        user.setPassword("Aa123+");
-        user.setName("Nata");
-        user.setPhoneNumber("+375-29-255-04-62");
-        user.setRole(Role.USER);
+        UserEntity userEntity = userService.findByEmailAndPassword(email, password);
 
-        List<UserEntity> users = new ArrayList<>();
-        users.add(user);
-
-        for (UserEntity entity : users) {
-            if (entity.getEmail().equals(username) && entity.getPassword().equals(password)) {
-                System.out.println("user EXIST");
-            } else {
-                System.out.println("NO such user");
-            }
-        }
-
-        if (user != null) {
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect("home");
+        if (userEntity != null) {
+            request.getSession().setAttribute("user", userEntity);
         } else {
-            request.setAttribute("error", "Unknown user, please try again");
-            forward(request, response);
-        }
+            String message = MessageFormat.format("Attempt to sign in by email {0} failed", email);
+            logger.warn(message);
 
-//        request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request,response);
+            response.setStatus(404);
+        }
     }
 
     @Override
-    public String getPageName() {
-        return "login";
+    public String getSuccessResponsePageName() {
+        return "home";
     }
 }

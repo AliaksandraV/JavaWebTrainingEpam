@@ -20,6 +20,8 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
     private static final String UPDATE_QUERY = "UPDATE `user` SET `email` = ?, `password` = ?, `name` = ?, `phone_number` = ?, `role` = ? WHERE `id` = ?";
     private static final String DELETE_QUERY = "DELETE FROM `user` WHERE `id` = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` WHERE `id`= ?";
+    private static final String FIND_BY_EMAIL_AND_PASSWORD_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` " +
+        "WHERE `email`= ? AND `password`= ?";
     private static final String FIND_ALL_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` ORDER BY `email`";
 
     public UserDaoImpl(Connection connection) {
@@ -129,4 +131,21 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
         return user;
     }
 
+    // todo test
+    @Override
+    public UserEntity findByEmailAndPassword(String email, String password) throws PersistenceException {
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_EMAIL_AND_PASSWORD_QUERY);
+             ResultSet resultSet = findByEmailAndPassword(statement, email, password)) {
+
+            return resultSet.next() ? createUserEntity(resultSet) : null;
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    private ResultSet findByEmailAndPassword(final PreparedStatement statement, String email, String password) throws SQLException {
+        statement.setString(1, email);
+        statement.setString(2, password);
+        return statement.executeQuery();
+    }
 }

@@ -1,9 +1,11 @@
 package by.training.photographer.controller;
 
 import by.training.photographer.action.Action;
+import by.training.photographer.action.AdminAction;
 import by.training.photographer.action.AlbumsShowAction;
 import by.training.photographer.action.HomePageShowAction;
 import by.training.photographer.action.LoginAction;
+import by.training.photographer.action.LogoutAction;
 import by.training.photographer.action.PhotoShowAction;
 import by.training.photographer.action.PortfolioShowAction;
 import by.training.photographer.action.RegistrationAction;
@@ -32,10 +34,14 @@ public class ActionFactoryImpl implements ActionFactory {
                 return new PhotoShowAction(serviceFactory);
             case "login":
                 return new LoginAction(serviceFactory);
+            case "logout":
+                return new LogoutAction(serviceFactory);
             case "registration":
                 return new RegistrationShowAction(serviceFactory);
             case "signup":
                 return new RegistrationAction(serviceFactory);
+            case "admin":
+                return new AdminAction(serviceFactory);
 
             default:
                 throw new IllegalArgumentException();

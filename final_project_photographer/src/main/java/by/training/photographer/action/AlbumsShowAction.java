@@ -32,11 +32,11 @@ public class AlbumsShowAction extends Action {
 //        logger.debug(list);
 //        request.setAttribute("album_list", list);
         request.setAttribute("albums", albums);
-        forward(request, response);
+        forwardToSuccessPage(request, response);
     }
 
     @Override
-    public String getPageName() {
+    public String getSuccessResponsePageName() {
         return "albums";
     }
 }

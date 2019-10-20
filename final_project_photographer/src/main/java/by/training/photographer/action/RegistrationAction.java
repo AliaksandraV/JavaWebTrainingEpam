@@ -35,7 +35,7 @@ public class RegistrationAction extends Action {
     }
 
     @Override
-    public String getPageName() {
+    public String getSuccessResponsePageName() {
         throw new IllegalStateException(); // todo
     }
 }

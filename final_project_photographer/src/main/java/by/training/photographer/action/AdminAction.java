@@ -1,5 +1,6 @@
 package by.training.photographer.action;
 
+import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.factory.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -7,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class HomePageShowAction extends Action {
+public class AdminAction extends Action {
 
-    public HomePageShowAction(ServiceFactory serviceFactory) {
+    public AdminAction(ServiceFactory serviceFactory) {
         super(serviceFactory);
     }
 
     @Override
-    public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PersistenceException {
+        // todo implement
         forwardToSuccessPage(request, response);
     }
 
     @Override
     public String getSuccessResponsePageName() {
-        return "home";
+        return "admin";
     }
 }

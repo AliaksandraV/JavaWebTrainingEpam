@@ -22,11 +22,11 @@ public class PortfolioShowAction extends Action {
         List<PhotoCategoryEntity> categories;
         categories = service.findAll();
         request.setAttribute("categories", categories);
-        forward(request, response);
+        forwardToSuccessPage(request, response);
     }
 
     @Override
-    public String getPageName() {
+    public String getSuccessResponsePageName() {
         return "portfolio";
     }
 }

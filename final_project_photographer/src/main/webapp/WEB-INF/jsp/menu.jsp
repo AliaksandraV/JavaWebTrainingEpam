@@ -7,18 +7,17 @@
 <html lang="${language}">
 <head>
     <title>menu</title>
+    <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/menu.css"/>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            $('#submitLogin').click(function(){
-                var dataBack = ('#loginModal #inputEmail').val().trim();
-                $('#result').html(dataBack);
-
-            });
+            $('#loginModal').on('hidden.bs.modal', function () {
+                clearLoginForm();
+            })
         });
     </script>
 </head>
@@ -58,11 +57,29 @@
                        aria-controls="pills-contact"
                        aria-selected="false"><fmt:message key="menu_contact" bundle="${lang}"/></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#loginModal" id="pills-login-tab" href="#"
-                       role="tab" aria-controls="pills-login"
-                       aria-selected="false"><fmt:message key="menu_login" bundle="${lang}"/></a>
-                </li>
+                <c:choose>
+                    <c:when test="${empty user}">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#loginModal" id="pills-login-tab" href="#"
+                               role="tab" aria-controls="pills-login"
+                               aria-selected="false"><fmt:message key="menu_login" bundle="${lang}"/></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <c:url value="/logout" var="logoutUrl"/>
+                            <a class="nav-link" id="pills-profile-tab" href="${logoutUrl}"
+                               role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_logout" bundle="${lang}"/></a>
+                        </li>
+                        <c:if test="${user.role eq 'ADMIN'}">
+                            <li class="nav-item">
+                                <c:url value="/admin" var="adminUrl"/>
+                                <a class="nav-link" id="pills-profile-tab" href="${adminUrl}"
+                                   role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_admin" bundle="${lang}"/></a>
+                            </li>
+                        </c:if>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>
@@ -81,7 +98,8 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form action="${pageContext.request.contextPath}/login" method="post">
+                    <c:url value="/login" var="loginUrl"/>
+                    <form action="${loginUrl}" method="post" id="loginForm" onsubmit="submitLoginForm(event)">
                         <div class="form-group">
                             <label for="inputEmail">
                                 <fmt:message key="modal_email_label" bundle="${lang}"/>
@@ -102,11 +120,8 @@
                                 <fmt:message key="modal_password_under" bundle="${lang}"/>
                             </small>
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <fmt:message key="modal_remember_check" bundle="${lang}"/> me
-                            </label>
+                        <div class="invalid-feedback" id="loginFeedback">
+                            Invalid username or password!
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" id="submitLogin" type="submit">
@@ -131,6 +146,5 @@
     </div>
 
 </div>
-
 </body>
 </html>
