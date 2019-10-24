@@ -21,10 +21,9 @@
     <link rel="stylesheet" type="text/css"
           href="<c:url value="/css/common.css"/>">
     <!-- Java script -->
-
-    <script src="<c:url value="/js/jquery-3.4.1.js"/>"></script>
-    <script src="<c:url value="/js/popper.min.js"/>"></script>
-    <script src="<c:url value="/js/bootstrap.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
 </head>
 <body>
 <div class="container">
@@ -41,7 +40,7 @@
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="card border-0 transform-on-hover">
                         <c:url value="/photos" var="photosUrl"/>
-                        <a class="lightbox" href="${photosUrl}/${album.id}">
+                        <a class="lightbox" href="${photosUrl}/${album.id}?page=1">
                             <div class="thumbnail">
                                 <img src="<%=request.getContextPath()%>${album.coverImagePath}"
                                      alt="Image"/>

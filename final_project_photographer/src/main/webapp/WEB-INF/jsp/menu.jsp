@@ -1,18 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="i18n.messages" var="lang"/>
 <html lang="${language}">
 <head>
     <title>menu</title>
-    <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/menu.css"/>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="<c:url value="/js/login.js"/>"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#loginModal').on('hidden.bs.modal', function () {
@@ -33,8 +33,12 @@
                 <img src="<%=request.getContextPath()%>/img/logo.png" class="img-responsive"/></a>
             <form>
                 <select id="language" name="language" onchange="submit()">
-                    <option value="ru" ${language == 'ru' ? 'selected' : ''} data-content='<span class="flag-icon flag-icon-us"></span> English'>Russian</option>
-                    <option value="en" ${language == 'en' ? 'selected' : ''} data-content='<span class="flag-icon flag-icon-ru"></span> Russian'></span>English</option>
+                    <option value="ru" ${language == 'ru' ? 'selected' : ''}
+                            data-content='<span class="flag-icon flag-icon-us"></span> English'>Russian
+                    </option>
+                    <option value="en" ${language == 'en' ? 'selected' : ''}
+                            data-content='<span class="flag-icon flag-icon-ru"></span> Russian'></span>English
+                    </option>
                 </select>
             </form>
         </div>
@@ -48,7 +52,8 @@
                 <li class="nav-item">
                     <c:url value="/portfolio" var="portfolioUrl"/>
                     <a class="nav-link" id="pills-profile-tab" href="${portfolioUrl}"
-                       role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_portfolio" bundle="${lang}"/></a>
+                       role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_portfolio"
+                                                                                                   bundle="${lang}"/></a>
                 </li>
                 <li class="nav-item">
                     <c:url value="/contact" var="contactUrl"/>
@@ -66,16 +71,34 @@
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item">
-                            <c:url value="/logout" var="logoutUrl"/>
-                            <a class="nav-link" id="pills-profile-tab" href="${logoutUrl}"
-                               role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_logout" bundle="${lang}"/></a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <fmt:message key="menu_profile" bundle="${lang}"/>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <c:url value="/edit-profile" var="editProfileUrl"/>
+                                <a class="dropdown-item" href="${editProfileUrl}">
+                                    <fmt:message key="menu_edit_profile" bundle="${lang}"/>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <c:url value="/logout" var="logoutUrl"/>
+                                <a class="dropdown-item" href="${logoutUrl}">
+                                    <fmt:message key="menu_logout" bundle="${lang}"/>
+                                </a>
+                            </div>
+
+<%--                            <c:url value="/logout" var="logoutUrl"/>--%>
+<%--                            <a class="nav-link" id="pills-profile-tab" href="${logoutUrl}"--%>
+<%--                               role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_logout"--%>
+<%--                                                                                                           bundle="${lang}"/></a>--%>
                         </li>
                         <c:if test="${user.role eq 'ADMIN'}">
                             <li class="nav-item">
                                 <c:url value="/admin" var="adminUrl"/>
                                 <a class="nav-link" id="pills-profile-tab" href="${adminUrl}"
-                                   role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message key="menu_admin" bundle="${lang}"/></a>
+                                   role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message
+                                        key="menu_admin" bundle="${lang}"/></a>
                             </li>
                         </c:if>
                     </c:otherwise>
@@ -85,16 +108,17 @@
     </div>
 </header>
 
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                        <h5 class="modal-title w-100" id="modalLabel">
-                            <fmt:message key="modal_signin_header" bundle="${lang}"/>
-                        </h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <h5 class="modal-title w-100" id="modalLabel">
+                    <fmt:message key="modal_signin_header" bundle="${lang}"/>
+                </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -105,7 +129,8 @@
                                 <fmt:message key="modal_email_label" bundle="${lang}"/>
                             </label>
                             <input class="form-control" id="inputEmail" name="email" type="email"
-                                   aria-describedby="emailHelp" placeholder="<fmt:message key="modal_email_in" bundle="${lang}"/>">
+                                   aria-describedby="emailHelp"
+                                   placeholder="<fmt:message key="modal_email_in" bundle="${lang}"/>">
                             <small id="emailHelp" class="form-text text-muted">
                                 <fmt:message key="modal_email_under" bundle="${lang}"/>
                             </small>
@@ -133,18 +158,15 @@
                         </div>
                         <hr>
                         <c:url value="/registration" var="registrationUrl"/>
-                        <a href="${registrationUrl}" class="" role="" >
+                        <a href="${registrationUrl}" class="" role="">
                             <fmt:message key="modal_register" bundle="${lang}"/>
                         </a>
                         <span class="error">${error}</span>
                     </form>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 </body>
 </html>

@@ -100,3 +100,13 @@ FROM album a
          LEFT JOIN localized_text lt ON a.localized_name_id = lt.id
          LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id
 ORDER BY id;
+
+SELECT id, path, album_id
+FROM photo
+WHERE album_id = 10
+ORDER BY id
+LIMIT 5 OFFSET 0;
+
+SELECT COUNT(id)
+FROM photo
+WHERE album_id = 10;

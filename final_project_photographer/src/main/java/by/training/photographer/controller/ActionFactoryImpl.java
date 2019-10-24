@@ -44,7 +44,9 @@ public class ActionFactoryImpl implements ActionFactory {
                 return new AdminAction(serviceFactory);
 
             default:
+                System.out.println(parts[1]);
                 throw new IllegalArgumentException();
+                //TODO на странице регистрации когда все ок сюда почему-то приходит css
         }
     }
 }

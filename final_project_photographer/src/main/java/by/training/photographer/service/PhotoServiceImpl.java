@@ -1,6 +1,9 @@
 package by.training.photographer.service;
 
 import by.training.photographer.dao.DaoFactory;
+import by.training.photographer.dao.PhotoDao;
+import by.training.photographer.dao.connection.Transaction;
+import by.training.photographer.entity.PaginationResult;
 import by.training.photographer.entity.PhotoEntity;
 import by.training.photographer.exception.PersistenceException;
 
@@ -12,32 +15,57 @@ public class PhotoServiceImpl extends BaseServiceImpl<Integer, PhotoEntity> impl
         super(daoFactory);
     }
 
-    // todo impl
     @Override
     public Integer create(final PhotoEntity entity) throws PersistenceException {
-//        dao.create(entity);
-        return null;
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        return transaction.commitWithResult(() -> dao.create(entity));
     }
+
 
     @Override
     public void update(final PhotoEntity entity) throws PersistenceException {
-//        dao.update(entity);
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        transaction.commit(() -> dao.update(entity));
     }
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-//        dao.delete(id);
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        transaction.commit(() -> dao.delete(id));
     }
 
     @Override
     public PhotoEntity findById(final Integer id) throws PersistenceException {
-//        return dao.findById(id);
-        return null;
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        return transaction.commitWithResult(() -> dao.findById(id));
     }
 
     @Override
     public List<PhotoEntity> findAll() throws PersistenceException {
-//        return dao.findAll();
-        return null;
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        return transaction.commitWithResult(dao::findAll);
     }
+
+    @Override
+    public PaginationResult findByAlbum(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        return transaction.commitWithResult(()->dao.findByAlbum(albumId, currentPage, stepAmount));
+    }
+
+    private PhotoDao getPhotoDao(final Transaction transaction) throws PersistenceException {
+        return getDaoFactory().getPhotoDao(transaction.getConnection());
+    }
+
 }

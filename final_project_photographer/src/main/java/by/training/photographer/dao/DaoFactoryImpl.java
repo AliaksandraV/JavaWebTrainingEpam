@@ -18,4 +18,9 @@ public class DaoFactoryImpl implements DaoFactory {
     public AlbumDao getAlbumDao(final Connection connection) {
         return new AlbumDaoImpl(connection);
     }
+
+    @Override
+    public PhotoDao getPhotoDao(final Connection connection) {
+        return new PhotoDaoImpl(connection);
+    }
 }

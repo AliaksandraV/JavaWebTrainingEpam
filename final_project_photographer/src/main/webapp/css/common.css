@@ -10,6 +10,7 @@ body {
     font-weight: normal;
 }
 
+
 hr {
     border-top: 1px solid rgba(137, 137, 137, 1);
 }
@@ -17,8 +18,9 @@ hr {
 div.center-cropped {
     width: 100px;
     height: 100px;
-    overflow:hidden;
+    overflow: hidden;
 }
+
 div.center-cropped img {
     height: 100%;
     min-width: 100%;
@@ -33,16 +35,18 @@ div.center-cropped img {
     height: 300px;
     overflow: hidden;
 }
+
 .thumbnail img {
     position: absolute;
     left: 50%;
     top: 50%;
     height: 100%;
     width: auto;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
+
 .thumbnail img.portrait {
     width: 100%;
     height: auto;
@@ -53,6 +57,71 @@ div.center-cropped img {
         height: 400px;
     }
 }
+
+.form-control {
+    background-color: #2f3034;
+    border-radius: 1.25rem;
+
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+
+.form-group label {
+    font-family: "Playfairdisplay";
+    color: #FFFFFF;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+
+.form-control::-webkit-input-placeholder {
+    font-family: "Playfairdisplay";
+    font-style: italic;
+    font-size: 12px;
+}
+
+.form-control:focus {
+    border-color: #FFFFFF;
+    box-shadow: 0 0 0 0.2rem rgba(84, 0, 64, 0.25);
+    background-color: #2f3034;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-style: normal;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+    background-color: #2f3034;
+    border-color: #FFFFFF;
+    border-width: 2px;
+    font-size: 18px;
+    font-style: italic;
+    margin-right: 8px;
+    margin-top: 8px;
+    border-radius: 1.25rem;
+}
+
+.btn-primary:hover {
+    color: #2f3034;
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.btn-primary:focus {
+    border-color: #FFFFFF;
+    box-shadow: none;
+}
+
+.btn-primary:active {
+    background-color: black !important;
+    color: #FFFFFF !important;
+    border-color: black !important;
+    box-shadow: none !important;
+}
+
+
+
 
 
 

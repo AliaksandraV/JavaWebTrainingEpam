@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface AlbumDao extends BaseDao<Integer, AlbumEntity> {
 
-    List<AlbumEntity> findByCategory(Integer id) throws PersistenceException;
+    List<AlbumEntity> findByCategory(Integer categoryId) throws PersistenceException;
 }

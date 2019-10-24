@@ -1,5 +1,6 @@
 package by.training.photographer.service;
 
+import by.training.photographer.entity.PaginationResult;
 import by.training.photographer.entity.PhotoEntity;
 import by.training.photographer.exception.PersistenceException;
 
@@ -21,4 +22,6 @@ public interface PhotoService extends BaseService<Integer, PhotoEntity> {
 
     @Override
     List<PhotoEntity> findAll() throws PersistenceException;
+
+    PaginationResult findByAlbum(Integer albumId, int currentPage, int stepAmount) throws PersistenceException;
 }

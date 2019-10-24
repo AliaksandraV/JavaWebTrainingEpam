@@ -22,5 +22,5 @@ public interface AlbumService extends BaseService<Integer, AlbumEntity> {
     @Override
     List<AlbumEntity> findAll() throws PersistenceException;
 
-    List<AlbumEntity> findByCategory(Integer id) throws PersistenceException;
+    List<AlbumEntity> findByCategory(Integer categoryId) throws PersistenceException;
 }

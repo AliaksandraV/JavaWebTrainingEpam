@@ -215,11 +215,11 @@ public class AlbumDaoImpl
     }
 
     @Override
-    public List<AlbumEntity> findByCategory(final Integer id) throws PersistenceException {
+    public List<AlbumEntity> findByCategory(final Integer categoryId) throws PersistenceException {
         List<AlbumEntity> albums = new ArrayList<>();
 
         try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_CATEGORY_ID_QUERY);
-             ResultSet resultSet = findById(statement, id)) {
+             ResultSet resultSet = findById(statement, categoryId)) {
 
             while (resultSet.next()) {
                 albums.add(createAlbumEntity(resultSet));

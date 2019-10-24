@@ -55,11 +55,11 @@ public class AlbumServiceImpl extends BaseServiceImpl<Integer, AlbumEntity> impl
     }
 
     @Override
-    public List<AlbumEntity> findByCategory(final Integer id) throws PersistenceException {
+    public List<AlbumEntity> findByCategory(final Integer categoryId) throws PersistenceException {
         Transaction transaction = createTransaction();
         AlbumDao dao = getAlbumDao(transaction);
 
-        return transaction.commitWithResult(() -> dao.findByCategory(id));
+        return transaction.commitWithResult(() -> dao.findByCategory(categoryId));
     }
 
     private AlbumDao getAlbumDao(Transaction transaction) throws PersistenceException {

@@ -25,8 +25,11 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/portfolio/style.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/common.css"/>">
     <!-- Java script -->
-    <script src="//code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
+<%--    <script src="//code.jquery.com/jquery-3.3.1.js"></script>--%>
+<%--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>--%>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
@@ -65,16 +68,15 @@
         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 </div>
 
-<script src="<c:url value="/js/jquery-migrate-3.0.1.min.js"/>"></script>
-<script src="<c:url value="/js/popper.min.js"/>"></script>
-<script src="<c:url value="/js/owl.carousel.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.stellar.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.countdown.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.magnific-popup.min.js"/>"></script>
-<script src="<c:url value="/js/swiper.min.js"/>"></script>
-<script src="<c:url value="/js/aos.js"/>"></script>
-
-<script src="<c:url value="/js/main.js"/>"></script>
+<script src="<c:url value="/js/portfolio/jquery-migrate-3.0.1.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/owl.carousel.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/jquery.stellar.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/jquery.countdown.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/jquery.magnific-popup.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/swiper.min.js"/>"></script>
+<script src="<c:url value="/js/portfolio/aos.js"/>"></script>
+<script src="<c:url value="/js/portfolio/main.js"/>"></script>
 
 </body>
 </html>

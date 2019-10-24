@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link type="text/css" href="<c:url value="/css/home-page.css" />" rel="stylesheet">
     <!-- Java script -->
-    <script src="//code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
+    <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
 </head>
 <body class="main-page fullscreen-preview">
 

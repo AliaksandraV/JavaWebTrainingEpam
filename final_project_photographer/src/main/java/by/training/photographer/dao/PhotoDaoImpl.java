@@ -1,6 +1,7 @@
 package by.training.photographer.dao;
 
 import by.training.photographer.entity.AlbumEntity;
+import by.training.photographer.entity.PaginationResult;
 import by.training.photographer.entity.PhotoEntity;
 import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
@@ -16,11 +17,39 @@ import java.util.List;
 public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements PhotoDao {
     private static Logger logger = Logger.getLogger(PhotoDaoImpl.class);
 
-    private static final String CREATE_QUERY = "INSERT INTO photo (path, album_id ) VALUES (?, ?);";
-    private static final String UPDATE_QUERY = "UPDATE photo SET path = ?, album_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM photo WHERE id = ?";
-    private static final String FIND_BY_ID_QUERY = "SELECT id, path, album_id FROM photo WHERE id = ?";
-    private static final String FIND_ALL_QUERY = "SELECT id, path, album_id FROM photo ORDER BY id";
+    private static final String CREATE_QUERY =
+        "INSERT INTO photo (path, album_id ) "
+        + "VALUES (?, ?);";
+
+    private static final String UPDATE_QUERY =
+        "UPDATE photo "
+        + "SET path = ?, album_id = ? "
+        + "WHERE id = ?";
+
+    private static final String DELETE_QUERY =
+        "DELETE FROM photo "
+        + "WHERE id = ?";
+
+    private static final String FIND_BY_ID_QUERY =
+        "SELECT id, path, album_id "
+        + "FROM photo WHERE id = ?";
+
+    private static final String FIND_ALL_QUERY =
+        "SELECT id, path, album_id "
+        + "FROM photo "
+        + "ORDER BY id";
+
+    private static final String FIND_BY_ALBUM_QUERY =
+        "SELECT id, path, album_id "
+        + "FROM photo "
+        + "WHERE album_id = ? "
+        + "ORDER BY id "
+        + "LIMIT ? OFFSET ?";
+
+    private static final String COUNT_AMOUNT_QUERY =
+        "SELECT COUNT(id)"
+        + "FROM photo "
+        + "WHERE album_id = ?";
 
     public PhotoDaoImpl(Connection connection) {
         super(connection);
@@ -110,6 +139,44 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
         return photos;
     }
 
+    @Override
+    public PaginationResult<PhotoEntity> findByAlbum(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
+        List<PhotoEntity> photos = new ArrayList<>();
+        PaginationResult pagination = new PaginationResult(currentPage, stepAmount);
+        pagination.setCurrentPage(currentPage);
+        pagination.setStepAmount(stepAmount);
+
+
+        try (PreparedStatement statement =
+                 getConnection().prepareStatement(FIND_BY_ALBUM_QUERY);
+             ResultSet resultSet = findByIdPagination(statement, albumId, stepAmount, (currentPage - 1) * stepAmount)) {
+
+            while (resultSet.next()) {
+                photos.add(createPhotoEntity(resultSet));
+            }
+
+            try (PreparedStatement statementCount =
+                     getConnection().prepareStatement(COUNT_AMOUNT_QUERY);
+                 ResultSet resultSetCount = findById(statementCount, albumId)) {
+                resultSetCount.next();
+                pagination.setTotalRecords(resultSetCount.getInt(1));
+            }
+            pagination.setTotalPages((int) Math.ceil((double) pagination.getTotalRecords() / (double) pagination.getStepAmount()));
+            pagination.setList(photos);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+
+        return pagination;
+
+    }
+
+    private ResultSet findByIdPagination(final PreparedStatement statement, final int albumId, final int stepAmount, final int start) throws SQLException {
+        statement.setInt(1, albumId);
+        statement.setInt(2, stepAmount);
+        statement.setInt(3, start);
+        return statement.executeQuery();
+    }
 
     private PhotoEntity createPhotoEntity(final ResultSet resultSet) throws SQLException {
         PhotoEntity photo = new PhotoEntity();

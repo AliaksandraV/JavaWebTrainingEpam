@@ -3,6 +3,7 @@ package by.training.photographer.dao;
 import by.training.photographer.entity.Role;
 import by.training.photographer.entity.UserEntity;
 import by.training.photographer.exception.PersistenceException;
+import by.training.photographer.exception.UserDuplicateException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -35,7 +36,11 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
             return getGeneratedId(resultSet);
         } catch (SQLException e) {
-            throw new PersistenceException(e);
+            if (e.getMessage().contains("Duplicate entry")){
+                throw new UserDuplicateException(e);
+            }else {
+                throw new PersistenceException(e);
+            }
         }
     }
 

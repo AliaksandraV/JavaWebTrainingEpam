@@ -1,7 +1,6 @@
 package by.training.photographer.action;
 
 import by.training.photographer.entity.UserEntity;
-import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -19,7 +18,7 @@ public class LogoutAction extends Action {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PersistenceException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Object user = request.getSession().getAttribute("user");
         if (user != null) {
             String message = MessageFormat.format("User {0} log out", ((UserEntity)user).getEmail());
