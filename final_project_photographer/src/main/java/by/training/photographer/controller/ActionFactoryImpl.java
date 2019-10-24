@@ -3,6 +3,7 @@ package by.training.photographer.controller;
 import by.training.photographer.action.Action;
 import by.training.photographer.action.AdminAction;
 import by.training.photographer.action.AlbumsShowAction;
+import by.training.photographer.action.EditProfileShowAction;
 import by.training.photographer.action.HomePageShowAction;
 import by.training.photographer.action.LoginAction;
 import by.training.photographer.action.LogoutAction;
@@ -42,6 +43,8 @@ public class ActionFactoryImpl implements ActionFactory {
                 return new RegistrationAction(serviceFactory);
             case "admin":
                 return new AdminAction(serviceFactory);
+            case "edit-profile":
+                return new EditProfileShowAction(serviceFactory);
 
             default:
                 System.out.println(parts[1]);

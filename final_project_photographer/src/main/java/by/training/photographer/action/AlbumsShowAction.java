@@ -27,10 +27,7 @@ public class AlbumsShowAction extends Action {
         int id = Integer.parseInt(parts[2]);
 
         List<AlbumEntity> albums = service.findByCategory(id);
-//пример использования тэгов
-//        AlbumList list = new AlbumList(albums);
-//        logger.debug(list);
-//        request.setAttribute("album_list", list);
+
         request.setAttribute("albums", albums);
         forwardToSuccessPage(request, response);
     }

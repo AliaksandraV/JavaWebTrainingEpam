@@ -14,12 +14,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value="/css/bootstrap.css"/>">
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value="/css/albums-page.css"/>">
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value="/css/common.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/albums-page.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/common.css"/>">
     <!-- Java script -->
     <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
     <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
