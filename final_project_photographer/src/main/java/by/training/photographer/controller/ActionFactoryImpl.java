@@ -13,43 +13,46 @@ import by.training.photographer.action.RegistrationAction;
 import by.training.photographer.action.RegistrationShowAction;
 import by.training.photographer.service.factory.ServiceFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 public class ActionFactoryImpl implements ActionFactory {
 
     private final ServiceFactory serviceFactory;
+    private Map<String, ActionCreator> actionCreatorMap;
 
     public ActionFactoryImpl(ServiceFactory serviceFactory) {
         this.serviceFactory = serviceFactory;
+        initActionCreatorMap();
+    }
+
+    private void initActionCreatorMap() {
+        actionCreatorMap = new HashMap<>();
+        actionCreatorMap.put("/portfolio", () -> new PortfolioShowAction(serviceFactory));
+        actionCreatorMap.put("/home", () -> new HomePageShowAction(serviceFactory));
+        actionCreatorMap.put("/album/\\d+", () -> new AlbumsShowAction(serviceFactory));
+        actionCreatorMap.put("/photos/\\d+", () -> new PhotoShowAction(serviceFactory));
+        actionCreatorMap.put("/login", () -> new LoginAction(serviceFactory));
+        actionCreatorMap.put("/logout", () -> new LogoutAction(serviceFactory));
+        actionCreatorMap.put("/registration", () -> new RegistrationShowAction(serviceFactory));
+        actionCreatorMap.put("/signup", () -> new RegistrationAction(serviceFactory));
+        actionCreatorMap.put("/admin", () -> new AdminAction(serviceFactory));
+        actionCreatorMap.put("/edit-profile", () -> new EditProfileShowAction(serviceFactory));
     }
 
     @Override
     public Action create(String actionPath) {
-        String[] parts = actionPath.split("/");
-        switch (parts[1]) {
-            case "portfolio":
-                return new PortfolioShowAction(serviceFactory);
-            case "home":
-                return new HomePageShowAction(serviceFactory);
-            case "album":
-                return new AlbumsShowAction(serviceFactory);
-            case "photos":
-                return new PhotoShowAction(serviceFactory);
-            case "login":
-                return new LoginAction(serviceFactory);
-            case "logout":
-                return new LogoutAction(serviceFactory);
-            case "registration":
-                return new RegistrationShowAction(serviceFactory);
-            case "signup":
-                return new RegistrationAction(serviceFactory);
-            case "admin":
-                return new AdminAction(serviceFactory);
-            case "edit-profile":
-                return new EditProfileShowAction(serviceFactory);
-
-            default:
-                System.out.println(parts[1]);
-                throw new IllegalArgumentException();
-                //TODO на странице регистрации когда все ок сюда почему-то приходит css
+        Optional<String> actionCreator = actionCreatorMap.keySet().stream().filter(actionPath::matches).findFirst();
+        if (actionCreator.isPresent()) {
+            return actionCreatorMap.get(actionCreator.get()).create();
+        } else {
+            throw new IllegalArgumentException("");
+            //TODO на странице регистрации когда все ок сюда почему-то приходит css
         }
+    }
+
+    private interface ActionCreator {
+        Action create();
     }
 }
