@@ -1,12 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.messages" var="lang"/>
-<html lang="${language}">
+<%@include file="common/headers.jsp" %>
+<html>
 <head>
     <title>menu</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/menu.css"/>">
@@ -29,18 +22,8 @@
         </div>
         <div class="row justify-content-center align-self-center">
             <c:url value="/home" var="homeUrl"/>
-            <a class="justify-content-center" href="${homeUrl}">
-                <img src="<%=request.getContextPath()%>/img/logo.png" class="img-responsive"/></a>
-            <form>
-                <select id="language" name="language" onchange="submit()">
-                    <option value="ru" ${language == 'ru' ? 'selected' : ''}
-                            data-content='<span class="flag-icon flag-icon-us"></span> English'>Russian
-                    </option>
-                    <option value="en" ${language == 'en' ? 'selected' : ''}
-                            data-content='<span class="flag-icon flag-icon-ru"></span> Russian'></span>English
-                    </option>
-                </select>
-            </form>
+            <a class="justify-content-center" href="${homeUrl}"><img src="<%=request.getContextPath()%>/img/logo.png" class="img-responsive"/></a>
+            <jsp:include page="/WEB-INF/jsp/common/language-selector.jsp"/>
         </div>
         <div class="mynavbar">
             <ul class="nav justify-content-center nav-pills mb-3" id="pills-tab" role="tablist">

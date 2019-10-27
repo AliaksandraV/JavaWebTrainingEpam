@@ -11,6 +11,7 @@ import by.training.photographer.action.PhotoShowAction;
 import by.training.photographer.action.PortfolioShowAction;
 import by.training.photographer.action.RegistrationAction;
 import by.training.photographer.action.RegistrationShowAction;
+import by.training.photographer.action.SwitchLanguageAction;
 import by.training.photographer.service.factory.ServiceFactory;
 
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class ActionFactoryImpl implements ActionFactory {
         actionCreatorMap.put("/signup", () -> new RegistrationAction(serviceFactory));
         actionCreatorMap.put("/admin", () -> new AdminAction(serviceFactory));
         actionCreatorMap.put("/edit-profile", () -> new EditProfileShowAction(serviceFactory));
+        actionCreatorMap.put("/language", () -> new SwitchLanguageAction(serviceFactory));
     }
 
     @Override
@@ -47,7 +49,7 @@ public class ActionFactoryImpl implements ActionFactory {
         if (actionCreator.isPresent()) {
             return actionCreatorMap.get(actionCreator.get()).create();
         } else {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Action not found for action path " + actionPath);
             //TODO на странице регистрации когда все ок сюда почему-то приходит css
         }
     }

@@ -1,13 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@include file="common/headers.jsp" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="ctgmy" tagdir="/WEB-INF/tags" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="i18n.messages" var="lang"/>
 
 <html lang="${language}">
 <head>

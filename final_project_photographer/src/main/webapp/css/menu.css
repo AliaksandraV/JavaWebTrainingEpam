@@ -38,3 +38,13 @@
 .img-responsive {
     display: inline-block;
 }
+
+.language-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.language-form .dropdown-toggle:after{
+    display: none;
+}
