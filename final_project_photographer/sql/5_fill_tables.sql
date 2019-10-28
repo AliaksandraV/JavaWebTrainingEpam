@@ -1,11 +1,11 @@
 USE photographer;
 
-INSERT INTO user (email, password, name, phone_number, role)
-VALUES ('somemail1@gmail.com', 'Aa123+', 'Nata', '+375-29-255-04-62', 2);
-INSERT INTO user (email, password, name, phone_number, role)
-VALUES ('somemail2@gmail.com', 'Aa123+', 'Dina', '+375-29-255-04-62', 2);
-INSERT INTO user (email, password, name, phone_number, role)
-VALUES ('somemail3@gmail.com', 'Aa123+', 'Michael', '+375-29-255-04-62', 2);
+INSERT INTO user (email, password_hash, salt, name, phone_number, role)
+VALUES ('somemail1@gmail.com', 'ckUATNHLvfht0jZK7q88lFKrMJgz7HQNZvOEsKaqYtA=', 'rbdofMRNAQyR1EjG', 'Nata', '+375-29-255-04-62', 2);
+INSERT INTO user (email, password_hash, salt, name, phone_number, role)
+VALUES ('somemail2@gmail.com', 'ckUATNHLvfht0jZK7q88lFKrMJgz7HQNZvOEsKaqYtA=', 'rbdofMRNAQyR1EjG', 'Dina', '+375-29-255-04-62', 2);
+INSERT INTO user (email, password_hash, salt, name, phone_number, role)
+VALUES ('somemail3@gmail.com', 'ckUATNHLvfht0jZK7q88lFKrMJgz7HQNZvOEsKaqYtA=', 'rbdofMRNAQyR1EjG', 'Michael', '+375-29-255-04-62', 2);
 
 INSERT INTO localized_text(id, russian)
 VALUES (1, 'Love story');

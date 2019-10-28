@@ -6,19 +6,19 @@ import java.util.Objects;
 /**
  * Class is the root of the entity-class hierarchy.
  * Every class that has Entity as a superclass. All objects,
- *  * including arrays, implement the methods of this class.
+ * including arrays, implement the methods of this class.
  */
 public abstract class Entity implements Serializable {
 
     /**
      * Uniq id. Not Null. Any inheritor must have id.
      */
-    protected int id;
+    protected Integer id;
 
     public Entity() {
     }
 
-    public Entity(final int id) {
+    public Entity(final Integer id) {
         this.id = id;
     }
 
@@ -27,7 +27,7 @@ public abstract class Entity implements Serializable {
      *
      * @return id.
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -36,7 +36,7 @@ public abstract class Entity implements Serializable {
      *
      * @param id id.
      */
-    public void setId(final int id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -48,10 +48,14 @@ public abstract class Entity implements Serializable {
      */
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Entity entity = (Entity) obj;
-        return id == entity.id;
+        return Objects.equals(id, entity.id);
     }
 
     /**
@@ -72,7 +76,7 @@ public abstract class Entity implements Serializable {
     @Override
     public String toString() {
         return "Entity{" +
-                "id=" + id +
-                '}';
+            "id=" + id +
+            '}';
     }
 }

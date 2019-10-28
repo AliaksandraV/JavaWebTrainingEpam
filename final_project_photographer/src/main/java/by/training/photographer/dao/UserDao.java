@@ -5,5 +5,5 @@ import by.training.photographer.exception.PersistenceException;
 
 public interface UserDao extends BaseDao<Integer, UserEntity> {
 
-    UserEntity findByEmailAndPassword(String email, String password) throws PersistenceException;
+    UserEntity findByEmail(String email) throws PersistenceException;
 }

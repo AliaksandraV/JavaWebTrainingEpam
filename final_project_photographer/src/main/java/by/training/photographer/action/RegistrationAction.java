@@ -1,7 +1,6 @@
 package by.training.photographer.action;
 
 import by.training.photographer.entity.Role;
-import by.training.photographer.entity.UserEntity;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.exception.UserDuplicateException;
 import by.training.photographer.service.UserService;
@@ -29,16 +28,16 @@ public class RegistrationAction extends Action {
         try {
             UserService service = getServiceFactory().createUserService();
 
-            UserEntity user = new UserEntity(
-                request.getParameter("email"),
-                request.getParameter("password"),
-                request.getParameter("name"),
-                request.getParameter("phone"),
-                userRole);
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String name = request.getParameter("name");
+            String phoneNumber = request.getParameter("phone");
 
-            service.create(user);
+            Integer id = service.register(email, password, name, phoneNumber);
 
-            request.getSession().setAttribute("user", user);
+            User sessionUser = new User(id, email, name, phoneNumber, userRole);
+            request.getSession().setAttribute("user", sessionUser);
+
             try (PrintWriter writer = response.getWriter()) {
                 String homePath = request.getContextPath() + "/home";
                 writer.println(homePath);

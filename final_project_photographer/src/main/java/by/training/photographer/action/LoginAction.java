@@ -28,7 +28,9 @@ public class LoginAction extends Action {
         UserEntity userEntity = userService.findByEmailAndPassword(email, password);
 
         if (userEntity != null) {
-            request.getSession().setAttribute("user", userEntity);
+            User sessionUser = new User(userEntity.getId(), userEntity.getEmail(), userEntity.getName(), userEntity.getPhoneNumber(), userEntity.getRole());
+
+            request.getSession().setAttribute("user", sessionUser);
         } else {
             String message = MessageFormat.format("Attempt to sign in by email {0} failed", email);
             logger.warn(message);

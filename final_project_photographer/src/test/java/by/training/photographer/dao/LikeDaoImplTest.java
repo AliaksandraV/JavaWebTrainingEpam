@@ -20,7 +20,8 @@ public class LikeDaoImplTest extends BaseDaoImplTest {
 
     private static final String EMAIL = "email";
     private static final String NAME = "name";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD_HASH = "passwordHash";
+    private static final String SALT = "salt";
     private static final String PHONE = "phone2";
     private static final int ROLE = 2;
     private static final int ID_PHOTO = 1;
@@ -51,8 +52,8 @@ public class LikeDaoImplTest extends BaseDaoImplTest {
         executeScript("INSERT INTO photo(id, path, album_id) VALUES ('"
             + ID_PHOTO + "', '" + PATH + "', '" + ID_ALBUM + "')");
 
-        executeScript("INSERT INTO user (id, email, password, name, phone_number, role) VALUES ('"
-            + ID + "', '" + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+        executeScript("INSERT INTO user (id, email, password_hash, salt, name, phone_number, role) VALUES ('"
+            + ID + "', '" + EMAIL + "', '" + PASSWORD_HASH + "', '" + SALT + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         assertTrue(likeDao.findAll().isEmpty());
 
@@ -72,8 +73,8 @@ public class LikeDaoImplTest extends BaseDaoImplTest {
             + ID_ALBUM + "', '" + ID_CATEGORY + "')");
         executeScript("INSERT INTO photo(id, path, album_id) VALUES ('"
             + ID_PHOTO + "', '" + PATH + "', '" + ID_ALBUM + "')");
-        executeScript("INSERT INTO user (id, email, password, name, phone_number, role) VALUES ('"
-            + ID + "', '" + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+        executeScript("INSERT INTO user (id, email, password_hash, salt, name, phone_number, role) VALUES ('"
+            + ID + "', '" + EMAIL + "', '" + PASSWORD_HASH + "', '" + SALT + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         executeScript("INSERT INTO `like` (user_id, photo_id) VALUES ('"
             + ID_USER + "', '" + ID_PHOTO + "')");
@@ -97,8 +98,8 @@ public class LikeDaoImplTest extends BaseDaoImplTest {
             + ID_ALBUM + "', '" + ID_CATEGORY + "')");
         executeScript("INSERT INTO photo(id, path, album_id) VALUES ('"
             + ID_PHOTO + "', '" + PATH + "', '" + ID_ALBUM + "')");
-        executeScript("INSERT INTO user (id, email, password, name, phone_number, role) VALUES ('"
-            + ID + "', '" + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+        executeScript("INSERT INTO user (id, email, password_hash, salt, name, phone_number, role) VALUES ('"
+            + ID + "', '" + EMAIL + "', '" + PASSWORD_HASH + "', '" + SALT + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         executeScript("INSERT INTO `like` (user_id, photo_id) VALUES ('"
             + ID_USER + "', '" + ID_PHOTO + "')");
@@ -119,8 +120,8 @@ public class LikeDaoImplTest extends BaseDaoImplTest {
             + ID_ALBUM + "', '" + ID_CATEGORY + "')");
         executeScript("INSERT INTO photo(id, path, album_id) VALUES ('"
             + ID_PHOTO + "', '" + PATH + "', '" + ID_ALBUM + "')");
-        executeScript("INSERT INTO user (id, email, password, name, phone_number, role) VALUES ('"
-            + ID + "', '" + EMAIL + "', '" + PASSWORD + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
+        executeScript("INSERT INTO user (id, email, password_hash, salt, name, phone_number, role) VALUES ('"
+            + ID + "', '" + EMAIL + "', '" + PASSWORD_HASH + "', '" + SALT + "', '" + NAME + "', '" + PHONE + "', '" + ROLE + "')");
 
         executeScript("INSERT INTO `like` (user_id, photo_id) VALUES ('"
             + ID_USER + "', '" + ID_PHOTO + "')");

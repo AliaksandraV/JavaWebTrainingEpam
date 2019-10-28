@@ -20,7 +20,13 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class UserServiceImplTest {
 
-    private static final int ID = 1;
+    private static final Integer ID = 1;
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "password";
+    private static final String SALT = "salt";
+    private static final String PASSWORD_HASH = "hash";
+    private static final String NAME = "name";
+    private static final String PHONE_NUMBER = "phoneNumber";
 
     @Mock
     private DaoFactory daoFactory;
@@ -30,12 +36,11 @@ public class UserServiceImplTest {
     private Connection connection;
     @Mock
     private UserDao userDao;
+
     @Mock
     private UserEntity userEntity;
-    @Mock
-    private Transaction.CallbackWithResult<Integer> callbackWithResult;
 
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @BeforeTest
     public void beforeTest() {
@@ -43,8 +48,13 @@ public class UserServiceImplTest {
         userService = spy(new UserServiceImpl(daoFactory));
     }
 
-    @Test
+    @Test(expectedExceptions = UnsupportedOperationException.class)
     public void testCreate() throws PersistenceException {
+        userService.create(new UserEntity());
+    }
+
+    @Test
+    public void testRegister() throws PersistenceException {
         // init
         when(userService.createTransaction()).thenReturn(transaction);
         when(transaction.getConnection()).thenReturn(connection);
@@ -53,14 +63,19 @@ public class UserServiceImplTest {
         // todo think how to improve this stuff
         when(transaction.commitWithResult(isA(Transaction.CallbackWithResult.class))).thenReturn(ID);
 
+        when(userService.generateSalt()).thenReturn(SALT);
+        when(userService.getPasswordHash(PASSWORD, SALT)).thenReturn(PASSWORD_HASH);
+
         // when
-        Integer result = userService.create(userEntity);
+        Integer result = userService.register(EMAIL, PASSWORD, NAME, PHONE_NUMBER);
 
         // then
-        assertEquals(ID, (int) result);
+        assertEquals(ID, result);
         verify(userService).createTransaction();
         verify(transaction).getConnection();
         verify(daoFactory).getUserDao(connection);
         verify(transaction).commitWithResult(isA(Transaction.CallbackWithResult.class));
+        verify(userService).generateSalt();
+        verify(userService).getPasswordHash(PASSWORD, SALT);
     }
 }

@@ -17,13 +17,12 @@ import java.util.List;
 public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements UserDao {
     private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
-    private static final String CREATE_QUERY = "INSERT INTO user (`email`, `password`, `name`, `phone_number`, `role`) VALUES (?, ?, ?, ?, ?);";
-    private static final String UPDATE_QUERY = "UPDATE `user` SET `email` = ?, `password` = ?, `name` = ?, `phone_number` = ?, `role` = ? WHERE `id` = ?";
+    private static final String CREATE_QUERY = "INSERT INTO user (`email`, `password_hash`, `salt`, `name`, `phone_number`, `role`) VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String UPDATE_QUERY = "UPDATE `user` SET `email` = ?, `name` = ?, `phone_number` = ?, `role` = ? WHERE `id` = ?";
     private static final String DELETE_QUERY = "DELETE FROM `user` WHERE `id` = ?";
-    private static final String FIND_BY_ID_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` WHERE `id`= ?";
-    private static final String FIND_BY_EMAIL_AND_PASSWORD_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` " +
-        "WHERE `email`= ? AND `password`= ?";
-    private static final String FIND_ALL_QUERY = "SELECT `id`, `email`, `password`, `name`, `phone_number`, `role` FROM `user` ORDER BY `email`";
+    private static final String FIND_BY_ID_QUERY = "SELECT `id`, `email`, `password_hash`, `salt`, `name`, `phone_number`, `role` FROM `user` WHERE `id`= ?";
+    private static final String FIND_BY_EMAIL = "SELECT `id`, `email`, `password_hash`, `salt`, `name`, `phone_number`, `role` FROM `user` WHERE `email`= ?";
+    private static final String FIND_ALL_QUERY = "SELECT `id`, `email`, `password_hash`, `salt`, `name`, `phone_number`, `role` FROM `user` ORDER BY `email`";
 
     public UserDaoImpl(Connection connection) {
         super(connection);
@@ -36,9 +35,9 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
             return getGeneratedId(resultSet);
         } catch (SQLException e) {
-            if (e.getMessage().contains("Duplicate entry")){
+            if (e.getMessage().contains("Duplicate entry")) {
                 throw new UserDuplicateException(e);
-            }else {
+            } else {
                 throw new PersistenceException(e);
             }
         }
@@ -46,10 +45,11 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     private ResultSet createAndGenerateId(final PreparedStatement statement, final UserEntity user) throws SQLException {
         statement.setString(1, user.getEmail());
-        statement.setString(2, user.getPassword());
-        statement.setString(3, user.getName());
-        statement.setString(4, user.getPhoneNumber());
-        statement.setInt(5, user.getRole().getId());
+        statement.setString(2, user.getPasswordHash());
+        statement.setString(3, user.getSalt());
+        statement.setString(4, user.getName());
+        statement.setString(5, user.getPhoneNumber());
+        statement.setInt(6, user.getRole().getId());
 
         statement.executeUpdate();
 
@@ -69,11 +69,10 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
     public void update(final UserEntity user) throws PersistenceException {
         try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getName());
-            statement.setString(4, user.getPhoneNumber());
-            statement.setInt(5, user.getRole().getId());
-            statement.setInt(6, user.getId());
+            statement.setString(2, user.getName());
+            statement.setString(3, user.getPhoneNumber());
+            statement.setInt(4, user.getRole().getId());
+            statement.setInt(5, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceException(e);
@@ -128,7 +127,8 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
         user.setId(resultSet.getInt("id"));
         user.setEmail(resultSet.getString("email"));
-        user.setPassword(resultSet.getString("password"));
+        user.setPasswordHash(resultSet.getString("password_hash"));
+        user.setSalt(resultSet.getString("salt"));
         user.setName(resultSet.getString("name"));
         user.setPhoneNumber(resultSet.getString("phone_number"));
         user.setRole(Role.getById(resultSet.getInt("role")));
@@ -138,9 +138,9 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
 
     // todo test
     @Override
-    public UserEntity findByEmailAndPassword(String email, String password) throws PersistenceException {
-        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_EMAIL_AND_PASSWORD_QUERY);
-             ResultSet resultSet = findByEmailAndPassword(statement, email, password)) {
+    public UserEntity findByEmail(String email) throws PersistenceException {
+        try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_EMAIL);
+             ResultSet resultSet = findByEmail(statement, email)) {
 
             return resultSet.next() ? createUserEntity(resultSet) : null;
         } catch (SQLException e) {
@@ -148,9 +148,8 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
         }
     }
 
-    private ResultSet findByEmailAndPassword(final PreparedStatement statement, String email, String password) throws SQLException {
+    private ResultSet findByEmail(final PreparedStatement statement, String email) throws SQLException {
         statement.setString(1, email);
-        statement.setString(2, password);
         return statement.executeQuery();
     }
 }

@@ -46,12 +46,13 @@ CREATE TABLE `photo`
 
 CREATE TABLE `user`
 (
-    `id`           INT          NOT NULL AUTO_INCREMENT,
-    `email`        VARCHAR(255) NOT NULL,
-    `password`     NCHAR(64)    NOT NULL,
-    `name`         VARCHAR(45)  NOT NULL,
-    `phone_number` VARCHAR(18)  NOT NULL,
-    `role`         TINYINT      NOT NULL,
+    `id`            INT          NOT NULL AUTO_INCREMENT,
+    `email`         VARCHAR(255) NOT NULL,
+    `password_hash` VARCHAR(64)  NOT NULL,
+    `salt`          VARCHAR(16)  NOT NULL,
+    `name`          VARCHAR(64)  NOT NULL,
+    `phone_number`  VARCHAR(18)  NOT NULL,
+    `role`          TINYINT      NOT NULL,
     CONSTRAINT `PK_user` PRIMARY KEY (`id`),
     UNIQUE INDEX `idx_email` (`email` ASC)
 ) DEFAULT CHARSET = utf8;

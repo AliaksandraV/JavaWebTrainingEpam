@@ -1,6 +1,5 @@
 package by.training.photographer.action;
 
-import by.training.photographer.entity.UserEntity;
 import by.training.photographer.service.factory.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ public class EditProfileShowAction extends Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
 
         request.setAttribute("user", user);
         forwardToSuccessPage(request, response);
