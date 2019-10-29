@@ -31,11 +31,5 @@
     </div>
 </div>
 </div>
-<%--<ctg:info-time/>--%>
-
-<%--<ctgmy:hellotag message="hooray">--%>
-
-<%--</ctgmy:hellotag>--%>
-
 </body>
 </html>

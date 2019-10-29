@@ -150,6 +150,17 @@ div.center-cropped img {
     box-shadow: none !important;
 }
 
+.contact-text {
+    font-family: Playfairdisplay, Sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.btn-social {
+    color: whitesmoke;
+    background: black;
+}
+
 
 
 

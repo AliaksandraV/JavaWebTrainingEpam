@@ -110,3 +110,19 @@ LIMIT 5 OFFSET 0;
 SELECT COUNT(id)
 FROM photo
 WHERE album_id = 10;
+
+SELECT pc.id,
+       pc.cover_image_path,
+       pc.localized_name_id,
+       lt.russian as name
+FROM photo_category pc
+         LEFT JOIN localized_text lt on pc.localized_name_id = lt.id
+ORDER BY pc.id;
+
+SELECT pc.id,
+       pc.cover_image_path,
+       pc.localized_name_id,
+       lt.russian as name
+FROM photo_category pc
+         LEFT JOIN localized_text lt on pc.localized_name_id = lt.id
+WHERE pc.id = 1;

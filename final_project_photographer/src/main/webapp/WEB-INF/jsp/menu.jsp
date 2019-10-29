@@ -16,7 +16,7 @@
 </head>
 <body class="home">
 <header>
-    <div class="container">
+    <div class="container h-15">
         <div id="result">
 
         </div>
@@ -60,7 +60,7 @@
                                 <fmt:message key="menu_profile" bundle="${lang}"/>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarProfileDropdown">
-                                <c:url value="/edit-profile" var="editProfileUrl"/>
+                                <c:url value="/profile/edit/${user.id}" var="editProfileUrl"/>
                                 <a class="dropdown-item" href="${editProfileUrl}">
                                     <fmt:message key="menu_edit_profile" bundle="${lang}"/>
                                 </a>
@@ -72,25 +72,12 @@
                             </div>
                         </li>
                         <c:if test="${user.role eq 'ADMIN'}">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarAdminDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item">
+                                <c:url value="/admin/category" var="adminUrl"/>
+                                <a class="nav-link" id="pills-profile-tab" href="${adminUrl}"
+                                   role="tab" aria-controls="pills-profile" aria-selected="false">
                                     <fmt:message key="menu_admin" bundle="${lang}"/>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarAdminDropdown">
-                                    <c:url value="/admin" var="adminUrl"/>
-                                    <a class="dropdown-item" href="${adminUrl}">
-                                        <fmt:message key="menu_admin_portfolio" bundle="${lang}"/>
-                                    </a>
-                                    <c:url value="/admin" var="adminUrl"/>
-                                    <a class="dropdown-item" href="${adminUrl}">
-                                        <fmt:message key="menu_admin_album" bundle="${lang}"/>
-                                    </a>
-                                </div>
-<%--                                <c:url value="/admin" var="adminUrl"/>--%>
-<%--                                <a class="nav-link" id="pills-profile-tab" href="${adminUrl}"--%>
-<%--                                   role="tab" aria-controls="pills-profile" aria-selected="false"><fmt:message--%>
-<%--                                        key="menu_admin" bundle="${lang}"/></a>--%>
                             </li>
                         </c:if>
                     </c:otherwise>

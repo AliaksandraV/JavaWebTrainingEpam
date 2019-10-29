@@ -31,8 +31,6 @@ public class UserServiceImpl extends BaseServiceImpl<Integer, UserEntity> implem
 
         UserEntity entity = new UserEntity(null, email, passwordHash, salt, name, phone, Role.USER);
 
-        entity.setSalt(salt);
-
         return transaction.commitWithResult(() -> dao.create(entity));
     }
 

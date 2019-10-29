@@ -21,8 +21,22 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
     private static final String CREATE_QUERY = "INSERT INTO photo_category (cover_image_path, localized_name_id) VALUES (?, ?);";
     private static final String UPDATE_QUERY = "UPDATE `photo_category` SET `cover_image_path` = ?, `localized_name_id` = ? WHERE `id` = ?";
     private static final String DELETE_QUERY = "DELETE FROM `photo_category` WHERE `id` = ?";
-    private static final String FIND_BY_ID_QUERY = "SELECT `id`, `cover_image_path`, `localized_name_id` FROM `photo_category` WHERE `id`= ?";
-    private static final String FIND_ALL_QUERY = "SELECT `id`, `cover_image_path`, `localized_name_id` FROM `photo_category` ORDER BY `id`";
+    private static final String FIND_BY_ID_QUERY =
+        "SELECT pc.id, "
+        + "       pc.cover_image_path, "
+        + "       pc.localized_name_id, "
+        + "       lt.russian as name "
+        + "FROM photo_category pc "
+        + "         LEFT JOIN localized_text lt on pc.localized_name_id = lt.id "
+        + "WHERE pc.id = ?";
+    private static final String FIND_ALL_QUERY =
+        "SELECT pc.id, "
+        + "       pc.cover_image_path, "
+        + "       pc.localized_name_id, "
+        + "       lt.russian as name "
+        + "FROM photo_category pc "
+        + "         LEFT JOIN localized_text lt on pc.localized_name_id = lt.id "
+        + "ORDER BY pc.id";
 
     public PhotoCategoryDaoImpl(Connection connection) {
         super(connection);
@@ -138,9 +152,11 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
         }
 
         int nameId = resultSet.getInt("localized_name_id");
+        String nameText = resultSet.getString("name");
         if (!resultSet.wasNull()) {
             LocalizedTextEntity name = new LocalizedTextEntity();
             name.setId(nameId);
+            name.setRussian(nameText);
             category.setLocalizedName(name);
         }
 

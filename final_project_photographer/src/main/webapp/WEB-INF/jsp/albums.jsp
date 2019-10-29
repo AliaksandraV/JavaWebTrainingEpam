@@ -33,22 +33,22 @@
 <section class="gallery-block cards-gallery">
     <div class="container">
         <div class="row">
-            <c:forEach items="${albums}" var="album" varStatus="loop">
+            <c:forEach items="${albums}" var="category" varStatus="loop">
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="card border-0 transform-on-hover">
                         <c:url value="/photos" var="photosUrl"/>
-                        <a class="lightbox" href="${photosUrl}/${album.id}?page=1">
+                        <a class="lightbox" href="${photosUrl}/${category.id}?page=1">
                             <div class="thumbnail">
-                                <img src="<%=request.getContextPath()%>${album.coverImagePath}"
+                                <img src="<%=request.getContextPath()%>${category.coverImagePath}"
                                      alt="Image"/>
                             </div>
                         </a>
                         <div class="card-body">
                             <h6>
-                                <c:if test="${album.nameEntity==null}">
+                                <c:if test="${category.nameEntity==null}">
                                     <fmt:message key="no_name" bundle="${lang}"/>
                                 </c:if>
-                                    ${album.nameEntity.russian}
+                                    ${category.nameEntity.russian}
                             </h6>
                                 <%--<p class="text-muted card-text">${album.descriptionEntity.russian}</p>--%>
                         </div>
@@ -58,105 +58,6 @@
         </div>
     </div>
 </section>
-
-
-<section class="gallery-block cards-gallery">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/wedding.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet, consectetur
-                            adipiscing elit. Nunc
-                            quam urna.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/pregnancy.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/baby.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet, consectetur
-                            adipiscing elit. Nunc
-                            quam urna.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/wedding.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet, consectetur
-                            adipiscing elit. Nunc
-                            quam urna.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/pregnancy.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10 col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>/img/baby.jpg"
-                             alt="Image"/>
-                    </div>
-                    <div class="card-body">
-                        <h6>Lorem Ipsum</h6>
-                        <p class="text-muted card-text">Lorem ipsum dolor sit
-                            amet, consectetur
-                            adipiscing elit. Nunc
-                            quam urna.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
 
 <script>
     $('img').each(function (_, img) {

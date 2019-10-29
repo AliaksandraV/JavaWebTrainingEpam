@@ -22,7 +22,7 @@
     <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
     <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
     <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
-    <script src="<c:url value="/js/registration.js"/>"></script>
+    <%--        <script src="<c:url value="/js/registration.js"/>"></script>--%>
 
 </head>
 <body>
@@ -33,9 +33,9 @@
     <div class="row justify-content-center">
 
         <div class="col-sm-9 col-md-7 col-lg-5">
-            <form class="needs-validation" action="${pageContext.request.contextPath}/confirm-edit-profile" method="post"
-                  oninput='repeatPassword.setCustomValidity(repeatPassword.value != password.value ? "Passwords do not match." : "")'
-                  onsubmit="submitRegistrationForm(event)"
+            <form class="needs-validation" action="${pageContext.request.contextPath}/profile/edit/confirm" method="post"
+            <%--                  oninput='repeatPassword.setCustomValidity(repeatPassword.value != password.value ? "Passwords do not match." : "")'--%>
+            <%--                  onsubmit="submitRegistrationForm(event)"--%>
                   id="editProfile"
                   novalidate>
 
@@ -48,13 +48,14 @@
                                value="${user.email}"
                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                placeholder="<fmt:message key="profile_your_email_placeholder" bundle="${lang}"/>" required>
+                        <div class="invalid-feedback text-center" id="emailClientFeedback">
+                            <fmt:message key="profile_your_email_empty" bundle="${lang}"/>
+                        </div>
+                        <div class="invalid-feedback text-center" id="emailServerFeedback">
+                            <fmt:message key="reg_email_exist" bundle="${lang}"/>
+                        </div>
                     </div>
-                    <div class="invalid-feedback text-center" id="emailClientFeedback">
-                        <fmt:message key="profile_your_email_empty" bundle="${lang}"/>
-                    </div>
-                    <%--                    <div class="invalid-feedback text-center" id="emailServerFeedback">--%>
-                    <%--                        <fmt:message key="reg_email_exist" bundle="${lang}"/>--%>
-                    <%--                    </div>--%>
+
                 </div>
 
                 <div class="form-group row">
@@ -65,11 +66,10 @@
                         <input name="name" type="text" class="form-control form-control-lg align-self-center"
                                id="inputNameProfile"
                                value="${user.name}"
-                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                placeholder="<fmt:message key="profile_your_name_placeholder" bundle="${lang}"/>" required>
-                    </div>
-                    <div class="invalid-feedback text-center" id="inputNameWrong">
-                        <fmt:message key="profile_your_name_wrong" bundle="${lang}"/>
+                        <div class="invalid-feedback text-center" id="inputNameWrong">
+                            <fmt:message key="profile_your_name_wrong" bundle="${lang}"/>
+                        </div>
                     </div>
                 </div>
 
@@ -82,57 +82,61 @@
                                value="${user.phoneNumber}"
                                pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
                                placeholder="<fmt:message key="profile_your_phone_placeholder" bundle="${lang}"/>" required>
-                    </div>
-                    <div class="invalid-feedback text-center" id="inputPhoneWrong">
-                        <fmt:message key="profile_your_phone_wrong" bundle="${lang}"/>
-                    </div>
-                </div>
-                <p>
-                <div class="row text-center">
-                    <div class="col-4">
-                    </div>
-                    <div class="col-8 px-0 py-0">
-                        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample">
-                            <fmt:message key="profile_change_pass_btn" bundle="${lang}"/>
-                        </button>
-                    </div>
-                </div>
-                </p>
-                <div class="collapse" id="collapseExample">
-                    <div class="form-group row">
-                        <label for="inputNewPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">
-                            <fmt:message key="profile_new_pass_label" bundle="${lang}"/>:
-                        </label>
-                        <div class="col-sm-8 px-0 py-0 align-self-center">
-                            <input name="new-password" type="password" class="form-control form-control-lg"
-                                   id="inputNewPassProfile"
-                                   minlength="8"
-                                   placeholder="<fmt:message key="profile_new_pass_placeholder" bundle="${lang}"/>" required>
-                        </div>
-                        <div class="invalid-feedback text-center" id="inputNewPassWrong">
-                            <fmt:message key="profile_new_pass_wrong" bundle="${lang}"/>
+                        <div class="invalid-feedback text-center" id="inputPhoneWrong">
+                            <fmt:message key="profile_your_phone_wrong" bundle="${lang}"/>
                         </div>
                     </div>
+                </div>
+                <input name="role" type="hidden" value="${user.role}">
 
-                    <div class="form-group row">
-                        <label for="inputRepeatPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">
-                            <fmt:message key="profile_repeat_new_pass_label" bundle="${lang}"/>:
-                        </label>
-                        <div class="col-sm-8 px-0 py-0 align-self-center">
-                            <input name="new-password" type="password" class="form-control form-control-lg"
-                                   id="inputRepeatPassProfile"
-                                   placeholder="<fmt:message key="profile_repeat_new_pass_placeholder" bundle="${lang}"/>"
-                                   required>
-                        </div>
-                        <div class="invalid-feedback text-center" id="inputRepeatPassWrong">
-                            <fmt:message key="profile_repeat_new_pass_wrong" bundle="${lang}"/>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row text-center">
-                    <div class="col">
+
+            <%--                <p>--%>
+<%--                <div class="row text-center">--%>
+<%--                    <div class="col-4">--%>
+<%--                    </div>--%>
+<%--                    <div class="col-8 px-0 py-0">--%>
+<%--                        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse"--%>
+<%--                                data-target="#collapseExample"--%>
+<%--                                aria-expanded="false" aria-controls="collapseExample">--%>
+<%--                            <fmt:message key="profile_change_pass_btn" bundle="${lang}"/>--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                </p>--%>
+<%--                <div class="collapse" id="collapseExample">--%>
+<%--                    <div class="form-group row">--%>
+<%--                        <label for="inputNewPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">--%>
+<%--                            <fmt:message key="profile_new_pass_label" bundle="${lang}"/>:--%>
+<%--                        </label>--%>
+<%--                        <div class="col-sm-8 px-0 py-0 align-self-center">--%>
+<%--                            <input name="new-password" type="password" class="form-control form-control-lg"--%>
+<%--                                   id="inputNewPassProfile"--%>
+<%--                                   minlength="8"--%>
+<%--                                   placeholder="<fmt:message key="profile_new_pass_placeholder" bundle="${lang}"/>" required>--%>
+<%--                            <div class="invalid-feedback text-center" id="inputNewPassWrong">--%>
+<%--                                <fmt:message key="profile_new_pass_wrong" bundle="${lang}"/>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="form-group row">--%>
+<%--                        <label for="inputRepeatPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">--%>
+<%--                            <fmt:message key="profile_repeat_new_pass_label" bundle="${lang}"/>:--%>
+<%--                        </label>--%>
+<%--                        <div class="col-sm-8 px-0 py-0 align-self-center">--%>
+<%--                            <input name="new-password" type="password" class="form-control form-control-lg"--%>
+<%--                                   id="inputRepeatPassProfile"--%>
+<%--                                   placeholder="<fmt:message key="profile_repeat_new_pass_placeholder" bundle="${lang}"/>"--%>
+<%--                                   required>--%>
+<%--                            <div class="invalid-feedback text-center" id="inputRepeatPassWrong">--%>
+<%--                                <fmt:message key="profile_repeat_new_pass_wrong" bundle="${lang}"/>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <hr>--%>
+                <div class="row text-right">
+                    <div class="col pr-0">
                         <c:url value="/home" var="homeUrl"/>
                         <a href="${homeUrl}" id="cancel" name="cancel" class="btn btn-primary">
                             <fmt:message key="profile_btn_cancel" bundle="${lang}"/>
@@ -144,7 +148,34 @@
                 </div>
             </form>
         </div>
+
     </div>
 </div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms,
+                function (form) {
+                    form.addEventListener('submit',
+                        function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                            }
+
+                            form.classList.add('was-validated');
+                        }, false);
+                });
+        }, false);
+    })();
+</script>
+
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 package by.training.photographer.controller;
 
+import by.training.photographer.action.User;
 import by.training.photographer.entity.Role;
-import by.training.photographer.entity.UserEntity;
 import org.apache.log4j.Logger;
 
 import javax.servlet.Filter;
@@ -25,6 +25,10 @@ public class SecurityFilter implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 
+            if (needAuthorization(req)) {
+                //TODO сделать фильтр на /edit-profile - пользователь с любой ролью должен быть авторизован
+            }
+
             if (needAdminRole(req) && !hasRole(req, Role.ADMIN)) {
                 String message = MessageFormat.format("Attempt to access resource {0} without admin role", req.getServletPath());
                 logger.warn(message);
@@ -46,7 +50,7 @@ public class SecurityFilter implements Filter {
             return false;
         }
 
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         if (user == null) {
             return false;
@@ -57,6 +61,10 @@ public class SecurityFilter implements Filter {
 
     private boolean needAdminRole(HttpServletRequest req) {
         return req.getServletPath().startsWith("/admin");
+    }
+
+    private boolean needAuthorization(HttpServletRequest req) {
+        return req.getServletPath().startsWith("/edit-profile");
     }
 
     @Override

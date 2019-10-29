@@ -1,8 +1,10 @@
 package by.training.photographer.service;
 
+import by.training.photographer.dao.AlbumDao;
 import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.PhotoCategoryDao;
 import by.training.photographer.dao.connection.Transaction;
+import by.training.photographer.entity.AlbumEntity;
 import by.training.photographer.entity.PhotoCategoryEntity;
 import by.training.photographer.exception.PersistenceException;
 
@@ -39,16 +41,29 @@ public class PhotoCategoryServiceImpl extends BaseServiceImpl<Integer, PhotoCate
         return null;
     }
 
+    //TODO Пересмотреть реализацию этого метода
     @Override
     public List<PhotoCategoryEntity> findAll() throws PersistenceException {
         Transaction transaction = createTransaction();
         PhotoCategoryDao dao = getCategoryDao(transaction);
+        AlbumDao albumDao = getAlbumDao(transaction);
 
-        return transaction.commitWithResult(dao::findAll);
+        List<PhotoCategoryEntity> categories = transaction.commitWithResult(dao::findAll);
+
+        for (PhotoCategoryEntity category : categories) {
+            List<AlbumEntity> albums = transaction.commitWithResult(() -> albumDao.findByCategory(category.getId()));
+            category.setAlbumList(albums);
+        }
+
+        return categories;
     }
 
     private PhotoCategoryDao getCategoryDao(final Transaction transaction) throws PersistenceException {
         return getDaoFactory().getCategoryDao(transaction.getConnection());
+    }
+
+    private AlbumDao getAlbumDao(final Transaction transaction) throws PersistenceException {
+        return getDaoFactory().getAlbumDao(transaction.getConnection());
     }
 
 }

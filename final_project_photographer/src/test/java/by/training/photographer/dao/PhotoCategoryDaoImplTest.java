@@ -20,7 +20,7 @@ public class PhotoCategoryDaoImplTest extends BaseDaoImplTest {
     private static final int ID = 1;
     private static final int ID_NAME = 1;
     private static final String NAME_TEXT = "albumName";
-    private static final LocalizedTextEntity CATEGORY_TEXT = new LocalizedTextEntity(ID_NAME);
+    private static final LocalizedTextEntity CATEGORY_TEXT = new LocalizedTextEntity(ID_NAME, NAME_TEXT);
     private static final String PATH = "albumName";
     private static final PhotoCategoryEntity NEW_PHOTO_CATEGORY_ENTITY = new PhotoCategoryEntity(CATEGORY_TEXT, PATH, null);
     private static final PhotoCategoryEntity SAVED_PHOTO_CATEGORY_ENTITY = new PhotoCategoryEntity(ID, CATEGORY_TEXT, PATH, null);
