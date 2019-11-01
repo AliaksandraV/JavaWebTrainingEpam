@@ -1,6 +1,5 @@
 package by.training.photographer.entity;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,10 +9,6 @@ import java.util.Objects;
 public class AlbumEntity extends Entity {
 
     private String coverImagePath;
-    /**
-     * Date for album. Could be null.
-     */
-    private Calendar date;
     /**
      * Name for album. Could be null.
      */
@@ -31,9 +26,6 @@ public class AlbumEntity extends Entity {
      */
     private List<PhotoEntity> photoList;
 
-    /**
-     * default constructor.
-     */
     public AlbumEntity() {
     }
 
@@ -42,13 +34,11 @@ public class AlbumEntity extends Entity {
     }
 
     public AlbumEntity(final String coverImagePath,
-                       final Calendar date,
                        final LocalizedTextEntity nameEntity,
                        final LocalizedTextEntity descriptionEntity,
                        final PhotoCategoryEntity photoCategory,
                        final List<PhotoEntity> photoList) {
         this.coverImagePath = coverImagePath;
-        this.date = date;
         this.nameEntity = nameEntity;
         this.descriptionEntity = descriptionEntity;
         this.photoCategory = photoCategory;
@@ -57,14 +47,12 @@ public class AlbumEntity extends Entity {
 
     public AlbumEntity(final int id,
                        final String coverImagePath,
-                       final Calendar date,
                        final LocalizedTextEntity nameEntity,
                        final LocalizedTextEntity descriptionEntity,
                        final PhotoCategoryEntity photoCategory,
                        final List<PhotoEntity> photoList) {
         super(id);
         this.coverImagePath = coverImagePath;
-        this.date = date;
         this.nameEntity = nameEntity;
         this.descriptionEntity = descriptionEntity;
         this.photoCategory = photoCategory;
@@ -77,24 +65,6 @@ public class AlbumEntity extends Entity {
 
     public void setCoverImagePath(final String coverImagePath) {
         this.coverImagePath = coverImagePath;
-    }
-
-    /**
-     * Return data.
-     *
-     * @return data.
-     */
-    public Calendar getDate() {
-        return date;
-    }
-
-    /**
-     * Set date.
-     *
-     * @param date date for set.
-     */
-    public void setDate(final Calendar date) {
-        this.date = date;
     }
 
     /**
@@ -184,11 +154,10 @@ public class AlbumEntity extends Entity {
         if (!super.equals(o)) return false;
         AlbumEntity that = (AlbumEntity) o;
         return Objects.equals(coverImagePath, that.coverImagePath) &&
-            Objects.equals(date, that.date) &&
-            Objects.equals(nameEntity, that.nameEntity) &&
-            Objects.equals(descriptionEntity, that.descriptionEntity) &&
-            Objects.equals(photoCategory, that.photoCategory) &&
-            Objects.equals(photoList, that.photoList);
+               Objects.equals(nameEntity, that.nameEntity) &&
+               Objects.equals(descriptionEntity, that.descriptionEntity) &&
+               Objects.equals(photoCategory, that.photoCategory) &&
+               Objects.equals(photoList, that.photoList);
     }
 
     /**
@@ -198,7 +167,7 @@ public class AlbumEntity extends Entity {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), coverImagePath, date, nameEntity,
+        return Objects.hash(super.hashCode(), coverImagePath, nameEntity,
             descriptionEntity, photoCategory, photoList);
     }
 
@@ -210,23 +179,13 @@ public class AlbumEntity extends Entity {
     @Override
     public String toString() {
         return "AlbumEntity{" +
-            "id=" + id +
-            ", coverImagePath='" + coverImagePath + '\'' +
-            dataPrint() +
-            ", nameEntity=" + nameEntity +
-            ", descriptionEntity=" + descriptionEntity +
-            ", photoCategory=" + photoCategory +
-            ", photoList=" + photoList +
-            '}';
+               "id=" + id +
+               ", coverImagePath='" + coverImagePath + '\'' +
+               ", nameEntity=" + nameEntity +
+               ", descriptionEntity=" + descriptionEntity +
+               ", photoCategoryId=" + photoCategory.getId() +
+               ", photoList=" + photoList +
+               '}';
     }
 
-    private String dataPrint() {
-        if (date != null) {
-            return "date=" + date.get(Calendar.DAY_OF_MONTH)
-                + "." + date.get(Calendar.MONTH)
-                + "." + date.get(Calendar.YEAR);
-        } else {
-            return "not indicated";
-        }
-    }
 }

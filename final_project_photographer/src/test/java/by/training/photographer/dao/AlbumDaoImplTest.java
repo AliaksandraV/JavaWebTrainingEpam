@@ -31,8 +31,8 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
     private static final PhotoCategoryEntity CATEGORY = new PhotoCategoryEntity(ID_CATEGORY);
     private static final int ID_ALBUM = 1;
     private static final String IMG_PATH = "categoryDescription";
-    private static final AlbumEntity NEW_ALBUM_ENTITY = new AlbumEntity(IMG_PATH,null, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
-    private static final AlbumEntity SAVED_ALBUM_ENTITY = new AlbumEntity(ID_ALBUM, IMG_PATH, null, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
+    private static final AlbumEntity NEW_ALBUM_ENTITY = new AlbumEntity(IMG_PATH, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
+    private static final AlbumEntity SAVED_ALBUM_ENTITY = new AlbumEntity(ID_ALBUM, IMG_PATH, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
 
     @BeforeClass
     public void initClass() {
@@ -75,7 +75,7 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
         executeScript("INSERT INTO album (id, cover_image_path, localized_name_id, localized_description_id, photo_category_id) VALUES ('"
             + ID_ALBUM + "', '" + IMG_PATH + "', '" + ID_ALBUM_NAME + "', '" + ID_ALBUM_DESCRIPTION + "', '" + ID_CATEGORY + "')");
 
-        AlbumEntity updatedUserEntity = new AlbumEntity(ID_ALBUM, IMG_PATH, null, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
+        AlbumEntity updatedUserEntity = new AlbumEntity(ID_ALBUM, IMG_PATH, ALBUM_NAME, ALBUM_DESCRIPTION, CATEGORY, null);
 
         // when
         albumDao.update(updatedUserEntity);

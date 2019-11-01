@@ -146,11 +146,6 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
         PhotoCategoryEntity category = new PhotoCategoryEntity();
         category.setId(resultSet.getInt("id"));
 
-        String coverPath = resultSet.getString("cover_image_path");
-        if (!resultSet.wasNull()) {
-            category.setCoverImagePath(coverPath);
-        }
-
         int nameId = resultSet.getInt("localized_name_id");
         String nameText = resultSet.getString("name");
         if (!resultSet.wasNull()) {
@@ -159,6 +154,12 @@ public class PhotoCategoryDaoImpl extends BaseDaoImpl<Integer, PhotoCategoryEnti
             name.setRussian(nameText);
             category.setLocalizedName(name);
         }
+
+        String cover = resultSet.getString("cover_image_path");
+        if (!resultSet.wasNull()) {
+            category.setCoverImagePath(cover);
+        }
+
 
         return category;
     }

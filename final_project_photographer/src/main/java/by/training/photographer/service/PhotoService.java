@@ -23,5 +23,7 @@ public interface PhotoService extends BaseService<Integer, PhotoEntity> {
     @Override
     List<PhotoEntity> findAll() throws PersistenceException;
 
-    PaginationResult findByAlbum(Integer albumId, int currentPage, int stepAmount) throws PersistenceException;
+    PaginationResult findByAlbumWithPagination(Integer albumId, int currentPage, int stepAmount) throws PersistenceException;
+
+    List<PhotoEntity> findByAlbum(Integer albumId) throws PersistenceException;
 }

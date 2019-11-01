@@ -23,6 +23,13 @@
     <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
     <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
     <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
+    <script>
+        $(document).ready(function () {
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.btn-primary').attr('href', $(e.relatedTarget).data('href'));
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container-fluid">
@@ -32,7 +39,7 @@
         </div>
         <div class="col-md-9 col-lg-9 container">
             <div class="text-right m-2">
-                <input type="hidden" name="albums" value="${albums}" />
+                <input type="hidden" name="albums" value="${albums}"/>
                 <c:url value="/admin/album/create" var="createUrl"/>
                 <a href="${createUrl}" class="btn btn-primary align-self-center">+ Create new album</a>
             </div>
@@ -61,9 +68,14 @@
                                     ${album.photoCategory.localizedName.russian}
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-size"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-success btn-size"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-size"><i class="far fa-trash-alt"></i></a>
+<%--                                <c:url value="/admin/album/edit/${album.id}" var="editAlbumUrl"/>--%>
+<%--                                <a href="${editAlbumUrl}" class="btn btn-success btn-size mb-1" id="editAlbumBtn">--%>
+<%--                                    <i class="fas fa-edit"></i>--%>
+<%--                                </a>--%>
+                                <c:url value="/admin/album/delete/${album.id}" var="deleteAlbumUrl"/>
+                                <a href="#" class="btn btn-danger btn-size mb-1" data-href="${deleteAlbumUrl}" data-toggle="modal" data-target="#confirm-delete">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -75,5 +87,20 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body"> Do you want to delete this? </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                <a href="#" class="btn btn-primary">YES</a> </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

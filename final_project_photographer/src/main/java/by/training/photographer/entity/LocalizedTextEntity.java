@@ -6,9 +6,6 @@ public class LocalizedTextEntity extends Entity {
 
     private String russian;
 
-    /**
-     * default constructor
-     */
     public LocalizedTextEntity() {
     }
 
@@ -66,8 +63,8 @@ public class LocalizedTextEntity extends Entity {
     @Override
     public String toString() {
         return "LocalizedTextEntity{" +
-            "russian='" + russian + '\'' +
-            ", id=" + id +
-            '}';
+               "russian='" + russian + '\'' +
+               ", id=" + id +
+               '}';
     }
 }

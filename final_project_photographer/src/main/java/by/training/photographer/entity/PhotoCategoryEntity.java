@@ -15,7 +15,7 @@ public class PhotoCategoryEntity extends Entity {
     public PhotoCategoryEntity() {
     }
 
-    public PhotoCategoryEntity(final int id) {
+    public PhotoCategoryEntity(final Integer id) {
         super(id);
     }
 
@@ -74,8 +74,8 @@ public class PhotoCategoryEntity extends Entity {
         if (!super.equals(o)) return false;
         PhotoCategoryEntity that = (PhotoCategoryEntity) o;
         return Objects.equals(localizedName, that.localizedName) &&
-            Objects.equals(coverImagePath, that.coverImagePath) &&
-            Objects.equals(albumList, that.albumList);
+               Objects.equals(coverImagePath, that.coverImagePath) &&
+               Objects.equals(albumList, that.albumList);
     }
 
     /**
@@ -96,10 +96,10 @@ public class PhotoCategoryEntity extends Entity {
     @Override
     public String toString() {
         return "PhotoCategoryEntity{" +
-            "id=" + id +
-            ", localizedName=" + localizedName +
-            ", coverImagePath='" + coverImagePath + '\'' +
-            ", albumList=" + albumList +
-            '}';
+               "id=" + id +
+               ", localizedName=" + localizedName +
+               ", coverImagePath='" + coverImagePath + '\'' +
+               ", albumList=" + albumList +
+               '}';
     }
 }

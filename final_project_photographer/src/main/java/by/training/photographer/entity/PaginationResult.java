@@ -3,7 +3,7 @@ package by.training.photographer.entity;
 import java.util.List;
 import java.util.Objects;
 
-public class PaginationResult <E extends Entity> {
+public class PaginationResult<E extends Entity> {
 
     private int totalRecords;
     private int currentPage;

@@ -17,8 +17,8 @@ public enum Role {
 
     public static Role getById(int id) {
         return Stream.of(values())
-                .filter(role -> role.getId() == id)
-                .findFirst()
-                .orElse(null);
+            .filter(role -> role.getId() == id)
+            .findFirst()
+            .orElse(null);
     }
 }

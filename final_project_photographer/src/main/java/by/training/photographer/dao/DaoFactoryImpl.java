@@ -23,4 +23,9 @@ public class DaoFactoryImpl implements DaoFactory {
     public PhotoDao getPhotoDao(final Connection connection) {
         return new PhotoDaoImpl(connection);
     }
+
+    @Override
+    public LocalizedTextDao getLocalizedTextDao(final Connection connection) {
+        return new LocalizedTextDaoImpl(connection);
+    }
 }

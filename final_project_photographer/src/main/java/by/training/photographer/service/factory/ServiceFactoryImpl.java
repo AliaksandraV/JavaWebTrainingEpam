@@ -3,6 +3,8 @@ package by.training.photographer.service.factory;
 import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.service.AlbumService;
 import by.training.photographer.service.AlbumServiceImpl;
+import by.training.photographer.service.LocalizedTextService;
+import by.training.photographer.service.LocalizedTextServiceImpl;
 import by.training.photographer.service.PhotoCategoryService;
 import by.training.photographer.service.PhotoCategoryServiceImpl;
 import by.training.photographer.service.PhotoService;
@@ -36,5 +38,10 @@ public class ServiceFactoryImpl implements ServiceFactory {
     @Override
     public PhotoCategoryService createPhotoCategoryService() {
         return new PhotoCategoryServiceImpl(daoFactory);
+    }
+
+    @Override
+    public LocalizedTextService createLocalizedTextService() {
+        return new LocalizedTextServiceImpl(daoFactory);
     }
 }

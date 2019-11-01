@@ -30,26 +30,6 @@
     <div class="row">
         <div class="col-md-3 col-lg-3 navbar-container bg-light">
             <jsp:include page="leftMenu.jsp"/>
-<%--            <!-- Вертикальное меню -->--%>
-<%--            <nav class="navbar navbar-expand-md navbar-light">--%>
-<%--                <c:url value="/home" var="homeUrl"/>--%>
-<%--                <a class="navbar-brand" href="${homeUrl}">← <fmt:message key="menu_back_to_site" bundle="${lang}"/></a>--%>
-<%--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"--%>
-<%--                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--                    <span class="navbar-toggler-icon"></span>--%>
-<%--                </button>--%>
-<%--                <div class="collapse navbar-collapse" id="navbar">--%>
-<%--                    <!-- Пункты вертикального меню -->--%>
-<%--                    <ul class="navbar-nav">--%>
-<%--                        <li class="nav-item">--%>
-<%--                            <a class="nav-link" href="#link-1"><fmt:message key="menu_admin_portfolio" bundle="${lang}"/></a>--%>
-<%--                        </li>--%>
-<%--                        <li class="nav-item">--%>
-<%--                            <a class="nav-link" href="#link-2"><fmt:message key="menu_admin_album" bundle="${lang}"/></a>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </nav>--%>
         </div>
         <div class="col-md-9 col-lg-9 container">
             <!-- Основной контент страницы  -->
@@ -64,28 +44,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${categories}" var="category" varStatus="loop">
+                <c:forEach items="${categories}" var="album" varStatus="loop">
                     <tr>
                         <th scope="row">${loop.index+1}</th>
                         <td class="w-25">
                             <div class="thumbnail">
-                                <img class="img-fluid" src="<%=request.getContextPath()%>${category.coverImagePath}"
+                                <img class="img-fluid" src="<%=request.getContextPath()%>${album.coverImagePath}"
                                      alt="Image"/>
                             </div>
                         </td>
                         <td>
-                                ${category.localizedName.russian}
+                                ${album.localizedName.russian}
                         </td>
                         <td>
-                            <c:forEach items="${category.albumList}" var="album" varStatus="loop">
+                            <c:forEach items="${album.albumList}" var="album" varStatus="loop">
                                 ${album.nameEntity.russian}
                                 <br>
                             </c:forEach>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary btn-size"><i class="far fa-eye"></i></a>
-                            <a href="#" class="btn btn-success btn-size"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-danger btn-size"><i class="far fa-trash-alt"></i></a>
+<%--                            <a href="#" class="btn btn-primary btn-size"><i class="far fa-eye"></i></a>--%>
+<%--                            <a href="#" class="btn btn-success btn-size"><i class="fas fa-edit"></i></a>--%>
+<%--                            <a href="#" class="btn btn-danger btn-size"><i class="far fa-trash-alt"></i></a>--%>
                         </td>
                     </tr>
                 </c:forEach>

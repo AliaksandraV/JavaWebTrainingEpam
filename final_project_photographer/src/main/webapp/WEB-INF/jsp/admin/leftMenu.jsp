@@ -18,12 +18,13 @@
             <!-- Пункты вертикального меню -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <c:url value="/admin/category" var="adminCategoryUrl"/>
-                    <a class="nav-link" href="${adminCategoryUrl}"><fmt:message key="menu_admin_portfolio" bundle="${lang}"/></a>
-                </li>
-                <li class="nav-item">
                     <c:url value="/admin/album" var="adminAlbumUrl"/>
                     <a class="nav-link" href="${adminAlbumUrl}"><fmt:message key="menu_admin_album" bundle="${lang}"/></a>
+                </li>
+                <li class="nav-item">
+                    <c:url value="/admin/category" var="adminCategoryUrl"/>
+                    <a class="nav-link" href="${adminCategoryUrl}"><fmt:message key="menu_admin_portfolio"
+                                                                                bundle="${lang}"/></a>
                 </li>
             </ul>
         </div>

@@ -31,14 +31,14 @@
 <div class="container-fluid aos-init aos-animate" data-aos-delay="500">
     <div class="swiper-container images-carousel swiper-container-horizontal swiper-container-free-mode">
         <div class="swiper-wrapper" style="transform: translate3d(-2425px, 0px, 0px); transition-duration: 0ms;">
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${categories}" var="album">
                 <div class="swiper-slide" style="width: 465px; margin-right: 20px;">
                     <div class="image-wrap">
                         <div class="image-info">
-                            <h2 class="mb-3">${category.localizedName.russian}</h2>
-                            <a href="album/${category.id}" class="btn btn-outline-white py-2 px-4"><fmt:message key="more_photos" bundle="${lang}"/></a>
+                            <h2 class="mb-3">${album.localizedName.russian}</h2>
+                            <a href="album/${album.id}" class="btn btn-outline-white py-2 px-4"><fmt:message key="more_photos" bundle="${lang}"/></a>
                         </div>
-                        <img src="<%=request.getContextPath()%>${category.coverImagePath}" alt="Image">
+                        <img src="<%=request.getContextPath()%>${album.coverImagePath}" alt="Image">
                     </div>
                 </div>
             </c:forEach>

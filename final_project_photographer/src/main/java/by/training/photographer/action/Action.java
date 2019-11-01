@@ -2,6 +2,7 @@ package by.training.photographer.action;
 
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.factory.ServiceFactory;
+import org.apache.commons.fileupload.FileUploadException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,15 +20,15 @@ public abstract class Action {
         this.serviceFactory = serviceFactory;
     }
 
-    public abstract void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PersistenceException;
+    public abstract void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PersistenceException, FileUploadException;
 
     public abstract String getSuccessResponsePageName();
 
-    protected void redirectToSuccessPage(HttpServletResponse response) throws ServletException, IOException {
+    protected void redirectToSuccessPage(HttpServletResponse response) throws IOException {
         redirectToSuccessPage(response, getSuccessResponsePageName());
     }
 
-    protected void redirectToSuccessPage(HttpServletResponse response, String name) throws ServletException, IOException {
+    protected void redirectToSuccessPage(HttpServletResponse response, String name) throws IOException {
         response.sendRedirect(name);
     }
 

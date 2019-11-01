@@ -26,43 +26,41 @@
                 <h3>Create new album</h3>
                 <hr>
             </div>
-            <form class="needs-validation" action="${pageContext.request.contextPath}/addAlbum" method="post"
+            <form class="needs-validation" action="${pageContext.request.contextPath}/admin/album/add"
+                  method="post"
                   enctype="multipart/form-data"
                   id="createAlbum"
                   novalidate>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName">
+                        <input name="name" type="text" class="form-control" id="inputName">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputCategory">Category</label>
-                        <select id="inputCategory" class="form-control" required>
-                            <c:forEach items="${categories}" var="category" varStatus="loop">
-                                <option>${category.localizedName.russian}</option>
+                        <select name="category" id="inputCategory" class="form-control" required>
+                            <c:forEach items="${categories}" var="album" varStatus="loop">
+<%--                                <input type="hidden" name="categoryId" value="${category.id}">--%>
+                                <option value="${album.id}">${album.localizedName.russian}</option>
                             </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDescroption">Description</label>
-                    <textarea class="form-control" id="inputDescroption" rows="3"></textarea>
+                    <label for="inputDescription">Description</label>
+                    <textarea name="description" class="form-control" id="inputDescription" rows="3"></textarea>
                 </div>
-<%--                <div class="form-group">--%>
-<%--                    <label for="inputFile">Choose photo for album</label>--%>
-<%--                    <div class="custom-file">--%>
-<%--                        <input type="file" class="custom-file-input" id="inputFile">--%>
-<%--                        <label class="custom-file-label" for="inputFile">Click here to load file...</label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
 
                 <div class="form-group">
-                <input type="file" name="file" value="Select images..."/>
-<%--                <input type="submit" value="start"/>--%>
+                    <label for="inputCover">Choose cover photo: </label>
+                    <input type="file" name="cover" id="inputCover"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhotos">Choose albums photos: </label>
+                    <input type="file" name="photos" id="inputPhotos" multiple/>
                 </div>
 
                 <button type="submit" class="btn btn-primary float-right">Create</button>
-
             </form>
         </div>
     </div>

@@ -38,8 +38,8 @@
 <div class="container">
     <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
     <hr>
-    тут будут хлебные крошки
-    <hr>
+<%--    тут будут хлебные крошки--%>
+<%--    <hr>--%>
 </div>
 
 <section class="mbr-gallery mbr-gallery-filter" id="gallery2-53"
@@ -53,7 +53,8 @@
                             <c:forEach items="${photos}" var="photo" varStatus="loop">
                                 <div class="mbr-gallery-item mbr-gallery-item--p5">
                                     <div href="#lb-gallery2-53" data-slide-to="${loop.index}" data-toggle="modal">
-                                        <img src="<%=request.getContextPath()%>${photo.path}" alt="Image not found">
+<%--                                        <img src="<%=request.getContextPath()%>${photo.path}" alt="Image not found">--%>
+                                        <img src="${pageContext.request.contextPath}/image/${photo.path}" alt="Image not found">
                                         <span class="icon-focus"></span>
                                     </div>
                                 </div>
@@ -63,45 +64,50 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-
-            <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1"
-                 data-keyboard="true" data-interval="false" id="lb-gallery2-53">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="carousel-inner">
-                                <c:forEach items="${photos}" var="photo" varStatus="loop">
-                                    <div class="carousel-item">
-                                        <img src="<%=request.getContextPath()%>${photo.path}" alt="Image not found">
-                                    </div>
-                                </c:forEach>
-                            </div>
-
-                            <a class="carousel-control carousel-control-prev" role="button" data-slide="prev"
-                               href="#lb-gallery2-53">
-                                <span class="mbri-left mbr-iconfont"
-                                      aria-hidden="true">
-
-                                </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control carousel-control-next"
-                               role="button" data-slide="next"
-                               href="#lb-gallery2-53">
-                                <span
-                                        class="mbri-right mbr-iconfont"
-                                        aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            <a
-                                    class="close" href="#" role="button"
-                                    data-dismiss="modal">
-                                <span class="sr-only">Close</span>
-                            </a>
-                        </div>
-                    </div>
+            <c:if test="${ empty photos}">
+                <div class="text-center">
+                    <jsp:include page="/WEB-INF/jsp/common/emptyData.jsp"/>
                 </div>
-            </div>
+            </c:if>
+
+<%--            <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1"--%>
+<%--                 data-keyboard="true" data-interval="false" id="lb-gallery2-53">--%>
+<%--                <div class="modal-dialog">--%>
+<%--                    <div class="modal-content">--%>
+<%--                        <div class="modal-body">--%>
+<%--                            <div class="carousel-inner">--%>
+<%--                                <c:forEach items="${photos}" var="photo" varStatus="loop">--%>
+<%--                                    <div class="carousel-item">--%>
+<%--&lt;%&ndash;                                        <img src="<%=request.getContextPath()%>${photo.path}" alt="Image not found">&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                </c:forEach>--%>
+<%--                            </div>--%>
+
+<%--                            <a class="carousel-control carousel-control-prev" role="button" data-slide="prev"--%>
+<%--                               href="#lb-gallery2-53">--%>
+<%--                                <span class="mbri-left mbr-iconfont"--%>
+<%--                                      aria-hidden="true">--%>
+
+<%--                                </span>--%>
+<%--                                <span class="sr-only">Previous</span>--%>
+<%--                            </a>--%>
+<%--                            <a class="carousel-control carousel-control-next"--%>
+<%--                               role="button" data-slide="next"--%>
+<%--                               href="#lb-gallery2-53">--%>
+<%--                                <span--%>
+<%--                                        class="mbri-right mbr-iconfont"--%>
+<%--                                        aria-hidden="true"></span>--%>
+<%--                                <span class="sr-only">Next</span>--%>
+<%--                            </a>--%>
+<%--                            <a--%>
+<%--                                    class="close" href="#" role="button"--%>
+<%--                                    data-dismiss="modal">--%>
+<%--                                <span class="sr-only">Close</span>--%>
+<%--                            </a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </div>
 </section>

@@ -3,12 +3,10 @@ package by.training.photographer.entity;
 import java.util.Objects;
 
 public class LikeEntity extends Entity {
+
     private UserEntity userEntity;
     private PhotoEntity photoEntity;
 
-    /**
-     * default constructor
-     */
     public LikeEntity() {
     }
 
@@ -58,8 +56,9 @@ public class LikeEntity extends Entity {
         if (!super.equals(obj)) return false;
         LikeEntity that = (LikeEntity) obj;
         return Objects.equals(userEntity, that.userEntity) &&
-                Objects.equals(photoEntity, that.photoEntity);
+               Objects.equals(photoEntity, that.photoEntity);
     }
+
     /**
      * Returns a hash code value for the object.
      *
@@ -78,9 +77,9 @@ public class LikeEntity extends Entity {
     @Override
     public String toString() {
         return "LikeEntity{" +
-                "userEntity=" + userEntity +
-                ", photoEntity=" + photoEntity +
-                ", id=" + id +
-                '}';
+               "userEntity=" + userEntity +
+               ", photoEntity=" + photoEntity +
+               ", id=" + id +
+               '}';
     }
 }

@@ -4,8 +4,10 @@
 <%@ taglib prefix="ctg" uri="customtags" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="i18n.messages" var="lang"/>
 <html lang="${language}">
 <head>
@@ -26,29 +28,32 @@
 <div class="container">
     <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
     <hr>
-    тут будут хлебные крошки
-    <hr>
+    <%--    тут будут хлебные крошки--%>
+    <%--    <hr>--%>
 </div>
 
 <section class="gallery-block cards-gallery">
     <div class="container">
         <div class="row">
-            <c:forEach items="${albums}" var="category" varStatus="loop">
+            <c:forEach items="${albums}" var="album" varStatus="loop">
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="card border-0 transform-on-hover">
                         <c:url value="/photos" var="photosUrl"/>
-                        <a class="lightbox" href="${photosUrl}/${category.id}?page=1">
+                        <a class="lightbox" href="${photosUrl}/${album.id}?page=1">
                             <div class="thumbnail">
-                                <img src="<%=request.getContextPath()%>${category.coverImagePath}"
-                                     alt="Image"/>
+                                    <%--                                <img src="<%=request.getContextPath()%>${album.coverImagePath}" alt="Image"/>--%>
+                                    <%--                                <img src="${album.coverImagePath}" alt="Image"/>--%>
+                                <img src="${pageContext.request.contextPath}/image/${album.coverImagePath}"
+                                     alt="Image not found">
+
                             </div>
                         </a>
                         <div class="card-body">
                             <h6>
-                                <c:if test="${category.nameEntity==null}">
+                                <c:if test="${album.nameEntity==null}">
                                     <fmt:message key="no_name" bundle="${lang}"/>
                                 </c:if>
-                                    ${category.nameEntity.russian}
+                                    ${album.nameEntity.russian}
                             </h6>
                                 <%--<p class="text-muted card-text">${album.descriptionEntity.russian}</p>--%>
                         </div>
@@ -57,6 +62,12 @@
             </c:forEach>
         </div>
     </div>
+
+    <c:if test="${ empty albums}">
+        <div class="text-center">
+            <jsp:include page="/WEB-INF/jsp/common/emptyData.jsp"/>
+        </div>
+    </c:if>
 </section>
 
 <script>

@@ -57,7 +57,7 @@ public class LikeDaoImpl extends BaseDaoImpl<Integer, LikeEntity> implements Lik
 
     @Override
     public void update(final LikeEntity like) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override

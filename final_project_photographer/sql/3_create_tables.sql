@@ -21,7 +21,6 @@ CREATE TABLE `album`
 (
     `id`                       INT           NOT NULL AUTO_INCREMENT,
     `cover_image_path`         VARCHAR(4096) NULL,
-    `date`                     DATE          NULL,
     `localized_name_id`        INT           NULL,
     `localized_description_id` INT           NULL,
     `photo_category_id`        INT           NOT NULL,

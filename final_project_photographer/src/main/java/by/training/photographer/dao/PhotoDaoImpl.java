@@ -39,12 +39,18 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
         + "FROM photo "
         + "ORDER BY id";
 
-    private static final String FIND_BY_ALBUM_QUERY =
+    private static final String FIND_BY_ALBUM_WITH_PAGINATION_QUERY =
         "SELECT id, path, album_id "
         + "FROM photo "
         + "WHERE album_id = ? "
         + "ORDER BY id "
         + "LIMIT ? OFFSET ?";
+
+    private static final String FIND_BY_ALBUM_QUERY =
+        "SELECT id, path, album_id "
+        + "FROM photo "
+        + "WHERE album_id = ? "
+        + "ORDER BY id ";
 
     private static final String COUNT_AMOUNT_QUERY =
         "SELECT COUNT(id)"
@@ -140,7 +146,26 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
     }
 
     @Override
-    public PaginationResult<PhotoEntity> findByAlbum(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
+    public List<PhotoEntity> findByAlbum(final Integer albumId) throws PersistenceException {
+        List<PhotoEntity> photos = new ArrayList<>();
+
+        try (PreparedStatement statement =
+                 getConnection().prepareStatement(FIND_BY_ALBUM_QUERY);
+             ResultSet resultSet = findById(statement, albumId)) {
+
+            while (resultSet.next()) {
+                photos.add(createPhotoEntity(resultSet));
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+
+        return photos;
+    }
+
+    @Override
+    public PaginationResult<PhotoEntity> findByAlbumWithPagination(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
         List<PhotoEntity> photos = new ArrayList<>();
         PaginationResult pagination = new PaginationResult(currentPage, stepAmount);
         pagination.setCurrentPage(currentPage);
@@ -148,7 +173,7 @@ public class PhotoDaoImpl extends BaseDaoImpl<Integer, PhotoEntity> implements P
 
 
         try (PreparedStatement statement =
-                 getConnection().prepareStatement(FIND_BY_ALBUM_QUERY);
+                 getConnection().prepareStatement(FIND_BY_ALBUM_WITH_PAGINATION_QUERY);
              ResultSet resultSet = findByIdPagination(statement, albumId, stepAmount, (currentPage - 1) * stepAmount)) {
 
             while (resultSet.next()) {

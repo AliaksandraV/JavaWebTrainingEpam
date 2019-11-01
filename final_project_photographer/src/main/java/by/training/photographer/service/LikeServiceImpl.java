@@ -18,27 +18,27 @@ public class LikeServiceImpl extends BaseServiceImpl<Integer, LikeEntity> implem
 
     @Override
     public Integer create(final LikeEntity entity) throws PersistenceException {
-        dao.create(entity);
-        return null;
+       throw new UnsupportedOperationException();
     }
 
     @Override
     public void update(final LikeEntity entity) throws PersistenceException {
-        dao.update(entity);
+        throw new UnsupportedOperationException();
+
     }
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-        dao.delete(id);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public LikeEntity findById(final Integer id) throws PersistenceException {
-        return dao.findById(id);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public List<LikeEntity> findAll() throws PersistenceException {
-        return dao.findAll();
+        throw new UnsupportedOperationException();
     }
 }

@@ -99,11 +99,11 @@ public class UserEntity extends Entity {
         if (!super.equals(obj)) return false;
         UserEntity that = (UserEntity) obj;
         return role == that.role &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(passwordHash, that.passwordHash) &&
-                Objects.equals(salt, that.salt) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(phoneNumber, that.phoneNumber);
+               Objects.equals(email, that.email) &&
+               Objects.equals(passwordHash, that.passwordHash) &&
+               Objects.equals(salt, that.salt) &&
+               Objects.equals(name, that.name) &&
+               Objects.equals(phoneNumber, that.phoneNumber);
     }
 
     /**
@@ -124,11 +124,11 @@ public class UserEntity extends Entity {
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", role=" + role +
-                '}';
+               "id=" + id +
+               ", email='" + email + '\'' +
+               ", name='" + name + '\'' +
+               ", phoneNumber='" + phoneNumber + '\'' +
+               ", role=" + role +
+               '}';
     }
 }

@@ -50,7 +50,7 @@ public class RegistrationAction extends Action {
             response.setStatus(404);
         } catch (PersistenceException e) {
             logger.error(e);
-            //TODO нормальную обработку исключения
+            response.setStatus(404);
         }
     }
 

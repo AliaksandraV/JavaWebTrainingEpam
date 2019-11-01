@@ -9,9 +9,6 @@ public class PhotoEntity extends Entity {
     private AlbumEntity albumEntity;
     private List<LikeEntity> likes;
 
-    /**
-     * default constructor.
-     */
     public PhotoEntity() {
     }
 
@@ -66,8 +63,8 @@ public class PhotoEntity extends Entity {
         if (!super.equals(o)) return false;
         PhotoEntity that = (PhotoEntity) o;
         return Objects.equals(path, that.path) &&
-            Objects.equals(albumEntity, that.albumEntity) &&
-            Objects.equals(likes, that.likes);
+               Objects.equals(albumEntity, that.albumEntity) &&
+               Objects.equals(likes, that.likes);
     }
 
     /**
@@ -88,11 +85,10 @@ public class PhotoEntity extends Entity {
     @Override
     public String toString() {
         return "PhotoEntity{" +
-            "id=" + id +
-            ", path='" + path + '\'' +
-            ", albumEntity=" + albumEntity +
-            ", likes=" + likes +
-
-            '}';
+               "id=" + id +
+               ", path='" + path + '\'' +
+//            ", albumEntityId=" + albumEntity.getId() +
+               ", likes=" + likes +
+               '}';
     }
 }

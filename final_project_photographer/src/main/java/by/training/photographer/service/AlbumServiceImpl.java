@@ -56,8 +56,8 @@ public class AlbumServiceImpl extends BaseServiceImpl<Integer, AlbumEntity> impl
 
         List<AlbumEntity> albums = transaction.commitWithResult(dao::findAll);
 
-        for(AlbumEntity album : albums){
-            PhotoCategoryEntity category = transaction.commitWithResult(()->categoryDao.findById(album.getPhotoCategory().getId()));
+        for (AlbumEntity album : albums) {
+            PhotoCategoryEntity category = transaction.commitWithResult(() -> categoryDao.findById(album.getPhotoCategory().getId()));
             album.setPhotoCategory(category);
         }
 
@@ -68,7 +68,7 @@ public class AlbumServiceImpl extends BaseServiceImpl<Integer, AlbumEntity> impl
     public List<AlbumEntity> findByCategory(final Integer categoryId) throws PersistenceException {
         Transaction transaction = createTransaction();
         AlbumDao dao = getAlbumDao(transaction);
-        
+
         return transaction.commitWithResult(() -> dao.findByCategory(categoryId));
     }
 

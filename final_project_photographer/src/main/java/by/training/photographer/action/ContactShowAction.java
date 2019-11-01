@@ -16,7 +16,7 @@ public class ContactShowAction extends Action {
 
     @Override
     public void execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException, PersistenceException {
-        forwardToSuccessPage(request,response);
+        forwardToSuccessPage(request, response);
     }
 
     @Override

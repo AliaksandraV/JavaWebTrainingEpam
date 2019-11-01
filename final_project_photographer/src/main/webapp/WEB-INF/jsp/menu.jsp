@@ -73,7 +73,7 @@
                         </li>
                         <c:if test="${user.role eq 'ADMIN'}">
                             <li class="nav-item">
-                                <c:url value="/admin/category" var="adminUrl"/>
+                                <c:url value="/admin/album" var="adminUrl"/>
                                 <a class="nav-link" id="pills-profile-tab" href="${adminUrl}"
                                    role="tab" aria-controls="pills-profile" aria-selected="false">
                                     <fmt:message key="menu_admin" bundle="${lang}"/>

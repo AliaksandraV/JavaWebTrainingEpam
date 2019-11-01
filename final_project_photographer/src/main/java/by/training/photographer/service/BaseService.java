@@ -6,7 +6,7 @@ import by.training.photographer.exception.PersistenceException;
 
 import java.util.List;
 
-public interface BaseService<K, T extends Entity>  {
+public interface BaseService<K, T extends Entity> {
 
     Integer create(T entity) throws PersistenceException;
 

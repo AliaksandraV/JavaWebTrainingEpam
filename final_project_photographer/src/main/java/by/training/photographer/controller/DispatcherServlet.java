@@ -5,6 +5,7 @@ import by.training.photographer.dao.DaoFactoryImpl;
 import by.training.photographer.dao.connection.DataSource;
 import by.training.photographer.exception.PersistenceException;
 import by.training.photographer.service.factory.ServiceFactoryImpl;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class DispatcherServlet extends HttpServlet {
-    private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+    private final Logger logger = LogManager.getLogger(getClass());
+
     private final ActionFactory actionFactory = new ActionFactoryImpl(new ServiceFactoryImpl(new DaoFactoryImpl()));
 
     @Override
@@ -29,13 +31,13 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("DispatcherServlet GET");
+        logger.debug("DispatcherServlet GET");
         process(req, resp);
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("DispatcherServlet POST");
+       logger.debug("DispatcherServlet POST");
         process(req, resp);
     }
 
@@ -55,7 +57,6 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        //TODO add distroy connection pool here
         super.destroy();
     }
 }

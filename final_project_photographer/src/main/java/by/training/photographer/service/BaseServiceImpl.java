@@ -4,7 +4,7 @@ import by.training.photographer.dao.DaoFactory;
 import by.training.photographer.dao.connection.Transaction;
 import by.training.photographer.entity.Entity;
 
-public abstract class BaseServiceImpl<K, T extends Entity>  implements BaseService<K, T> {
+public abstract class BaseServiceImpl<K, T extends Entity> implements BaseService<K, T> {
 
     private final DaoFactory daoFactory;
 

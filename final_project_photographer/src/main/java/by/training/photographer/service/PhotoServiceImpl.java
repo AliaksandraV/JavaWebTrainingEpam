@@ -57,11 +57,19 @@ public class PhotoServiceImpl extends BaseServiceImpl<Integer, PhotoEntity> impl
     }
 
     @Override
-    public PaginationResult findByAlbum(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
+    public List<PhotoEntity> findByAlbum(final Integer albumId) throws PersistenceException {
         Transaction transaction = createTransaction();
         PhotoDao dao = getPhotoDao(transaction);
 
-        return transaction.commitWithResult(()->dao.findByAlbum(albumId, currentPage, stepAmount));
+        return transaction.commitWithResult(() -> dao.findByAlbum(albumId));
+    }
+
+    @Override
+    public PaginationResult findByAlbumWithPagination(final Integer albumId, final int currentPage, final int stepAmount) throws PersistenceException {
+        Transaction transaction = createTransaction();
+        PhotoDao dao = getPhotoDao(transaction);
+
+        return transaction.commitWithResult(() -> dao.findByAlbumWithPagination(albumId, currentPage, stepAmount));
     }
 
     private PhotoDao getPhotoDao(final Transaction transaction) throws PersistenceException {

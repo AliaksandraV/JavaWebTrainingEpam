@@ -23,25 +23,21 @@ public class PhotoCategoryServiceImpl extends BaseServiceImpl<Integer, PhotoCate
         return transaction.commitWithResult(() -> dao.create(entity));
     }
 
-
-    //TODO implement
     @Override
     public void update(final PhotoCategoryEntity entity) throws PersistenceException {
-//        dao.update(entity);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void delete(final Integer id) throws PersistenceException {
-//        dao.delete(id);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public PhotoCategoryEntity findById(final Integer id) throws PersistenceException {
-//        return dao.findById(id);
-        return null;
+        throw new UnsupportedOperationException();
     }
 
-    //TODO Пересмотреть реализацию этого метода
     @Override
     public List<PhotoCategoryEntity> findAll() throws PersistenceException {
         Transaction transaction = createTransaction();

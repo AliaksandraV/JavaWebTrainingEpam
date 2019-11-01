@@ -136,7 +136,6 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
         return user;
     }
 
-    // todo test
     @Override
     public UserEntity findByEmail(String email) throws PersistenceException {
         try (PreparedStatement statement = getConnection().prepareStatement(FIND_BY_EMAIL);

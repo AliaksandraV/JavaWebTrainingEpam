@@ -50,10 +50,10 @@ public class User {
         }
         User user = (User) other;
         return id == user.id &&
-            Objects.equals(email, user.email) &&
-            Objects.equals(name, user.name) &&
-            Objects.equals(phoneNumber, user.phoneNumber) &&
-            role == user.role;
+               Objects.equals(email, user.email) &&
+               Objects.equals(name, user.name) &&
+               Objects.equals(phoneNumber, user.phoneNumber) &&
+               role == user.role;
     }
 
     @Override
@@ -64,11 +64,11 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-            "id=" + id +
-            ", email='" + email + '\'' +
-            ", name='" + name + '\'' +
-            ", phoneNumber='" + phoneNumber + '\'' +
-            ", role=" + role +
-            '}';
+               "id=" + id +
+               ", email='" + email + '\'' +
+               ", name='" + name + '\'' +
+               ", phoneNumber='" + phoneNumber + '\'' +
+               ", role=" + role +
+               '}';
     }
 }

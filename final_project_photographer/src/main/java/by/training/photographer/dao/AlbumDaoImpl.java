@@ -8,14 +8,12 @@ import by.training.photographer.exception.PersistenceException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class AlbumDaoImpl
@@ -26,71 +24,66 @@ public class AlbumDaoImpl
 
     private static final String CREATE_QUERY =
         "INSERT INTO album " +
-            "            (cover_image_path, " +
-            "             date, " +
-            "             localized_name_id, " +
-            "             localized_description_id, " +
-            "             photo_category_id) " +
-            "VALUES (?, ?, ?, ?, ?);";
+        "            (cover_image_path, " +
+        "             localized_name_id, " +
+        "             localized_description_id, " +
+        "             photo_category_id) " +
+        "VALUES (?, ?, ?, ?);";
 
     private static final String UPDATE_QUERY =
         "UPDATE `album` " +
-            "SET   cover_image_path =?, " +
-            "       date = ?, " +
-            "       localized_name_id = ?, " +
-            "       localized_description_id = ?, " +
-            "       photo_category_id = ? " +
-            "WHERE  id = ? ";
+        "SET   cover_image_path =?, " +
+        "       localized_name_id = ?, " +
+        "       localized_description_id = ?, " +
+        "       photo_category_id = ? " +
+        "WHERE  id = ? ";
 
     private static final String DELETE_QUERY =
         "DELETE FROM `album` " +
-            "WHERE `id` = ?";
+        "WHERE `id` = ?";
 
     private static final String FIND_BY_ID_QUERY =
         "SELECT a.id, " +
-            "       a.cover_image_path, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian  as name, " +
-            "       lt2.russian as description " +
-            "FROM album a " +
-            "         LEFT JOIN localized_text lt " +
-            "                   ON a.localized_name_id = lt.id " +
-            "         LEFT JOIN localized_text lt2 " +
-            "                   ON a.localized_description_id = lt2.id " +
-            "WHERE a.id = ?";
+        "       a.cover_image_path, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian  as name, " +
+        "       lt2.russian as description " +
+        "FROM album a " +
+        "         LEFT JOIN localized_text lt " +
+        "                   ON a.localized_name_id = lt.id " +
+        "         LEFT JOIN localized_text lt2 " +
+        "                   ON a.localized_description_id = lt2.id " +
+        "WHERE a.id = ?";
 
     private static final String FIND_ALL_QUERY =
         "SELECT a.id, " +
-            "       a.cover_image_path, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian AS name, " +
-            "       lt2.russian AS description " +
-            "FROM album a " +
-            "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
-            "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
-            "ORDER BY id;";
+        "       a.cover_image_path, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian AS name, " +
+        "       lt2.russian AS description " +
+        "FROM album a " +
+        "LEFT JOIN localized_text lt ON a.localized_name_id = lt.id " +
+        "LEFT JOIN localized_text lt2 ON a.localized_description_id = lt2.id " +
+        "ORDER BY id;";
 
     private static final String FIND_BY_CATEGORY_ID_QUERY =
         "SELECT a.id, " +
-            "       a.cover_image_path, " +
-            "       a.date, " +
-            "       a.localized_name_id, " +
-            "       a.localized_description_id, " +
-            "       a.photo_category_id, " +
-            "       lt.russian  as name, " +
-            "       lt2.russian as description " +
-            "FROM album a " +
-            "         LEFT JOIN localized_text lt " +
-            "                   ON a.localized_name_id = lt.id " +
-            "         LEFT JOIN localized_text lt2 " +
-            "                   ON a.localized_description_id = lt2.id " +
-            "WHERE photo_category_id=?";
+        "       a.cover_image_path, " +
+        "       a.localized_name_id, " +
+        "       a.localized_description_id, " +
+        "       a.photo_category_id, " +
+        "       lt.russian  as name, " +
+        "       lt2.russian as description " +
+        "FROM album a " +
+        "         LEFT JOIN localized_text lt " +
+        "                   ON a.localized_name_id = lt.id " +
+        "         LEFT JOIN localized_text lt2 " +
+        "                   ON a.localized_description_id = lt2.id " +
+        "WHERE photo_category_id=?";
 
     public AlbumDaoImpl(Connection connection) {
         super(connection);
@@ -113,10 +106,9 @@ public class AlbumDaoImpl
         throws SQLException {
 
         setStringParameterToStatement(statement, 1, album.getCoverImagePath());
-        setDateParameterToStatement(statement, 2, album.getDate());
-        setIdParameterToStatement(statement, 3, album.getNameEntity());
-        setIdParameterToStatement(statement, 4, album.getDescriptionEntity());
-        setIdParameterToStatement(statement, 5, album.getPhotoCategory());
+        setIdParameterToStatement(statement, 2, album.getNameEntity());
+        setIdParameterToStatement(statement, 3, album.getDescriptionEntity());
+        setIdParameterToStatement(statement, 4, album.getPhotoCategory());
 
         statement.executeUpdate();
 
@@ -128,14 +120,6 @@ public class AlbumDaoImpl
             statement.setString(index, str);
         } else {
             statement.setNull(index, Types.VARCHAR);
-        }
-    }
-
-    private void setDateParameterToStatement(PreparedStatement statement, int index, Calendar date) throws SQLException {
-        if (date != null) {
-            statement.setDate(index, new Date(date.getTime().getTime()));
-        } else {
-            statement.setNull(index, Types.DATE);
         }
     }
 
@@ -160,11 +144,10 @@ public class AlbumDaoImpl
     public void update(final AlbumEntity album) throws PersistenceException {
         try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             setStringParameterToStatement(statement, 1, album.getCoverImagePath());
-            setDateParameterToStatement(statement, 2, album.getDate());
-            setIdParameterToStatement(statement, 3, album.getNameEntity());
-            setIdParameterToStatement(statement, 4, album.getDescriptionEntity());
-            setIdParameterToStatement(statement, 5, album.getPhotoCategory());
-            statement.setInt(6, album.getId());
+            setIdParameterToStatement(statement, 2, album.getNameEntity());
+            setIdParameterToStatement(statement, 3, album.getDescriptionEntity());
+            setIdParameterToStatement(statement, 4, album.getPhotoCategory());
+            statement.setInt(5, album.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceException(e);
@@ -240,13 +223,6 @@ public class AlbumDaoImpl
         String coverPath = resultSet.getString("cover_image_path");
         if (!resultSet.wasNull()) {
             album.setCoverImagePath(coverPath);
-        }
-
-        Date myDate = resultSet.getDate("date");
-        if (!resultSet.wasNull()) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(myDate);
-            album.setDate(cal);
         }
 
         int nameId = resultSet.getInt("localized_name_id");
