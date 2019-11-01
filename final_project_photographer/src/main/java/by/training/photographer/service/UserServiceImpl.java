@@ -34,14 +34,6 @@ public class UserServiceImpl extends BaseServiceImpl<Integer, UserEntity> implem
         return transaction.commitWithResult(() -> dao.create(entity));
     }
 
-    String generateSalt() {
-        return PasswordUtils.getSalt();
-    }
-
-    String getPasswordHash(String password, String salt) {
-        return PasswordUtils.generateSecurePassword(password, salt);
-    }
-
     @Override
     public void update(final UserEntity entity) throws PersistenceException {
         Transaction transaction = createTransaction();
@@ -84,12 +76,54 @@ public class UserServiceImpl extends BaseServiceImpl<Integer, UserEntity> implem
         UserDao dao = getUserDao(transaction);
 
         UserEntity entity = transaction.commitWithResult(() -> dao.findByEmail(email));
+        if (entity == null) {
+            return null;
+        }
+
         String salt = entity.getSalt();
         String passwordHash = entity.getPasswordHash();
 
         boolean passwordValid = isPasswordValid(password, salt, passwordHash);
 
         return passwordValid ? entity : null;
+    }
+
+    @Override
+    public UserEntity update(UserEntity entity, String password) throws PersistenceException {
+        Transaction transaction = createTransaction();
+        UserDao dao = getUserDao(transaction);
+
+        String salt = generateSalt();
+        String passwordHash = getPasswordHash(password, salt);
+
+        UserEntity updatedEntity = new UserEntity(
+            entity.getId(),
+            entity.getEmail(),
+            passwordHash,
+            salt,
+            entity.getName(),
+            entity.getPhoneNumber(),
+            entity.getRole());
+
+        transaction.commit(() -> dao.update(updatedEntity));
+
+        return updatedEntity;
+    }
+
+    @Override
+    public void update(int id, String email, String name, String phone) throws PersistenceException {
+        Transaction transaction = createTransaction();
+        UserDao dao = getUserDao(transaction);
+
+        transaction.commit(() -> dao.update(id, email, name, phone));
+    }
+
+    String generateSalt() {
+        return PasswordUtils.getSalt();
+    }
+
+    String getPasswordHash(String password, String salt) {
+        return PasswordUtils.generateSecurePassword(password, salt);
     }
 
     private boolean isPasswordValid(String password, String salt, String passwordHash) {

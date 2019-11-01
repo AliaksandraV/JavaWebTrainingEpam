@@ -1,8 +1,5 @@
 <%@include file="common/headers.jsp" %>
 
-<%@ taglib prefix="ctg" uri="customtags" %>
-<%@ taglib prefix="ctgmy" tagdir="/WEB-INF/tags" %>
-
 <html lang="${language}">
 <head>
     <title>Home</title>

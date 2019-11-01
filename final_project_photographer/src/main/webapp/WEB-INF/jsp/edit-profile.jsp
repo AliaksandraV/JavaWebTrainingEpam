@@ -1,14 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="common/headers.jsp" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ctg" uri="customtags" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.messages" var="lang"/>
 <html lang="${language}">
 <head>
     <title>Edit</title>
@@ -22,8 +13,7 @@
     <script src="<c:url value="/js/portfolio/jquery-3.4.1.js"/>"></script>
     <script src="<c:url value="/js/portfolio/popper.min.js"/>"></script>
     <script src="<c:url value="/js/portfolio/bootstrap.js"/>"></script>
-    <%--        <script src="<c:url value="/js/registration.js"/>"></script>--%>
-
+    <script src="<c:url value="/js/profile.js"/>"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
@@ -34,9 +24,9 @@
 
         <div class="col-sm-9 col-md-7 col-lg-5">
             <form class="needs-validation" action="${pageContext.request.contextPath}/profile/edit/confirm" method="post"
-            <%--                  oninput='repeatPassword.setCustomValidity(repeatPassword.value != password.value ? "Passwords do not match." : "")'--%>
-            <%--                  onsubmit="submitRegistrationForm(event)"--%>
-                  id="editProfile"
+                  oninput='repeatPassword.setCustomValidity(repeatPassword.value != password.value ? "Passwords do not match." : "")'
+                  onsubmit="submitEditProfileForm(event)"
+                  id="editProfileForm"
                   novalidate>
 
                 <div class="form-group row">
@@ -55,7 +45,6 @@
                             <fmt:message key="reg_email_exist" bundle="${lang}"/>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="form-group row">
@@ -89,8 +78,7 @@
                 </div>
                 <input name="role" type="hidden" value="${user.role}">
 
-
-            <%--                <p>--%>
+<%--                <p>--%>
 <%--                <div class="row text-center">--%>
 <%--                    <div class="col-4">--%>
 <%--                    </div>--%>
@@ -104,6 +92,20 @@
 <%--                </div>--%>
 <%--                </p>--%>
 <%--                <div class="collapse" id="collapseExample">--%>
+<%--                    <div class="form-group row">--%>
+<%--                        <label for="inputOldPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">--%>
+<%--                            <fmt:message key="profile_old_pass_label" bundle="${lang}"/>:--%>
+<%--                        </label>--%>
+<%--                        <div class="col-sm-8 px-0 py-0 align-self-center">--%>
+<%--                            <input name="old-password" type="password" class="form-control form-control-lg"--%>
+<%--                                   id="inputOldPassProfile"--%>
+<%--                                   minlength="8"--%>
+<%--                                   placeholder="<fmt:message key="profile_old_pass_placeholder" bundle="${lang}"/>" required>--%>
+<%--                            <div class="invalid-feedback text-center" id="inputOldPassWrong">--%>
+<%--                                <fmt:message key="profile_old_pass_wrong" bundle="${lang}"/>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 <%--                    <div class="form-group row">--%>
 <%--                        <label for="inputNewPassProfile" class="col-sm-4 col-form-label px-0 py-0 align-self-center">--%>
 <%--                            <fmt:message key="profile_new_pass_label" bundle="${lang}"/>:--%>
@@ -134,7 +136,7 @@
 <%--                        </div>--%>
 <%--                    </div>--%>
 <%--                </div>--%>
-<%--                <hr>--%>
+                <hr>
                 <div class="row text-right">
                     <div class="col pr-0">
                         <c:url value="/home" var="homeUrl"/>
@@ -151,30 +153,6 @@
 
     </div>
 </div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms,
-                function (form) {
-                    form.addEventListener('submit',
-                        function (event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-
-                            }
-
-                            form.classList.add('was-validated');
-                        }, false);
-                });
-        }, false);
-    })();
-</script>
 
 
 </body>

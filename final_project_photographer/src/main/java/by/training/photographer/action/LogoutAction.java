@@ -20,7 +20,7 @@ public class LogoutAction extends Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Object user = request.getSession().getAttribute("user");
         if (user != null) {
-            String message = MessageFormat.format("User {0} log out", ((User) user).getEmail());
+            String message = MessageFormat.format("User {0} log out", ((SessionUser)user).getEmail());
             logger.info(message);
 
             request.getSession().invalidate();

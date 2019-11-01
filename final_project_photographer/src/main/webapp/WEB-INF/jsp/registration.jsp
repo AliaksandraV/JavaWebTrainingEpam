@@ -1,11 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-<fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.messages" var="lang"/>
+<%@include file="common/headers.jsp" %>
+
 <html lang="${language}">
 <head>
     <title>Registration</title>
@@ -98,31 +92,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    // (function () {
-    //     'use strict';
-    //     window.addEventListener('load', function () {
-    //         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    //         var forms = document.getElementsByClassName('needs-validation');
-    //         // Loop over them and prevent submission
-    //         var validation = Array.prototype.filter.call(forms,
-    //             function (form) {
-    //                 form.addEventListener('submit',
-    //                     function (event) {
-    //                         if (form.checkValidity() === false) {
-    //                             event.preventDefault();
-    //                             event.stopPropagation();
-    //
-    //                         }
-    //
-    //                         form.classList.add('was-validated');
-    //                     }, false);
-    //             });
-    //     }, false);
-    // })();
-</script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 package by.training.photographer.controller;
 
-import by.training.photographer.action.User;
+import by.training.photographer.action.SessionUser;
 import by.training.photographer.entity.Role;
 import org.apache.log4j.Logger;
 
@@ -25,18 +25,23 @@ public class SecurityFilter implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 
-            if (needAuthorization(req)) {
-                //TODO сделать фильтр на /edit-profile - пользователь с любой ролью должен быть авторизован
-            }
-
             if (needAdminRole(req) && !hasRole(req, Role.ADMIN)) {
                 String message = MessageFormat.format("Attempt to access resource {0} without admin role", req.getServletPath());
                 logger.warn(message);
 
                 req.getRequestDispatcher("/WEB-INF/jsp/forbidden.jsp").forward(req, res);
-            } else {
-                chain.doFilter(req, res);
+                return;
             }
+
+            if (needUserRole(req) && !hasRole(req, Role.USER)) {
+                String message = MessageFormat.format("Attempt to access resource {0} without user role", req.getServletPath());
+                logger.warn(message);
+
+                req.getRequestDispatcher("/WEB-INF/jsp/forbidden.jsp").forward(req, res);
+                return;
+            }
+
+            chain.doFilter(req, res);
         } else {
             logger.error("It is impossible to use HTTP filter");
             request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
@@ -50,7 +55,7 @@ public class SecurityFilter implements Filter {
             return false;
         }
 
-        User user = (User) session.getAttribute("user");
+        SessionUser user = (SessionUser) session.getAttribute("user");
 
         if (user == null) {
             return false;
@@ -63,8 +68,8 @@ public class SecurityFilter implements Filter {
         return req.getServletPath().startsWith("/admin");
     }
 
-    private boolean needAuthorization(HttpServletRequest req) {
-        return req.getServletPath().startsWith("/edit-profile");
+    private boolean needUserRole(HttpServletRequest req) {
+        return req.getServletPath().startsWith("/profile");
     }
 
     @Override

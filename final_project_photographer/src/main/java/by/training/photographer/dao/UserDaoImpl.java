@@ -18,7 +18,8 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
     private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     private static final String CREATE_QUERY = "INSERT INTO user (`email`, `password_hash`, `salt`, `name`, `phone_number`, `role`) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final String UPDATE_QUERY = "UPDATE `user` SET `email` = ?, `name` = ?, `phone_number` = ?, `role` = ? WHERE `id` = ?";
+    private static final String UPDATE_QUERY = "UPDATE `user` SET `email` = ?, `password_hash` = ?, `salt` = ?, `name` = ?, `phone_number` = ? WHERE `id` = ?";
+    private static final String UPDATE_SHORT_QUERY = "UPDATE `user` SET `email` = ?, `name` = ?, `phone_number` = ? WHERE `id`= ?";
     private static final String DELETE_QUERY = "DELETE FROM `user` WHERE `id` = ?";
     private static final String FIND_BY_ID_QUERY = "SELECT `id`, `email`, `password_hash`, `salt`, `name`, `phone_number`, `role` FROM `user` WHERE `id`= ?";
     private static final String FIND_BY_EMAIL = "SELECT `id`, `email`, `password_hash`, `salt`, `name`, `phone_number`, `role` FROM `user` WHERE `email`= ?";
@@ -69,10 +70,11 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
     public void update(final UserEntity user) throws PersistenceException {
         try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, user.getEmail());
-            statement.setString(2, user.getName());
-            statement.setString(3, user.getPhoneNumber());
-            statement.setInt(4, user.getRole().getId());
-            statement.setInt(5, user.getId());
+            statement.setString(2, user.getPasswordHash());
+            statement.setString(3, user.getSalt());
+            statement.setString(4, user.getName());
+            statement.setString(5, user.getPhoneNumber());
+            statement.setInt(6, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceException(e);
@@ -144,6 +146,23 @@ public class UserDaoImpl extends BaseDaoImpl<Integer, UserEntity> implements Use
             return resultSet.next() ? createUserEntity(resultSet) : null;
         } catch (SQLException e) {
             throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void update(int id, String email, String name, String phone) throws PersistenceException {
+        try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_SHORT_QUERY)) {
+            statement.setString(1, email);
+            statement.setString(2, name);
+            statement.setString(3, phone);
+            statement.setInt(4, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            if (e.getMessage().contains("Duplicate entry")) {
+                throw new UserDuplicateException(e);
+            } else {
+                throw new PersistenceException(e);
+            }
         }
     }
 

@@ -28,7 +28,7 @@ public class LoginAction extends Action {
         UserEntity userEntity = userService.findByEmailAndPassword(email, password);
 
         if (userEntity != null) {
-            User sessionUser = new User(userEntity.getId(), userEntity.getEmail(), userEntity.getName(), userEntity.getPhoneNumber(), userEntity.getRole());
+            SessionUser sessionUser = new SessionUser(userEntity);
 
             request.getSession().setAttribute("user", sessionUser);
         } else {
